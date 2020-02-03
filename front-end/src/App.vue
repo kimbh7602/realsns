@@ -67,3 +67,11 @@ export default {
   },
 }
 </script>
+<style>
+.snotifyToast__title {
+  font-size: 17px;
+}
+.snotifyToast__body {
+  font-size: 12px;
+}
+</style>

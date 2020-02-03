@@ -183,11 +183,11 @@ export default {
     //   container.scrollTop = container.scrollHeight;
     // },
     sendNotification(){
-      this.$socket.emit('notification', {
-        user_id: 'kimbh',
-        target_user_id: 'kimbh1',
-        category: 'like'
-      });
+      // this.$socket.emit('notification', {
+      //   user_id: 'kimbh',
+      //   target_user_id: 'kimbh1',
+      //   category: 'like'
+      // });
     }
   },
 

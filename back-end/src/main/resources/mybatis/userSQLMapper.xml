@@ -15,7 +15,7 @@
 		where user_id = #{user_id}
 	</update>
 	
-	<select id="info" parameterType="string" resultType="Uservo">
+	<select id="info" parameterType="string" resultType="UserVo">
 		select * from users
 		where
 			user_id = #{user_id}

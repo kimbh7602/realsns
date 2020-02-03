@@ -139,6 +139,13 @@ export default {
                 timestamp: this.Items[idx].timestamp,
                 user_id: this.uid
               })
+              .then((response) =>{
+                this.$socket.emit('notification', {
+                  user_id: response.data.resValue.user_id,
+                  target_user_id: response.data.resValue.target_user_id,
+                  category: response.data.resValue.category
+                });
+              })
               .catch(()=>{
                 this.errored = true;
               })
@@ -219,5 +226,10 @@ export default {
   .size {
     font-size: 1em;
   }
-
+  .snotifyToast__title {
+  font-size: 17px;
+  }
+  .snotifyToast__body {
+    font-size: 12px;
+  }
 </style>
