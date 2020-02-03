@@ -333,6 +333,11 @@ export default {
             })
             if (res.data.resmsg === "스크랩성공") {
               this.contents[idx].scrapButton = true
+              this.$socket.emit('notification', {
+                  user_id: res.data.resValue.user_id,
+                  target_user_id: res.data.resValue.target_user_id,
+                  category: res.data.resValue.category
+                });
             } else {
               console.log(res.data.resmsg)
               this.contents[idx].scrapButton = true
