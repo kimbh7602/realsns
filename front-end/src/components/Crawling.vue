@@ -105,7 +105,7 @@ export default {
     methods: {
         searchHashtag(){
             this.keywordList.forEach(keyword => {
-                const url = "http://localhost:5000/instagram/"+keyword;
+                const url = "http://192.168.100.41:5000/instagram/"+keyword;
 
                 axios.get(url)
                     .then((response) => {
