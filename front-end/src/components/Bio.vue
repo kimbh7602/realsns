@@ -1,14 +1,6 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
-        <div class="col-10" style="background-color:white; height:400px;" v-for="item in items" :key="item.id">
-          <div style="float:left;width:50%; height:100%;border-right:1px solid black;">
-
-          </div>
-          <div style="float:right;width:50%; height:100%;">
-
-          </div>
-        </div>
 
         <div class="col-10" data-aos="fade-up">
           <div class="d-block photo-item">
@@ -16,16 +8,32 @@
               <div class="content">
                 <!-- 우표 -->
                 <div>
-                  <div class="stamp-cover" style="background:black; height:52px; width:52px;">
+                  <div class="stamp-cover" style="background:black; height:52px; width:52px; z-index:3;">
                     <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                     </div>
                   </div>
-                  <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
-                  <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
+                  <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px; z-index:4;" class="stamp-img"/>
+                  <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index:5;" alt="Postage mark" class="postmark">
                   <!-- 끝 -->
-                  <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
-                  <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items[0].content_val}}</div>
-                  <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{items[0].user_id}}</div>
+                  <div class="col-6" style="display:inline-block;">
+                    <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
+                    <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items[0].content_val}}</div>
+                    <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{items[0].user_id}}</div>
+                  </div>
+                  <div class="col-6" style="display:inline-block; padding-top:7%; z-index:0;">
+                    <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
+                                        data-swiper-speed="3000" data-swiper-margin="25" data-swiper-slides-per-view="1"
+                                        data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
+                                        data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
+                      <div class="swiper-wrapper" >
+                          <div class="swiper-slide" v-for="img in items[0].imageList" :key="img.index">
+                              <div :class="img.filter" @click="fancy" style="width:100%; height:100%;">
+                                <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
