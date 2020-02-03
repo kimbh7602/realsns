@@ -19,22 +19,24 @@
                 </div>
               </div>
             </div>
-              <div v-on:click="goDetail(item.content_id)" class="photo-text-more">
+              <div class="photo-text-more">
                 <div class="" data-aos="fade-up">
                   <div class="d-block photo-item">
                     <div class="postcard">
                       <div class="content">
                         <!-- 우표 -->
-                        <div class="stamp-cover" style="background:black; height:52px; width:52px;">
-                          <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
+                        <div v-on:click="goDetail(item.content_id)">
+                          <div class="stamp-cover" style="background:black; height:52px; width:52px;">
+                            <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
+                            </div>
                           </div>
+                          <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
+                          <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
+                          <!-- 끝 -->
+                          <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
+                          <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{item.content_val}}</div>
+                          <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{item.user_id}}</div>
                         </div>
-                        <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
-                        <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
-                        <!-- 끝 -->
-                        <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
-                        <div class="mail-message offset-2 col-8 ellipsis" style=" font-family: loveson; word-break:break-all;text-align:left;">{{item.content_val}}</div>
-                        <div class="col-11 col-offset-1" style="font-family: loveson; word-break:break-all;text-align:right;">from {{item.user_id}}</div>
                         <div class="mb-3 my-3 d-flex justify-content-around size content-button">
                           <div @click="clickHeart(item.content_id)">
                             <i class="icon-heart" v-if="item.user_like"></i>
@@ -189,6 +191,21 @@ export default {
   },
   mounted() {
     $('html').scrollTop(0);
+    $(document).ready(function() {
+      $(".fancybox-thumb").fancybox({
+        prevEffect	: 'none',
+        nextEffect	: 'none',
+        helpers	: {
+          title	: {
+            type: 'outside'
+          },
+          thumbs	: {
+            width	: 50,
+            height	: 50
+          }
+        }
+      });
+    });
   },
   updated(){
     let recaptchaScripta = document.createElement('script')
