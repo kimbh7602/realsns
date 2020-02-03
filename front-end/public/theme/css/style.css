@@ -6,6 +6,19 @@ body {
   font-size: 1rem;
   background: #000; }
 
+/* 공지사항 항상 맨위에 위치 */
+.top-noti{
+  position: sticky;
+  /* display: block; */
+  z-index: 10000;
+  top:0px;
+}
+
+.box-noti{
+  position: absolute;
+  top:50%;
+}
+
 /* 모두선택 색상 변경 */
 ::-moz-selection {
   background: rgb(110, 196, 11);
