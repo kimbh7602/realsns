@@ -6,43 +6,46 @@
             <div class="mb-5 text-center" data-aos="fade-up">
                 <h2 class="text-white mb-5">Mypage</h2>
                 <img class="rounded-circle mb-2" width="150px" height="150px" style="object-fit: cover;" :src="userInfo.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
-                <div class="row">
-                    <div class="col-md-5"></div>
-                    <h4 class="text-white col-md-2">{{userId}}</h4>
-                    <span v-if="myId != userId && myFollowList.includes(userId)" @click="deleteFollow(userId)" class="col-md-1 btn btn-outline-primary">팔로잉</span>
-                    <span v-if="myId != userId && !myFollowList.includes(userId)" @click="insertFollow(userId)" class="col-md-1 btn btn-primary">팔로우</span> 
+
+                <h4 class="text-white">{{userId}}</h4>
+                <div v-if="userId != myId">
+                    <span v-if="myId != userId && myFollowList.includes(userId)" @click="deleteFollow(userId)"  class="btn btn-outline-primary">팔로잉</span>
+                    <span v-if="myId != userId && !myFollowList.includes(userId)" @click="insertFollow(userId)" class="btn btn-primary">팔로우</span>
+                    <span v-if="myId != userId" class="btn btn-dark ml-2" style="width: 80px;"><i class="icon-send"></i></span>
                 </div>
-               
+                <div v-else>
+                    <router-link to="/chart"><button style="width: 80px;" class="btn btn-dark">통계</button></router-link>
+                </div>
                 <div class="m-3">
                     <p>{{userInfo.description}}</p>
-                    관심사 : <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">{{item}} </span>
+                    <span class="text-success" v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
+                        <span v-if="item!=''">#{{item}} </span>
+                    </span>
                 </div>
                 
-                <div class="d-flex justify-content-center">
+                <div class="row justify-content-center">
                     <div class="col-md-4"></div>
-                    <div class="col-md-1 text-center">게시물
-                        <h2>0</h2>
+                    <div class="col-md-1 p-0 text-center">게시물
+                        <h2 v-if="userContent">{{userContent.length}}</h2>
+                        <h2 v-else>0</h2>
                     </div>
-                    <div class="col-md-1 text-center">
+                    <div class="col-md-1 p-0 text-center">
                         <a href="" type="button" data-toggle="modal" data-target="#followerModal">팔로워</a>
                         <h2 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
-                    <div class="col-md-1 text-center">
+                    <div class="col-md-1 p-0 text-center">
                         <a href="" type="button" data-toggle="modal" data-target="#followModal">팔로우</a>
                         <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
-                    <div class="col-md-2 text-center align-self-center">
-                        <router-link v-if="userId == myId" to="/chart"><button class="btn btn-light">통계 📈</button></router-link>
-                    </div>
-                    <div class="col-md-2"></div>        
+                    <div class="col-md-4"></div>
                 </div>
             </div>
         </div>
       </div>
 
-      <category></category>
+      <category :userId="userId"></category>
 
       <!-- 팔로워 모달 -->
         <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,6 +105,7 @@ export default {
             userId: this.$route.params.userId,
             myFollowList: [],
             userInfo: {},
+            userContent: []
         }
     },
     computed: {
@@ -153,6 +157,13 @@ export default {
                     this.userInfo = response.data.resvalue;
                 })
                 .catch(e => console.log(e))
+        },
+        fetchUserContent(id) {
+            http
+                .get(`content/contentUserList/${id}`)
+                .then(response => {
+                    this.userContent = response.data.resValue;
+                })
         }
     },
     created() {
@@ -160,6 +171,7 @@ export default {
         this.$store.dispatch('FETCH_FOLLOWERLIST', this.userId);
         this.fetchMyFollowList();
         this.fetchUserInfo(this.userId);
+        this.fetchUserContent(this.userId);
     },
 }
 </script>

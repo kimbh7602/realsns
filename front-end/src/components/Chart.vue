@@ -8,28 +8,27 @@
                 
                 <div class="row" style="height:500px;">
                     <div class="col-md-4 text-center">
-                        <p>팔로우</p>
+                        <p class="text-white">팔로우</p>
                         <div class="list-group">
-                            <a v-for="(item, index) in categoryNoti['follow']" :key="`follow${index}`" href="#" class="list-group-item list-group-item-action">
+                            <a v-for="(item, index) in followNoti" :key="`follow${index}`" href="#" class="list-group-item list-group-item-action">
                                 <div>{{item.user_id}}님이 팔로우했습니다.</div>
                                 <small>{{item.timestamp}}</small>
-                                <!-- {{categoryUncheckedNoti['follow'][0]}} -->
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
-                        <p>좋아요</p>
+                        <p class="text-white">좋아요</p>
                         <div class="list-group">
-                            <a v-for="(item, index) in categoryNoti['like']" :key="`like${index}`" href="#" class="list-group-item list-group-item-action">
+                            <a v-for="(item, index) in likeNoti" :key="`like${index}`" href="#" class="list-group-item list-group-item-action">
                                 <div>💗 {{item.user_id}}님이 게시물을 좋아합니다.</div>
                                 <small>{{item.timestamp}}</small>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
-                        <p>스크랩</p>
+                        <p class="text-white">스크랩</p>
                         <div class="list-group">
-                            <a v-for="(item, index) in categoryNoti['scrap']" :key="`scrap${index}`" href="#" class="list-group-item list-group-item-action ">
+                            <a v-for="(item, index) in scrapNoti" :key="`scrap${index}`" href="#" class="list-group-item list-group-item-action ">
                                 <div>{{item.user_id}}님이 스크랩했습니다.</div>
                                 <small>{{item.timestamp}}</small>
                             </a>
@@ -52,7 +51,9 @@ export default {
   name: 'chart',
   data() {
     return {
-      categoryNoti: {},
+      followNoti: [],
+      likeNoti: [],
+      scrapNoti: [],
       date: {
           'follow': {'01':0,'02':0,'03':0,'04':0,'05':0,'06':0,
                     '07':0,'08':0,'09':0,'10':0,'11':0,'12':0},
@@ -61,39 +62,75 @@ export default {
           'scrap': {'01':0,'02':0,'03':0,'04':0,'05':0,'06':0,
                     '07':0,'08':0,'09':0,'10':0,'11':0,'12':0},
       },
+      followDate: [],
+      likeDate: [],
+      scrapDate: []
+    }
+  },
+  watch: {
+    followDate: {
+      deep: true,
+      handler() {
+        this.fetchChart()
+      }
+    },
+    likeDate: {
+      deep: true,
+      handler() {
+        this.fetchChart()
+      }
+    },
+    scrapDate: {
+      deep: true,
+      handler() {
+        this.fetchChart()
+      }
     }
   },
   methods: {
-      weekUserChart(){
-          http.get("/user/weekChart")
-          .then((response) => {
-              window.console.log(response);
+      // weekUserChart(){
+      //   http.get("/user/weekChart")
+      //   .then((response) => {
+      //       window.console.log(response);
+      //   })
+      //   .catch((error) => {
+      //       window.console.log(error);
+      //   })
+      // },
+      async fetchCategoryNoti(category){
+        const temp = await http
+          .get(`/notification/categoryList/${this.$store.state.user_id}/${category}`)
+          .then(response => {
+              // this.categoryNoti[category] = response.data.resvalue;
+              // console.log(response.data.resvalue);
+              if (category == 'follow') {
+                this.followNoti = response.data.resvalue;
+              }else if (category == 'like') {
+                this.likeNoti = response.data.resvalue;
+              }else {
+                this.scrapNoti = response.data.resvalue;
+              }
+              this.response.data.resvalue.forEach(e => {
+                  const month = e.timestamp.substring(5,7);
+                  this.date[category][month] += 1;
+              });
+              return ['01','02','03','04','05','06','07','08','09','10','11','12'].map(item => {
+                  return this.date[category][item];
+              })
           })
-          .catch((error) => {
-              window.console.log(error);
-          })
-      },
-      fetchCategoryNoti(category){
-          http
-            .get(`/notification/categoryList/${this.$store.state.user_id}/${category}`)
-            .then(response => {
-                this.categoryNoti[category] = response.data.resvalue;
-                // console.log(response.data.resvalue);
-                this.categoryNoti[category].forEach(e => {
-                    const month = e.timestamp.substring(5,7);
-                    this.date[category][month] += 1;
-                });
-                return response;
-            })
-            .catch(e => console.log(e))
-      }
-  },
-  mounted() {
-      this.fetchCategoryNoti('follow');
-      this.fetchCategoryNoti('like');
-      this.fetchCategoryNoti('scrap');
+          .catch(e => console.log(e))
+          console.log(temp);
 
-      const myChart = new Chart('myChart', {
+          if (category == 'follow') {
+            this.followDate = temp;
+          }else if (category == 'like') {
+            this.likeDate = temp;
+          }else {
+            this.scrapDate = temp;
+          }
+      },
+      fetchChart() {
+          const myChart = new Chart('myChart', {
           type : 'line',
           data : {
               labels : [
@@ -110,7 +147,7 @@ export default {
                       pointRadius : 6,
                       pointStyle : 'rectRot',
                       lineTension : 0.1,
-                      data : [3,0,0,0,0,0,0,0,0,0,0,0]
+                      data : this.followDate
                   },
                   {
                       label : '좋아요',
@@ -121,9 +158,7 @@ export default {
                       pointRadius : 6,
                       pointStyle : 'rectRot',
                       lineTension : 0.1,
-                      data : ['01','02','03','04','05','06','07','08','09','10','11','12'].map(item => {
-                          return this.date['like'][item];
-                      })
+                      data : this.likeDate
                   },
                   {
                       label : '스크랩',
@@ -134,9 +169,7 @@ export default {
                       pointRadius : 6,
                       pointStyle : 'rectRot',
                       lineTension : 0.1,
-                      data : ['01','02','03','04','05','06','07','08','09','10','11','12'].map(item => {
-                          return this.date['scrap'][item];
-                      })
+                      data : this.scrapDate
                   }
               ]
           },
@@ -166,8 +199,14 @@ export default {
               }
           }
       })
-
       myChart;
+      }
+  },
+  mounted() {
+      this.fetchCategoryNoti('follow');
+      this.fetchCategoryNoti('like');
+      this.fetchCategoryNoti('scrap');
+      this.fetchChart();
   }
 }
 </script>

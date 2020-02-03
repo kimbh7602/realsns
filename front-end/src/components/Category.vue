@@ -68,6 +68,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
+  props:["userId"],
   data() {
     return {
       follow: false,
@@ -97,27 +98,32 @@ export default {
     },
     getData() {
       http
-        .get('/content/contentMyList/' + "test")
-        .then((res)=>{
-          if (res.data.resValue.length > 0) {
-            this.contentErrorMsg = ""
-            if (res.data.resmsg == "타임라인 출력 성공") {
-              for (var i = 0; i < res.data.resValue.length; i++) {
-                for (var j = 0; j < this.contentIds.length; j++) {
-                  if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                    res.data.resValue[i].user_like = true
-                  }
-                }
-              }
-              this.Items = res.data.resValue;
-            }
-          } else {
-            this.contentErrorMsg = "게시물이 없습니다."
-          }
+        .get(`content/contentUserList/${this.userId}`)
+        // .then((res)=>{
+        //   if (res.data.resValue.length > 0) {
+        //     this.contentErrorMsg = ""
+        //     if (res.data.resmsg == "타임라인 출력 성공") {
+        //       for (var i = 0; i < res.data.resValue.length; i++) {
+        //         for (var j = 0; j < this.contentIds.length; j++) {
+        //           if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
+        //             res.data.resValue[i].user_like = true
+        //           }
+        //         }
+        //       }
+        //       this.Items = res.data.resValue;
+        //     }
+        //   } else {
+        //     this.contentErrorMsg = "게시물이 없습니다."
+        //   }
+        // })
+        // .catch(()=>{
+        //   this.errored = true;
+        // })
+        .then(response => {
+          // console.log(response.data)
+          this.Items = response.data.resValue;
         })
-        .catch(()=>{
-          this.errored = true;
-        })
+        .catch(e => console.log(e))
     },
     goDetail: function(con_id) {
       this.$router.push({
@@ -174,7 +180,7 @@ export default {
         this.$store.commit('setModalText', '신고가 접수되었습니다.');
         document.getElementById('modalBtn').click();
       }
-    }
+    },
   },
   created() {
     this.getLike()
