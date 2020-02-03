@@ -112,7 +112,17 @@ export default {
     },
     methods: {
         insertFollow(id) {
-            this.$store.dispatch('INSERT_FOLLOW', {follower_id: this.myId, follow_id: id});
+            // this.$store.dispatch('INSERT_FOLLOW', {follower_id: this.myId, follow_id: id});
+            http
+                .post("/follow/insertFollow", {follower_id: this.myId, follow_id: id})
+                .then(response => {
+                    this.$socket.emit('notification', {
+                        user_id: response.data.resValue.user_id,
+                        target_user_id: response.data.resValue.target_user_id,
+                        category: response.data.resValue.category
+                    });
+                })
+                .catch(e => console.log(e))
             this.myFollowList.push(id);
 
             if (this.myId == this.userId) {

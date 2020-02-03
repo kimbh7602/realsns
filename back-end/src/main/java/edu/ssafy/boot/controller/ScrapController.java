@@ -52,8 +52,10 @@ public class ScrapController {
 			notification.setCategory("scrap");
 			boolean insertNotification = nSer.insertNotification(notification);
 			Map<String, Object> map = new HashMap<String, Object>();
-			if (insert && insertNotification)
+			if (insert && insertNotification){
 				map.put("resmsg", "스크랩성공");
+				map.put("resValue", notification);
+			}
 			else
 				map.put("resmsg", "1스크랩실패");
 			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
