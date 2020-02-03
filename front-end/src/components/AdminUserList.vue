@@ -55,7 +55,6 @@
     import http from "../http-common"
     export default {
         name: "AllUserList",
-        props: ["euid"],
         data() {
             return {
                 alluser: [],
