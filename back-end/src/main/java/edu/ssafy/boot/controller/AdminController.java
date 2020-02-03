@@ -57,8 +57,9 @@ public class AdminController {
 
 	@GetMapping("/trust")
 	@ApiOperation(value = "신뢰성검사")
-	private void trust() {
+	private  @ResponseBody ResponseEntity<Map<String, Object>> trust() {
 		boolean trust = false;
+		ResponseEntity<Map<String, Object>> resEntity = null;
 		trust = serbc.isValid();
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (trust) {
@@ -66,5 +67,7 @@ public class AdminController {
 		} else {
 			map.put("resmsg", "비신뢰");
 		}
+		resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		return resEntity;
 	}
 }
