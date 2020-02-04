@@ -18,7 +18,7 @@ public class ContentVo {
 	private double lat;
 	private double lng;
 	private String profile_url;
-	private String prifile_filter;
+	private String profile_filter;
 
 	public ContentVo() {
 		super();
@@ -217,12 +217,12 @@ public class ContentVo {
 		this.profile_url = profile_url;
 	}
 
-	public String getPrifile_filter() {
-		return prifile_filter;
+	public String getProfile_filter() {
+		return profile_filter;
 	}
 
-	public void setPrifile_filter(String prifile_filter) {
-		this.prifile_filter = prifile_filter;
+	public void setProfile_filter(String profile_filter) {
+		this.profile_filter = profile_filter;
 	}
 
 }
