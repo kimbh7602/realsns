@@ -44,19 +44,22 @@
                     </div>
                   </div>
                   <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
-                    <div class="swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false"  data-swiper-wheel-control="true"
-                                        data-swiper-speed="3000" data-swiper-margin="25" data-swiper-slides-per-view="1"
-                                        data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
-                                        data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
-                      <div class="swiper-wrapper">
-                          <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
-                              <div :class="img.filter" style="width:100%; height:100%;">
-                                <a :href="img.image_url" class="d-block photo-item" data-fancybox="gallery">
-                                  <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
+                    <div class="all-scroll pos-relative mt-50">
+                      <div class="swiper-scrollbar"></div>
+                        <div class="swiper-container oflow-visible" data-slide-effect="slide" data-autoheight="false"  data-swiper-wheel-control="true"
+                                            data-swiper-speed="8000" data-swiper-margin="25" data-swiper-slides-per-view="1"
+                                            data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
+                                            data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
+                          <div class="swiper-wrapper">
+                              <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
+                                <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
+                                  <div :class="img.filter" style="width:100%; height:100%;">
+                                      <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
+                                  </div>
                                 </a>
                               </div>
                           </div>
-                      </div>
+                        </div>
                     </div>
                   </div>
                 </div>
