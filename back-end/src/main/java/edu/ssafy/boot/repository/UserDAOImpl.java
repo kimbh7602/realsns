@@ -117,4 +117,9 @@ public class UserDAOImpl implements IUserDAO {
 		List<String> interestList = session.selectList("ssafy.user.interest");
 		return interestList;
 	}
+	@Override
+	public String usertoday() {
+		
+		return session.selectOne("ssafy.user.todayvisit");
+	}
 }

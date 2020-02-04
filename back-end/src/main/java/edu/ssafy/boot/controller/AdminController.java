@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.ssafy.boot.dto.BlockVo;
 import edu.ssafy.boot.service.IBlockchainService;
+import edu.ssafy.boot.service.IUserService;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*")
@@ -27,6 +28,10 @@ public class AdminController {
 	@Autowired
 	@Qualifier("BlockchainService")
 	IBlockchainService serbc;
+	
+	@Autowired
+	@Qualifier("UserService")
+	IUserService ser;
 
 	@GetMapping("/info")
 	@ApiOperation(value = "로그전체조회", response = BlockVo.class)
@@ -66,6 +71,24 @@ public class AdminController {
 			map.put("resmsg", "신뢰");
 		} else {
 			map.put("resmsg", "비신뢰");
+		}
+		resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		return resEntity;
+	}
+	
+	@GetMapping("/todayvisit")
+	@ApiOperation(value = "하루방문자수")
+	private  @ResponseBody ResponseEntity<Map<String, Object>> today() {
+		
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		String result = null;
+		result = ser.usertoday();
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (result.equals(null)) {
+			map.put("resmsg", "조회실패");
+		} else {
+			map.put("resmsg", "조회성공");
+			map.put("resvalue", result);
 		}
 		resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		return resEntity;
