@@ -184,6 +184,7 @@ export default {
             http
                 .post('/user/searchByInterest', this.searchData)
                 .then((res) => {
+                    console.log(res)
                     if (res.data.resmsg == "관심사 검색 성공") {
                         this.interestErrorMsg = ""
                         this.resultInterests = []
@@ -192,6 +193,7 @@ export default {
                         }
                     } else {
                         this.interestErrorMsg = "관심사가 일치하는 친구가 없습니다.";
+                        this.resultInterests = []
                     }
                 })
                     .catch(() => {
@@ -207,6 +209,7 @@ export default {
         inputIdData: function (inputId) {
             if (inputId === "") {
                 this.resultIds = []
+                this.idErrorMsg = ""
             } else {
                 this.getIds()
                 this.resultIds = []
