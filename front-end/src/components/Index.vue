@@ -4,9 +4,9 @@
       
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item">
-          <img :src="con.images.imageUrl" alt="Image" class="img-fluid pa"/>
-          <p class="ch text-right text-primary pt-0 mt-0" v-if="con.scrapButton">📥 {{con.userId}}님</p>
-
+          <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa"/>
+          <p class="ch text-right text-primary pt-0 mt-0" v-if="con.scrapButton && con.userId !== loginId">📥 {{con.userId}}님</p>
+          <p class="ch text-right text-primary pt-0 mt-0" v-if="con.scrapButton && con.userId == loginId">📥 내 게시물</p>
           <div class="photo-text-more">
             <h3 class="heading mx-2 ellipsis" v-on:click="goDetail(con.contentId)">{{con.contentId}} {{con.contentValue}}</h3>
             <span v-if="con.imageLength == 0" class="meta">there's no photo</span>
@@ -58,10 +58,10 @@ export default {
         likeButton: false,
         userId: "",
         imageLength: 0,
-        images: {
+        images: [{
           imageUrl: "",
           filter: "",
-        },
+        }],
         scrapButton: false,
       }],
       loginId: "",
@@ -87,10 +87,10 @@ export default {
               likeButton: res.data.resvalue[i].user_like,
               userId: res.data.resvalue[i].user_id,
               imageLength: res.data.resvalue[i].imageList.length,
-              images: {
+              images: [{
                 imageUrl: res.data.resvalue[i].imageList[0].image_url,
                 filter: res.data.resvalue[i].imageList[0].filter,
-              },
+              }],
             })
           }
         })
@@ -116,7 +116,6 @@ export default {
       http
         .get('/content/contentMyList/' + this.loginId)
         .then((res) => {
-          console.log(res)
           if (res.data.resValue.length > 0) {
             this.contentErrorMsg = ""
             for (var idx = 0; idx < res.data.resValue.length; idx++) {
@@ -146,10 +145,10 @@ export default {
                   likeButton: res.data.resValue[idx].user_like,
                   userId: res.data.resValue[idx].user_id,
                   imageLength: res.data.resValue[idx].imageList.length,
-                  images: {
+                  images: [{
                     imageUrl: res.data.resValue[idx].imageList[0].image_url,
                     filter: res.data.resValue[idx].imageList[0].filter,
-                  },
+                  }],
                   scrapButton: true,
                 })
               } else {
@@ -160,15 +159,14 @@ export default {
                   likeButton: res.data.resValue[idx].user_like,
                   userId: res.data.resValue[idx].user_id,
                   imageLength: res.data.resValue[idx].imageList.length,
-                  images: {
+                  images: [{
                     imageUrl: res.data.resValue[idx].imageList[0].image_url,
                     filter: res.data.resValue[idx].imageList[0].filter,
-                  },
+                  }],
                   scrapButton: false,
                 })
               }
             }
-            this.sortList()
           } else {
             this.contentErrorMsg = "타임라인이 없습니다."
           }
@@ -186,6 +184,12 @@ export default {
         .catch(()=>{
           this.errored = true;
         })
+    },
+    sortList() {
+      this.contents.sort(function(a, b) {
+        return (a.timestamp < b.timestamp) ? - 1 : (a.timestamp > b.timestamp) ? 1 : 0;
+      })
+      this.contents.reverse()
     },
     goDetail: function(con_id) {
       this.$router.push({
@@ -290,10 +294,10 @@ export default {
                     likeButton: idx.user_like,
                     userId: idx.user_id,
                     imageLength: idx.imageList.length,
-                    images: {
+                    images: [{
                       imageUrl: idx.imageList[0].image_url,
                       filter: idx.imageList[0].filter,
-                    },
+                    }],
                     scrapButton: true,
                   })
                 } 
@@ -305,13 +309,14 @@ export default {
                     likeButton: idx.user_like,
                     userId: idx.user_id,
                     imageLength: idx.imageList.length,
-                    images: {
+                    images: [{
                       imageUrl: idx.imageList[0].image_url,
                       filter: idx.imageList[0].filter,
-                    },
+                    }],
                     scrapButton: false,
                   })
                 }
+                this.sortList()
               }
             })
           })
