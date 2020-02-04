@@ -23,20 +23,26 @@
                     </span>
                 </div>
                 
-                <div class="row justify-content-center">
+                <div class="row">
                     <div class="col-md-4"></div>
-                    <div class="col-md-1 p-0 text-center">게시물
+                    <div class="col-md-1 p-0 text-center">
+                        <a href="javascript:void(0)" @click="content()">게시물</a>
                         <h2 v-if="userContent">{{userContent.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
                     <div class="col-md-1 p-0 text-center">
-                        <a href="" type="button" data-toggle="modal" data-target="#followerModal">팔로워</a>
+                        <a href="" data-toggle="modal" data-target="#followerModal">팔로워</a>
                         <h2 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
                     <div class="col-md-1 p-0 text-center">
-                        <a href="" type="button" data-toggle="modal" data-target="#followModal">팔로우</a>
+                        <a href="" data-toggle="modal" data-target="#followModal">팔로우</a>
                         <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
+                        <h2 v-else>0</h2>
+                    </div>
+                    <div class="col-md-1 p-0 text-center">
+                        <a href="javascript:void(0)" @click="scrap()">스크랩</a>
+                        <h2 v-if="userScrap">{{userScrap.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
                     <div class="col-md-4"></div>
@@ -45,10 +51,11 @@
         </div>
       </div>
 
-      <category :userId="userId"></category>
+      <category v-if="check=='content'" :userId="userId" :Items="userContent"></category>
+      <category v-else :userId="userId" :Items="userScrap"></category>
 
       <!-- 팔로워 모달 -->
-        <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -59,7 +66,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex justify-content-between mx-1 mb-3">
-                            <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link>
+                            <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link>
                             <span v-if="myId != follower && myFollowList.includes(follower)" @click="deleteFollow(follower)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follower && !myFollowList.includes(follower)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follower)">팔로우</span>
                         </div>
@@ -68,7 +75,7 @@
             </div>
         </div>
         <!-- 팔로우 모달 -->
-        <div class="modal mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal mt-5" id="followModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -105,7 +112,9 @@ export default {
             userId: this.$route.params.userId,
             myFollowList: [],
             userInfo: {},
-            userContent: []
+            userContent: [],
+            userScrap: [],
+            check: 'content'
         }
     },
     computed: {
@@ -164,6 +173,19 @@ export default {
                 .then(response => {
                     this.userContent = response.data.resValue;
                 })
+        },
+        fetchUserScrap(id) {
+            http
+                .get(`scrap/scrapList/${id}`)
+                .then(response => {
+                    this.userScrap = response.data.resvalue;
+                })
+        },
+        content() {
+            this.check = 'content';
+        },
+        scrap() {
+            this.check = 'scrap';
         }
     },
     created() {
@@ -172,6 +194,7 @@ export default {
         this.fetchMyFollowList();
         this.fetchUserInfo(this.userId);
         this.fetchUserContent(this.userId);
+        this.fetchUserScrap(this.userId);
     },
 }
 </script>
