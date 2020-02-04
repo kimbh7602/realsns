@@ -25,12 +25,9 @@ import AdminUserList from "./components/AdminUserList.vue"
 import Mypage from "./components/Mypage.vue"
 import Calendar from "./components/Calendar.vue"
 import Crawling from "./components/Crawling.vue"
-<<<<<<< HEAD
 import Notification from "./components/Notification.vue"
-
-=======
 import Admin from "./components/Admin.vue"
->>>>>>> d541ebb6888a17b33f8615d25410628566da7641
+
 Vue.use(Router);
 // const modal = { template: '<p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-body" style="text-align:center;">{{$store.state.modalText}}</div><div class="modal-footer"><button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button></div></div></div></div>'}
 export const router = new Router({
