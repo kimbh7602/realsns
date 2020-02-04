@@ -16,8 +16,32 @@
                   <!-- 끝 -->
                   <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; padding-top:0px; margin-top:0px; padding-bottom:50px">
                     <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
-                    <div class="mail-message offset-2 col-8" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items.content_val}}</div>
-                    <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all; text-align:right;">from {{items.user_id}}</div>
+                    <div class="detail-mail-message mail-message offset-2 col-8" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items.content_val}}</div>
+                    <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">from {{items.user_id}}</div>
+                    <div class="col-12 row" style="margin:0; color:black; vertical-align:bottom; text-align:left;">
+                      <div style="font-size:1.5em; font-family: loveson; word-break:break-all; " class="col-3">PS .</div>
+                      <div class="col-6"><input type="text" class="text-black form-control" v-model="comment_val" /></div>
+                      <div class="col-3"><input type="button" @click="insertComment" class="btn btn-block btn-outline-info" value="Send" /></div>
+                    </div>
+                    <div v-if="!isComment">
+                      <div class="row" style="text-align:left;" v-for="(comment, index) in tempComments" :key="index">
+                        <div class="col-1"></div>
+                        <div class="col-3" style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">{{comment.user_id}}</div>
+                        <!-- <div class="col-1"></div> -->
+                        <div class="comment-val col-7" style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">{{comment.comment_val}}</div>
+                      </div>
+                      <div style="padding-top:20px; text-align:center;">
+                        <svg @click="isComment = true;" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 512 512" width="25" class=""><g><path d="m437.019531 74.980469c-48.351562-48.351563-112.640625-74.980469-181.019531-74.980469s-132.667969 26.628906-181.019531 74.980469c-48.351563 48.351562-74.980469 112.640625-74.980469 181.019531s26.628906 132.667969 74.980469 181.019531c48.351562 48.351563 112.640625 74.980469 181.019531 74.980469s132.667969-26.628906 181.019531-74.980469c48.351563-48.351562 74.980469-112.640625 74.980469-181.019531s-26.628906-132.667969-74.980469-181.019531zm-181.019531 397.019531c-119.101562 0-216-96.898438-216-216s96.898438-216 216-216 216 96.898438 216 216-96.898438 216-216 216zm20-236.019531h90v40h-90v90h-40v-90h-90v-40h90v-90h40zm0 0" data-original="#000000" class="active-path" data-old_color="#000000" fill="#5EB2FD"/></g> </svg>
+                      </div>
+                    </div>
+                    <div v-if="isComment">
+                      <div class="row" style="text-align:left;" v-for="(comment, index) in comments" :key="index">
+                        <div class="col-2"></div>
+                        <div class="col-2" style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">{{comment.user_id}}</div>
+                        <!-- <div class="col-1"></div> -->
+                        <div class="comment-val col-7" style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">{{comment.comment_val}}</div>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
                     <div class="all-scroll pos-relative mt-50">
@@ -59,6 +83,47 @@ export default {
       contentId: "",
       items: {},
       uid:"",
+      isComment:false,
+      comment_val:"",
+      comments:[
+        {
+          user_id:'kimbh',
+          comment_val:'testtttttttttttttttttttttttttttttttttttttttt'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test2'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+        {
+          user_id:'kimbh',
+          comment_val:'test3'
+        },
+      ],
+      tempComments:[],
     }
   },
   methods: {
@@ -82,8 +147,40 @@ export default {
               this.items.profile_filter="normal";
             }
           }
+        });
+      
+      if(this.comments.length != 0) {
+        this.comments.some(comment => {
+          if(this.tempComments.length >= 2){
+            return true;
+          }
+          this.tempComments.push(comment);
         })
+      }
     },
+    fancy(){
+      $.fancybox.open([
+          {
+              href : 'http://fancyapps.com/fancybox/demo/1_b.jpg',                
+              title : '1st title'
+          },
+          {
+              href : 'http://fancyapps.com/fancybox/demo/2_b.jpg',                
+              title : '2nd title'
+          },
+          {
+              href : 'http://fancyapps.com/fancybox/demo/3_b.jpg',                
+              title : '3rd title'
+          }
+      ], {
+          padding : 0
+      });
+      
+      return false;
+    },
+    insertComment(){
+      window.console.log(this.comment_val);
+    }
   },
   created() {
     this.getData()
@@ -150,17 +247,21 @@ export default {
     transition: .2s;
   }
 
-  .mail-message {
+  .detail-mail-message {
     margin-top: 70px;
     margin-bottom: 70px;
     font-size: 23px;
   }
 
   @media screen and (max-width: 991.98px) {
-    .mail-message {
+    .detail-mail-message {
       margin-top: 30px;
       margin-bottom: 30px;
       /* font-size: 20; */
     }
   }
+
+  /* .comment-val {
+    line-height: 1.3em;
+  } */
 </style>

@@ -395,7 +395,7 @@ export default {
           $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
         });
         document.querySelector("ul").remove();
-        document.querySelector("ul").remove();
+        // document.querySelector("ul").remove();
     }); 
   },
 }

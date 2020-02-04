@@ -98,12 +98,13 @@ import $ from "jquery"
       $('html').scrollTop(0);
       this.$nextTick(() => {
       // 모든 화면이 렌더링된 후 호출됩니다.
+      // console.log(document.querySelector("ul").remove());
           $('.js-clone-nav').each(function() {
             var $this = $(this);
             $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
           });
           document.querySelector("ul").remove();
-          document.querySelector("ul").remove();
+          // document.querySelector("ul").remove();
       });
     }
   }
