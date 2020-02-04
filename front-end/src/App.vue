@@ -61,13 +61,19 @@
 import Sideex from "@/components/Sideex.vue"
 import Footer from "@/components/Footer.vue"
 import store from "@/store.js"
+import http from "@/http-common.js"
 // import io from 'socket.io-client';
 // import $ from "jquery"
 export default {
   name: 'app',
   data(){
     return{
+<<<<<<< HEAD
       noti:["30일 이상 로그인 기록이 없을 시 휴면계정 처리됩니다.", "매너를 지킵시다!"],
+=======
+      noti: [],
+      noticeError: ""
+>>>>>>> feature/notice-axios
     }
   },
   components: {
@@ -76,11 +82,44 @@ export default {
     Sideex,
     Footer,
   },
+  methods: {
+    getNotice() {
+      http
+        .get('/notice/noticeNow')
+        .then((res) => {
+          console.log(res)
+          if (res.data.resmsg === "조회성공") {
+            this.noticeError = ""
+            const noticeTitle = []      
+            res.data.resValue.forEach(function(el) {
+              noticeTitle.push(el.title)
+            })
+            this.noti = noticeTitle
+          } else {
+            this.noticeError = "공지사항이 없습니다."
+          }
+        })
+    }
+  },
   computed: {
     loginCheck: () => {
         return store.state.islogin;
     },
   },
+  created() {
+    this.getNotice();
+
+  },
+  updated() {
+          let recaptchaScripta = document.createElement('script')
+      recaptchaScripta.setAttribute('type',"text/javascript")
+      recaptchaScripta.setAttribute('src', "./theme/js/script.js")
+      document.body.appendChild(recaptchaScripta)
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('type',"text/javascript")
+      recaptchaScript.setAttribute('src', "./theme/js/swiper.js")
+      document.body.appendChild(recaptchaScript)
+  }
 }
 </script>
 <style>
