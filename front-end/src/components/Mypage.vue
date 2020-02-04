@@ -11,10 +11,10 @@
                 <div v-if="userId != myId">
                     <span v-if="myId != userId && myFollowList.includes(userId)" @click="deleteFollow(userId)"  class="btn btn-outline-primary">팔로잉</span>
                     <span v-if="myId != userId && !myFollowList.includes(userId)" @click="insertFollow(userId)" class="btn btn-primary">팔로우</span>
-                    <span v-if="myId != userId" class="btn btn-dark ml-2" style="width: 80px;"><i class="icon-send"></i></span>
+                    <span v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span>
                 </div>
                 <div v-else>
-                    <router-link to="/chart"><button style="width: 80px;" class="btn btn-dark">통계</button></router-link>
+                    <router-link to="/chart"><button style="width: 72px;" class="btn btn-dark">통계</button></router-link>
                 </div>
                 <div class="m-3">
                     <p>{{userInfo.description}}</p>
@@ -23,7 +23,7 @@
                     </span>
                 </div>
                 
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <div class="col-md-4"></div>
                     <div class="col-md-1 p-0 text-center">
                         <a href="javascript:void(0)" @click="content()">게시물</a>
@@ -40,7 +40,7 @@
                         <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
                         <h2 v-else>0</h2>
                     </div>
-                    <div class="col-md-1 p-0 text-center">
+                    <div v-if="userId==myId" class="col-md-1 p-0 text-center">
                         <a href="javascript:void(0)" @click="scrap()">스크랩</a>
                         <h2 v-if="userScrap">{{userScrap.length}}</h2>
                         <h2 v-else>0</h2>
