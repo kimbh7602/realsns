@@ -2,7 +2,6 @@ package edu.ssafy.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -149,6 +148,11 @@ public class UserService implements IUserService {
 	@Override
 	public List<UserVo> userList() {
 		return dao.userList();
+	}
+	
+	@Override
+	public String usertoday() {
+		return dao.usertoday();
 	}
 
 	@Override

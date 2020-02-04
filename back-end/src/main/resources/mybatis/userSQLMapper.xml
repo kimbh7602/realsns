@@ -96,4 +96,11 @@
 	<select id="interest" resultType="string">
 		select interest from users
 	</select>
+	
+	<select id="todayvisit" resultType="string">
+		select count(*)
+		from users
+		where DATE(timestamp) = DATE(NOW());
+	</select>
+	
 </mapper>
