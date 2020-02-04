@@ -253,7 +253,6 @@ export default {
           })
         const del = []
         for (var i = 0; i < this.contents.length; i++) {
-          // if (this.contents[i].userId == user && !this.contents[i].likeButton && !this.contents[i].scrapButton) {
           if (this.contents[i].userId == user && !this.contents[i].likeButton) {
             del.push(this.contents[i].contentId)
           }
@@ -320,7 +319,7 @@ export default {
                     scrapButton: false,
                   })
                 }
-                // this.sortList()
+                this.sortList()
               }
             })
           })
@@ -380,9 +379,6 @@ export default {
     this.getScrap()
     this.getData()
     this.getFollow()
-  },
-  updated() {
-    // this.sortList()
   },
   mounted() {
     $('html').scrollTop(0);
