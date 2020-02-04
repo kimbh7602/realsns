@@ -122,4 +122,10 @@ public class UserDAOImpl implements IUserDAO {
 		
 		return session.selectOne("ssafy.user.todayvisit");
 	}
+	
+	@Override
+	public int totalcontents(int month) {
+		
+		return session.selectOne("ssafy.user.totalcontents", month);
+	}
 }
