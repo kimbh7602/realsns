@@ -37,29 +37,31 @@
                 <!-- 친구 찾기 목록 -->
                 <div class="mt-5 row justify-content-center">
                     <div @click="IdClick()" class="d-block col-6">
-                        <button v-show="IdButton" type="button" class="btn btn-primary col-12 btn-lg">ID</button> 
+                        <button v-show="IdButton" type="button" class="btn btn-info col-12 btn-lg">ID</button> 
                         <button v-show="!IdButton" type="button" class="btn btn-dark col-12 btn-lg">ID</button>
                     </div>
                     <div @click="InterestClick()" class="d-block col-6">
                         <button v-show="!InterestButton" type="button" class="btn btn-dark col-12 btn-lg">INTEREST</button>
-                        <button v-show="InterestButton" type="button" class="btn btn-primary col-12 btn-lg">INTEREST</button>
+                        <button v-show="InterestButton" type="button" class="btn btn-info col-12 btn-lg">INTEREST</button>
                     </div>
 
                     <div class="m-3">
-                        <div v-show="IdButton" v-for="rid in resultIds" :key="rid.id" class="my-4">
-                            <div v-if="rid" class="media position-relative">
-                                <!-- <span class="border border-white">
-                                    <img src="" class="mr-3" alt="">
-                                </span> -->
+                        <div v-show="IdButton" v-for="result in resultIds" :key="result.id" class="my-4">
+                            <div v-if="result.user_id" class="media position-relative">
+                                <img v-if="result.profile_url" :src="result.profile_url" class="rounded-circle mb-3" width="130px" height="130px" style="object-fit: cover;">
+                                <img v-else src="https://t1.daumcdn.net/qna/image/1542632018000000528" class="mb-3" width="130px" height="130px" style="object-fit: cover;">
                                 <div class="media-body">
-                                    <h4 class="mt-0 text-white">{{ rid }} 님</h4>
-                                    <p>blah blah</p>
-                                    <a href="#" class="stretched-link">회원정보보기</a>
+                                    <div class="notification align-self-center ml-3">
+                                        <h4 class="mt-2 text-white">{{ result.user_id }} 님</h4>
+                                        <p v-if="result.description">{{ result.description }}</p>
+                                        <p v-else> 반갑습니다 </p>
+                                        <router-link :to="'/mypage/'+ result.user_id" class="text-primary">Go {{result.user_id}} page</router-link>
+                                    </div>
                                 </div> 
                             </div>
                         </div>
                         <div v-show="IdButton">
-                            <h3 class=" m-3 text-white">{{idErrorMsg}}</h3>
+                            <h3 class="m-3 text-white">{{idErrorMsg}}</h3>
                         </div>
 
                         <div v-show="InterestButton" v-for="r in resultInterests" :key="r.id" class="my-4">
@@ -134,11 +136,17 @@ export default {
             http
                 .get('/user/searchByUserId/' + this.inputIdData)
                 .then((res) => {
+                    console.log(res)
                     if (res.data.resmsg == "아이디 검색 성공") {
                         for (var i=0; i<res.data.resValue.length; i++) {
                             var id = res.data.resValue[i].user_id
                             if (searchIdData.test(id) === true) {
-                                this.resultIds.push(id)
+                                this.resultIds.push({
+                                    user_id: id,
+                                    description: res.data.resValue[i].description,
+                                    profile_url: res.data.resValue[i].profile_url,
+                                    profile_filter: res.data.resValue[i].profile_filter,
+                                })
                             }
                         }
                     } else if (res.data.resmsg == "아이디 검색 실패") {
