@@ -30,7 +30,7 @@ public class ContentDAOImpl implements IContentDAO {
 			UserVo user = session.selectOne("ssafy.user.info", contentVo.getUser_id());
 			if(user.getProfile_url() != null && user.getProfile_filter() != null){
 				contentVo.setProfile_url(user.getProfile_url());
-				contentVo.setPrifile_filter(user.getProfile_filter());
+				contentVo.setProfile_filter(user.getProfile_filter());
 			}
 		}
 		return contentList;
@@ -105,7 +105,7 @@ public class ContentDAOImpl implements IContentDAO {
 			UserVo user = session.selectOne("ssafy.user.info", contentVo.getUser_id());
 			if(user.getProfile_url() != null && user.getProfile_filter() != null){
 				contentVo.setProfile_url(user.getProfile_url());
-				contentVo.setPrifile_filter(user.getProfile_filter());
+				contentVo.setProfile_filter(user.getProfile_filter());
 			}
 		}
 		return contentList;
@@ -120,7 +120,7 @@ public class ContentDAOImpl implements IContentDAO {
 			UserVo user = session.selectOne("ssafy.user.info", contentVo.getUser_id());
 			if(user.getProfile_url() != null && user.getProfile_filter() != null){
 				contentVo.setProfile_url(user.getProfile_url());
-				contentVo.setPrifile_filter(user.getProfile_filter());
+				contentVo.setProfile_filter(user.getProfile_filter());
 			}
 		}
 		return contentList;
