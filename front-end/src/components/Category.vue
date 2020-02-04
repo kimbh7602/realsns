@@ -19,6 +19,7 @@
                 </div>
               </div>
             </div>
+            <!-- -->
               <div class="photo-text-more">
                 <div class="" data-aos="fade-up">
                   <div class="d-block photo-item">
