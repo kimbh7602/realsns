@@ -39,7 +39,7 @@
     </main>
     <!-- modal -->
     <p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p>
-    <div class="modal fade" id="myModal" style="position:absolute; top:23px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal" style="position:absolute; top:50px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body" style="text-align:center;">
@@ -83,7 +83,7 @@ export default {
       http
         .get('/notice/noticeNow')
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           if (res.data.resmsg === "조회성공") {
             this.noticeError = ""
             const noticeTitle = []      
@@ -104,10 +104,11 @@ export default {
   },
   created() {
     this.getNotice();
+    console.log(this.noti);
 
   },
   updated() {
-          let recaptchaScripta = document.createElement('script')
+      let recaptchaScripta = document.createElement('script')
       recaptchaScripta.setAttribute('type',"text/javascript")
       recaptchaScripta.setAttribute('src', "./theme/js/script.js")
       document.body.appendChild(recaptchaScripta)
