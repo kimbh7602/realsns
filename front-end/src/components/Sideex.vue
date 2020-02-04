@@ -49,6 +49,7 @@
             <li v-show="!loginCheck" class="active"><router-link to="/login">Home</router-link></li>
             <li v-show="!loginCheck"><router-link to="/register">Register</router-link></li>
             <li v-show="!loginCheck"><router-link to="/password">Password</router-link></li>
+            <li><router-link to="/notification">Notification</router-link></li>
         </ul>
         <!-- <ul class="social js-clone-nav">
             <li><a href="#"><span class="icon-facebook"></span></a></li>

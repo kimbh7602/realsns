@@ -97,29 +97,15 @@ import $ from "jquery"
     mounted(){
       $('html').scrollTop(0);
       this.$nextTick(() => {
-        // 모든 화면이 렌더링된 후 호출됩니다.
-        if(document.querySelector(".site-nav-wrap")==null){
+      // 모든 화면이 렌더링된 후 호출됩니다.
+      // console.log(document.querySelector("ul").remove());
           $('.js-clone-nav').each(function() {
             var $this = $(this);
             $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
           });
-        }
+          document.querySelector("ul").remove();
+          // document.querySelector("ul").remove();
       });
-    //   if(document.querySelector(".site-nav-wrap")==null){
-    //   $('.js-clone-nav').each(function() {
-    //     var $this = $(this);
-    //     $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
-    //   });
-    // }
-
-    //   // let uls = document.querySelector("ul");
-    //     // console.log(document.querySelectorAll("ul")); 
-    //   setTimeout (() => {
-    //     if(document.querySelectorAll("ul").length>4){
-    //     document.querySelector("ul").remove();
-    //     document.querySelector("ul").remove();
-    //     }
-    //   }, 1000);
     }
   }
 </script>
