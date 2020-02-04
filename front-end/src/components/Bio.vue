@@ -1,7 +1,6 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
-
         <div class="col-10" data-aos="fade-up">
           <div class="d-block photo-item">
             <div class="postcard" style="height:auto;">
@@ -21,14 +20,16 @@
                     <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom text-align:right;">from {{items.user_id}}</div>
                   </div>
                   <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
-                    <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
+                    <div class="swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false"  data-swiper-wheel-control="true"
                                         data-swiper-speed="3000" data-swiper-margin="25" data-swiper-slides-per-view="1"
                                         data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
                                         data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
                           <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
-                              <div :class="img.filter" @click="fancy" style="width:100%; height:100%;">
-                                <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
+                              <div :class="img.filter" style="width:100%; height:100%;">
+                                <a :href="img.image_url" class="d-block photo-item" data-fancybox="gallery">
+                                  <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
+                                </a>
                               </div>
                           </div>
                       </div>
@@ -39,48 +40,6 @@
             </div>
           </div>
         </div>
-
-<!--         
-        <div class="col-md-6 pt-4" v-for="item in items" :key="item.id">
-          <figure class="mb-5" data-aos="fade-up">
-            <div class="all-scroll pos-relative mt-50">
-              <div class="swiper-scrollbar"></div>
-              <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
-                                        data-swiper-speed="1000" data-swiper-margin="25" data-swiper-slides-per-view="1"
-                                        data-swiper-breakpoints="true" data-swiper-autoplay="false" data-scrollbar="true"
-                                        data-swiper-loop="false" data-swpr-responsive="[1, 2, 1, 2]">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" v-for="img in item.imageList" :key="img.index">
-                        <div :class="img.filter" @click="fancy">
-                          <img :src="img.image_url" style="width:100%; height:300px" alt="Image"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"  slot="pagination"></div>
-                <div class="swiper-button-prev" slot="button-prev"></div>
-                <div class="swiper-button-next" slot="button-next"></div>
-              </div>
-            </div>
-          </figure>
-
-          <div class="d-flex bd-highlight" data-aos="fade-up" data-aos-delay="100">
-            <div class="p-2 w-100 bd-highlight" >
-              <h2 class="text-white mb-4 mt-2">TEXT {{item.content_title}}</h2>
-            </div>
-            <div class="p-2 flex-shrink-1 bd-highlight size" v-on:click="clickBell()">
-              <i class="icon-bell" v-if="bell"></i>
-              <i class="icon-bell-o" v-else></i>
-            </div>
-          </div>
-
-          <div class="row" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-md-12">
-              <p>{{item.content_val}}</p>
-              <p cass="mt-4">Thanks! <br>{{ item.user_id }} 님</p>
-            </div>
-          </div>
-        </div> -->
-        
       </div>
     </div>
 </template>
@@ -90,12 +49,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props: [
-    'cid',
-    // 'text',
-    // 'images',
-    // 'iconbell'
-  ],
+  props: ['cid'],
   data () {
     return {
       bell: this.iconbell,
@@ -120,46 +74,13 @@ export default {
         .get('/content/detail/' + this.cid)
         .then((res) => {
           if (res.data.resmsg == "게시물 출력 성공") {
-            // for (var i=0; i < res.data.urls.length; i++) {
-            //   this.items.push({
-            //     image_url: res.data.urls[i]
-            //   })
-            // window.console.log(res.data.resValue);
             this.items = res.data.resValue;
             if(this.items.profile_filter==null){
               this.items.profile_filter="normal";
             }
-            // window.console.log(this.item.prifile_filter);
-            // window.console.log(this.items);
-            // this.items.push({
-            //   imageList: res.data.resValue.imageList,
-            //   content_val: res.data.resValue.content_val,
-            //   // content_title: res.data.content.content_title,
-            //   user_id: res.data.resValue.user_id
-            // })
           }
         })
     },
-    fancy(){
-      $.fancybox.open([
-          {
-              href : 'http://fancyapps.com/fancybox/demo/1_b.jpg',                
-              title : '1st title'
-          },
-          {
-              href : 'http://fancyapps.com/fancybox/demo/2_b.jpg',                
-              title : '2nd title'
-          },
-          {
-              href : 'http://fancyapps.com/fancybox/demo/3_b.jpg',                
-              title : '3rd title'
-          }
-      ], {
-          padding : 0
-      });
-      
-      return false;
-    }
   },
   created() {
     this.getData()
