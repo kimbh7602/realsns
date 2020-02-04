@@ -103,4 +103,10 @@
 		where DATE(timestamp) = DATE(NOW());
 	</select>
 	
+	<select id="totalcontents" resultType="int" parameterType="Integer">
+		select count(*) 
+		from contents 
+		where month(timestamp)=#{month}
+	</select>
+	
 </mapper>

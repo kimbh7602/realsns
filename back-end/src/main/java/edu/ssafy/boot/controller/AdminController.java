@@ -93,4 +93,24 @@ public class AdminController {
 		resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		return resEntity;
 	}
+	
+	@GetMapping("/totalcontents")
+	@ApiOperation(value = "월별게시글수")
+	private  @ResponseBody ResponseEntity<Map<String, Object>> totalcontents() {
+		
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		int result [] = new int [13];
+		for (int i = 1; i < 13; i++) {
+			result[i-1]=ser.totalcontents(i);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (result.equals(null)) {
+			map.put("resmsg", "조회실패");
+		} else {
+			map.put("resmsg", "조회성공");
+			map.put("resvalue", result);
+		}
+		resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		return resEntity;
+	}
 }
