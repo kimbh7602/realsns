@@ -4,29 +4,29 @@
 
         <div class="col-10" data-aos="fade-up">
           <div class="d-block photo-item">
-            <div class="postcard">
-              <div class="content">
+            <div class="postcard" style="height:auto;">
+              <div class="content" style="height:auto;">
                 <!-- 우표 -->
                 <div>
                   <div class="stamp-cover" style="background:black; height:52px; width:52px; z-index:3;">
                     <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                     </div>
                   </div>
-                  <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px; z-index:4;" class="stamp-img"/>
+                  <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;" class="stamp-img"/>
                   <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index:5;" alt="Postage mark" class="postmark">
                   <!-- 끝 -->
-                  <div class="col-6" style="display:inline-block;">
+                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; padding-top:0px; margin-top:0px; padding-bottom:20px">
                     <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
-                    <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items[0].content_val}}</div>
-                    <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{items[0].user_id}}</div>
+                    <div class="mail-message offset-2 col-8" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items.content_val}}</div>
+                    <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{items.user_id}}</div>
                   </div>
-                  <div class="col-6" style="display:inline-block; padding-top:7%; z-index:0;">
+                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-bottom:20px;">
                     <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
                                         data-swiper-speed="3000" data-swiper-margin="25" data-swiper-slides-per-view="1"
                                         data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
                                         data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
-                      <div class="swiper-wrapper" >
-                          <div class="swiper-slide" v-for="img in items[0].imageList" :key="img.index">
+                      <div class="swiper-wrapper">
+                          <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
                               <div :class="img.filter" @click="fancy" style="width:100%; height:100%;">
                                 <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px" alt="Image"/>
                               </div>
@@ -40,10 +40,9 @@
           </div>
         </div>
 
-        
+<!--         
         <div class="col-md-6 pt-4" v-for="item in items" :key="item.id">
           <figure class="mb-5" data-aos="fade-up">
-            <!-- <img :src="'./theme/' + images" alt="Image" class="img-fluid"> -->
             <div class="all-scroll pos-relative mt-50">
               <div class="swiper-scrollbar"></div>
               <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
@@ -80,7 +79,7 @@
               <p cass="mt-4">Thanks! <br>{{ item.user_id }} 님</p>
             </div>
           </div>
-        </div>
+        </div> -->
         
       </div>
     </div>
@@ -101,7 +100,7 @@ export default {
     return {
       bell: this.iconbell,
       contentId: "",
-      items: [],
+      items: {},
       uid:"",
     }
   },
@@ -125,13 +124,19 @@ export default {
             //   this.items.push({
             //     image_url: res.data.urls[i]
             //   })
-
-            this.items.push({
-              imageList: res.data.resValue.imageList,
-              content_val: res.data.resValue.content_val,
-              // content_title: res.data.content.content_title,
-              user_id: res.data.resValue.user_id
-            })
+            // window.console.log(res.data.resValue);
+            this.items = res.data.resValue;
+            if(this.items.profile_filter==null){
+              this.items.profile_filter="normal";
+            }
+            // window.console.log(this.item.prifile_filter);
+            // window.console.log(this.items);
+            // this.items.push({
+            //   imageList: res.data.resValue.imageList,
+            //   content_val: res.data.resValue.content_val,
+            //   // content_title: res.data.content.content_title,
+            //   user_id: res.data.resValue.user_id
+            // })
           }
         })
     },
