@@ -49,8 +49,10 @@ public class FollowController {
 			notification.setCategory("follow");
 			boolean insert = nSer.insertNotification(notification);
 			Map<String, Object> map = new HashMap<String, Object>();
-			if (followres && insert)
+			if (followres && insert){
 				map.put("resmsg", "팔로우성공");
+				map.put("resValue", notification);
+			}
 			else
 				map.put("resmsg", "1팔로우실패");
 			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);

@@ -45,11 +45,11 @@
                                     </div>
 
                                 </form>
-                                <div v-if='this.trust===trust'>
-                                    신뢰
+                                <div v-if='this.trust===true' style="height: 2px; background-color:green" >
+                                    
                                 </div>
-                                <div v-else>
-                                    신뢰안됨
+                                <div v-else  style="height: 2px; background-color:red">
+                                    블록 문제발생
                                 </div>
                             </div>
 
@@ -133,12 +133,12 @@
                     }
                 })
             http
-            .get("admin/trust")
-            .then(response => {
-                if (response.data['resmsg'] == "신뢰") {
-                    this.trust=true;
-                }
-            })
+                .get("admin/trust")
+                .then(response => {
+                    if (response.data['resmsg'] == "신뢰") {
+                        this.trust=true;
+                    }
+                })
         }
     }
 </script>

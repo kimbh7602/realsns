@@ -122,7 +122,7 @@ public class ContentController {
 		int num = 1;
 		boolean isDone = true;
 		if(content.getImageList().size() == 1 && content.getImageList().get(0).getBase64() == ""){
-			iSer.insertImage(new ImageVo(content.getContent_id(), content.getContent_id()+"-1.png", req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/"+content.getContent_id()+"-1.png", "normal"));
+			iSer.insertImage(new ImageVo(content.getContent_id(), "default.png", req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/"+"default.png", "normal"));
 		}else{
 
 			for (ImageVo image : content.getImageList()) {

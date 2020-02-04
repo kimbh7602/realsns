@@ -77,6 +77,7 @@ export default {
             this.$router.push("/addimage");
         },
         logout(){
+            // this.$socket.emit('logout', this.$store.state.user_id);
             this.$store.commit("logout");
             document.getElementById('modalBtn').click();
             this.$router.push("/login");
@@ -92,9 +93,9 @@ export default {
     this.$socket.on('notification', (data) => {
     //   window.console.log('notification', data, this.$store.state.user_id);
       if(data.target_user_id == this.$store.state.user_id){
-        this.$snotify.simple('알림을 확인해보세요!', data.category, {
-            icon : '/favicon.ico',
-            // html : '<div>Like!</div><div>알림을 확인해보세요!</div> <input type="button" @click="sendNotification" value="Login" class="btn btn-sm">'
+        this.$snotify.simple('알림을 확인해보세요!', data.user_id + "님의 " + data.category+"!", {
+            icon : '/theme/images/'+data.category+'.png',
+            // html : '<div>Like!</div><div>알림을 확인해보세요!</div>'
           });
       }
     });
@@ -126,4 +127,10 @@ export default {
   /* text-align:center; */
   color: white;
 }
+.snotifyToast__title {
+  font-size: 17px;
+  }
+  .snotifyToast__body {
+    font-size: 12px;
+  }
 </style>

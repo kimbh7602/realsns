@@ -15,7 +15,7 @@
 		where user_id = #{user_id}
 	</update>
 	
-	<select id="info" parameterType="string" resultType="Uservo">
+	<select id="info" parameterType="string" resultType="UserVo">
 		select * from users
 		where
 			user_id = #{user_id}
@@ -96,4 +96,11 @@
 	<select id="interest" resultType="string">
 		select interest from users
 	</select>
+	
+	<select id="todayvisit" resultType="string">
+		select count(*)
+		from users
+		where DATE(timestamp) = DATE(NOW());
+	</select>
+	
 </mapper>

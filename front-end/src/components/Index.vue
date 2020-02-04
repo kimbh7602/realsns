@@ -4,7 +4,13 @@
       
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item">
-          <img :src="con.images.imageUrl" alt="Image" class="img-fluid"/>
+          <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa"/>
+          <div v-if="con.scrapButton && con.userId !== loginId" style="background-color:black;">
+            <p class="ch text-right text-white" >📥 {{con.userId}}님</p>
+          </div>
+          <div v-if="con.scrapButton && con.userId == loginId" style="background-color:black">
+            <p class="ch text-right text-white" >📥 내 게시물</p>
+          </div>
           <div class="photo-text-more">
             <h3 class="heading mx-2 ellipsis" v-on:click="goDetail(con.contentId)">{{con.contentId}} {{con.contentValue}}</h3>
             <span v-if="con.imageLength == 0" class="meta">there's no photo</span>
@@ -21,6 +27,10 @@
                   <i class="icon-check" v-if="followList.includes(con.userId)">{{con.userId}}</i>
                   <i class="icon-user" v-else-if="con.userId==loginId">나</i>
                   <i class="icon-user-plus" v-else>{{con.userId}}</i>
+                </div>
+                <div @click="clickScrap(con.contentId, con.scrapButton)">
+                  <i class="icon-bookmark" v-if="con.scrapButton"></i>
+                  <i class="icon-bookmark-o" v-else></i>
                 </div>
                 <!-- <div v-on:click="clickBell()">
                   <i class="icon-bell" v-if="bell"></i>
@@ -45,12 +55,25 @@ import store from '../store'
 export default {
   data() {
     return {
-      contents: [],
+      contents: [{
+        contentId: "",
+        contentValue: "",
+        timestamp: "",
+        likeButton: false,
+        userId: "",
+        imageLength: 0,
+        images: [{
+          imageUrl: "",
+          filter: "",
+        }],
+        scrapButton: false,
+      }],
       loginId: "",
       contentErrorMsg: "",
       errored: false,
       userLikeList: [],
       followList: [],
+      scrapList: [],
     }
   },
   methods: {
@@ -68,11 +91,25 @@ export default {
               likeButton: res.data.resvalue[i].user_like,
               userId: res.data.resvalue[i].user_id,
               imageLength: res.data.resvalue[i].imageList.length,
-              images: {
+              images: [{
                 imageUrl: res.data.resvalue[i].imageList[0].image_url,
                 filter: res.data.resvalue[i].imageList[0].filter,
-              },
+              }],
             })
+          }
+        })
+        .catch(()=>{
+          this.errored = true;
+        })
+    },
+    getScrap() {
+      http
+        .get('/scrap/scrapList/' + this.loginId)
+        .then((res) => {
+          for (var i = 0; i < res.data.resvalue.length; i++) {
+            if (!this.scrapList.includes(res.data.resvalue[i].content_id)) {
+              this.scrapList.push(res.data.resvalue[i].content_id)
+            }
           }
         })
         .catch(()=>{
@@ -83,7 +120,6 @@ export default {
       http
         .get('/content/contentMyList/' + this.loginId)
         .then((res) => {
-          // console.log(res)
           if (res.data.resValue.length > 0) {
             this.contentErrorMsg = ""
             for (var idx = 0; idx < res.data.resValue.length; idx++) {
@@ -100,21 +136,40 @@ export default {
                     likeButton: this.userLikeList[idx2].likeButton,
                     userId: this.userLikeList[idx2].userId,
                     imageLength: this.userLikeList[idx2].imageLength,
-                    images: this.userLikeList[idx2].images
+                    images: this.userLikeList[idx2].images,
+                    scrapButton: false,
                   })
-                }               }
-              this.contents.push({
-                contentId: res.data.resValue[idx].content_id,
-                contentValue: res.data.resValue[idx].content_val,
-                timestamp: res.data.resValue[idx].timestamp,
-                likeButton: res.data.resValue[idx].user_like,
-                userId: res.data.resValue[idx].user_id,
-                imageLength: res.data.resValue[idx].imageList.length,
-                images: {
-                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                  filter: res.data.resValue[idx].imageList[0].filter,
-                },
-              })
+                }
+              }
+              if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                this.contents.push({
+                  contentId: res.data.resValue[idx].content_id,
+                  contentValue: res.data.resValue[idx].content_val,
+                  timestamp: res.data.resValue[idx].timestamp,
+                  likeButton: res.data.resValue[idx].user_like,
+                  userId: res.data.resValue[idx].user_id,
+                  imageLength: res.data.resValue[idx].imageList.length,
+                  images: [{
+                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                    filter: res.data.resValue[idx].imageList[0].filter,
+                  }],
+                  scrapButton: true,
+                })
+              } else {
+                this.contents.push({
+                  contentId: res.data.resValue[idx].content_id,
+                  contentValue: res.data.resValue[idx].content_val,
+                  timestamp: res.data.resValue[idx].timestamp,
+                  likeButton: res.data.resValue[idx].user_like,
+                  userId: res.data.resValue[idx].user_id,
+                  imageLength: res.data.resValue[idx].imageList.length,
+                  images: [{
+                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                    filter: res.data.resValue[idx].imageList[0].filter,
+                  }],
+                  scrapButton: false,
+                })
+              }
             }
           } else {
             this.contentErrorMsg = "타임라인이 없습니다."
@@ -133,6 +188,12 @@ export default {
         .catch(()=>{
           this.errored = true;
         })
+    },
+    sortList() {
+      this.contents.sort(function(a, b) {
+        return (a.timestamp < b.timestamp) ? - 1 : (a.timestamp > b.timestamp) ? 1 : 0;
+      })
+      this.contents.reverse()
     },
     goDetail: function(con_id) {
       this.$router.push({
@@ -158,7 +219,6 @@ export default {
               })
           } else {
             this.contents[idx].likeButton = false       
-            // 좋아요 취소 했을 경우, contents에 이 컨텐츠 지워버리기
             http
               .delete('/userLike/dislike', {
                 data: {
@@ -178,6 +238,8 @@ export default {
       }
     },
     clickFollow(user) {
+      this.scrapList = []
+      this.getScrap()
       if (this.followList.includes(user) == true) {
         http
           .delete('/follow/deleteFollow', {
@@ -186,8 +248,12 @@ export default {
               follower_id: this.loginId
             }
           })
+          .catch(()=>{
+            this.errored = true;
+          })
         const del = []
         for (var i = 0; i < this.contents.length; i++) {
+          // if (this.contents[i].userId == user && !this.contents[i].likeButton && !this.contents[i].scrapButton) {
           if (this.contents[i].userId == user && !this.contents[i].likeButton) {
             del.push(this.contents[i].contentId)
           }
@@ -208,7 +274,9 @@ export default {
             follow_id: user,
             follower_id: this.loginId
           })
-        // 내가 user를 follow하면 그 user의 게시물 모두 가져오기
+          .catch(()=>{
+            this.errored = true;
+          })
         const idx = this.followList.indexOf(user)
         if (idx == -1) {
           this.followList.push(user)
@@ -216,37 +284,110 @@ export default {
         http
           .get('/content/contentUserList/' + user)
           .then((res) => {
-            // console.log(res.data.resValue)
             const li = []
             this.contents.forEach(i => {
               li.push(i.contentId)
             })
             res.data.resValue.forEach(idx => {
               if (!li.includes(idx.content_id)) {
-                console.log(idx.content_id)
-                console.log(idx.content_val)
-                this.contents.push({
-                  contentId: idx.content_id,
-                  contentValue: idx.content_val,
-                  timestamp: idx.timestamp,
-                  likeButton: idx.user_like,
-                  userId: idx.user_id,
-                  imageLength: idx.imageList.length,
-                  images: {
-                    imageUrl: idx.imageList[0].image_url,
-                    filter: idx.imageList[0].filter,
-                  },
-                })
+                if (this.scrapList.includes(idx.content_id)) {
+                  this.contents.push({
+                    contentId: idx.content_id,
+                    contentValue: idx.content_val,
+                    timestamp: idx.timestamp,
+                    likeButton: idx.user_like,
+                    userId: idx.user_id,
+                    imageLength: idx.imageList.length,
+                    images: [{
+                      imageUrl: idx.imageList[0].image_url,
+                      filter: idx.imageList[0].filter,
+                    }],
+                    scrapButton: true,
+                  })
+                } 
+                else {
+                  this.contents.push({
+                    contentId: idx.content_id,
+                    contentValue: idx.content_val,
+                    timestamp: idx.timestamp,
+                    likeButton: idx.user_like,
+                    userId: idx.user_id,
+                    imageLength: idx.imageList.length,
+                    images: [{
+                      imageUrl: idx.imageList[0].image_url,
+                      filter: idx.imageList[0].filter,
+                    }],
+                    scrapButton: false,
+                  })
+                }
+                // this.sortList()
               }
             })
           })
+        .catch(()=>{
+          this.errored = true;
+        })
       }
     },
+    clickScrap(id, button) {
+      if (button == false) {
+        http
+          .post('/scrap/insertScrap', {
+            content_id: id,
+            user_id : this.loginId,
+          })
+          .then((res) => {
+            const idx = this.contents.findIndex(function(item) {
+              return item.contentId === id
+            })
+            if (res.data.resmsg === "스크랩성공") {
+              this.contents[idx].scrapButton = true
+              this.$socket.emit('notification', {
+                  user_id: res.data.resValue.user_id,
+                  target_user_id: res.data.resValue.target_user_id,
+                  category: res.data.resValue.category
+                });
+            } else {
+              console.log(res.data.resmsg)
+              this.contents[idx].scrapButton = true
+            }
+          })
+          .catch(()=>{
+            this.errored = true;
+          })
+      } else {
+        http
+          .delete('/scrap/deleteScrap', {
+            data: {
+              content_id: id,
+              user_id : this.loginId,
+            }
+          })
+          .then((res) => {
+            const idx2 = this.contents.findIndex(function(item) {
+              return item.contentId === id
+            })
+            if (res.data.resmsg === "스크랩취소성공") {
+              this.contents[idx2].scrapButton = false
+            } else {
+              console.log(res.data.resmsg)
+              this.contents[idx2].scrapButton = false
+            }
+          })
+          .catch(()=>{
+            this.errored = true;
+          })
+      }
+    }
   },
   created() {
     this.getLike()
+    this.getScrap()
     this.getData()
     this.getFollow()
+  },
+  updated() {
+    // this.sortList()
   },
   mounted() {
     $('html').scrollTop(0);
@@ -286,5 +427,14 @@ export default {
     word-wrap: break-word;
     line-height: 2;
     height: 6rem;
+  }
+  .pa {
+    position: relative;
+  }
+  .ch {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    font-size: 13px;
   }
 </style>

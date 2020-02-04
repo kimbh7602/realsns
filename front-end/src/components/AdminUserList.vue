@@ -24,7 +24,7 @@
                                                 <tr v-for="user in alluser" :key="user.user_id">
                                                     <td>{{user.user_id}}</td>
                                                     <td>{{user.timestamp}}</td>
-                                                    <td><input type="button" value="삭제" @click="del(user)" /></td>
+                                                    <td><input type="button" class="site-logo btn btn-danger btn-md text-white" value="삭제" @click="del(user)" /></td>
                                                 </tr>
                                             </table>
                                         </div>
