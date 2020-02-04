@@ -7,7 +7,7 @@
       <!-- 공지 -->
       <div class="top-noti" style="background-color:black; width:100%">
         <div class="text-white offset-4 col-1" style="text-align:right; display:inline-block;"><span class="icon-notifications_active neon"></span></div>
-        <div class="all-scroll col-7 mt-50" style="width:100%; display:inline-block;">
+        <div class="all-scroll col-5 mt-50" style="width:100%; display:inline-block;">
           <div class="swiper-scrollbar"></div>
           <div class="swiper-container oflow-visible" style="padding-top:10px; background-color:black; height:50px;" data-slide-effect="flip" data-autoheight="false" 
                                   data-swiper-speed="5000" data-swiper-margin="25" data-swiper-slides-per-view="1"  data-swiper-wheel-control="true"
@@ -20,6 +20,10 @@
               </div>
             </div>
         </div>
+            <div style="display:inline-block;" class="col-2">
+              <input style="margin-right:20px;" type="button" class="text-white btn btn-outline-info" value="WRITE" />
+              <input type="button" class="text-white btn btn-outline-warning" value="LOGOUT" />
+            </div>
       </div>
 
       <!-- 공지 2 -->
@@ -63,7 +67,7 @@ export default {
   name: 'app',
   data(){
     return{
-      noti:["!!!!!","bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","cccccccccccccccc","dddddddddddddddd","eeeeeeeeeeeee","ffffffffffffff","ggggggggggggg","hhhhhhhhhhhhhhhh","iiiiiiiiiiiiiiiii","aaaaaaaaa"],
+      noti:["30일 이상 로그인 기록이 없을 시 휴면계정 처리됩니다.", "매너를 지킵시다!"],
     }
   },
   components: {
