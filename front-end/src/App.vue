@@ -68,12 +68,8 @@ export default {
   name: 'app',
   data(){
     return{
-<<<<<<< HEAD
-      noti:["30일 이상 로그인 기록이 없을 시 휴면계정 처리됩니다.", "매너를 지킵시다!"],
-=======
       noti: [],
       noticeError: ""
->>>>>>> feature/notice-axios
     }
   },
   components: {
