@@ -25,12 +25,9 @@ import AdminUserList from "./components/AdminUserList.vue"
 import Mypage from "./components/Mypage.vue"
 import Calendar from "./components/Calendar.vue"
 import Crawling from "./components/Crawling.vue"
-<<<<<<< HEAD
 import Notification from "./components/Notification.vue"
-
-=======
 import Admin from "./components/Admin.vue"
->>>>>>> d541ebb6888a17b33f8615d25410628566da7641
+
 Vue.use(Router);
 // const modal = { template: '<p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-body" style="text-align:center;">{{$store.state.modalText}}</div><div class="modal-footer"><button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button></div></div></div></div>'}
 export const router = new Router({
@@ -41,11 +38,11 @@ export const router = new Router({
             alias: "/Index",
             component: Index,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     // store.commit('setModalText', "아이디 또는 비밀번호를 확인해주세요.");
                     // document.getElementById('modalBtn').click();
                     alert("로그인해주세요.");
@@ -60,11 +57,11 @@ export const router = new Router({
             alias: "/Category",
             component: Category,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -76,12 +73,12 @@ export const router = new Router({
             alias: "/Bio",
             component: Bio,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
                 // store.commit("getId");
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -93,11 +90,11 @@ export const router = new Router({
             alias: "/Blog",
             component: Blog,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -109,11 +106,11 @@ export const router = new Router({
             alias: "/Single",
             component: Single,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -131,11 +128,11 @@ export const router = new Router({
             name: "chating",
             alias: "/Chating",
             component: Chating,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -147,11 +144,11 @@ export const router = new Router({
             alias: "/AddImage",
             component: AddImage,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -179,11 +176,11 @@ export const router = new Router({
             alias: "/WriteContent",
             component: WriteContent,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -202,11 +199,11 @@ export const router = new Router({
             alias: "/Findfriend",
             component: FindFriend,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -218,11 +215,11 @@ export const router = new Router({
             alias: "/UserEdit",
             component: UserEdit,
             props: true,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -244,11 +241,11 @@ export const router = new Router({
             name: "findcontent",
             alias: "/Findcontent",
             component: FindContent,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -259,11 +256,11 @@ export const router = new Router({
             name: "wordcloud",
             alias: "/WordCloud",
             component: WordCloud,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -274,11 +271,11 @@ export const router = new Router({
             name: "chart",
             alias: "/Chart",
             component: Chart,
-            beforeEnter: function(to, from, next){
+            beforeEnter: function (to, from, next) {
                 store.commit('setid');
-                if(store.state.islogin){
+                if (store.state.islogin) {
                     next();
-                }else{
+                } else {
                     alert("로그인해주세요.");
                     router.push("/login")
                 }
@@ -342,7 +339,7 @@ export const router = new Router({
     ]
 });
 
-router.beforeEach(function (to, from, next){
+router.beforeEach(function (to, from, next) {
     store.commit("getId");
     next();
 });
