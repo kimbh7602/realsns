@@ -15,12 +15,12 @@
                   <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;" class="stamp-img"/>
                   <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index:5;" alt="Postage mark" class="postmark">
                   <!-- 끝 -->
-                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; padding-top:0px; margin-top:0px; padding-bottom:20px">
+                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; padding-top:0px; margin-top:0px; padding-bottom:50px">
                     <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
                     <div class="mail-message offset-2 col-8" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items.content_val}}</div>
                     <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{items.user_id}}</div>
                   </div>
-                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-bottom:20px;">
+                  <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
                     <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
                                         data-swiper-speed="3000" data-swiper-margin="25" data-swiper-slides-per-view="1"
                                         data-swiper-breakpoints="true" data-swiper-autoplay="true" data-scrollbar="true"
@@ -224,5 +224,19 @@ export default {
   }
   .fancy-enter-active, .fancy-leave-active{
     transition: .2s;
+  }
+
+  .mail-message {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    font-size: 23px;
+  }
+
+  @media screen and (max-width: 991.98px) {
+    .mail-message {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      /* font-size: 20; */
+    }
   }
 </style>
