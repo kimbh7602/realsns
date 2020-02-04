@@ -5,8 +5,12 @@
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item">
           <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa"/>
-          <p class="ch text-right text-primary pt-0 mt-0" v-if="con.scrapButton && con.userId !== loginId">📥 {{con.userId}}님</p>
-          <p class="ch text-right text-primary pt-0 mt-0" v-if="con.scrapButton && con.userId == loginId">📥 내 게시물</p>
+          <div v-if="con.scrapButton && con.userId !== loginId" style="background-color:black;">
+            <p class="ch text-right text-white" >📥 {{con.userId}}님</p>
+          </div>
+          <div v-if="con.scrapButton && con.userId == loginId" style="background-color:black">
+            <p class="ch text-right text-white" >📥 내 게시물</p>
+          </div>
           <div class="photo-text-more">
             <h3 class="heading mx-2 ellipsis" v-on:click="goDetail(con.contentId)">{{con.contentId}} {{con.contentValue}}</h3>
             <span v-if="con.imageLength == 0" class="meta">there's no photo</span>
@@ -316,7 +320,7 @@ export default {
                     scrapButton: false,
                   })
                 }
-                this.sortList()
+                // this.sortList()
               }
             })
           })
@@ -376,6 +380,9 @@ export default {
     this.getScrap()
     this.getData()
     this.getFollow()
+  },
+  updated() {
+    // this.sortList()
   },
   mounted() {
     $('html').scrollTop(0);
