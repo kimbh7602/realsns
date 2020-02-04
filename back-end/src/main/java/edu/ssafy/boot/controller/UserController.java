@@ -372,12 +372,10 @@ public class UserController {
 	@ApiOperation(value = "관심사 빈도 출력", response = List.class)
 	private @ResponseBody ResponseEntity<Map<String, Object>> wordCloud() {
 		ResponseEntity<Map<String, Object>> resEntity = null;
-		System.out.println("??");
 		List<WordCloudVo> wordList = null;
 		try {
 			wordList = ser.wordList();
 			Map<String, Object> map = new HashMap<String, Object>();
-			System.out.println(wordList.toString());
 			if(wordList != null && wordList.size() > 0){
 				map.put("resmsg", "조회성공");
 				map.put("resValue", wordList);

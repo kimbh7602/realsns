@@ -182,4 +182,9 @@ public class UserService implements IUserService {
 
 		return wordList;
 	}
+	
+	@Override
+	public int totalcontents(int month) {
+		return dao.totalcontents(month);
+	}
 }
