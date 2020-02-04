@@ -2,8 +2,8 @@
     <div class="container-fluid photos">
       <div class="row justify-content-center">
 
-        <div class="col-md-8 pt-4">
-            <div class="mb-5 text-center" data-aos="fade-up">
+        <div class="col-md-8 pt-4 d-flex justify-content-center">
+            <div class="mb-5 text-center " data-aos="fade-up">
                 <h2 class="text-white mb-5">Mypage</h2>
                 <img class="rounded-circle mb-2" width="150px" height="150px" style="object-fit: cover;" :src="userInfo.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
 
@@ -16,36 +16,39 @@
                 <div v-else>
                     <router-link to="/chart"><button style="width: 72px;" class="btn btn-dark">통계</button></router-link>
                 </div>
-                <div class="m-3">
-                    <p>{{userInfo.description}}</p>
-                    <span class="text-success" v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
-                        <span v-if="item!=''">#{{item}} </span>
-                    </span>
-                </div>
                 
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-1 p-0 text-center">
-                        <a href="javascript:void(0)" @click="content()">게시물</a>
-                        <h2 v-if="userContent">{{userContent.length}}</h2>
-                        <h2 v-else>0</h2>
+                <div class="m-3">
+                    <div class="d-flex justify-content-center">
+                        <div class="text-center mx-3">
+                            <a href="javascript:void(0)" @click="content()">게시물</a>
+                            <h2 v-if="userContent">{{userContent.length}}</h2>
+                            <h2 v-else>0</h2>
+                        </div>
+                        <div class="text-center mx-3">
+                            <a href="" data-toggle="modal" data-target="#followerModal">팔로워</a>
+                            <h2 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h2>
+                            <h2 v-else>0</h2>
+                        </div>
+                        <div class="text-center mx-3">
+                            <a href="" data-toggle="modal" data-target="#followModal">팔로우</a>
+                            <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
+                            <h2 v-else>0</h2>
+                        </div>
+                        <div v-if="userId==myId" class="text-center mx-3">
+                            <a href="javascript:void(0)" @click="scrap()">스크랩</a>
+                            <h2 v-if="userScrap">{{userScrap.length}}</h2>
+                            <h2 v-else>0</h2>
+                        </div>
                     </div>
-                    <div class="col-md-1 p-0 text-center">
-                        <a href="" data-toggle="modal" data-target="#followerModal">팔로워</a>
-                        <h2 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h2>
-                        <h2 v-else>0</h2>
+                </div>
+
+                <div style="position: relative; height:100px;">
+                    <div class="text-left" style="position: absolute; word-break:break-all; ">
+                        <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
+                            <span class="badge badge-success" v-if="item!=''">#{{item}} </span>
+                        </span>
+                        <div class="text-white">{{userInfo.description}}</div>
                     </div>
-                    <div class="col-md-1 p-0 text-center">
-                        <a href="" data-toggle="modal" data-target="#followModal">팔로우</a>
-                        <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
-                        <h2 v-else>0</h2>
-                    </div>
-                    <div v-if="userId==myId" class="col-md-1 p-0 text-center">
-                        <a href="javascript:void(0)" @click="scrap()">스크랩</a>
-                        <h2 v-if="userScrap">{{userScrap.length}}</h2>
-                        <h2 v-else>0</h2>
-                    </div>
-                    <div class="col-md-4"></div>
                 </div>
             </div>
         </div>
