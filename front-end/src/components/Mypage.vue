@@ -11,7 +11,7 @@
                 <div v-if="userId != myId">
                     <span v-if="myId != userId && myFollowList.includes(userId)" @click="deleteFollow(userId)"  class="btn btn-outline-primary">팔로잉</span>
                     <span v-if="myId != userId && !myFollowList.includes(userId)" @click="insertFollow(userId)" class="btn btn-primary">팔로우</span>
-                    <span v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span>
+                    <router-link to="/chating"><span v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span></router-link>
                 </div>
                 <div v-else>
                     <router-link to="/chart"><button style="width: 72px;" class="btn btn-dark">통계</button></router-link>
@@ -55,7 +55,7 @@
       <category v-else :userId="userId" :Items="userScrap"></category>
 
       <!-- 팔로워 모달 -->
-        <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -66,7 +66,8 @@
                     </div>
                     <div class="modal-body">
                         <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex justify-content-between mx-1 mb-3">
-                            <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link>
+                            <a :href="`/mypage/${follower}`" class="text-dark d-flex"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</a>
+                            <!-- <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link> -->
                             <span v-if="myId != follower && myFollowList.includes(follower)" @click="deleteFollow(follower)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follower && !myFollowList.includes(follower)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follower)">팔로우</span>
                         </div>
@@ -75,7 +76,7 @@
             </div>
         </div>
         <!-- 팔로우 모달 -->
-        <div class="modal mt-5" id="followModal" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -86,7 +87,8 @@
                     </div>
                     <div class="modal-body">
                         <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex justify-content-between mx-1 mb-3">
-                            <router-link :to="'/mypage/'+follow" class="d-flex text-dark" @click="fetchUserInfo(follow)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</router-link>
+                            <a :href="`/mypage/${follow}`" class="text-dark d-flex"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</a>
+                            <!-- <router-link :to="'/mypage/'+follow" class="d-flex text-dark" @click="fetchUserInfo(follow)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</router-link> -->
                             <span v-if="myId != follow && myFollowList.includes(follow)" @click="deleteFollow(follow)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follow && !myFollowList.includes(follow)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follow)">팔로우</span>
                         </div>
@@ -196,7 +198,7 @@ export default {
         },
         scrap() {
             this.check = 'scrap';
-        }
+        },
     },
     created() {
         this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
@@ -214,7 +216,7 @@ export default {
     width: 30%; 
     height: 50%;
 }
-.modal-content {
+.modal-content{
   height: auto;
   min-height: 100%;
 }
