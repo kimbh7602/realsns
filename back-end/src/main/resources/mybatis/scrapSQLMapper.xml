@@ -12,9 +12,9 @@
 
 	<insert id="insert" parameterType="ScrapVo">
 		insert into scraps
-			(content_id, user_id)
+			(content_id, user_id, timestamp)
 		values
-			(#{content_id}, #{user_id})
+			(#{content_id}, #{user_id}, now())
 	</insert>
 
 	<delete id="delete" parameterType="ScrapVo">

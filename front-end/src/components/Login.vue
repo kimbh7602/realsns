@@ -60,8 +60,8 @@ import $ from "jquery"
             .then(response => {
                 if(response.data['resmsg'] == "로그인"){
                     this.$store.commit("login", response.data['resValue']);
-                    // this.$notification.emit('login', {
-                    //   user_id : this.userId
+                    // this.$socket.emit('login', {
+                    //   user_id : this.user_id
                     // });
                     document.getElementById('modalBtn').click();
                     this.$router.push("/");

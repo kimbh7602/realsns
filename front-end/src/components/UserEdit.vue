@@ -239,6 +239,7 @@
         },
         regimgs: [],
         originimg: [],
+        imgflg: false,
       }
     },
 
@@ -255,7 +256,7 @@
         .get("user/info/" + this.$store.state.user_id)
         .then(response => {
           if (response.data['resmsg'] == "조회성공") {
-            tmp = response.data['resvalue'];
+            tmp = response.data['resvalue']; 
             this.uid = tmp.user_id;
             this.utel = tmp.tel;
             this.uemail = tmp.email;
@@ -343,7 +344,12 @@
         }
         if (this.upw === "") {
           alert("비밀번호를 입력하세요")
+        
         } else {
+          if(!this.imgflg){
+            this.imginfo.base64 = this.tmp.profileImage.base64;
+            this.imginfo.filter = this.tmp.profileImage.filter;
+            }
           http
             .put("user/update", {
               user_id: this.uid,
@@ -354,6 +360,7 @@
               dislikeList: this.uitrlist,
               description: this.intro,
               profileImage: this.imginfo,
+              
             })
             .then(response => {
               if (response.data['resmsg'] == "수정성공")
@@ -394,12 +401,16 @@
         if (!files.length) return;
         this.image = files[0];
         this.createImage();
+        if(this.imgflg === false)
+          this.imgflg = true;
       },
       dragupload(e) {
         const files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
         this.image = files[0];
         this.createImage();
+        if(this.imgflg === false)
+          this.imgflg = true;
       },
       createImage() {
         const reader = new FileReader();

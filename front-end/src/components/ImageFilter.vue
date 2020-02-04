@@ -156,4 +156,8 @@ export default {
   width:100%;
   z-index:1
 }
+.juno img{
+  width:100%;
+  z-index: 1;
+}
 </style>
