@@ -60,4 +60,23 @@
 		select * from content_image
 		where content_id = #{content_id}
 	</select>
+
+	<select id="ReportedContentId" resultType="int">
+		<![CDATA[ 
+			select content_id from contents
+			where dislike >= 20
+		]]>
+	</select>
+
+	<update id="insertReport" parameterType="int">
+		update contents
+		set dislike = dislike+1
+		where content_id = #{content_id}
+	</update>
+
+	<update id="deleteReport" parameterType="int">
+		update contents
+		set dislike = dislike-1
+		where content_id = #{content_id}
+	</update>
 </mapper>

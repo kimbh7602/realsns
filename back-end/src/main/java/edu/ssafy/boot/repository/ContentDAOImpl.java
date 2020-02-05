@@ -1,5 +1,6 @@
 package edu.ssafy.boot.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -126,4 +127,22 @@ public class ContentDAOImpl implements IContentDAO {
 		return contentList;
 	}
 
+	@Override
+	public List<String> deleteReportedContents() {
+		List<Integer> contentIdList = session.selectList("ssafy.content.ReportedContentId");
+		List<String> imageNames = new ArrayList<String>();
+		for (Integer content_id : contentIdList) {
+			session.delete("ssafy.userLike.deleteReported", content_id);
+			session.delete("ssafy.scrap.deleteReported", content_id);
+			session.delete("ssafy.userReport.deleteReported", content_id);
+			session.delete("ssafy.notification.deleteReported", content_id);
+			List<String> imageName = session.selectList("ssafy.image.selectImageNames", content_id);
+			for (String name : imageName) {
+				imageNames.add(name);
+			}
+			session.delete("ssafy.image.deleteReported", content_id);
+			session.delete("ssafy.content.delete", content_id);
+		}
+		return imageNames;
+	}
 }
