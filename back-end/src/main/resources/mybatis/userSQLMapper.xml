@@ -57,11 +57,13 @@
 	</update>
 
 	<update id="updateUserStatus">
-		update users
-		set
-			status = false
-		where
-			datediff(now(), timestamp) > 30
+		<![CDATA[ 
+			update users
+			set
+				status = false
+			where
+				datediff(now(), timestamp) > 30
+		]]>
 	</update>
 
 	<update id="updateUserStatusBack" parameterType="string">
