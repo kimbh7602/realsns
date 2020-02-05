@@ -96,5 +96,10 @@ public class ContentService implements IContentService {
 
 		return contentList;
 	}
+
+	@Override
+	public void deleteReportedContents() {
+		dao.deleteReportedContents();
+	}
 	
 }

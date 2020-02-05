@@ -60,4 +60,11 @@
 		select * from content_image
 		where content_id = #{content_id}
 	</select>
+
+	<select id="ReportedContentId" resultType="int">
+		<![CDATA[ 
+			select content_id from contents
+			where dislike >= 20
+		]]>
+	</select>
 </mapper>
