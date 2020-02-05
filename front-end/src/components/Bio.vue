@@ -18,6 +18,7 @@
                     <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
                     <div class="detail-mail-message mail-message offset-2 col-8" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{items.content_val}}</div>
                     <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">from {{items.user_id}}</div>
+                    <!-- 댓글 -->
                     <div class="col-12 row" style="margin:0; color:black; vertical-align:bottom; text-align:left;">
                       <div style="font-size:1.5em; font-family: loveson; word-break:break-all; " class="col-3">PS .</div>
                       <div class="col-6"><input type="text" class="text-black form-control" v-model="comment_val" /></div>
@@ -42,6 +43,7 @@
                         <div class="comment-val col-7" style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">{{comment.comment_val}}</div>
                       </div>
                     </div>
+                    <!-- /댓글 -->
                   </div>
                   <div class="col-12 col-lg-6" style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
                     <div class="all-scroll pos-relative mt-50">
