@@ -20,7 +20,8 @@ public class UserReportDAOImpl implements IUserReportDAO {
     @Override
     public boolean insertReport(UserReportVo report) {
         int insert = session.insert("ssafy.userReport.insertReport", report);
-        if(insert > 0){
+        int update = session.update("ssafy.content.insertReport", report.getContent_id());
+        if(insert > 0 && update > 0){
             return true;
         }else{
             return false;
@@ -30,7 +31,8 @@ public class UserReportDAOImpl implements IUserReportDAO {
     @Override
     public boolean deleteReport(UserReportVo report) {
         int delete = session.delete("ssafy.userReport.deleteReport", report);
-        if(delete > 0 ){
+        int update = session.update("ssafy.content.deleteReport", report.getContent_id());
+        if(delete > 0 && update > 0){
             return true;
         }else{
             return false;

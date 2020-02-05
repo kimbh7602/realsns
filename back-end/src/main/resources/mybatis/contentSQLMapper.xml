@@ -67,4 +67,16 @@
 			where dislike >= 20
 		]]>
 	</select>
+
+	<update id="insertReport" parameterType="int">
+		update contents
+		set dislike = dislike+1
+		where content_id = #{content_id}
+	</update>
+
+	<update id="deleteReport" parameterType="int">
+		update contents
+		set dislike = dislike-1
+		where content_id = #{content_id}
+	</update>
 </mapper>

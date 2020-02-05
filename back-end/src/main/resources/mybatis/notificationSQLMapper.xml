@@ -11,24 +11,32 @@
 	</insert>
 
 	<select id="selectList" parameterType="string" resultType="NotificationVo">
-		select * from notification
+		select n.*, u.profile_url, u.profile_filter from notification as n
+		join users as u
+		on (n.user_id = u.user_id)
 		where target_user_id = #{user_id}
 	</select>
 
 	<select id="selectUnchecked" parameterType="string" resultType="NotificationVo">
-		select * from notification
+		select n.*, u.profile_url, u.profile_filter from notification as n
+		join users as u
+		on (n.user_id = u.user_id)
 		where target_user_id = #{user_id}
 		and is_checked = false
 	</select>
 
 	<select id="selectCategory" parameterType="map" resultType="NotificationVo">
-		select * from notification
+		select n.*, u.profile_url, u.profile_filter from notification as n
+		join users as u
+		on (n.user_id = u.user_id)
 		where target_user_id = #{user_id}
 		and category = #{category}
 	</select>
 
 	<select id="selectUncheckedCategory" parameterType="map" resultType="NotificationVo">
-		select * from notification
+		select n.*, u.profile_url, u.profile_filter from notification as n
+		join users as u
+		on (n.user_id = u.user_id)
 		where target_user_id = #{user_id}
 		and is_checked = false
 		and category = #{category}
