@@ -9,15 +9,9 @@ import store from './store';
 import * as VueGoogleMaps from "vue2-google-maps";
 import Snotify from 'vue-snotify';
 import 'vue-snotify/styles/material.css';
-// import vuetify from './plugins/vuetify';
-// import vuetify from '@/plugins/vuetify'
-import Vuetify from 'vuetify/lib'
 
-Vue.use(Vuetify)
+import vuetify from '@/plugins/vuetify'
 
-const opts = {}
-
-export default new Vuetify(opts)
 
 Vue.config.productionTip = false
 Vue.prototype.$EventBus = new Vue();
@@ -50,7 +44,7 @@ new Vue({
   //   this.swiper = new window.Swiper('.swiper-container',{
   //   })
   // },
-  Vuetify,
+  vuetify,
   router,
   store,
   // chatStore,
