@@ -30,7 +30,6 @@ public class ContentService implements IContentService {
 			}
 			
 		});
-
 		return contentList;
 	}
 
@@ -98,8 +97,8 @@ public class ContentService implements IContentService {
 	}
 
 	@Override
-	public void deleteReportedContents() {
-		dao.deleteReportedContents();
+	public List<String> deleteReportedContents() {
+		return dao.deleteReportedContents();
 	}
 	
 }

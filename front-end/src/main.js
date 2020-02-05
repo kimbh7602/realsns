@@ -10,7 +10,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import Snotify from 'vue-snotify';
 import 'vue-snotify/styles/material.css';
 // import vuetify from './plugins/vuetify';
-import vuetify from '@/plugins/vuetify'
+// import vuetify from '@/plugins/vuetify'
 import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify)
@@ -50,7 +50,7 @@ new Vue({
   //   this.swiper = new window.Swiper('.swiper-container',{
   //   })
   // },
-  vuetify,
+  Vuetify,
   router,
   store,
   // chatStore,

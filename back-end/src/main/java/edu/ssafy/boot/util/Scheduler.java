@@ -1,5 +1,8 @@
 package edu.ssafy.boot.util;
 
+import java.io.File;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -32,6 +35,27 @@ public class Scheduler {
 
    @Scheduled(cron = "0 0 0 * * ?")
    public void deleteReportedContents() {
-      cSer.deleteReportedContents();
+      List<String> ImageNames = cSer.deleteReportedContents();
+
+      deleteReportedImages(ImageNames);
+   }
+
+   public void deleteReportedImages(List<String> ImageNames){
+      // String path = "/upload";
+		String realPath = System.getProperty("user.dir")+"\\upload";
+		
+		// boolean isDelete = true;
+		for (String name : ImageNames) {
+			String savePath = realPath+File.separator+name;
+			File file = new File(savePath);
+			if(file.exists()){
+				if(file.delete()){
+					System.out.println(name + " 삭제 성공");
+				}else{
+					System.out.println(name + " 삭제 실패");
+					// isDelete = false;
+				}
+			}
+		}
    }
 }
