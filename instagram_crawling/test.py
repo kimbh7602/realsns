@@ -63,6 +63,20 @@ def search_location(keyword):
 
     return html
 
+@app.route("/searchByKeyword/<keyword>")
+def search_by_keyword(keyword):
+    url = "https://www.twinword.com/writer/"
+
+    driver = webdriver.Chrome(executable_path="./chromedriver.exe")
+    driver.get(url)
+    time.sleep(3)
+
+    div = driver.find_element_by_css_selector("div.redactor-editor")
+    div.
+    print(div.text)
+
+    return "asdf"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
