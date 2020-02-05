@@ -1,10 +1,9 @@
 <template>
-  <div class="offset-md-2 col-md-8" data-aos="fade-up">
-    <div class="offset-md-1 col-md-10">
-    <div style="height:10px;"></div>
-    <div class="selected-image" style="margin-bottom:0px; border:5px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
+  <div class="offset-3 col-6" data-aos="fade-up">
+    <div class="col-12">
+    <div class="selected-image"  @click="$refs.fileInput.click()" style="margin-bottom:0px; border:5px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
       <div style="height:35%"></div>
-      <div @click="$refs.fileInput.click()" style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
+      <div style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
       </div>
       <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
     </div>
@@ -69,13 +68,21 @@ export default {
         this.step = 2;
         // EventBus.$emit("imglink", { image: this.image });
         this.$router.push({
-          name: 'imagefilter', 
-          params: {
-            imgs: this.imgs, 
+          name: 'editing',
+          params:{
+            imgs: this.imgs,
             step: this.step+1,
             prevpage: "addimage",
           }
         })
+        // this.$router.push({
+        //   name: 'imagefilter', 
+        //   params: {
+        //     imgs: this.imgs, 
+        //     step: this.step+1,
+        //     prevpage: "addimage",
+        //   }
+        // })
       };
     },
     goToHome() {
@@ -112,7 +119,7 @@ export default {
 
 <style scoped>
 .selected-image{
-    height:500px;
+    height:400px;
     background-size: cover;
 }
 </style>

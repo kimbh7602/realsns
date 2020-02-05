@@ -5,7 +5,7 @@
             <!-- <img ref="image" src="../../public/theme/images/temp.jpg" crossorigin> -->
         </div>
         <div class="col-12">
-        <img :src="destination" class="img-preview">
+            <img :src="destination" class="img-preview">
         </div>
         <div class="col-12">
         <div @click="rotatep45">P rotate 45</div>
@@ -41,7 +41,7 @@
 <script>
     import 'cropperjs/dist/cropper.css';
     import 'cropperjs/dist/cropper.min.css';
-    import Cropper from "cropperjs";
+    import Cropper from "../../public/theme/js/cropper.min.js";
     export default {
         name: "editing",
         props: ["imgs","prevpage","oldpw"],
