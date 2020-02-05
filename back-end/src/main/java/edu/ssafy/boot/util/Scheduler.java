@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import edu.ssafy.boot.service.IContentService;
+import edu.ssafy.boot.service.IDirectMessageService;
 import edu.ssafy.boot.service.IUserService;
 
 @Component
@@ -21,6 +22,10 @@ public class Scheduler {
     @Autowired
     @Qualifier("ContentService")
     IContentService cSer;
+
+    @Autowired
+	@Qualifier("DirectMessageService")
+    IDirectMessageService dSer;
 
    @Scheduled(cron = "0 0 0 * * ?")
    public void updateUserStatus() {
@@ -57,5 +62,10 @@ public class Scheduler {
 				}
 			}
 		}
+   }
+
+   @Scheduled(cron = "0 0 0 * * ?")
+   public void deleteMessage(){
+      dSer.deleteOldMessage();
    }
 }
