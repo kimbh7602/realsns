@@ -98,6 +98,7 @@ public class UserController {
 		user = imageUpload(user, response, request);
 		try {
 			boolean res = ser.updateUserInfo(user);
+			System.out.println(user.getProfileImage());
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (res) {
 				// run configurations 에서 arguments-> vm arguments
