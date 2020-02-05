@@ -5,9 +5,9 @@
     <Sideex />
     <main class="main-content">
       <!-- 공지 -->
-      <div class="top-noti" style="background-color:black; width:100%">
+      <div class="top-noti" style="background-color:black;width:100%">
         <div class="text-white offset-4 col-1" style="text-align:right; display:inline-block;"><span class="icon-notifications_active neon"></span></div>
-        <div class="all-scroll col-5 mt-50" style="width:100%; display:inline-block;">
+        <div class="all-scroll col-3 mt-50" style="width:100%; display:inline-block;">
           <div class="swiper-scrollbar"></div>
           <div class="swiper-container oflow-visible" style="padding-top:10px; background-color:black; height:50px;" data-slide-effect="flip" data-autoheight="false" 
                                   data-swiper-speed="5000" data-swiper-margin="25" data-swiper-slides-per-view="1"  data-swiper-wheel-control="true"
@@ -20,9 +20,12 @@
               </div>
             </div>
         </div>
-            <div style="display:inline-block;" class="col-2">
-              <input style="margin-right:20px;" type="button" class="text-white btn btn-outline-info" value="WRITE" />
-              <input type="button" class="text-white btn btn-outline-warning" value="LOGOUT" />
+            <div style="display:inline-block;" class="col-4">
+              <!-- <input style="margin-right:20px;" type="button" class="text-white btn btn-outline-info" value="WRITE" /> -->
+              
+              <!-- <input type="button" class="text-white btn btn-outline-warning" value="LOGOUT" /> -->
+              <!-- <img style="height:100%;" src="/theme/images/edit.png" />
+              <img style="width:100%;" src="/theme/images/logout.png" /> -->
             </div>
       </div>
 
@@ -39,7 +42,7 @@
     </main>
     <!-- modal -->
     <p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p>
-    <div class="modal fade" id="myModal" style="position:absolute; top:23px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal" style="position:absolute; top:50px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body" style="text-align:center;">
@@ -83,7 +86,7 @@ export default {
       http
         .get('/notice/noticeNow')
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           if (res.data.resmsg === "조회성공") {
             this.noticeError = ""
             const noticeTitle = []      
@@ -103,11 +106,16 @@ export default {
     },
   },
   created() {
+    // this.getNotice();
+    // console.log(this.noti);
+
+  },
+  mounted(){
     this.getNotice();
 
   },
   updated() {
-          let recaptchaScripta = document.createElement('script')
+      let recaptchaScripta = document.createElement('script')
       recaptchaScripta.setAttribute('type',"text/javascript")
       recaptchaScripta.setAttribute('src', "./theme/js/script.js")
       document.body.appendChild(recaptchaScripta)
