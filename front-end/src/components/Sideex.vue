@@ -17,7 +17,7 @@
             </i>
         </div>
             
-        <div class="notification align-self-center ml-3">
+        <div class="notification pb-0 ml-3">
             <router-link :to="'/mypage/'+$store.state.user_id" class="m-0">
                 <i class="icon-user-circle text-white" style="font-size:1.9em;"></i>
             </router-link>

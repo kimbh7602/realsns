@@ -42,10 +42,10 @@
                     </div>
                 </div>
 
-                <div class="rounded px-3" style="position: relative; height:100px; border:1px dotted gray">
-                    <div class="text-left text-success" style="position: absolute; word-break:break-all; ">
+                <div class="rounded mx-4" style="position: relative; height:100px; border:1px dotted gray; overflow: auto;">
+                    <div class="text-left px-3 py-1" style="position: absolute; word-break:break-all;">
                         <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
-                            <small v-if="item!=''">#{{item}} </small>
+                            <span class="text-success" v-if="item!=''">#{{item}} </span>
                         </span>
                         <div class="text-white">{{userInfo.description}}</div>
                     </div>
@@ -68,8 +68,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex justify-content-between mb-3">
-                            <a :href="`/mypage/${follower}`" class="text-dark d-flex"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</a>
+                        <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex justify-content-between align-items-center mb-3">
+                            <a :href="`/mypage/${follower}`" class="text-dark d-flex m-0"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</a>
                             <!-- <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link> -->
                             <span v-if="myId != follower && myFollowList.includes(follower)" @click="deleteFollow(follower)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follower && !myFollowList.includes(follower)" class="btn btn-primary btn-sm" @click="insertFollow(follower)">팔로우</span>
@@ -89,8 +89,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex justify-content-between mb-3">
-                            <a :href="`/mypage/${follow}`" class="text-dark d-flex"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</a>
+                        <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex justify-content-between align-items-center mb-3">
+                            <a :href="`/mypage/${follow}`" class="text-dark d-flex m-0"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</a>
                             <!-- <router-link :to="'/mypage/'+follow" class="d-flex text-dark" @click="fetchUserInfo(follow)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</router-link> -->
                             <span v-if="myId != follow && myFollowList.includes(follow)" @click="deleteFollow(follow)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follow && !myFollowList.includes(follow)" class="btn btn-primary btn-sm" @click="insertFollow(follow)">팔로우</span>

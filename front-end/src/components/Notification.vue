@@ -5,7 +5,7 @@
         <div class="col-md-8 pt-4">
             <div class="mb-5" data-aos="fade-up">
               <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2>
-              <div class="text-right"><button class="btn btn-outline-success" @click="check='scrap'">모두 읽음</button></div>
+              <div class="text-right"><button class="btn btn-outline-success" @click="allRead">모두 읽음</button></div>
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNoti.length}}</span></a>
@@ -221,7 +221,7 @@ export default {
               this.allNoti = response.data.resvalue;
               this.allNoti.reverse();
               this.allNoti = this.allNoti;
-              // console.log(this.allNoti);
+              console.log(this.allNoti);
           })
           .catch(e => console.log(e))
       },
@@ -290,7 +290,16 @@ export default {
           })
           .catch(e => console.log(e))
       },
-      
+      allRead() {
+        for (let i in this.allNoti) {
+          http
+            .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
+            .then(response => {
+              return response
+            })
+            .catch(e => console.log(e))
+        }
+      }
   },
   created() {
     this.fetchNoti();
