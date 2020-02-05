@@ -1,10 +1,9 @@
 <template>
-  <div class="offset-md-2 col-md-8" data-aos="fade-up">
-    <div class="offset-md-1 col-md-10">
-    <div style="height:10px;"></div>
-    <div :class="filterType" id="img-select" class="img-fluid" style="text-align:center">
-          <img :src = imgs[imgs.length-1].base64 class="img-fluid">
-    </div>
+  <div class="offset-3 col-6" data-aos="fade-up">
+    <div class="col-12">
+      <div :class="filterType" id="img-select" class="img-fluid" style="text-align:center">
+            <img :src = imgs[imgs.length-1].base64 class="img-fluid">
+      </div>
       <div class="all-scroll pos-relative mt-50">
           <h5 class="mb-50"><b>Filters</b></h5>                                            
           <div class="swiper-scrollbar"></div>
