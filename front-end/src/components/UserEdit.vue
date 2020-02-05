@@ -257,6 +257,7 @@
         .then(response => {
           if (response.data['resmsg'] == "조회성공") {
             tmp = response.data['resvalue']; 
+            console.log(tmp)
             this.uid = tmp.user_id;
             this.utel = tmp.tel;
             this.uemail = tmp.email;
@@ -264,6 +265,8 @@
             this.uitrlist = tmp.dislikeList;
             this.intro = tmp.description;
             this.originimg = tmp.profile_url;
+            // this.imginfo.base64 = tmp.profileImage.base64;
+            // this.imginfo.filter = tmp.profileImage.filter;
           } else
             alert("회원조회 실패!");
         })
@@ -346,10 +349,6 @@
           alert("비밀번호를 입력하세요")
         
         } else {
-          if(!this.imgflg){
-            this.imginfo.base64 = this.tmp.profileImage.base64;
-            this.imginfo.filter = this.tmp.profileImage.filter;
-            }
           http
             .put("user/update", {
               user_id: this.uid,
