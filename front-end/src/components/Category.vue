@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid photos">
       <div class="row align-items-stretch">
-        <div class="col-6 col-md-6 col-lg-4" style="padding: 10px 10px" data-aos="fade-up" v-for="item in Items" :key="item.id">
+        <div class="col-6 col-md-6 col-lg-4" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
           <div class="d-block photo-item">
             <div class="all-scroll pos-relative mt-50">
               <div class="swiper-scrollbar"></div>
