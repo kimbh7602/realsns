@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from urllib import parse
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 import time
 import requests
 
@@ -69,13 +70,30 @@ def search_by_keyword(keyword):
 
     driver = webdriver.Chrome(executable_path="./chromedriver.exe")
     driver.get(url)
-    time.sleep(3)
+    # time.sleep(3)
 
     div = driver.find_element_by_css_selector("div.redactor-editor")
-    div.
-    print(div.text)
+    driver.execute_script("arguments[0].innerHTML = '"+keyword+"'", div)
+    # driver.execute_script("arguments[0].setAttribute('class', 'asdlknsvklsn')", div)
+    actions = ActionChains(driver)
+    actions.move_by_offset(125, 255)
+    actions.click()
+    time.sleep(1)
+    actions.click()
+    actions.click()
+    actions.click()
+    actions.perform()
+    time.sleep(2)
+    suggestions = driver.find_elements_by_css_selector("div.dropDownBox_suggestion")
+    results = []
+    results.append(keyword)
+    for suggestion in suggestions:
+        results.append(suggestion.text)
+    print(results)
+    driver.close()
+    # print(div.text)
 
-    return "asdf"
+    return jsonify(results)
 
 
 if __name__ == "__main__":
