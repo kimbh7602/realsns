@@ -119,7 +119,7 @@ export default {
 
 <style scoped>
 .selected-image{
-    height:400px;
+    height:30vw;
     background-size: cover;
 }
 </style>

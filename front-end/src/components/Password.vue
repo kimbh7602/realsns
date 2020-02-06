@@ -117,9 +117,9 @@ export default {
                 document.getElementById('modalBtn').click();
               }
             })
-            .catch(() => {
+            .catch((error) => {
               this.errored = true;
-                alert("error");
+                alert(error);
             })
             .finally(() => (this.loading = false));
       }
@@ -158,9 +158,9 @@ export default {
                 document.getElementById('modalBtn').click();
               }
             })
-            .catch(() => {
+            .catch((error) => {
               this.errored = true;
-                alert("error");
+                alert(error);
             })
             .finally(() => (this.loading = false));
       }

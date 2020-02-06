@@ -111,7 +111,8 @@ export default {
     methods: {
         searchHashtag(){
             if(this.searchKeyword.includes(" ")){
-                alert("단어만 검색하세요!");
+                this.$store.commit('setModalText', "단어로만 검색하세요!");
+                document.getElementById('modalBtn').click();
                 return;
             }
             this.isLoading = true;

@@ -195,7 +195,8 @@
               this.comments = res.data.resvalue;
               this.isComment = true;
             } else {
-              alert("댓글출력실패")
+              this.$store.commit('setModalText', "댓글 출력 실패");
+              document.getElementById('modalBtn').click();
             }
 
           });
@@ -242,13 +243,14 @@
               this.comment_val = "",
                 this.getData();
             } else {
-              alert("댓글추가 실패!");
+              this.$store.commit('setModalText', "댓글 추가 실패");
+              document.getElementById('modalBtn').click();
             }
 
           })
-          .catch(() => {
+          .catch((error) => {
             this.errored = true;
-            alert("error");
+            alert(error);
           })
           .finally(() => (this.loading = false));
 
@@ -267,13 +269,14 @@
               this.re_comment_val = "",
                 this.getData();
             } else {
-              alert("대댓글추가 실패!");
+              this.$store.commit('setModalText', "대댓글 추가 실패");
+              document.getElementById('modalBtn').click();
             }
 
           })
-          .catch(() => {
+          .catch((error) => {
             this.errored = true;
-            alert("error");
+            alert(error);
           })
           .finally(() => (this.loading = false));
 
