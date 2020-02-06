@@ -21,7 +21,7 @@ def naver_crawling(tag):
     url = "https://" + parse.quote(url_tmp)
     driver = webdriver.Chrome(executable_path="./chromedriver.exe")
     driver.get(url)
-    time.sleep(5)
+    time.sleep(2)
 
     divs = driver.find_elements_by_css_selector("div.v1Nh3.kIKUG._bz0w")
 
@@ -78,17 +78,19 @@ def search_by_keyword(keyword):
     actions = ActionChains(driver)
     actions.move_by_offset(125, 255)
     actions.click()
-    time.sleep(1)
+    # time.sleep(1)
     actions.click()
     actions.click()
     actions.click()
     actions.perform()
-    time.sleep(2)
+    time.sleep(1)
     suggestions = driver.find_elements_by_css_selector("div.dropDownBox_suggestion")
     results = []
     results.append(keyword)
     for suggestion in suggestions:
         results.append(suggestion.text)
+        # if(len(results)>=10):
+        #     break
     print(results)
     driver.close()
     # print(div.text)
