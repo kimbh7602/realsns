@@ -98,7 +98,6 @@ public class UserController {
 		user = imageUpload(user, response, request);
 		try {
 			boolean res = ser.updateUserInfo(user);
-			System.out.println(user.getProfileImage());
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (res) {
 				// run configurations 에서 arguments-> vm arguments
@@ -183,12 +182,14 @@ public class UserController {
 		String realPath = request.getServletContext().getRealPath(path);
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
+
 		try {
 			user = ser.info(user_id);
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (user != null) {
 				File file = new File(realPath + File.separator + user_id + ".jpg");
 				if (file.exists()) {
+
 					fis = new FileInputStream(file);
 					bos = new ByteArrayOutputStream();
 	
@@ -229,7 +230,7 @@ public class UserController {
 				map.put("resvalue", user);
 
 			} else {
-				map.put("resmsg", "1조회실패");
+				map.put("resmsg", "조회실패");
 			}
 			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		} catch (RuntimeException | IOException e) {
@@ -428,7 +429,7 @@ public class UserController {
 		
 			return user;
 	}
-
+	
 	private boolean imageDelete(String user_id, HttpServletResponse res, HttpServletRequest req){
     	String path = "/profile";
 		String realPath = req.getServletContext().getRealPath(path);
