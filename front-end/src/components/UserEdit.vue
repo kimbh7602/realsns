@@ -25,32 +25,20 @@
                       <label class="text-white" for="uid">Profile</label>
                       <div class="d-flex bd-highlight">
                         <div class="w-25 bd-highlight">
-                          <div v-if="this.originimg">
-                            <div v-if="!this.imgs" class="selected-image" style="margin-bottom:0px;" @dragover.prevent
-                              @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
-                              <img :src=originimg class="img-fluid" @click="$refs.fileInput.click()"
-                                style="height:100px ">
+                          <div v-if="!this.imginfo.base64" class="selected-image"
+                            style="margin-bottom:0px; border:2px solid white;" @dragover.prevent @dragenter.prevent
+                            @drop.prevent="dragupload" v-on:change="fileUpload">
+                            <div style="height:35%"></div>
+                            <div @click="$refs.fileInput.click()"
+                              style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
                             </div>
-
-                            <div v-else @click="$refs.fileInput.click()" :class="imginfo.filter" id="img-select">
-                              <img :src=imginfo.base64 class="img-fluid" style="height:100px;">
-                            </div>
+                            <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
                           </div>
-                          <div v-else>
-                            <div v-if="!this.imgs" class="selected-image"
-                              style="margin-bottom:0px; border:2px solid white;" @dragover.prevent @dragenter.prevent
-                              @drop.prevent="dragupload" v-on:change="fileUpload">
-                              <div style="height:35%"></div>
-                              <div @click="$refs.fileInput.click()"
-                                style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
-                              </div>
-                              <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
-                            </div>
 
-                            <div v-else @click="$refs.fileInput.click()" :class="imginfo.filter" id="img-select">
-                              <img :src=imginfo.base64 class="img-fluid" style="height:100px;">
-                            </div>
+                          <div v-else @click="$refs.fileInput.click()" :class="imginfo.filter" id="img-select">
+                            <img :src=imginfo.base64 class="img-fluid" style="height:100px;">
                           </div>
+                          <input type="button" @click="imgdel" value="x"/>
 
                         </div>
                       </div>
@@ -158,20 +146,6 @@
       </div>
 
     </div>
-    <!-- Modal -->
-    <p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body" style="text-align:center;">
-            {{modalText}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -246,11 +220,6 @@
     mounted() {
       var tmp;
       $('html').scrollTop(0);
-      if (this.imgs != undefined) {
-        this.imginfo.filter = this.imgs[this.imgs.length - 1].filter;
-        this.imginfo.base64 = this.imgs[this.imgs.length - 1].base64;
-        this.regimgs = this.imgs;
-      }
       http
         .get("user/info/" + this.$store.state.user_id)
         .then(response => {
@@ -263,6 +232,14 @@
             this.uitrlist = tmp.dislikeList;
             this.intro = tmp.description;
             this.originimg = tmp.profile_url;
+            if (this.imgs != undefined) {
+              this.imginfo.filter = this.imgs[this.imgs.length - 1].filter;
+              this.imginfo.base64 = this.imgs[this.imgs.length - 1].base64;
+              this.regimgs = this.imgs;
+            } else {
+              this.imginfo.base64 = tmp.profileImage.base64;
+              this.imginfo.filter = tmp.profileImage.filter;
+            }
           } else
             alert("회원조회 실패!");
         })
@@ -271,6 +248,8 @@
           alert("error");
         })
         .finally(() => (this.loading = false));
+
+
 
     },
     methods: {
@@ -316,7 +295,6 @@
         var span = document.createElement('span');
         var bold = document.createElement('bold');
         var text = document.getElementById('uninterest').value;
-        // this.itrlist.push(text);
         bold.innerText = text;
         div.style.background = colorCode;
         div.classList.add('roundedge');
@@ -371,6 +349,13 @@
         }
 
       },
+      imgdel(){
+        this.imginfo.base64  = "",
+        this.imginfo.img ="",
+        this.image="",
+        this.regimgs=""
+      },
+      
       del() {
         http
           .delete("user/delete/" + this.uid)
@@ -386,8 +371,6 @@
             alert("error");
           })
           .finally(() => (this.loading = false));
-
-
       },
       fileUpload(e) {
         const files = e.target.files || e.dataTransfer.files;
@@ -410,7 +393,7 @@
           this.regimgs.push(this.imginfo);
           // EventBus.$emit("imglink", { image: this.image });
           this.$router.push({
-            name: 'imagefilter',
+            name: 'editing',
             params: {
               imgs: this.regimgs,
               oldpw: this.upw,
@@ -420,6 +403,5 @@
         };
       },
     },
-
   }
 </script>

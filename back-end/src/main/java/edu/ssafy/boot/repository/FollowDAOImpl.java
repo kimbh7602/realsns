@@ -36,6 +36,7 @@ public class FollowDAOImpl implements IFollowDAO {
 
 	@Override
 	public List<String> followList(String follower_id) {
+		
 		return session.selectList("ssafy.follow.followList", follower_id);
 	}
 

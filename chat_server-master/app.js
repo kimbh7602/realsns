@@ -99,11 +99,11 @@ io.on('connection', function(socket){
     // users[data.receive_id] = socket.id;
     console.log(data);
     console.log('Message from %s: %s', data.user_id, data.target_user_id, data.category);
+    socket.broadcast.emit('notification', data);
 
     clients.some(element => {
-      // socket.broadcast.emit('notification', data);
       if(element.uid == data.target_user_id){
-        io.to(element.id).emit('notification', data);
+        // io.to(element.id).emit('notification', data);
         console.log(element.uid + " " + element.id);
         return (element.uid == data.target_user_id);
       }
@@ -125,12 +125,12 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function() {
-    clients.forEach(element => {
-      if(element.id == socket.id){
-        const idx = clients.indexOf(element);
-        clients.splice(idx, 1);
-      }
-    });
+    // clients.forEach(element => {
+    //   if(element.id == socket.id){
+    //     const idx = clients.indexOf(element);
+    //     clients.splice(idx, 1);
+    //   }
+    // });
     console.log('disc');
     console.log(clients);
   });

@@ -5,13 +5,13 @@
         <div class="col-md-8 pt-4">
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                    <h2 class="text-white mb-4 text-center">Chating</h2>
+                    <h2 class="text-white mb-4 text-center">Direct Message</h2>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up">
-                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a @click="sendNotification" href="#">adipisicing</a> elit. Ipsa explicabo quasi cum, laudantium neque at veniam itaque atque <a href="#">necessitatibus</a> temporibus! Beatae sit soluta magni neque autem, suscipit dolorem, quo alias.</p>              
+                    <p class="mb-5"></p>              
                     <div class="row">
                         <!-- chatinglist -->
                         <div class="col-md-4">
@@ -183,11 +183,11 @@ export default {
     //   container.scrollTop = container.scrollHeight;
     // },
     sendNotification(){
-      this.$socket.emit('notification', {
-        user_id: 'kimbh',
-        target_user_id: 'kimbh1',
-        category: 'like'
-      });
+      // this.$socket.emit('notification', {
+      //   user_id: 'kimbh',
+      //   target_user_id: 'kimbh1',
+      //   category: 'like'
+      // });
     }
   },
 
