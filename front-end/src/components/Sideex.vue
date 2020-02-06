@@ -10,14 +10,16 @@
     </div>
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
         <div class="notification">
-            <i class="icon-bell text-white" style="font-size:1.5em;">
-                <span class="badge" style="font-size:0.5em;">
-                    <em>{{notify}}</em>
-                </span>
-            </i>
+            <router-link to="/notification/" class="m-0">
+                <i class="icon-bell text-white" style="font-size:1.5em;">
+                    <span class="badge" style="font-size:0.5em;">
+                        <em>{{notify}}</em>
+                    </span>
+                </i>
+            </router-link>
         </div>
             
-        <div class="notification align-self-center ml-3">
+        <div class="notification pb-0 ml-3">
             <router-link :to="'/mypage/'+$store.state.user_id" class="m-0">
                 <i class="icon-user-circle text-white" style="font-size:1.9em;"></i>
             </router-link>
@@ -49,7 +51,6 @@
             <li v-show="!loginCheck" class="active"><router-link to="/login">Home</router-link></li>
             <li v-show="!loginCheck"><router-link to="/register">Register</router-link></li>
             <li v-show="!loginCheck"><router-link to="/password">Password</router-link></li>
-            <li><router-link to="/notification">Notification</router-link></li>
         </ul>
         <!-- <ul class="social js-clone-nav">
             <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -75,11 +76,13 @@
 <script>
 // import $ from "jquery"
 import store from "../store" 
+import http from '../http-common'
+
 export default {
     name:"sidebar",
     data(){
         return{
-            notify:0,
+            notify: 0,
             // check:false,
         }
     },
@@ -92,7 +95,16 @@ export default {
             this.$store.commit("logout");
             document.getElementById('modalBtn').click();
             this.$router.push("/login");
-        }
+        },
+        fetchNoti() {
+            http
+                .get(`/notification/uncheckedList/${this.$store.state.user_id}`)
+                .then(response => {
+                    // console.log(response.data)
+                    this.notify = response.length;
+                })
+                .catch(e => console.log(e))
+      },
     },
     computed: {
         loginCheck: () => {
@@ -100,15 +112,16 @@ export default {
         },
     },
     created() {
-    // this.socket = io('http://192.168.100.41:3000');
-    this.$socket.on('notification', (data) => {
-    //   window.console.log('notification', data, this.$store.state.user_id);
-      if(data.target_user_id == this.$store.state.user_id){
-        this.$snotify.simple('알림을 확인해보세요!', data.user_id + "님의 " + data.category+"!", {
-            icon : '/theme/images/'+data.category+'.png',
-            // html : '<div>Like!</div><div>알림을 확인해보세요!</div>'
-          });
-      }
+        // this.socket = io('http://192.168.100.41:3000');
+        this.$socket.on('notification', (data) => {
+        //   window.console.log('notification', data, this.$store.state.user_id);
+        if(data.target_user_id == this.$store.state.user_id){
+            this.$snotify.simple('알림을 확인해보세요!', data.user_id + "님의 " + data.category+"!", {
+                icon : '/theme/images/'+data.category+'.png',
+                // html : '<div>Like!</div><div>알림을 확인해보세요!</div>'
+            });
+        }
+        this.fetchNoti();
     });
   }
 }

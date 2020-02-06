@@ -98,7 +98,6 @@ public class UserController {
 		user = imageUpload(user, response, request);
 		try {
 			boolean res = ser.updateUserInfo(user);
-			System.out.println(user.getProfileImage());
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (res) {
 				// run configurations 에서 arguments-> vm arguments
@@ -183,12 +182,17 @@ public class UserController {
 		String realPath = request.getServletContext().getRealPath(path);
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
+
 		try {
 			user = ser.info(user_id);
+			String url = user.getProfile_url();
+			String imageName = url.substring(url.lastIndexOf("/")+1);
+			String ext = imageName.substring(imageName.lastIndexOf(".")+1);
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (user != null) {
-				File file = new File(realPath + File.separator + user_id + ".jpg");
+				File file = new File(realPath + File.separator + imageName);
 				if (file.exists()) {
+
 					fis = new FileInputStream(file);
 					bos = new ByteArrayOutputStream();
 	
@@ -199,7 +203,7 @@ public class UserController {
 					}
 					byte[] fileArray = bos.toByteArray();
 					String imageString = new String(Base64.encodeBase64(fileArray));
-					String changeString = "data:image/jpg;base64, "+imageString;
+					String changeString = "data:image/"+ext+";base64, "+imageString;
 					user.setProfileImage(new ImageVo());
 					user.getProfileImage().setBase64(changeString);
 					user.getProfileImage().setFilter(user.getProfile_filter());
@@ -229,7 +233,7 @@ public class UserController {
 				map.put("resvalue", user);
 
 			} else {
-				map.put("resmsg", "1조회실패");
+				map.put("resmsg", "조회실패");
 			}
 			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		} catch (RuntimeException | IOException e) {
@@ -401,9 +405,12 @@ public class UserController {
 		if(user.getProfileImage() != null && user.getProfileImage().getBase64() != ""){
 
 			ImageVo image = user.getProfileImage();
+			String ext = image.getBase64().substring(image.getBase64().indexOf("/")+1, image.getBase64().indexOf(";"));
+			System.out.println(ext);
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
-				String image_name = user.getUser_id() + ".jpg";
+				String image_name = user.getUser_id() + "."+ext;
 				String savePath = realPath+File.separator+image_name;
+				System.out.println(savePath);
 				String image_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/" +image_name;
 				
 				File f = new File(savePath);
@@ -428,13 +435,19 @@ public class UserController {
 		
 			return user;
 	}
-
+	
 	private boolean imageDelete(String user_id, HttpServletResponse res, HttpServletRequest req){
     	String path = "/profile";
 		String realPath = req.getServletContext().getRealPath(path);
 		
 		boolean isDelete = true;
-			String savePath = realPath+File.separator+user_id + ".jpg";
+		UserVo user = ser.info(user_id);
+			String url = user.getProfile_url();
+			String imageName = url.substring(url.lastIndexOf("/")+1);
+			if(imageName.equals("default.png")){
+				return isDelete;
+			}
+			String savePath = realPath+File.separator+imageName;
 			File file = new File(savePath);
 			if(file.exists()){
 				if(file.delete()){

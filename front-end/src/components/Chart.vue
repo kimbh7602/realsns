@@ -78,13 +78,13 @@ export default {
               })
           })
           .catch(e => console.log(e))
-          console.log(temp);
+          // console.log(temp);
 
           if (category == 'follow') {
             this.followDate = temp;
           }else if (category == 'like') {
             this.likeDate = temp;
-          }else {
+          }else if (category == 'scrap') {
             this.scrapDate = temp;
           }
       },

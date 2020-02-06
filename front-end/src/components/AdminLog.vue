@@ -2,13 +2,9 @@
     <div class="container-fluid photos">
         <div class="row justify-content-center">
 
-            <div class="col-md-6 pt-4" data-aos="fade-up">
-                <h2 class="text-white mb-4">AdminLog</h2>
-
-
+            <div class="col-md-6" >
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> log.</p>
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="" method="post" @submit.prevent="confirm">
@@ -70,7 +66,7 @@
 
 <script>
     import http from "../http-common"
-    import $ from "jquery"
+    
     export default {
         data() {
             return {
@@ -121,7 +117,6 @@
             }
         },
         mounted() {
-            $('html').scrollTop(0);
             var tmp;
             http
                 .get("admin/info")

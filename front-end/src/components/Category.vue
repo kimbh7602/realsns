@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid photos">
       <div class="row align-items-stretch">
-        <div class="col-6 col-md-6 col-lg-4" style="padding: 10px 10px" data-aos="fade-up" v-for="item in Items" :key="item.id">
+        <div class="col-6 col-md-6 col-lg-4" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
           <div class="d-block photo-item">
             <div class="all-scroll pos-relative mt-50">
               <div class="swiper-scrollbar"></div>
@@ -31,7 +31,12 @@
                             <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                             </div>
                           </div>
-                          <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
+                          <div v-if="item.profile_url != null" :class="item.profile_filter">
+                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" class="stamp-img"/>
+                          </div>
+                          <div v-else>
+                            <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
+                          </div>
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
                           <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
@@ -71,7 +76,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "Items"],
+  props:["userId"],
   data() {
     return {
       follow: false,
@@ -80,6 +85,7 @@ export default {
       uid: "",
       contentIds: [],
       contentErrorMsg: "",
+      Items:[],
     }
   },
   methods: {
@@ -100,31 +106,31 @@ export default {
     },
     getData() {
       http
-      .get(`content/contentUserList/${this.userId}`)
-      // .then((res)=>{
-      //   if (res.data.resValue.length > 0) {
-      //     this.contentErrorMsg = ""
-      //     if (res.data.resmsg == "타임라인 출력 성공") {
-      //       for (var i = 0; i < res.data.resValue.length; i++) {
-      //         for (var j = 0; j < this.contentIds.length; j++) {
-      //           if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-      //             res.data.resValue[i].user_like = true
-      //           }
-      //         }
-      //       }
-      //       this.Items = res.data.resValue;
-      //     }
-      //   } else {
-      //     this.contentErrorMsg = "게시물이 없습니다."
-      //   }
-      // })
-      // .catch(()=>{
-      //   this.errored = true;
-      // })
-      .then(response => {
-        // console.log(response.data)
-        this.Items = response.data.resValue;
+      .get('content/contentUserList/'+this.uid)
+      .then((res)=>{
+        if (res.data.resValue.length > 0) {
+          this.contentErrorMsg = ""
+          if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
+            for (var i = 0; i < res.data.resValue.length; i++) {
+              for (var j = 0; j < this.contentIds.length; j++) {
+                if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
+                  res.data.resValue[i].user_like = true
+                }
+              }
+            }
+            this.Items = res.data.resValue;
+          }
+        } else {
+          this.contentErrorMsg = "게시물이 없습니다."
+        }
       })
+      .catch(()=>{
+        this.errored = true;
+      })
+      // .then(response => {
+      //   // console.log(response.data)
+      //   this.Items = response.data.resValue;
+      // })
       .catch(e => console.log(e))
     },
     goDetail: function(con_id) {
@@ -193,7 +199,7 @@ export default {
   },
   created() {
     this.getLike()
-    // this.getData()
+    this.getData()
   },
   mounted() {
     $('html').scrollTop(0);
