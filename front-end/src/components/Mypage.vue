@@ -14,6 +14,7 @@
                     <span @click="goChating(userId)" v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span>
                 </div>
                 <div v-else>
+                    <router-link to="/pwconfirm"><button style="width: 90px;" class="btn btn-dark">정보수정</button></router-link>
                     <router-link to="/chart"><button style="width: 72px;" class="btn btn-dark">통계</button></router-link>
                 </div>
                 
@@ -50,6 +51,7 @@
                         <div class="text-white">{{userInfo.description}}</div>
                     </div>
                 </div>
+
             </div>
         </div>
       </div>

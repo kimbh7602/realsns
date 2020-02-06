@@ -277,9 +277,9 @@ export default {
                     this.idOk = true;
                   }
                 })
-                .catch(() => {
+                .catch((error) => {
                   this.errored = true;
-                    alert("error");
+                    alert(error);
                 })
                 .finally(() => (this.loading = false));
           }
@@ -313,9 +313,9 @@ export default {
                     document.getElementById('modalBtn').click();
                   }
                 })
-                .catch(() => {
+                .catch((error) => {
                   this.errored = true;
-                    alert("error");
+                    alert(error);
                 })
                 .finally(() => (this.loading = false));
           }
@@ -437,7 +437,7 @@ export default {
             this.regimgs.push(this.imginfo);
             // EventBus.$emit("imglink", { image: this.image });
             this.$router.push({
-              name: 'imagefilter', 
+              name: 'editing', 
               params: {
                 imgs: this.regimgs,
                 prevpage: "register",
@@ -496,9 +496,9 @@ export default {
                     document.getElementById('modalBtn').click();
                   }
                 })
-                .catch(() => {
+                .catch((error) => {
                     this.errored = true;
-                    alert("error");
+                    alert(error);
                 })
                 .finally(() => (this.loading = false));
           }

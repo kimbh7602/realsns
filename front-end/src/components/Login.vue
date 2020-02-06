@@ -10,31 +10,31 @@
     <label class="text-white" for="user_id">ID</label>
     <div class="d-flex bd-highlight">
         <div class="w-100 bd-highlight">
-            <input type="text" required v-model="user_id" id="user_id" class="form-control">
+            <input type="text" required v-model="user_id" id="user_id" @keydown.enter="login" class="form-control">
         </div>
     </div>
     <label class="text-white" for="password">PW</label>
     <div class="d-flex bd-highlight">
         <div class="w-100 bd-highlight">
-            <input type="password" required v-model="password" id="password" class="form-control">
+            <input type="password" required v-model="password" id="password" @keydown.enter="login" class="form-control">
         </div>
     </div>
     <br><br>
     <input type="button" value="Login" @click="login" class="btn btn-outline-light btn-block text-white">
     <br>
     <div style="margin-top:1%;margin-left:5%;margin-right:5%; height:50px;">
-      <div style="text-align:center; font-style:">비밀번호가 기억나지 않으세요?</div>
-      <div style="text-align:center">아직 회원이 아니신가요?</div>
+      <div style="margin-bottom:3px; text-align:center"><span @click="register" style="cursor:pointer; border-bottom:1px solid;">아직 회원이 아니신가요?</span></div>
+      <div style="text-align:center;"><span @click="findpw" style="cursor:pointer; border-bottom:1px solid;">비밀번호가 기억나지 않으세요?</span></div>
     </div>
 
-    <div style="margin-top:1%;margin-left:5%;margin-right:5%; height:50px;">
+    <!-- <div style="margin-top:1%;margin-left:5%;margin-right:5%; height:50px;">
       <div style="display:inline-block; float :left">
         <input type="button" value="Login" @click="login" class="btn btn-primary btn-md text-white">
       </div>
       <div style="display:inline-block; float:right">
         <input type="button" value="FindPw" @click="findpw" class="btn btn-success btn-md text-white">
       </div>
-    </div>
+    </div> -->
     </div>
   </div>
 </template>
@@ -74,6 +74,9 @@ import $ from "jquery"
       findpw(){
           this.$router.push("/password");
       },
+      register(){
+        this.$router.push("/register");
+      }
       // sendNotification(){
       //       window.console.log("notification");
       //       // this.$Eventbus.$emit('notification', {

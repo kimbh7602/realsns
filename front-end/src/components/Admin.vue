@@ -2,16 +2,11 @@
     <div class="container-fluid photos">
         <div class="row justify-content-center">
 
-            <div class="col-md-6 pt-4" data-aos="fade-up">
+            <div class="col-md-12 pt-4" data-aos="fade-up">
                 <h2 class="text-white mb-4">Admin</h2>
 
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> admin.</p>
-                        <div class="row">
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <v-tabs fixed-tabs background-color="indigo" dark>
                             <v-tab v-on:click="tabclick('calendar')">
@@ -26,6 +21,9 @@
                             <v-tab v-on:click="tabclick('total')">
                                 통계
                             </v-tab>
+                            <v-tab v-on:click="tabclick('log')">
+                                로그
+                            </v-tab>
                         </v-tabs>
                     </div>
                 </div>
@@ -33,7 +31,7 @@
         </div>
         <div class="container-fluid photos">
             <div class="row justify-content-center">
-                <div class="col-md-6 pt-4" data-aos="fade-up">
+                <div class="col-md-12 pt-4" data-aos="fade-up">
                     <div class="col-md-12">
                         <div class="md-5" id="contents">
                             <div id="calendar" name="calendar" v-bind:style="calendar">
@@ -48,6 +46,9 @@
                             </div>
                             <div id="total" name="total" v-bind:style="total">
                                 <canvas id="myChart" class="col-xs-12 col-sm-12 col-md-12"></canvas>
+                            </div>
+                            <div id="log" name="total" v-bind:style="log">
+                                <adminlog></adminlog>
                             </div>
                         </div>
                     </div>
@@ -64,14 +65,17 @@
     import $ from "jquery"
     import wordcloudVue from "./WordCloud.vue"
     import mycalendar from "./Calendar.vue"
+    import adminlog from"./AdminLog.vue"
 
     export default {
         components: {
             wordcloudVue,
-            mycalendar
+            mycalendar,
+            adminlog
         },
         data() {
             return {
+                uid: this.$store.state.user_id,
                 visit: "",
                 totaldata:[],
                 today: {
@@ -84,6 +88,8 @@
                     display: '',
                 },
                 total: {
+                    display: 'none',
+                },log: {
                     display: 'none',
                 },
                 categoryNoti: {},
@@ -107,6 +113,7 @@
             }
         },
         mounted() {
+            if(this.uid === "admin1" || this.uid === "admin2" || this.uid === "admin3" || this.uid === "admin4" || this.uid === "admin5"){
             $('html').scrollTop(0);
             http
                 .get("admin/totalcontents")
@@ -123,9 +130,9 @@
                             ],
         
                             datasets: [{
-                                    label: '게시글수',
+                                    label: '월별 게시글 수',
                                     //   backgroundColor : ['rgba(255, 255, 255, 1)'],
-                                    borderColor: 'white',
+                                    borderColor: '#f23a2e',
                                     pointBackgroundColor: 'white',
                                     pointBorderWidth: 2,
                                     pointRadius: 6,
@@ -135,7 +142,6 @@
                                 }
                             ]
                         },
-        
                         options: {
                             maintainAspectRatio: true,
         
@@ -153,7 +159,6 @@
                                     }
                                 }]
                             },
-        
                             legend: {
                                 labels: {
                                     fontColor: 'white'
@@ -165,7 +170,6 @@
                     myChart;
                     }
                 })
-
             http
                 .get("admin/todayvisit")
                 .then(response => {
@@ -173,9 +177,9 @@
                         this.visit = response.data['resvalue'];
                     }
                 })
-
-
-
+            }else{
+                this.$router.push("/")
+            }
         },
         methods: {
             tabclick(e) {
@@ -184,21 +188,31 @@
                     this.wordcloud.display = "none";
                     this.calendar.display = "none";
                     this.total.display = "none";
+                    this.log.display="none"
                 } else if (e === "wordcloud") {
                     this.today.display = "none";
                     this.wordcloud.display = "";
                     this.calendar.display = "none";
                     this.total.display = "none";
+                    this.log.display="none"
                 } else if (e === "calendar") {
                     this.today.display = "none";
                     this.wordcloud.display = "none";
                     this.calendar.display = "";
                     this.total.display = "none";
+                    this.log.display="none"
                 } else if (e === "total") {
                     this.today.display = "none";
                     this.wordcloud.display = "none";
                     this.calendar.display = "none";
                     this.total.display = "";
+                    this.log.display="none"
+                }else if (e === "log") {
+                    this.today.display = "none";
+                    this.wordcloud.display = "none";
+                    this.calendar.display = "none";
+                    this.total.display = "none";
+                    this.log.display=""
                 }
 
             },

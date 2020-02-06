@@ -146,20 +146,6 @@
       </div>
 
     </div>
-    <!-- Modal -->
-    <p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body" style="text-align:center;">
-            {{modalText}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -254,12 +240,14 @@
               this.imginfo.base64 = tmp.profileImage.base64;
               this.imginfo.filter = tmp.profileImage.filter;
             }
-          } else
-            alert("회원조회 실패!");
+          } else{
+            this.$store.commit('setModalText', "회원조회 실패!");
+            document.getElementById('modalBtn').click();
+          }
         })
-        .catch(() => {
+        .catch((error) => {
           this.errored = true;
-          alert("error");
+          alert(error);
         })
         .finally(() => (this.loading = false));
 
@@ -334,7 +322,8 @@
           this.uitrlist[j] = uitrltemp[j].innerText;
         }
         if (this.upw === "") {
-          alert("비밀번호를 입력하세요")
+          this.$store.commit('setModalText', "비밀번호를 입력하세요");
+          document.getElementById('modalBtn').click();
         } else {
           http
             .put("user/update", {
@@ -348,15 +337,19 @@
               profileImage: this.imginfo,
             })
             .then(response => {
-              if (response.data['resmsg'] == "수정성공")
-                alert("회원수정 성공!");
-              else
-                alert("회원수정 실패!");
+              if (response.data['resmsg'] == "수정성공"){
+                this.$store.commit('setModalText', "회원정보 수정 성공!");
+                document.getElementById('modalBtn').click();
+              }
+              else{
+                this.$store.commit('setModalText', "회원정보 수정 실패!");
+                document.getElementById('modalBtn').click();
+              }
               this.$router.push("/");
             })
-            .catch(() => {
+            .catch((error) => {
               this.errored = true;
-              alert("error");
+              alert(error);
             })
             .finally(() => (this.loading = false));
 
@@ -374,15 +367,19 @@
         http
           .delete("user/delete/" + this.uid)
           .then(response => {
-            if (response.data['resmsg'] == "삭제성공")
-              alert("회원삭제 성공!");
-            else
-              alert("회원삭제 실패!");
+            if (response.data['resmsg'] == "삭제성공"){
+              this.$store.commit('setModalText', "회원정보 삭제 성공!");
+              document.getElementById('modalBtn').click();
+            }
+            else{
+              this.$store.commit('setModalText', "회원정보 삭제 실패!");
+              document.getElementById('modalBtn').click();
+            }
             this.$router.push("/");
           })
-          .catch(() => {
+          .catch((error) => {
             this.errored = true;
-            alert("error");
+            alert(error);
           })
           .finally(() => (this.loading = false));
       },
@@ -407,7 +404,7 @@
           this.regimgs.push(this.imginfo);
           // EventBus.$emit("imglink", { image: this.image });
           this.$router.push({
-            name: 'imagefilter',
+            name: 'editing',
             params: {
               imgs: this.regimgs,
               oldpw: this.upw,
