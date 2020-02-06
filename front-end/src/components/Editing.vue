@@ -1,40 +1,31 @@
 <template>
-    <div class="offset-3 col-6" data-aos="fade-up">
-        <div class="col-12 cropper-container" style="height:1000px;">
-            <img ref="image" :src="imgs[imgs.length-1].base64" crossorigin style="height:auto;">
+    <div data-aos="fade-up" style="width:100%">
+        <div class="offset-3 col-6 cropper-container" style=" height:480px; width:auto;">
+            <img ref="image" :src="imgs[imgs.length-1].base64" crossorigin style="height:80%;width:80%;">
             <!-- <img ref="image" src="../../public/theme/images/temp.jpg" crossorigin> -->
         </div>
-        <div class="col-12">
-        <img :src="destination" class="img-preview">
+        <div class="offset-4 col-6" style="padding-left:7%;padding-top:30px;">
+            <span @click="rotatep45" class="col-1 icon-mail-forward"></span>
+            <span @click="rotatem45" class="col-1 icon-mail-reply"></span>
+            <span @click="rotatep90" class="col-1 icon-rotate-right"></span>
+            <span @click="rotatem90" class="col-1 icon-rotate-left"></span>
+            <span @click="vertical_scale" class="col-1 icon-arrows-v"></span>
+            <span @click="horizontal_scale" class="col-1 icon-arrows-h"></span>
         </div>
-        <div class="col-12">
-        <div @click="rotatep45">P rotate 45</div>
-        <div @click="rotatem45">M rotate 45</div>
-        <div @click="rotatep90">P rotate 90</div>
-        <div @click="rotatem90">M rotate 90</div>
-        <div @click="vertical_scale">vertical scale</div>
-        <div @click="horizontal_scale">horizontal scale</div>
-        </div>
-        <!-- <div style="margin-top:1%; margin-left:5%;margin-right:5%; height:50px;">
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block;">
+        <!-- <div class="offset-3 col-6" style="padding-left:4%;">
+            <img :src="destination" class="img-preview">
+        </div> -->
+        <div style="margin-top:1%; margin-left:5%;margin-right:5%; height:50px;">
+          <div v-if="prevpage=='addimage'" class="offset-3 col-2" style="display:inline-block;">
+            <input type="button" value="이전" @click="goAddImage" class="btn btn-primary btn-md text-white">
+          </div>
+          <div v-else class="offset-3 col-2" style="display:inline-block;">
             <input type="button" value="이전" @click="goPrev" class="btn btn-primary btn-md text-white">
           </div>
-          <div v-else class="col-4 col-md-4 col-lg-4" style="display:inline-block;">
-            <input type="button" value="이전" @click="goReg" class="btn btn-primary btn-md text-white">
-          </div>
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:center;">
-            <input type="button" value="추가" @click="goAddImage" class="btn btn-info btn-md text-white">
-          </div>
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
+          <div class="offset-3 col-2" style="display:inline-block;">
             <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
           </div>
-           <div v-else-if="prevpage=='useredit'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNextEdit" class="btn btn-success btn-md text-white">
-          </div>
-          <div v-else class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNextReg" class="btn btn-success btn-md text-white">
-          </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -53,17 +44,33 @@
                 src:"../../public/theme/images/ai.jpg",
                 scale_vertical:false,
                 scale_horizontal:false,
+                ratio:4/3,
             }
         },
-        // props: {
-        //     src: String
-        // },
         methods:{
-            goPrev(){
+            goAddImage(){
                 this.step = 1;
                 this.$router.push("/addimage");
             },
-
+            goPrev() {
+                this.image = "";
+                this.caption = "";
+                this.filterType = "normal";
+                this.step = 1;
+                this.$router.go(-1);
+            },
+            goNext() {
+                // this.imgs[this.imgs.length-1].filter = this.filterType;
+                this.imgs[this.imgs.length-1].base64 = this.destination;
+                this.$router.push({
+                    name: 'imagefilter', 
+                    params: {
+                    imgs: this.imgs,
+                    prevpage: this.prevpage,
+                    oldpw: this.oldpw,
+                    }
+                });
+            },
             rotatep45(){
                 this.cropper.rotate(45);
             },
@@ -99,15 +106,13 @@
         },
         mounted() {
             this.image = this.$refs.image;
+            if(this.prevpage!="addimage"){
+                this.ratio = 1;
+            }
             this.cropper = new Cropper(this.image, {
-                zoomable: true,
-                scalable: true,
-                aspectRatio: 4 / 3,
-                rotatable:true,
-                cropBoxResizable:false,
+                aspectRatio: this.ratio,
                 dragMode:'move',
-                autoCropArea: 1,
-                minContainerHeight:1000,
+                // minContainerHeight:1000,
                 crop: () => {
                     const canvas = this.cropper.getCroppedCanvas();
                     this.destination = canvas.toDataURL("image/png");
@@ -121,12 +126,18 @@
     .img-container {
         width: auto;
         height: auto;
-        float: left;
     }
     .img-preview {
-        width: 200px;
-        height: 200px;
-        float: left;
-        margin-left: 10px;
+        width: auto;
+        height: 300px;
     }
+    span{
+        color:orange;
+        /* padding-right:20px; */
+    }
+    span:hover {
+	/* background-color: #5BC0DE; */
+	color: orangered;
+	font-style: normal;
+}
 </style>

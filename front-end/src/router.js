@@ -27,6 +27,7 @@ import Calendar from "./components/Calendar.vue"
 import Crawling from "./components/Crawling.vue"
 import Notification from "./components/Notification.vue"
 import Admin from "./components/Admin.vue"
+import Editing from "./components/Editing.vue"
 
 Vue.use(Router);
 // const modal = { template: '<p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-body" style="text-align:center;">{{$store.state.modalText}}</div><div class="modal-footer"><button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button></div></div></div></div>'}
@@ -334,6 +335,13 @@ export const router = new Router({
             name: "notification",
             alias: "/Notification",
             component: Notification,
+            props: true,
+        },
+        {
+            path: "/editing",
+            name: "editing",
+            alias: "/Editing",
+            component: Editing,
             props: true,
         },
     ]
