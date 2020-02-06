@@ -95,7 +95,8 @@
                             <input type="button" value="b" @click="changeedit(comment.comment_id)" />
                           </div>
                           <div class="col-1 ">
-                            <input type="button" value="e" @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"  />
+                            <input type="button" value="e"
+                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)" />
                           </div>
                         </div>
                         <!-- 대댓글추가 인풋 -->
@@ -128,23 +129,24 @@
                           {{comment.comment_val}}</div>
                         <div v-bind:id="'edit'+comment.comment_id" class="comment-val col-6" style="display:none;">
                           <input type="text" class="text-black form-control" v-model="comment.comment_val" /></div>
-                       <div class="row col-2" v-bind:id="'view_button'+comment.comment_id" style="display:show;">
+                        <div class="row col-2" v-bind:id="'view_button'+comment.comment_id" style="display:show;">
                           <div class="col-1">
                             <input type="button" value="-" @click="delcomment(comment.comment_id)" />
                           </div>
                           <div class="col-1">
-                            <input type="button" value="e" @click="changeedit(comment.comment_id, comment.comment_val)" />
+                            <input type="button" value="e" @click="changeedit(comment.comment_id)" />
                           </div>
                         </div>
-                        <div class="row col-2" v-bind:id="'edit_button'+comment.comment_id" style="display:none;">
-                          <div class="col-1">
-                            <input type="button" value="b" @click="changeedit(comment.comment_id, comment.comment_val)" />
+                        <div class="row col-3" v-bind:id="'edit_button'+comment.comment_id" style="display:none;">
+                          <div class="col-2">
+                            <input type="button" value="b" @click="changeedit(comment.comment_id)" />
                           </div>
                           <div class="col-1 ">
-                            <input type="button" value="e" @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"/>
+                            <input type="button" value="e"
+                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)" />
                           </div>
                         </div>
-                      </div>  
+                      </div>
                     </div>
                   </div>
                   <!-- /댓글 -->
@@ -205,50 +207,54 @@
         var text = document.getElementById('view' + e);
         var input = document.getElementById('edit' + e);
         var text_button = document.getElementById("view_button" + e)
-        var input_button = document.getElementById("edit_button" + e) 
+        var input_button = document.getElementById("edit_button" + e)
 
 
-        if (text.style.display === "inline-block") {
+        if (text.style.display === "inline-block" && text_button.style.display === "flex") {
           text.style.display = "none"
           input.style.display = "inline-block"
-          text_button.style.display="none"
-          input_button.style.display="flex"
+          text_button.style.display = "none"
+          input_button.style.display = "flex"
           this.getData();
 
-        }
-        else if(text.style.display === "none") {
+        } else if (text.style.display === "none" && text_button.style.display === "none") {
           text.style.display = "inline-block"
           input.style.display = "none"
-          text_button.style.display="flex"
-          input_button.style.display="none"
+          text_button.style.display = "flex"
+          input_button.style.display = "none"
           this.getData();
         }
       },
-      editcomment(id,value,rid) {
-        http
-          .put("/comment/updateComment", {
-            comment_id: id,
-            content_id: 0,
-            re_comment_id: rid,
-            user_id: this.uid,
-            target_id: "",
-            comment_val: value,
+      editcomment(id, value, rid) {
+        if(value===""){
+          alert("수정할댓글 내용을 입력하세요")
+        }
+        else{
 
-          })
-          .then(response => {
-            if (response.data['resmsg'] == "수정성공") {
-              this.changeedit(id);
-              this.getData();
-            } else {
-              alert("댓글수정 실패!");
-            }
-
-          })
-          .catch(() => {
-            this.errored = true;
-            alert("error");
-          })
-          .finally(() => (this.loading = false));
+          http
+            .put("/comment/updateComment", {
+              comment_id: id,
+              content_id: 0,
+              re_comment_id: rid,
+              user_id: this.uid,
+              target_id: "",
+              comment_val: value,
+            })
+            .then(response => {
+              if (response.data['resmsg'] == "수정성공") {
+                this.changeedit(id);
+                this.getData();
+              } else {
+                alert("댓글수정 실패!");
+              }
+  
+            })
+            .catch(() => {
+              this.errored = true;
+              alert("error");
+            })
+            .finally(() => (this.loading = false));
+        }
       },
       delcomment(e) {
         http
@@ -259,7 +265,6 @@
             } else {
               alert("대댓글추가 실패!");
             }
-
           })
           .catch(() => {
             this.errored = true;
@@ -272,7 +277,7 @@
         var a = document.getElementById(e);
         if (a.style.display === "none") {
           a.style.display = "";
-        } else {
+        } else{
           a.style.display = "none"
         }
       },
@@ -339,28 +344,34 @@
         return false;
       },
       insertComment() {
-        http
-          .post("comment/insertComment", {
-            re_comment_id: "",
-            content_id: this.contentId,
-            user_id: this.$store.state.user_id,
-            target_id: "",
-            comment_val: this.comment_val,
-          })
-          .then(response => {
-            if (response.data['resmsg'] == "댓글 추가 성공") {
-              this.comment_val = "",
+        if (this.comment_val === "") {
+          alert("댓글을 입력하세요")
+        } else {
+          http
+            .post("comment/insertComment", {
+              re_comment_id: "",
+              content_id: this.contentId,
+              user_id: this.$store.state.user_id,
+              target_id: "",
+              comment_val: this.comment_val,
+            })
+            .then(response => {
+              if (response.data['resmsg'] == "댓글 추가 성공") {
+                this.comment_val = "",
                 this.getData();
-            } else {
-              alert("댓글추가 실패!");
-            }
+              } else {
+                alert("댓글추가 실패!");
+              }
 
-          })
-          .catch(() => {
-            this.errored = true;
-            alert("error");
-          })
-          .finally(() => (this.loading = false));
+            })
+            .catch(() => {
+              this.errored = true;
+              alert("error");
+            })
+            .finally(() => (this.loading = false));
+
+        }
+
 
       },
       insertReComment(commentid) {
@@ -375,7 +386,7 @@
           .then(response => {
             if (response.data['resmsg'] == "대댓글 추가 성공") {
               this.re_comment_val = "",
-                this.getData();
+              this.getData();
             } else {
               alert("대댓글추가 실패!");
             }

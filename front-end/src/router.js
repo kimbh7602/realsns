@@ -232,10 +232,6 @@ export const router = new Router({
             alias: "/Login",
             component: Login,
             props: true,
-            // beforeEnter: function(to, from, next){
-            //     store.commit('setid');
-            //     next();
-            // },
         },
         {
             path: "/findcontent",
@@ -295,6 +291,7 @@ export const router = new Router({
             alias: "/Admin",
             component: Admin,
             props: true,
+            
         },
         {
             path: "/adminlog",
