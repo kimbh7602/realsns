@@ -22,21 +22,22 @@
                     <p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p>
                   </div>
                   <div class="detail-mail-message mail-message offset-2 col-8"
-                    style="color:black; font-family: loveson; word-break:break-all;text-align:left;">
-                    {{items.content_val}}</div>
+                    style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="items.content_val">
+                  </div>
                   <div class="col-11 col-offset-1"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
                     from {{items.user_id}}</div>
                   <!-- 댓글 -->
                   <div class="col-12 row" style="margin:0; color:black; vertical-align:bottom; text-align:left;">
-                    <div style="font-size:1.5em; font-family: loveson; word-break:break-all; " class="col-1">PS .</div>
-                    <div class="col-1"
+                    <div style="font-size:1.5em; font-family: loveson; word-break:break-all; " class="col-auto">PS .
+                    </div>
+                    <div class="col-auto"
                       style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                       {{uid}}</div>
                     <!-- 댓글입력창 -->
                     <div class="col-7"><input type="text" class="text-black form-control" v-model="comment_val" /></div>
                     <!-- 댓글입력버튼 -->
-                    <div class="col-3"><input type="button" @click="insertComment"
+                    <div class="col-2"><input type="button" @click="insertComment"
                         class="btn btn-block btn-outline-info" value="Send" /></div>
                   </div>
                   <!-- 댓글출력 -->
@@ -71,39 +72,80 @@
                           style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                           {{comment.user_id}}</div>
                         <!-- <div class="col-1"></div> -->
-                        <div class="comment-val col-7"
+                        <div class="comment-val col-6" v-bind:id="'view'+comment.comment_id"
                           style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">
-                          {{comment.comment_val}}</div>
-                        <div class="col-2">
-                          <input type="button" value="대댓글추가" @click="recommentdisplay('comment'+comment.comment_id)" />
+                          {{comment.comment_val}}
                         </div>
-                        <div class="row col-12" v-bind:id="'comment'+comment.comment_id" style="display:none;">
-                          <div class="col-2"></div>
-                          <div class="col-1"
+                        <div v-bind:id="'edit'+comment.comment_id" class="comment-val col-6" style="display:none;">
+                          <input type="text" class="text-black form-control" v-model="comment.comment_val" /></div>
+
+                        <div class="row col-3" v-bind:id="'view_button'+comment.comment_id" style="display:show;">
+                          <div class="col-1">
+                            <input type="button" value="-" @click="delcomment(comment.comment_id)" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="button" value="+" @click="recommentdisplay('comment'+comment.comment_id)" />
+                          </div>
+                          <div class="col-1">
+                            <input type="button" value="e" @click="changeedit(comment.comment_id)" />
+                          </div>
+                        </div>
+                        <div class="row col-3" v-bind:id="'edit_button'+comment.comment_id" style="display:none;">
+                          <div class="col-2">
+                            <input type="button" value="b" @click="changeedit(comment.comment_id)" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="button" value="e" @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"  />
+                          </div>
+                        </div>
+                        <!-- 대댓글추가 인풋 -->
+                        <div class="row col-12" v-bind:id="'comment'+comment.comment_id"
+                          style="display:none; margin:0; padding:0;">
+                          <div class="col-1"></div>
+                          <div class="col-auto">ㄴ</div>
+                          <div class="col-auto"
                             style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                             {{comment.user_id}}</div>
                           <!-- <div class="col-1"></div> -->
-                          <div class="col-7"><input type="text" class="text-black form-control"
+                          <div class="col-6"><input type="text" class="text-black form-control"
                               v-model="re_comment_val" /></div>
-                          <div class="col-2"><input type="button" @click="insertReComment(comment.comment_id)"
+                          <div class="col-2"><input type="button"
+                              @click="insertReComment(comment.comment_id),recommentdisplay('comment'+comment.comment_id)"
                               class="btn btn-block btn-outline-info" value="댓글추가" /></div>
                         </div>
                       </div>
                       <!-- 댓글출력끝 -->
                       <!-- 대댓글출력 -->
-                      <div class="row col-12" v-if="comment.comment_id != comment.re_comment_id">
-                        <div class="col-2"></div>
-                        <div class="col-2"
+                      <div class="row col-12" v-if="comment.comment_id != comment.re_comment_id"
+                        style="margin:0; padding:0">
+                        <div class="col-1"></div>
+                        <div class="col-auto">ㄴ</div>
+                        <div class="col-2" v-bind:id="comment.user_id"
                           style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                           {{comment.user_id}}</div>
-                        <!-- <div class="col-1"></div> -->
-                        <div class="comment-val col-7"
+                        <div class="comment-val col-6" v-bind:id="'view'+comment.comment_id"
                           style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">
                           {{comment.comment_val}}</div>
-                      </div>
-
+                        <div v-bind:id="'edit'+comment.comment_id" class="comment-val col-6" style="display:none;">
+                          <input type="text" class="text-black form-control" v-model="comment.comment_val" /></div>
+                       <div class="row col-2" v-bind:id="'view_button'+comment.comment_id" style="display:show;">
+                          <div class="col-1">
+                            <input type="button" value="-" @click="delcomment(comment.comment_id)" />
+                          </div>
+                          <div class="col-1">
+                            <input type="button" value="e" @click="changeedit(comment.comment_id, comment.comment_val)" />
+                          </div>
+                        </div>
+                        <div class="row col-2" v-bind:id="'edit_button'+comment.comment_id" style="display:none;">
+                          <div class="col-1">
+                            <input type="button" value="b" @click="changeedit(comment.comment_id, comment.comment_val)" />
+                          </div>
+                          <div class="col-1 ">
+                            <input type="button" value="e" @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"/>
+                          </div>
+                        </div>
+                      </div>  
                     </div>
-
                   </div>
                   <!-- /댓글 -->
                 </div>
@@ -127,6 +169,13 @@
                       </div>
                     </div>
                   </div>
+                    <div>
+                      <span v-for="(tag, index) in items.hashtagList" :key="index"><input style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info" :value="'#'+tag" /></span>
+                    </div>
+                    <div style="margin-top:20px; padding-left:20px; color:#007acc;">
+                      <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
+                      <span @click="findLocation"> {{items.location_name}}</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -149,15 +198,83 @@
         bell: this.iconbell,
         contentId: "",
         items: {},
-        uid: this.$store.state.user_id,
+        uid: "",
         isComment: false,
         comment_val: "",
         re_comment_val: "",
         comments: {},
         tempComments: [],
+        button: false,
       }
     },
     methods: {
+      changeedit(e) {
+        var text = document.getElementById('view' + e);
+        var input = document.getElementById('edit' + e);
+        var text_button = document.getElementById("view_button" + e)
+        var input_button = document.getElementById("edit_button" + e) 
+
+
+        if (text.style.display === "inline-block") {
+          text.style.display = "none"
+          input.style.display = "inline-block"
+          text_button.style.display="none"
+          input_button.style.display="flex"
+          this.getData();
+
+        }
+        else if(text.style.display === "none") {
+          text.style.display = "inline-block"
+          input.style.display = "none"
+          text_button.style.display="flex"
+          input_button.style.display="none"
+          this.getData();
+        }
+      },
+      editcomment(id,value,rid) {
+        http
+          .put("/comment/updateComment", {
+            comment_id: id,
+            content_id: 0,
+            re_comment_id: rid,
+            user_id: this.uid,
+            target_id: "",
+            comment_val: value,
+
+          })
+          .then(response => {
+            if (response.data['resmsg'] == "수정성공") {
+              this.changeedit(id);
+              this.getData();
+            } else {
+              alert("댓글수정 실패!");
+            }
+
+          })
+          .catch(() => {
+            this.errored = true;
+            alert("error");
+          })
+          .finally(() => (this.loading = false));
+      },
+      delcomment(e) {
+        http
+          .delete("/comment/deleteComment/" + e)
+          .then(response => {
+            if (response.data['resmsg'] == "댓글 삭제성공") {
+              this.getData();
+            } else {
+              alert("대댓글추가 실패!");
+            }
+
+          })
+          .catch(() => {
+            this.errored = true;
+            alert("error");
+          })
+          .finally(() => (this.loading = false));
+
+      },
       recommentdisplay(e) {
         var a = document.getElementById(e);
         if (a.style.display === "none") {
@@ -185,6 +302,9 @@
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
+              // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
+              this.items['content_val'] = this.items['content_val'].replace(/\n/g, "<br />");
+              window.console.log(this.items['location_name']);
             }
           });
         // 댓글출력
@@ -280,6 +400,18 @@
           })
           .finally(() => (this.loading = false));
 
+      },
+
+      findLocation(){
+        window.console.log(this.items['lat']);
+        this.$router.push({
+          name: "findcontent", 
+          params: {
+            location_name: this.items['location_name'],
+            lat: this.items['lat'],
+            lng: this.items['lng']
+          }
+        });
       }
     },
     created() {
@@ -288,7 +420,6 @@
     mounted() {
       $('html').scrollTop(0);
       this.uid = store.state.user_id
-
     },
     updated() {
       let recaptchaScripta = document.createElement('script')
