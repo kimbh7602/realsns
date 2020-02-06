@@ -4,11 +4,11 @@
       
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item" v-if="con.images[0].imageUrl">
-          <div v-if="con.dislike < 5 || readContents.includes(con.contentId)" class="m-0">
-            <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa"/>
-            <div v-if="con.scrapButton && con.userId !== loginId" style="background-color:black;">
+          <div v-if="con.dislike < 5 || readContents.includes(con.contentId)" :class="con.images[0].filter">
+            <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa m-0"/>
+            <!-- <div v-if="con.scrapButton && con.userId !== loginId" style="background-color:black;">
               <p class="ch text-right text-white" >📥 {{con.userId}}님</p>
-            </div>
+            </div> 스크랩이 아닌 공유 기능으로 쓰기 --> 
             <!-- <div v-if="con.scrapButton && con.userId == loginId" style="background-color:black">
               <p class="ch text-right text-white" >📥 내 게시물</p>
             </div> -->
@@ -61,7 +61,7 @@
                     </div>
                   </div> -->
 
-                  <div class="btn-group">
+                  <div class="btn-group dropleft">
                     <button class="btn btn-whatever btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
                       <i class="icon-bell"></i>
                     </button>
