@@ -178,7 +178,6 @@
                     }
                 })
             }else{
-                
                 this.$router.push("/")
             }
         },
