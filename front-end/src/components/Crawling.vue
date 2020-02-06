@@ -6,21 +6,25 @@
                 <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">
                     <div class="col-12">
-                        <h2 class="text-white mb-4 text-center">게시물 찾기</h2>
+                        <h2 class="text-white mb-4 text-center">Search In Instagram</h2>
                     </div>
                 </div>
                 
                 <!-- 친구 검색 바 -->
                 <div class="row form-group mb-5">
                     <div class="col-md-12">
-                    <label class="text-white">Instagram Hashtag Search</label> 
-                    <input type="subject" autocomplete='off' @keyup.enter.prevent='appendDiv' @keydown.space.prevent='appendDiv' id="interest" class="form-control">
-                    <div style="margin-top:10px; margin-bottom:10px;" id="itrl"></div>
+                    <label class="text-white">Instagram Hashtag Search</label>
+                    <input style="text-align:center;" v-model="searchKeyword" type="text" class="form-control"><br>
+                    <!-- <input type="subject" autocomplete='off' @keyup.enter.prevent='appendDiv' @keydown.space.prevent='appendDiv' id="interest" class="form-control">
+                    <div style="margin-top:10px; margin-bottom:10px;" id="itrl"></div> -->
                     <input @click="searchHashtag" type="button" value="Search" class="btn btn-outline-light btn-block text-white">
                     </div>
                 </div>
-                <div v-if="contents == null || contents.length == 0" style="text-align:center;">
+                <div v-if="!isLoading&&(contents == null || contents.length == 0)" style="text-align:center;">
                     검색 결과가 없습니다.
+                </div>
+                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0)">
+                    <img class="col-md-12" src="/theme/images/loading10.gif" />
                 </div>
                 <div v-for="(content, index) in contents" :key="index" v-else class="container-fluid photos">
                     <div style="font-size:20px; display:block;" class="text-white">#{{content.tag}}</div><br>
@@ -68,7 +72,7 @@
                                         <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                                         <!-- 끝 -->
                                         <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear You</p></div>
-                                        <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">Will you visit Instagram?</div>
+                                        <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">Visit this Instagram?</div>
                                         <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from Stranger</div>
                                         </a>
                                         </div>
@@ -96,26 +100,66 @@ export default {
     data() {
         return {
             contents: [],
+            isLoading:false,
             isLocation:false,
             isLocationSelect:false,
             searchKeyword:"",
-            keywordList:['커피', '아메리카노', '녹차', '홍차'],
+            resultList:[],
+            keywordList:[],
         }
     },
     methods: {
         searchHashtag(){
-            this.keywordList.forEach(keyword => {
-                const url = "http://192.168.100.41:5000/instagram/"+keyword;
+            if(this.searchKeyword.includes(" ")){
+                alert("단어만 검색하세요!");
+                return;
+            }
+            this.isLoading = true;
+            this.contents = [];
+            this.keywordList = [];
+            this.resultList = [];
+            if(this.searchKeyword != ""){
+                axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
+                          "q": [this.searchKeyword],
+                          "target": "en"
+                        })
+                            .then((response)=>{
+                                const keyword = response.data.data.translations[0].translatedText;
+                                
+                                axios.get("http://192.168.100.41:5000/searchByKeyword/" + keyword)
+                                    .then((response) => {
+                                        this.keywordList = response.data;
+                                        axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
+                                            "q": this.keywordList,
+                                            "target": "ko"
+                                            })
+                                            .then((response) => {
+                                                response.data.data.translations.some( element => {
+                                                    if(!element.translatedText.includes(" ")&&!this.resultList.includes(element.translatedText)){
+                                                        this.resultList.push(element.translatedText);
+                                                    }
+                                                    return(this.resultList.length>=3);
+                                                });
+                                                this.resultList.forEach(keyword => {
+                                                    const url = "http://192.168.100.41:5000/instagram/"+keyword;
 
-                axios.get(url)
-                    .then((response) => {
-                        this.contents.push(response.data);
-                        window.console.log(this.contents.length);
-                    })
-                    .catch((error) => {
-                        window.console.log(error);
-                    })
-            });
+                                                    axios.get(url)
+                                                        .then((response) => {
+                                                            this.contents.push(response.data);
+                                                            this.isLoading = false;
+                                                        })
+                                                        .catch((error) => {
+                                                            window.console.log(error);
+                                                        })
+                                                });
+                                            })
+                                    })
+                            })
+                            .catch((error)=>{
+                              alert(error)
+                            })
+            }
+            
 
             
 

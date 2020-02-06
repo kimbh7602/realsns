@@ -146,20 +146,6 @@
       </div>
 
     </div>
-    <!-- Modal -->
-    <p id="modalBtn" style="display:none;" data-toggle="modal" data-target="#myModal"></p>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body" style="text-align:center;">
-            {{modalText}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -407,7 +393,7 @@
           this.regimgs.push(this.imginfo);
           // EventBus.$emit("imglink", { image: this.image });
           this.$router.push({
-            name: 'imagefilter',
+            name: 'editing',
             params: {
               imgs: this.regimgs,
               oldpw: this.upw,
