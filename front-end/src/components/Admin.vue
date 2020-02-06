@@ -178,7 +178,8 @@
                     }
                 })
             }else{
-                this.$router.push("/")s
+                
+                this.$router.push("/")
             }
         },
         methods: {

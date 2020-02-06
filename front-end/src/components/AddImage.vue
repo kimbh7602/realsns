@@ -7,12 +7,16 @@
       </div>
       <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
     </div>
-    <div style="margin-top:1%;margin-left:5%;margin-right:5%; height:50px;">
+    <div style="margin-top:3%;margin-left:5%;margin-right:5%; height:50px;">
       <div style="display:inline-block; float :left">
-        <input type="button" value="취소" @click="goPrev" class="btn btn-primary btn-md text-white">
+        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="취소" @click="goPrev" class="btn btn-outline-primary btn-md text-white">
       </div>
       <div style="display:inline-block; float:right">
-        <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
+        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="다음" @click="goNext" class="btn btn-outline-info btn-md text-white">
+      </div>
+      <div>
+        <!-- <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="다음" @click="goNext" class="btn btn-outline-info btn-block text-white">
+        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="취소" @click="goPrev" class="btn btn-outline-primary btn-block text-white"> -->
       </div>
     </div>
     <input ref="fileInput" type="file" accept="image/*" style="display:none;" name="file" id="file" class="inputfile" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload"/>
@@ -119,7 +123,7 @@ export default {
 
 <style scoped>
 .selected-image{
-    height:400px;
+    height:30vw;
     background-size: cover;
 }
 </style>

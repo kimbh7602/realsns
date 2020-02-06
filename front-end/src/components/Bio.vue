@@ -22,8 +22,8 @@
                     <p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p>
                   </div>
                   <div class="detail-mail-message mail-message offset-2 col-8"
-                    style="color:black; font-family: loveson; word-break:break-all;text-align:left;">
-                    {{items.content_val}}</div>
+                    style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="items.content_val">
+                  </div>
                   <div class="col-11 col-offset-1"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
                     from {{items.user_id}}</div>
@@ -171,6 +171,13 @@
                       </div>
                     </div>
                   </div>
+                    <div>
+                      <span v-for="(tag, index) in items.hashtagList" :key="index"><input style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info" :value="'#'+tag" /></span>
+                    </div>
+                    <div style="margin-top:20px; padding-left:20px; color:#007acc;">
+                      <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
+                      <span @click="findLocation"> {{items.location_name}}</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -300,6 +307,9 @@
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
+              // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
+              this.items['content_val'] = this.items['content_val'].replace(/\n/g, "<br />");
+              window.console.log(this.items['location_name']);
             }
           });
         // 댓글출력
@@ -310,7 +320,8 @@
               this.comments = res.data.resvalue;
               this.isComment = true;
             } else {
-              alert("댓글출력실패")
+              this.$store.commit('setModalText', "댓글 출력 실패");
+              document.getElementById('modalBtn').click();
             }
 
           });
@@ -359,19 +370,19 @@
               if (response.data['resmsg'] == "댓글 추가 성공") {
                 this.comment_val = "",
                 this.getData();
-              } else {
-                alert("댓글추가 실패!");
-              }
 
-            })
-            .catch(() => {
-              this.errored = true;
-              alert("error");
-            })
-            .finally(() => (this.loading = false));
+            } else {
+              this.$store.commit('setModalText', "댓글 추가 실패");
+              document.getElementById('modalBtn').click();
+            }
 
+          })
+          .catch((error) => {
+            this.errored = true;
+            alert(error);
+          })
+          .finally(() => (this.loading = false));
         }
-
 
       },
       insertReComment(commentid) {
@@ -388,18 +399,30 @@
               this.re_comment_val = "",
               this.getData();
             } else {
-              alert("대댓글추가 실패!");
+              this.$store.commit('setModalText', "대댓글 추가 실패");
+              document.getElementById('modalBtn').click();
             }
 
           })
-          .catch(() => {
+          .catch((error) => {
             this.errored = true;
-            alert("error");
+            alert(error);
           })
           .finally(() => (this.loading = false));
 
       },
 
+      findLocation(){
+        window.console.log(this.items['lat']);
+        this.$router.push({
+          name: "findcontent", 
+          params: {
+            location_name: this.items['location_name'],
+            lat: this.items['lat'],
+            lng: this.items['lng']
+          }
+        });
+      }
     },
     created() {
       this.getData()
