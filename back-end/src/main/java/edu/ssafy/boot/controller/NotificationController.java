@@ -110,7 +110,7 @@ public class NotificationController {
 
 	@PutMapping("/updateCheck/{notification_id}")
 	@ApiOperation(value = "알림 확인 체크", response = List.class)
-	private @ResponseBody ResponseEntity<Map<String, Object>> updateCheck(@PathVariable("notification") int notification_id) {
+	private @ResponseBody ResponseEntity<Map<String, Object>> updateCheck(@PathVariable("notification_id") int notification_id) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		try {
 			boolean update = ser.updateCheck(notification_id);
