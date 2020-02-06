@@ -242,6 +242,7 @@ export const router = new Router({
             name: "findcontent",
             alias: "/Findcontent",
             component: FindContent,
+            props: true,
             beforeEnter: function (to, from, next) {
                 store.commit('setid');
                 if (store.state.islogin) {

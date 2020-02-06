@@ -126,8 +126,9 @@ public class ContentController {
 		}else{
 
 			for (ImageVo image : content.getImageList()) {
+				String ext = image.getBase64().substring(image.getBase64().indexOf("/")+1, image.getBase64().indexOf(";"));
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
-				String image_name = content.getContent_id()+"-"+num+".jpg";
+				String image_name = content.getContent_id()+"-"+num+"."+ext;
 				String savePath = realPath+File.separator+image_name;
 				String image_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/" +image_name;
 				
