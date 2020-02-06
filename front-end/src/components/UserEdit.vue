@@ -420,7 +420,7 @@
           this.regimgs.push(this.imginfo);
           // EventBus.$emit("imglink", { image: this.image });
           this.$router.push({
-            name: 'imagefilter',
+            name: 'editing',
             params: {
               imgs: this.regimgs,
               oldpw: this.upw,

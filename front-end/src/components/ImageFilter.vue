@@ -12,7 +12,7 @@
                                     data-swiper-breakpoints="true" data-scrollbar="true" data-swiper-loop="true"
                                     data-swpr-responsive="[1, 2, 1, 2]">
               <div class="swiper-wrapper">
-                  <div class="swiper-slide" v-for="filter in filters" :key="filter.name" style="height:300px;" @click="selectFilter(filter.name)">
+                  <div class="swiper-slide" v-for="filter in filters" :key="filter.name" @click="selectFilter(filter.name)">
                     <p class="text-white">{{filter.name}}</p>
                     <div :class="filter.name" class="img-fluid">
                       <img :src = imgs[imgs.length-1].base64 class="img-fluid">
@@ -34,7 +34,7 @@
           <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
             <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
           </div>
-           <div v-else-if="prevpage=='useredit'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
+           <div v-else-if="prevpage=='useredit'" class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
             <input type="button" value="다음" @click="goNextEdit" class="btn btn-success btn-md text-white">
           </div>
           <div v-else class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
@@ -85,7 +85,7 @@ export default {
       this.caption = "";
       this.filterType = "normal";
       this.step = 1;
-      this.$router.go(-1);
+      this.$router.push('/addimage');
     },
     goReg() {
       this.image = "";
