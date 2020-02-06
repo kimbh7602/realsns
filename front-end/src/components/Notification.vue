@@ -8,26 +8,26 @@
               <div class="text-right"><button class="btn btn-outline-success" @click="allRead">모두 읽음</button></div>
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNoti.length}}</span></a>
+                  <a class="nav-link" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNotilength}}</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" :class="{'active': check=='follow'}" @click="check='follow'">팔로우 <span class="badge badge-dark">{{followNoti.length}}</span></a>
+                  <a class="nav-link" :class="{'active': check=='follow'}" @click="check='follow'">팔로우 <span class="badge badge-dark">{{followNoti}}</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" :class="{'active': check=='like'}" @click="check='like'">좋아요 <span class="badge badge-dark">{{likeNoti.length}}</span></a>
+                  <a class="nav-link" :class="{'active': check=='like'}" @click="check='like'">좋아요 <span class="badge badge-dark">{{likeNoti}}</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" :class="{'active': check=='scrap'}" @click="check='scrap'">스크랩 <span class="badge badge-dark">{{scrapNoti.length}}</span></a>
+                  <a class="nav-link" :class="{'active': check=='scrap'}" @click="check='scrap'">스크랩 <span class="badge badge-dark">{{scrapNoti}}</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" :class="{'active': check=='report'}" @click="check='report'">신고 <span class="badge badge-dark">{{reportNoti.length}}</span></a>
+                  <a class="nav-link" :class="{'active': check=='report'}" @click="check='report'">신고 <span class="badge badge-dark">{{reportNoti}}</span></a>
                 </li>
               </ul>
             
               <table class="table text-light">
                 <tbody v-if="check=='all'">
-                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`">
-                    <td v-if="item.category == 'follow'" class="row py-0 mx-0">
+                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
+                    <td v-if="item.category == 'follow'" class="row py-0 mx-0"  >
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
                         <div class="ml-2">
@@ -62,7 +62,7 @@
                         </a>
                       </div>
                     </td>
-                    <td v-if="item.category == 'like'" class="row py-0 mx-0">
+                    <td v-if="item.category == 'scrap'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
                         <div class="ml-2">
@@ -97,11 +97,11 @@
                           <img class="mb-2" width="70px" height="70px" style="object-fit: cover;" :src="item.content.imageList[0].image_url">
                         </a>
                       </div>
-                    </td>
+                    </td> 
                   </tr>
                 </tbody>
                 <tbody v-if="check=='follow'">
-                  <tr v-for="(item, index) in followNoti" :key="`follow${index}`">
+                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'follow'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
@@ -122,7 +122,7 @@
                   </tr>
                 </tbody>
                 <tbody v-if="check=='like'">
-                  <tr v-for="(item, index) in likeNoti" :key="`follow${index}`">
+                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'like'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
@@ -144,7 +144,7 @@
                   </tr>
                 </tbody>
                 <tbody v-if="check=='scrap'">
-                  <tr v-for="(item, index) in scrapNoti" :key="`follow${index}`">
+                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'scrap'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
@@ -166,7 +166,7 @@
                   </tr>
                 </tbody>
                 <tbody v-if="check=='report'">
-                  <tr v-for="(item, index) in reportNoti" :key="`follow${index}`">
+                  <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'report'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
                         <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
@@ -203,11 +203,11 @@ export default {
   data() {
       return {
         allNoti: [],
-        allNoti2: [],
-        followNoti: [],
-        likeNoti: [],
-        scrapNoti: [],
-        reportNoti: [],
+        allNotilength: 0,
+        followNoti: 0,
+        likeNoti: 0,
+        scrapNoti: 0,
+        reportNoti: 0,
         check: 'all',
         myId: this.$store.state.user_id,
         myFollowList: [],
@@ -221,30 +221,37 @@ export default {
               this.allNoti = response.data.resvalue;
               this.allNoti.reverse();
               this.allNoti = this.allNoti;
+              this.allNotilength = this.allNoti.length;
+              this.allNoti.forEach(item => {
+                if (item.category == 'follow') this.followNoti += 1
+                else if (item.category == 'like') this.likeNoti += 1
+                else if (item.category == 'scrap') this.scrapNoti += 1
+                else if (item.category == 'report') this.reportNoti += 1
+              })
               console.log(this.allNoti);
           })
           .catch(e => console.log(e))
       },
-      fetchCategoryNoti(category) {
-        http
-          .get(`/notification/categoryUncheckedList/${this.$store.state.user_id}/${category}`)
-          .then(response => {
-              if (category == 'follow') {
-                this.followNoti = response.data.resvalue;
-                this.followNoti.reverse();
-              }else if (category == 'like') {
-                this.likeNoti = response.data.resvalue;
-                this.likeNoti.reverse();
-              }else if (category == 'scrap') {
-                this.scrapNoti = response.data.resvalue;
-                this.scrapNoti.reverse();
-              }else if (category == 'report') {
-                this.reportNoti = response.data.resvalue;
-                this.reportNoti.reverse();
-              }
-          })
-          .catch(e => console.log(e))
-      },
+      // fetchCategoryNoti(category) {
+      //   http
+      //     .get(`/notification/categoryUncheckedList/${this.$store.state.user_id}/${category}`)
+      //     .then(response => {
+      //         if (category == 'follow') {
+      //           this.followNoti = response.data.resvalue;
+      //           this.followNoti.reverse();
+      //         }else if (category == 'like') {
+      //           this.likeNoti = response.data.resvalue;
+      //           this.likeNoti.reverse();
+      //         }else if (category == 'scrap') {
+      //           this.scrapNoti = response.data.resvalue;
+      //           this.scrapNoti.reverse();
+      //         }else if (category == 'report') {
+      //           this.reportNoti = response.data.resvalue;
+      //           this.reportNoti.reverse();
+      //         }
+      //     })
+      //     .catch(e => console.log(e))
+      // },
       insertFollow(id) {
         // this.$store.dispatch('INSERT_FOLLOW', {follower_id: this.myId, follow_id: id});
         http
@@ -291,22 +298,48 @@ export default {
           .catch(e => console.log(e))
       },
       allRead() {
-        for (let i in this.allNoti) {
-          http
-            .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
-            .then(response => {
-              return response
-            })
-            .catch(e => console.log(e))
+        if (confirm('알림을 모두 삭제하겠습니까?')) {
+          for (let i in this.allNoti) {
+            http
+              .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
+              .then(response => {
+                return response
+              })
+              .catch(e => console.log(e))
+          }
+          this.allNoti = [];
         }
-      }
+      },
+      read(item) {
+        http
+          .put(`notification/updateCheck/${item.notification_id}`)
+          .then(response => {
+            // console.log(response.data)
+            return response
+          })
+          .catch(e => console.log(e))
+        
+        if (item.is_checked == false) {
+          this.allNotilength -= 1;
+          if (item.category == 'follow') {
+            this.followNoti -= 1;
+          } else if (item.category == 'like') {
+            this.likeNoti -= 1;
+          } else if (item.category == 'scrap') {
+            this.scrapNoti -= 1;
+          } else if (item.category == 'report') {
+            this.reportNoti -= 1;
+          }
+          item.is_checked = true;
+        }
+      } 
   },
   created() {
     this.fetchNoti();
-    this.fetchCategoryNoti('follow');
-    this.fetchCategoryNoti('like');
-    this.fetchCategoryNoti('scrap');
-    this.fetchCategoryNoti('report');
+    // this.fetchCategoryNoti('follow');
+    // this.fetchCategoryNoti('like');
+    // this.fetchCategoryNoti('scrap');
+    // this.fetchCategoryNoti('report');
     this.fetchMyFollowList();
   },
 }
@@ -315,5 +348,10 @@ export default {
 <style scoped>
 small {
   color: gray;
+}
+.read {
+  opacity: 0.5;
+}tr:hover{
+  background-color: rgba(49, 49, 49, 0.747);
 }
 </style>

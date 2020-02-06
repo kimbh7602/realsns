@@ -11,8 +11,11 @@
                   <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                   </div>
                 </div>
-                <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;"
-                  class="stamp-img" />
+                <div :class="items.profile_filter">
+                  <img :src="items.profile_url" style="width:37px;height:37px; z-index:4; background: none;" class="stamp-img"/>
+                </div>
+                <!-- <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;"
+                  class="stamp-img" /> -->
                 <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index:5;"
                   alt="Postage mark" class="postmark">
                 <!-- 끝 -->

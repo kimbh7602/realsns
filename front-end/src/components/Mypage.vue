@@ -3,15 +3,15 @@
       <div class="row justify-content-center">
 
         <div class="col-md-8 pt-4 d-flex justify-content-center">
-            <div class="mb-2 text-center" data-aos="fade-up">
+            <div class="mb-4 text-center" data-aos="fade-up">
                 <h2 class="text-white mb-5">Mypage</h2>
-                <img class="rounded-circle mb-2" width="150px" height="150px" style="object-fit: cover;" :src="userInfo.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                <img class="rounded-circle mb-2" width="150px" height="150px" style="object-fit: cover;" :src="userInfo.profile_url">
 
                 <h4 class="text-white">{{userId}}</h4>
                 <div v-if="userId != myId">
                     <span v-if="myId != userId && myFollowList.includes(userId)" @click="deleteFollow(userId)"  class="btn btn-outline-primary">팔로잉</span>
                     <span v-if="myId != userId && !myFollowList.includes(userId)" @click="insertFollow(userId)" class="btn btn-primary">팔로우</span>
-                    <router-link to="/chating"><span v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span></router-link>
+                    <span @click="goChating(userId)" v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span>
                 </div>
                 <div v-else>
                     <router-link to="/chart"><button style="width: 72px;" class="btn btn-dark">통계</button></router-link>
@@ -19,22 +19,22 @@
                 
                 <div class="m-3">
                     <div class="d-flex justify-content-center">
-                        <div class="text-center mx-2">
+                        <div class="text-center mx-3">
                             <a href="javascript:void(0)" @click="content()">게시물</a>
                             <h2 v-if="userContent">{{userContent.length}}</h2>
                             <h2 v-else>0</h2>
                         </div>
-                        <div class="text-center mx-2">
+                        <div class="text-center mx-3">
                             <a href="" data-toggle="modal" data-target="#followerModal">팔로워</a>
                             <h2 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h2>
                             <h2 v-else>0</h2>
                         </div>
-                        <div class="text-center mx-2">
+                        <div class="text-center mx-3">
                             <a href="" data-toggle="modal" data-target="#followModal">팔로우</a>
                             <h2 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h2>
                             <h2 v-else>0</h2>
                         </div>
-                        <div v-if="userId==myId" class="text-center mx-2">
+                        <div v-if="userId==myId" class="text-center mx-3">
                             <a href="javascript:void(0)" @click="scrap()">스크랩</a>
                             <h2 v-if="userScrap">{{userScrap.length}}</h2>
                             <h2 v-else>0</h2>
@@ -42,8 +42,8 @@
                     </div>
                 </div>
 
-                <div class="rounded mx-4" style="position: relative; height:100px; border:1px dotted gray; overflow: auto;">
-                    <div class="text-left px-3 py-1" style="position: absolute; word-break:break-all;">
+                <div class="rounded mx-4" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
+                    <div class="text-left p-2" style="position: absolute; word-break:break-all;">
                         <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
                             <span class="text-success" v-if="item!=''">#{{item}} </span>
                         </span>
@@ -68,11 +68,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex justify-content-between align-items-center mb-3">
+                        <div v-for="(follower, index) in fetchedFollowerList" :key="`follow${index}`" class="d-flex align-items-center justify-content-between mb-3">
                             <a :href="`/mypage/${follower}`" class="text-dark d-flex m-0"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</a>
                             <!-- <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link> -->
                             <span v-if="myId != follower && myFollowList.includes(follower)" @click="deleteFollow(follower)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
-                            <span v-if="myId != follower && !myFollowList.includes(follower)" class="btn btn-primary btn-sm" @click="insertFollow(follower)">팔로우</span>
+                            <span v-if="myId != follower && !myFollowList.includes(follower)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follower)">팔로우</span>
                         </div>
                     </div>
                 </div>
@@ -89,11 +89,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex justify-content-between align-items-center mb-3">
+                        <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex align-items-center justify-content-between mb-3">
                             <a :href="`/mypage/${follow}`" class="text-dark d-flex m-0"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</a>
                             <!-- <router-link :to="'/mypage/'+follow" class="d-flex text-dark" @click="fetchUserInfo(follow)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</router-link> -->
                             <span v-if="myId != follow && myFollowList.includes(follow)" @click="deleteFollow(follow)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
-                            <span v-if="myId != follow && !myFollowList.includes(follow)" class="btn btn-primary btn-sm" @click="insertFollow(follow)">팔로우</span>
+                            <span v-if="myId != follow && !myFollowList.includes(follow)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follow)">팔로우</span>
                         </div>
                     </div>
                 </div>
@@ -202,6 +202,12 @@ export default {
         scrap() {
             this.check = 'scrap';
         },
+        goChating(id) {
+            this.$EventBus.$emit('start:chating', id);
+            this.$router.push({
+                name: 'chating',
+            })
+        }
     },
     created() {
         this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);

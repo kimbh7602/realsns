@@ -31,7 +31,12 @@
                             <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                             </div>
                           </div>
-                          <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
+                          <div v-if="item.profile_url != null" :class="item.profile_filter">
+                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" class="stamp-img"/>
+                          </div>
+                          <div v-else>
+                            <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
+                          </div>
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
                           <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
