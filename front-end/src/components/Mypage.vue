@@ -56,8 +56,8 @@
         </div>
       </div>
 
-      <category v-if="check=='content'" :userId="userId" :Items="userContent"></category>
-      <category v-else :userId="userId" :Items="userScrap"></category>
+      <category v-if="check=='content'" :userId="userId" :myPage="true"></category>
+      <category v-else :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->
         <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -113,10 +113,11 @@ export default {
     components: {
         Category
     },
+    props:['userId'],
     data() {
         return {
             myId: this.$store.state.user_id,
-            userId: this.$route.params.userId,
+            // userId: this.$route.params.userId,
             myFollowList: [],
             userInfo: {},
             userContent: [],
@@ -212,6 +213,7 @@ export default {
         }
     },
     created() {
+        window.console.log(this.userId);
         this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
         this.$store.dispatch('FETCH_FOLLOWERLIST', this.userId);
         this.fetchMyFollowList();

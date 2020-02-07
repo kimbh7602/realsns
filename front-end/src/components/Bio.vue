@@ -175,11 +175,11 @@
                     </div>
                   </div>
                     <div>
-                      <span v-for="(tag, index) in items.hashtagList" :key="index"><input style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info" :value="'#'+tag" /></span>
+                      <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)" style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info" :value="'#'+tag" /></span>
                     </div>
-                    <div style="margin-top:20px; padding-left:20px; color:#007acc;">
+                    <div v-if="items.location_name != undefined" style="margin-top:20px; padding-left:20px; color:#007acc;">
                       <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
-                      <span @click="findLocation"> {{items.location_name}}</span>
+                      <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
                     </div>
                 </div>
               </div>
@@ -424,6 +424,13 @@
             lat: this.items['lat'],
             lng: this.items['lng']
           }
+        });
+      },
+
+      contentListHashtag(tag) {
+        this.$router.push({
+          name: "contentListHashtag",
+          params: {tag: tag}
         });
       }
     },

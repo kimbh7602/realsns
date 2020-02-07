@@ -109,5 +109,20 @@ public class ContentService implements IContentService {
 	public List<String> deleteReportedContents() {
 		return dao.deleteReportedContents();
 	}
+
+	@Override
+	public List<ContentVo> contentListHashtag(String tag) {
+		List<ContentVo> contentList = dao.contentListHashtag(tag);
+		contentList.sort(new Comparator<ContentVo>() {
+
+			@Override
+			public int compare(ContentVo o1, ContentVo o2) {
+				return o2.getTimestamp().compareTo(o1.getTimestamp());
+			}
+			
+		});
+
+		return contentList;
+	}
 	
 }
