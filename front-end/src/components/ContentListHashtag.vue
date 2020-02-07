@@ -76,7 +76,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage"],
+  props:["userId", "tag"],
   data() {
     return {
       follow: false,
@@ -106,71 +106,11 @@ export default {
     },
     getData() {
       http
-      .get('content/contentUserList/'+this.uid)
+      .get('content/contentListHashtag/'+this.tag)
       .then((res)=>{
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
-          if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
-            for (var i = 0; i < res.data.resValue.length; i++) {
-              for (var j = 0; j < this.contentIds.length; j++) {
-                if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                  res.data.resValue[i].user_like = true
-                }
-              }
-            }
-            this.Items = res.data.resValue;
-          }
-        } else {
-          this.contentErrorMsg = "게시물이 없습니다."
-        }
-      })
-      .catch(()=>{
-        this.errored = true;
-      })
-      // .then(response => {
-      //   // console.log(response.data)
-      //   this.Items = response.data.resValue;
-      // })
-      .catch(e => console.log(e))
-    },
-
-    getMypage() {
-      http
-      .get('content/contentUserList/'+this.userId)
-      .then((res)=>{
-        if (res.data.resValue.length > 0) {
-          this.contentErrorMsg = ""
-          if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
-            for (var i = 0; i < res.data.resValue.length; i++) {
-              for (var j = 0; j < this.contentIds.length; j++) {
-                if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                  res.data.resValue[i].user_like = true
-                }
-              }
-            }
-            this.Items = res.data.resValue;
-          }
-        } else {
-          this.contentErrorMsg = "게시물이 없습니다."
-        }
-      })
-      .catch(()=>{
-        this.errored = true;
-      })
-      // .then(response => {
-      //   // console.log(response.data)
-      //   this.Items = response.data.resValue;
-      // })
-      .catch(e => console.log(e))
-    },
-
-    getScrap() {
-      http
-      .get('scrap/scrapList/'+this.uid)
-      .then((res)=>{
-        if (res.data.resValue.length > 0) {
-          this.contentErrorMsg = ""
-          if (res.data.resmsg == "스크랩목록성공") {
+          if (res.data.resmsg == "해시태그 포함 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
@@ -259,13 +199,7 @@ export default {
   },
   created() {
     this.getLike()
-    if(this.myPage == undefined){
-      this.getData()
-    }else if(this.myPage == true){
-      this.getMypage();
-    }else if(this.myPage == false){
-      this.getScrap();
-    }
+    this.getData()
   },
   mounted() {
     $('html').scrollTop(0);

@@ -113,6 +113,13 @@ export default {
         
     },
     created() {
+        http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
+            .then((response) => {
+                this.notify = response.data.resvalue;
+            })
+            .catch(error => {
+                window.console.log(error);
+            })
         // this.socket = io('http://192.168.100.41:3000');
         this.$socket.on('notification', (data) => {
         //   window.console.log('notification', data, this.$store.state.user_id);
@@ -121,8 +128,17 @@ export default {
                 icon : '/theme/images/'+data.category+'.png',
                 // html : '<div>Like!</div><div>알림을 확인해보세요!</div>'
             });
+            http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
+            .then((response) => {
+                this.notify = response.data.resvalue;
+                window.console.log(response.data.resvalue)
+                window.console.log(this.notify)
+            })
+            .catch(error => {
+                window.console.log(error);
+            })
         }
-        this.fetchNoti();
+        // this.fetchNoti();
     });
   }
 }
