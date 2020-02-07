@@ -110,6 +110,7 @@ export default {
         loginCheck: () => {
             return store.state.islogin;
         },
+        
     },
     created() {
         // this.socket = io('http://192.168.100.41:3000');
