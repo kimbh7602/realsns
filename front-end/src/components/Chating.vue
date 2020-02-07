@@ -21,7 +21,7 @@
                             
                             <div class="list-group">
                               <virtual-list :size="70" :remain="8" v-if="check">
-                                  <a v-for="(userDm, index) in fetchedUserDmList" :key="`userDm${index}`" :value="userDm.dm_id" @click="selectUserDm(userDm);" class="m-0 list-group-item list-group-item-action">
+                                  <a v-for="(userDm, index) in fetchedUserDmList" :key="`userDm${index}`" :value="`userDm${index}`" @click="selectUserDm(userDm);" class="m-0 list-group-item list-group-item-action">
                                       <div class="row pl-2">
                                           <div class="col-md-2 d-flex justify-content-center align-self-center">
                                               <h1>🦱</h1>
@@ -100,7 +100,8 @@ export default {
         check: true,
         check2: false,
         userDm: {},
-        socket: null
+        socket: null,
+        targetId: this.$store.state.targetId
     }
   },
   computed: {
@@ -142,11 +143,6 @@ export default {
         this.check2 = false;
     },
     insertUserDm(follow) {
-      for (var i in this.fetchedUserDmList) {
-        if (this.fetchedUserDmList[i].other_id == follow || this.fetchedUserDmList[i].user_id == follow) {
-          return false;
-        }
-      }
       const userDm = {
         user_id: this.userId,
         other_id: follow,
@@ -157,7 +153,13 @@ export default {
       });
       this.$store.dispatch('INSERT_USERDM', userDm);
       this.check = true;
-      
+
+      for (let i in this.fetchedUserDmList) {
+        if (this.fetchedUserDmList[i].other_id == follow || this.fetchedUserDmList[i].user_id == follow) {
+          this.selectUserDm(this.fetchedUserDmList[i]);
+          break
+        }
+      }
       // this.chatings.push({
       //   dm_id: 3,
       //   user_id: this.userId,
@@ -189,6 +191,9 @@ export default {
       //   target_user_id: 'kimbh1',
       //   category: 'like'
       // });
+    },
+    getResult(callback) {
+      callback();
     }
   },
 
@@ -255,17 +260,26 @@ export default {
     this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
     this.$store.dispatch('FETCH_USERDMLIST', this.userId);
     
-    this.$EventBus.$on('start:chating', function(id) {
-      console.log(id);
-      this.insertUserDm(id);
-      
-      for (let i in this.fetchedUserDmList) {
-        if (this.fetchedUserDmList[i].other_id == id || this.fetchedUserDmList[i].user_id == id) {
-          this.selectUserDm(this.fetchedUserDmList[i]);
-          break
+    if (this.targetId != '') {
+      const ok = true;
+
+      console.log(this.targetId)
+      var a = function() {
+        for (let i in this.fetchedUserDmList) {
+          if (this.fetchedUserDmList[i].other_id == this.targetId || this.fetchedUserDmList[i].user_id == this.targetId) {
+            this.selectUserDm(this.fetchedUserDmList[i]);
+            this.ok = false;
+          }
         }
       }
-    });
+      
+      this.getResult(a);
+
+      if (ok) {
+        this.insertUserDm(this.targetId);
+      }
+      this.$store.commit('REMOVE_TARGETID');
+    }
   },
 
   beforeDestroy(){
@@ -280,8 +294,6 @@ export default {
     //       });
     //   }
     // });
-
-    this.$EventBus.$off('start:chating');
   }
 }
 </script>
