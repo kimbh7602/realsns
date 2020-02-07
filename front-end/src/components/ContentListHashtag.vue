@@ -21,8 +21,7 @@
             </div>
             <!-- -->
               <div class="photo-text-more">
-                <!-- <div class="" data-aos="fade-up"> -->
-                <div class="">
+                <div class="" data-aos="fade-up">
                   <div class="d-block photo-item">
                     <div class="postcard">
                       <div class="content">
@@ -32,8 +31,8 @@
                             <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                             </div>
                           </div>
-                          <div v-if="item.profile_url != null" style="width:37px;height:37px" class="stamp-img" :class="item.profile_filter">
-                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" />
+                          <div v-if="item.profile_url != null" :class="item.profile_filter">
+                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" class="stamp-img"/>
                           </div>
                           <div v-else>
                             <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
@@ -77,7 +76,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage"],
+  props:["userId", "tag"],
   data() {
     return {
       follow: false,
@@ -87,14 +86,6 @@ export default {
       contentIds: [],
       contentErrorMsg: "",
       Items:[],
-    }
-  },
-  watch: {
-    myPage: {
-      deep: true,
-      handler() {
-        this.fetchData();
-      }
     }
   },
   methods: {
@@ -115,11 +106,11 @@ export default {
     },
     getData() {
       http
-      .get('content/contentUserList/'+this.uid)
+      .get('content/contentListHashtag/'+this.tag)
       .then((res)=>{
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
-          if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
+          if (res.data.resmsg == "해시태그 포함 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
@@ -128,66 +119,6 @@ export default {
               }
             }
             this.Items = res.data.resValue;
-          }
-        } else {
-          this.contentErrorMsg = "게시물이 없습니다."
-        }
-      })
-      .catch(()=>{
-        this.errored = true;
-      })
-      // .then(response => {
-      //   // console.log(response.data)
-      //   this.Items = response.data.resValue;
-      // })
-      .catch(e => console.log(e))
-    },
-
-    getMypage() {
-      http
-      .get('content/contentUserList/'+this.userId)
-      .then((res)=>{
-        if (res.data.resValue.length > 0) {
-          this.contentErrorMsg = ""
-          if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
-            for (var i = 0; i < res.data.resValue.length; i++) {
-              for (var j = 0; j < this.contentIds.length; j++) {
-                if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                  res.data.resValue[i].user_like = true
-                }
-              }
-            }
-            this.Items = res.data.resValue;
-          }
-        } else {
-          this.contentErrorMsg = "게시물이 없습니다."
-        }
-      })
-      .catch(()=>{
-        this.errored = true;
-      })
-      // .then(response => {
-      //   // console.log(response.data)
-      //   this.Items = response.data.resValue;
-      // })
-      .catch(e => console.log(e))
-    },
-
-    getScrap() {
-      http
-      .get('scrap/scrapList/'+this.uid)
-      .then((res)=>{
-        if (res.data.resvalue.length > 0) {
-          this.contentErrorMsg = ""
-          if (res.data.resmsg == "스크랩목록성공") {
-            for (var i = 0; i < res.data.resvalue.length; i++) {
-              for (var j = 0; j < this.contentIds.length; j++) {
-                if (res.data.resvalue[i].content_id == this.contentIds[j].con_id) {
-                  res.data.resvalue[i].user_like = true
-                }
-              }
-            }
-            this.Items = res.data.resvalue;
           }
         } else {
           this.contentErrorMsg = "게시물이 없습니다."
@@ -265,19 +196,10 @@ export default {
         document.getElementById('modalBtn').click();
       }
     },
-    fetchData() {
-      if(this.myPage == undefined){
-        this.getData()
-      }else if(this.myPage == true){
-        this.getMypage();
-      }else if(this.myPage == false){
-        this.getScrap();
-      }
-    }
   },
   created() {
-    this.getLike();
-    this.fetchData();
+    this.getLike()
+    this.getData()
   },
   mounted() {
     $('html').scrollTop(0);

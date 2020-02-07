@@ -19,6 +19,7 @@ export default new Vuex.Store({
         followList: [],
         followerList: [],
         unReadCnt: 0,
+        targetId: '',
     },
     getters:{
         fetchedUserDmList(state) {
@@ -118,6 +119,12 @@ export default new Vuex.Store({
                 }
             })
         },
+        SET_TARGETID(state, id) {
+            state.targetId = id;
+        },
+        REMOVE_TARGETID(state){
+            state.tagetId = '';
+        }
     },
     actions:{
         FETCH_USERDMLIST(context, userId) {

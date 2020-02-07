@@ -129,4 +129,23 @@ public class NotificationController {
 		}
 		return resEntity;
 	}
+
+	@GetMapping("/countUnchecked/{user_id}")
+	@ApiOperation(value = "확인 전 알림 숫자", response = List.class)
+	private @ResponseBody ResponseEntity<Map<String, Object>> countUnchecked(@PathVariable("user_id") String user_id) {
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		try {
+			int count = ser.countUnchecked(user_id);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "확인 전 알림숫자성공");
+			map.put("resvalue", count);
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+		} catch (RuntimeException e) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "확인 전 알림숫자실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		}
+		return resEntity;
+	}
 }
