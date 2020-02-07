@@ -153,11 +153,11 @@ export default {
         this.$store.commit('setModalText', "메일을 보내는 중입니다. 잠시 기다려주세요.");
         document.getElementById('modalBtn').click();
 
-        $('#modal').modal("hide");
         http
           .post("email/findpassword/" +this.uemail)
           .then((response)=>{
               if (response.data['resmsg'] == "메일 보내기 성공") { 
+                document.getElementById('modalClose-btn').click();
                 this.$store.commit('setModalText', "임시 비밀번호 발급 성공.");
                 document.getElementById('modalBtn').click();
                 this.$router.push("/login")

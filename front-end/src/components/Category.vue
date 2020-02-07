@@ -21,7 +21,8 @@
             </div>
             <!-- -->
               <div class="photo-text-more">
-                <div class="" data-aos="fade-up">
+                <!-- <div class="" data-aos="fade-up"> -->
+                <div class="">
                   <div class="d-block photo-item">
                     <div class="postcard">
                       <div class="content">
@@ -31,8 +32,8 @@
                             <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                             </div>
                           </div>
-                          <div v-if="item.profile_url != null" :class="item.profile_filter">
-                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" class="stamp-img"/>
+                          <div v-if="item.profile_url != null" style="width:37px;height:37px" class="stamp-img" :class="item.profile_filter">
+                            <img :src="item.profile_url" style="width:37px;height:37px; background: none;" />
                           </div>
                           <div v-else>
                             <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
