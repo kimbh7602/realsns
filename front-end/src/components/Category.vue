@@ -176,17 +176,17 @@ export default {
       http
       .get('scrap/scrapList/'+this.uid)
       .then((res)=>{
-        if (res.data.resValue.length > 0) {
+        if (res.data.resvalue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "스크랩목록성공") {
-            for (var i = 0; i < res.data.resValue.length; i++) {
+            for (var i = 0; i < res.data.resvalue.length; i++) {
               for (var j = 0; j < this.contentIds.length; j++) {
-                if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                  res.data.resValue[i].user_like = true
+                if (res.data.resvalue[i].content_id == this.contentIds[j].con_id) {
+                  res.data.resvalue[i].user_like = true
                 }
               }
             }
-            this.Items = res.data.resValue;
+            this.Items = res.data.resvalue;
           }
         } else {
           this.contentErrorMsg = "게시물이 없습니다."
@@ -265,7 +265,6 @@ export default {
       }
     },
     fetchData() {
-      console.log(this.myPage)
       if(this.myPage == undefined){
         this.getData()
       }else if(this.myPage == true){
@@ -277,6 +276,7 @@ export default {
   },
   created() {
     this.getLike();
+    this.fetchData();
   },
   mounted() {
     $('html').scrollTop(0);

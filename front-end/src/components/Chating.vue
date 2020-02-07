@@ -263,13 +263,14 @@ export default {
     if (this.targetId != '') {
       const ok = true;
 
+      console.log(this.targetId)
       var a = function() {
         for (let i in this.fetchedUserDmList) {
-            if (this.fetchedUserDmList[i].other_id == this.targetId || this.fetchedUserDmList[i].user_id == this.targetId) {
-              this.selectUserDm(this.fetchedUserDmList[i]);
-              this.ok = false;
-            }
+          if (this.fetchedUserDmList[i].other_id == this.targetId || this.fetchedUserDmList[i].user_id == this.targetId) {
+            this.selectUserDm(this.fetchedUserDmList[i]);
+            this.ok = false;
           }
+        }
       }
       
       this.getResult(a);
