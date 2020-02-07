@@ -240,6 +240,23 @@ export default {
                             this.targetUserDm = dm;
                             // console.log(this.targetUserDm);
                             this.$store.commit('SET_TARGETDM', this.targetUserDm);
+                        }
+                    })
+                    return response
+                })
+                .catch(e => console.log(e))
+        },
+        fetchNewUserDmList() {
+            http
+                .get(`/userDm/userDmList/${this.myId}`)
+                .then(response => {
+                    // console.log(response.data)
+                    response.data.resvalue.forEach(dm => {
+                        if (dm.user_id == this.userId || dm.other_id == this.userId) {
+                            this.possible = false;
+                            this.targetUserDm = dm;
+                            // console.log(this.targetUserDm);
+                            this.$store.commit('SET_TARGETDM', this.targetUserDm);
                             this.$router.push({
                                 name: 'chating',
                             })
@@ -249,11 +266,12 @@ export default {
                 })
                 .catch(e => console.log(e))
         },
+
         insertUserDm(userDm) {
             http
                 .post('/userDm/insertUserDm', userDm)
                 .then(response => {
-                    this.fetchUserDmList();
+                    this.fetchNewUserDmList();
                     return response
                 })
                 .catch(e => console.log(e))
