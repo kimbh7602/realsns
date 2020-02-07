@@ -231,4 +231,17 @@ public class ContentController {
 		resEntity = new ResponseEntity<Map<String,Object>>(msg, HttpStatus.OK);
 		return resEntity;
 	}
+
+	@GetMapping("/contentListHashtag/{tag}")
+	@ApiOperation(value = "해시태그 포함 게시물 리스트", response = List.class)
+	private @ResponseBody ResponseEntity<Map<String, Object>> contentListHashtag(@PathVariable("tag") String tag) throws ServletException, IOException {
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		Map<String, Object> msg = new HashMap<String, Object>();
+		List<ContentVo> list = ser.contentListHashtag(tag);
+		System.out.println(list);
+		msg.put("resmsg", "해시태그 포함 게시물 리스트 출력 성공");
+		msg.put("resValue", list);
+		resEntity = new ResponseEntity<Map<String,Object>>(msg, HttpStatus.OK);
+		return resEntity;
+	}
 }

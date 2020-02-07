@@ -79,4 +79,9 @@
 		set dislike = dislike-1
 		where content_id = #{content_id}
 	</update>
+
+	<select id="contentListHashtag" parameterType="string" resultType="ContentVo">
+		select * from contents
+		where hashtag like concat('%', #{tag}, '%')
+	</select>
 </mapper>

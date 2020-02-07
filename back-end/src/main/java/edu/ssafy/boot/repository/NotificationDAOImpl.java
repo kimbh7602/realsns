@@ -154,6 +154,12 @@ public class NotificationDAOImpl implements INotificationDAO {
         }
     }
 
+    @Override
+    public int countUnchecked(String user_id) {
+        int count = session.selectOne("ssafy.notification.countUnchecked", user_id);
+        return count;
+    }
+
     
 
 }
