@@ -9,7 +9,7 @@
         <div class="site-mobile-menu-body"></div>
     </div>
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
-        <div class="notification">
+        <div v-show="loginCheck" class="notification">
             <router-link to="/notification/" class="m-0">
                 <i class="icon-bell text-white" style="font-size:1.5em;">
                     <span class="badge" style="font-size:0.5em;">
@@ -19,7 +19,7 @@
             </router-link>
         </div>
             
-        <div class="notification pb-0 ml-3">
+        <div v-show="loginCheck" class="notification pb-0 ml-3">
             <router-link :to="'/mypage/'+$store.state.user_id" class="m-0">
                 <i class="icon-user-circle text-white" style="font-size:1.9em;"></i>
             </router-link>
@@ -70,6 +70,7 @@
         </div>
         <div class="col-1"></div>
     </div>
+
 </div>
 </template>
 
@@ -113,6 +114,13 @@ export default {
         
     },
     created() {
+        http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
+            .then((response) => {
+                this.notify = response.data.resvalue;
+            })
+            .catch(error => {
+                window.console.log(error);
+            })
         // this.socket = io('http://192.168.100.41:3000');
         this.$socket.on('notification', (data) => {
         //   window.console.log('notification', data, this.$store.state.user_id);
@@ -121,8 +129,15 @@ export default {
                 icon : '/theme/images/'+data.category+'.png',
                 // html : '<div>Like!</div><div>알림을 확인해보세요!</div>'
             });
+            http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
+            .then((response) => {
+                this.notify = response.data.resvalue;
+            })
+            .catch(error => {
+                window.console.log(error);
+            })
         }
-        this.fetchNoti();
+        // this.fetchNoti();
     });
   }
 }
