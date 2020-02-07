@@ -129,7 +129,6 @@ export default {
         op4: "",
       }],
       drop: false,
-      count : 0,
     }
   },
   methods: {
@@ -203,44 +202,22 @@ export default {
                 if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
                   res.data.resValue[idx].user_like = true
                   delete this.userLikeList[idx2].contentId
-                    // this.count = this.count+1;
-                    //               console.log("like"+this.count)
-                    this.contents.push({
-                      contentId: res.data.resValue[idx].contentId,
-                      contentValue: res.data.resValue[idx].contentValue,
-                      timestamp: res.data.resValue[idx].timestamp,
-                      likeButton: res.data.resValue[idx].likeButton,
-                      userId: res.data.resValue[idx].userId,
-                      imageLength: res.data.resValue[idx].imageLength,
-                      images: res.data.resValue[idx].images,
-                      scrapButton: false,
-                      dislike: res.data.resValue[idx].dislike,
-                    })
-                  }
                 }
-              //   if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
-              //     this.count = this.count+1;
-              //                   console.log("like"+this.count)
-
-              //     this.contents.push({
-              //       contentId: this.userLikeList[idx2].contentId,
-              //       contentValue: this.userLikeList[idx2].contentValue,
-              //       timestamp: this.userLikeList[idx2].timestamp,
-              //       likeButton: this.userLikeList[idx2].likeButton,
-              //       userId: this.userLikeList[idx2].userId,
-              //       imageLength: this.userLikeList[idx2].imageLength,
-              //       images: this.userLikeList[idx2].images,
-              //       scrapButton: false,
-              //       dislike: this.userLikeList[idx2].dislike,
-              //     })
-              //   }
-              // }
+                if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
+                  this.contents.push({
+                    contentId: this.userLikeList[idx2].contentId,
+                    contentValue: this.userLikeList[idx2].contentValue,
+                    timestamp: this.userLikeList[idx2].timestamp,
+                    likeButton: this.userLikeList[idx2].likeButton,
+                    userId: this.userLikeList[idx2].userId,
+                    imageLength: this.userLikeList[idx2].imageLength,
+                    images: this.userLikeList[idx2].images,
+                    scrapButton: false,
+                    dislike: this.userLikeList[idx2].dislike,
+                  })
+                }
+              }
               if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                  // console.log("scrap push");
-                  // console.log(idx)
-                  this.count = this.count+1;
-                                console.log("scrap:"+this.count)
-
                 this.contents.push({
                   contentId: res.data.resValue[idx].content_id,
                   contentValue: res.data.resValue[idx].content_val,
@@ -256,10 +233,6 @@ export default {
                   dislike: res.data.resValue[idx].dislike,
                 })
               } else {
-                  // console.log("follow push");
-                  this.count = this.count+1;
-                                console.log("else:"+this.count)
-
                 this.contents.push({
                   contentId: res.data.resValue[idx].content_id,
                   contentValue: res.data.resValue[idx].content_val,

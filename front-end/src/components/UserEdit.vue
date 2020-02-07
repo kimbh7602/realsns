@@ -186,7 +186,7 @@
   import http from "../http-common"
   export default {
     name: "useredit",
-    props: ["imgs", "oldpw"],
+    props: ["imgs", "oldpw", "prevpage"],
     data() {
       return {
         uid: this.$store.state.user_id,
@@ -222,6 +222,9 @@
 
 
     mounted() {
+      if(this.prevpage!="confirm"){
+        this.$router.push("/pwconfirm");
+      }
       var tmp;
       $('html').scrollTop(0);
       http
