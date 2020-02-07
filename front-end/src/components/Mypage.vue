@@ -94,10 +94,25 @@
                         <div v-for="(follow, index) in fetchedFollowList" :key="`follower${index}`" class="d-flex align-items-center justify-content-between mb-3">
                             <a :href="`/mypage/${follow}`" class="text-dark d-flex m-0"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</a>
                             <!-- <router-link :to="'/mypage/'+follow" class="d-flex text-dark" @click="fetchUserInfo(follow)"><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follow}}</router-link> -->
-                            <span v-if="myId != follow && myFollowList.includes(follow)" @click="deleteFollow(follow)" class="btn btn-outline-primary btn-sm">팔로잉</span> 
+                            <span v-if="myId != follow && myFollowList.includes(follow)" @click="this.targetUser = follow" data-toggle="modal" data-target="#deleteFollowModal" class="btn btn-outline-primary btn-sm">팔로잉</span> 
                             <span v-if="myId != follow && !myFollowList.includes(follow)" class="ml-3 btn btn-primary btn-sm" @click="insertFollow(follow)">팔로우</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 팔로우취소 모달 -->
+        <div class="modal" id="deleteFollowModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog col-12" role="document">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <p>팔로우 취소하시겠습니까?</p>
+                </div>
+                <div class="modal-footer p-2">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary btn-sm" @click="deleteFollow(targetUser)">확인</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -121,7 +136,8 @@ export default {
             userInfo: {},
             userContent: [],
             userScrap: [],
-            check: 'content'
+            check: 'content',
+            targetUser: {},
         }
     },
     computed: {
@@ -153,19 +169,17 @@ export default {
             }
         },
         deleteFollow(id) {
-            if (confirm('팔로우취소 하시겠습니까?')) {
-                this.$store.dispatch('DELETE_FOLLOW', {data: {follower_id: this.myId, follow_id: id}});
-                const idx = this.myFollowList.indexOf(id);
-                if (idx > -1) this.myFollowList.splice(idx, 1);
+            this.$store.dispatch('DELETE_FOLLOW', {data: {follower_id: this.myId, follow_id: id}});
+            const idx = this.myFollowList.indexOf(id);
+            if (idx > -1) this.myFollowList.splice(idx, 1);
 
-                if (this.myId == this.userId) {
-                    const idx2 = this.fetchedFollowList.indexOf(id);
-                    if (idx2 > -1) this.fetchedFollowList.splice(idx2, 1);
-                }
-                else if (id == this.userId) {
-                    const idx2 = this.fetchedFollowerList.indexOf(this.myId);
-                    if (idx > -1) this.fetchedFollowerList.splice(idx2, 1);
-                }
+            if (this.myId == this.userId) {
+                const idx2 = this.fetchedFollowList.indexOf(id);
+                if (idx2 > -1) this.fetchedFollowList.splice(idx2, 1);
+            }
+            else if (id == this.userId) {
+                const idx2 = this.fetchedFollowerList.indexOf(this.myId);
+                if (idx > -1) this.fetchedFollowerList.splice(idx2, 1);
             }
         },
         fetchMyFollowList() {
@@ -205,7 +219,7 @@ export default {
             this.check = 'scrap';
         },
         goChating(id) {
-            this.$EventBus.$emit('start:chating', id);
+            this.$store.commit('SET_TARGETID', id);
             this.$router.push({
                 name: 'chating',
             })
@@ -228,7 +242,18 @@ export default {
     height: 50%;
 }
 .modal-content{
-  height: auto;
-  min-height: 100%;
+    height: auto;
+    min-height: 100%;
 }
+
+#deleteFollowModal .modal-dialog {
+    margin-top: 130px;
+    width: 25%;
+    height: 50%;
+}
+#deleteFollowModal .modal-content{
+    height: auto;
+    min-height: 30%;
+}
+
 </style>
