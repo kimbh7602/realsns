@@ -43,10 +43,12 @@
                       {{uid}}</div>
                     <!-- 댓글입력창 -->
                     <div class="col-10 col-lg-7 col-sm-10"><input type="text" class="text-black form-control"
-                        v-model="comment_val" /></div>
+                        v-model="comment_val"  v-on:keyup.enter="insertComment"/></div>
                     <!-- 댓글입력버튼 -->
-                    <div class="col-1 col-lg-1 col-sm-2"><input type="button" @click="insertComment"
-                        class="btn btn-block btn-outline-info" value="Send" /></div>
+                    <div class="col-1 col-lg-1 col-sm-2">
+                      <div class="icon-check" @click="insertComment">
+                      </div>
+                    </div>
                   </div>
                   <!-- 댓글출력 -->
                   <div v-if="!isComment">
@@ -75,8 +77,8 @@
                     <div class="row" style="text-align:left;" v-for="(comment, index) in comments" :key="index">
                       <!-- 댓글출력 -->
                       <div class="row col-12 col-sm-12 col-lg-12 " v-if="comment.comment_id == comment.re_comment_id">
-                        <div class="com-1  col-sm-1 col-lg-1 "></div>
-                        <div class="col-3  col-sm-2 col-lg-2 "
+                        <div class="col-sm-1 col-lg-1 "></div>
+                        <div class="col-2 col-sm-2 col-lg-2 "
                           style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                           {{comment.user_id}}</div>
                         <!-- <div class="col-1"></div> -->
@@ -84,32 +86,34 @@
                           style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">
                           {{comment.comment_val}}
                         </div>
-                        <div class="comment-val col-8 col-lg-6" v-bind:id="'edit'+comment.comment_id" 
+                        <div class="comment-val col-8 col-lg-6" v-bind:id="'edit'+comment.comment_id"
                           style="display:none;">
-                          <input type="text" class="text-black form-control" v-model="comment.comment_val" /></div>
+                          <input type="text" class="text-black form-control" v-model="comment.comment_val" v-on:keyup.enter="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"/></div>
 
-                        <div class="row col-12 col-sm-12 col-lg-3" v-bind:id="'view_button'+comment.comment_id"
-                          style="display:show;">
-                          <div class="col-6 col-sm-9 col-lg-1"/>
+                        <div class="row col-12 col-sm-12 col-lg-3" style="display:flex;"
+                          v-bind:id="'view_button'+comment.comment_id">
+                          <div class="col-6 col-sm-9 col-lg-1" />
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="-" @click="delcomment(comment.comment_id)" />
+                            <div class="icon-plus" @click="recommentdisplay('comment'+comment.comment_id)"></div>
                           </div>
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="+" @click="recommentdisplay('comment'+comment.comment_id)" />
+                            <div class="icon-pencil" @click="changeedit(comment.comment_id)"></div>
                           </div>
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="e" @click="changeedit(comment.comment_id)" />
+                            <div class="icon-close" @click="delcomment(comment.comment_id)"></div>
                           </div>
                         </div>
                         <div class="col-12 col-sm-12 col-lg-2" v-bind:id="'edit_button'+comment.comment_id"
                           style="display:none;">
-                          <div class="col-8 col-sm-9 col-lg-auto"/>
+                          <div class="col-8 col-sm-9 col-lg-auto" />
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="b" @click="changeedit(comment.comment_id)" />
+                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id)">
+                            </div>
                           </div>
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="e"
-                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)" />
+                            <div class="icon-check"
+                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)">
+                            </div>
                           </div>
                         </div>
                         <!-- 대댓글추가 인풋 -->
@@ -117,15 +121,18 @@
                           style="display:none; margin:0; padding:0;">
                           <div class="col-sm-1 col-lg-1 "></div>
                           <div class="col-auto col-sm-auto">ㄴ</div>
-                          <div class="col-auto col-sm-auto"
+                          <div class="col-2 col-sm-2"
                             style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                             {{comment.user_id}}</div>
                           <!-- <div class="col-1"></div> -->
-                          <div class="col-6 col-sm-7 col-lg-6"><input type="text" class="text-black form-control"
-                              v-model="re_comment_val" /></div>
-                          <div class="col-1 col-sm-1 col-lg-1"><input type="button"
-                              @click="insertReComment(comment.comment_id),recommentdisplay('comment'+comment.comment_id)"
-                              class="btn btn-block btn-outline-info" value="추가" /></div>
+                          <div class="col-6 col-sm-7 col-lg-7"><input type="text" class="text-black form-control"
+                              v-model="re_comment_val"  v-on:keyup.enter="insertReComment(comment.comment_id),recommentdisplay('comment'+comment.comment_id)" /></div>
+                          <div class="col-9 col-lg-auto"/>
+                          <div class="col-1 col-sm-1 col-lg-1">
+                            <div class="icon-check"
+                              @click="insertReComment(comment.comment_id),recommentdisplay('comment'+comment.comment_id)">
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- 댓글출력끝 -->
@@ -134,34 +141,39 @@
                         style="margin:0; padding:0">
                         <div class="col-1 col-sm-1 col-lg-1"></div>
                         <div class="col-1 col-sm-1 col-lg-1">ㄴ</div>
-                        <div class="col-9 col-sm-auto col-lg-2" v-bind:id="comment.user_id"
+                        <div class="col-9 col-sm-2 col-lg-2" v-bind:id="comment.user_id"
                           style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
                           {{comment.user_id}}</div>
-                        <div class="col-3 col-sm-auto"/>
+                        <div class="col-3 col-sm-auto" />
                         <div class="comment-val col-6 col-sm-7 col-lg-6" v-bind:id="'view'+comment.comment_id"
                           style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">
                           {{comment.comment_val}}</div>
                         <div class="comment-val col-8 col-sm-7 col-lg-6" v-bind:id="'edit'+comment.comment_id"
                           style="display:none;">
-                          <input type="text" class="text-black form-control" v-model="comment.comment_val" /></div>
-                        <div class="row col-12 col-sm-12 col-lg-2" v-bind:id="'view_button'+comment.comment_id"
-                          style="display:show;">
-                          <div class="col-9 col-sm-9"/>
+                          <input type="text" class="text-black form-control" v-model="comment.comment_val" v-on:keyup.enter="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)"/></div>
+                        <div class="row col-12 col-sm-12 col-lg-2" style="display:flex;"
+                          v-bind:id="'view_button'+comment.comment_id">
+                          <div class="col-9 col-sm-9" />
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="-" @click="delcomment(comment.comment_id)" />
+                            <div class="icon-pencil" @click="changeedit(comment.comment_id)">
+                            </div>
                           </div>
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="e" @click="changeedit(comment.comment_id)" />
+                            <div class="icon-close" @click="delcomment(comment.comment_id)">
+                            </div>
                           </div>
                         </div>
-                        <div class="row col-12 col-sm-12 col-lg-2" v-bind:id="'edit_button'+comment.comment_id" style="display:none;">
-                          <div class="col-9 col-sm-9"/>
+                        <div class="row col-12 col-sm-12 col-lg-2" v-bind:id="'edit_button'+comment.comment_id"
+                          style="display:none;">
+                          <div class="col-9 col-sm-9" />
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="b" @click="changeedit(comment.comment_id)" />
+                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id)">
+                            </div>
                           </div>
                           <div class="col-1 col-sm-1 col-lg-1">
-                            <input type="button" value="e"
-                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)" />
+                            <div class="icon-pencil"
+                              @click="editcomment(comment.comment_id, comment.comment_val, comment.re_comment_id)">
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -189,13 +201,16 @@
                       </div>
                     </div>
                   </div>
-                    <div>
-                      <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)" style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info" :value="'#'+tag" /></span>
-                    </div>
-                    <div v-if="items.location_name != undefined" style="margin-top:20px; padding-left:20px; color:#007acc;">
-                      <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
-                      <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
-                    </div>
+                  <div>
+                    <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)"
+                        style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info"
+                        :value="'#'+tag" /></span>
+                  </div>
+                  <div v-if="items.location_name != undefined"
+                    style="margin-top:20px; padding-left:20px; color:#007acc;">
+                    <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
+                    <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -218,7 +233,7 @@
         bell: this.iconbell,
         contentId: "",
         items: {},
-        uid: "",
+        uid: this.$store.state.user_id,
         isComment: false,
         comment_val: "",
         re_comment_val: "",
@@ -444,7 +459,9 @@
       contentListHashtag(tag) {
         this.$router.push({
           name: "contentListHashtag",
-          params: {tag: tag}
+          params: {
+            tag: tag
+          }
         });
       }
     },
