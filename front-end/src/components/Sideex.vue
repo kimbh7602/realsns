@@ -132,8 +132,6 @@ export default {
             http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
             .then((response) => {
                 this.notify = response.data.resvalue;
-                window.console.log(response.data.resvalue)
-                window.console.log(this.notify)
             })
             .catch(error => {
                 window.console.log(error);
