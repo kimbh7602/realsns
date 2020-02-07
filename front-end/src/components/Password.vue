@@ -145,14 +145,22 @@ export default {
     },
 
     temppw() {
-      if(this.booleanemail && this.idcheck){
+      if(!this.booleanemail && this.idcheck){
+        this.$store.commit('setModalText', "이메일 확인을 진행해주세요.");
+        document.getElementById('modalBtn').click();        
+      }
+      else if(this.booleanemail && this.idcheck){
+        this.$store.commit('setModalText', "메일을 보내는 중입니다. 잠시 기다려주세요.");
+        document.getElementById('modalBtn').click();
+
+        $('#modal').modal("hide");
         http
           .post("email/findpassword/" +this.uemail)
           .then((response)=>{
               if (response.data['resmsg'] == "메일 보내기 성공") { 
                 this.$store.commit('setModalText', "임시 비밀번호 발급 성공.");
                 document.getElementById('modalBtn').click();
-                this.$router.push("/")
+                this.$router.push("/login")
               } else {
                 this.$store.commit('setModalText', "임시 비밀번호 발급 실패.");
                 document.getElementById('modalBtn').click();

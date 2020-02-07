@@ -49,7 +49,7 @@
             {{$store.state.modalText}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+            <button type="button" id="modalClose" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
           </div>
         </div>
       </div>
