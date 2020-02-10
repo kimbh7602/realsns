@@ -75,7 +75,7 @@ public class UserController {
 				// run configurations 에서 arguments-> vm arguments
 				// ->"-Djava.net.preferIPv4Stack=true" 입력
 				LogVo log = new LogVo(user.getUser_id(), request.getRemoteAddr(), "로그인");
-				BlockVo block = new BlockVo(log, new java.util.Date().toString());
+				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
 				map.put("resmsg", "로그인");
 				map.put("resValue", result.getUser_id());
@@ -106,7 +106,7 @@ public class UserController {
 				// run configurations 에서 arguments-> vm arguments
 				// ->"-Djava.net.preferIPv4Stack=true" 입력
 				LogVo log = new LogVo(user.getUser_id(), request.getRemoteAddr(), "회원정보수정");
-				BlockVo block = new BlockVo(log, new java.util.Date().toString());
+				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
 				map.put("resmsg", "수정성공");
 				map.put("resvalue", res);
@@ -133,7 +133,7 @@ public class UserController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (res) {
 				LogVo log = new LogVo(user_id, request.getRemoteAddr(), "회원삭제");
-				BlockVo block = new BlockVo(log, new java.util.Date().toString());
+				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
 				map.put("resmsg", "삭제성공");
 				map.put("resvalue", res);
@@ -230,7 +230,7 @@ public class UserController {
 					}
 				}
 				LogVo log = new LogVo(user_id, request.getRemoteAddr(), "회원정보조회");
-				BlockVo block = new BlockVo(log, new java.util.Date().toString());
+				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
 				map.put("resmsg", "조회성공");
 				map.put("resvalue", user);
@@ -265,8 +265,8 @@ public class UserController {
 			boolean signup = ser.signup(user);
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (signup) {
-				LogVo log = new LogVo(user.getUser_id(), req.getRemoteAddr(), "회원정보조회");
-				BlockVo block = new BlockVo(log, new java.util.Date().toString());
+				LogVo log = new LogVo(user.getUser_id(),req.getRemoteAddr(),"회원가입");
+				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
 				map.put("resmsg", "등록성공");
 			}

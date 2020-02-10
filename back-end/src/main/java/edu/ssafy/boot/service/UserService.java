@@ -207,4 +207,13 @@ public class UserService implements IUserService {
 		}
 		return myInterestList;
 	}
+	
+	public int moncontents(int currentdate) {
+		return dao.moncontents(currentdate);
+	}
+	
+	@Override
+	public int currentdate() {
+		return dao.currentdate();
+	}
 }
