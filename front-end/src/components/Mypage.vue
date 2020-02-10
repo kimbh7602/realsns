@@ -166,7 +166,8 @@ export default {
                     this.$socket.emit('notification', {
                         user_id: response.data.resValue.user_id,    
                         target_user_id: response.data.resValue.target_user_id,
-                        category: response.data.resValue.category
+                        category: response.data.resValue.category,
+                        flag: true
                     });
                 })
                 .catch(e => console.log(e))
@@ -183,7 +184,12 @@ export default {
             http
                 .delete("/follow/deleteFollow", {data: {follower_id: this.myId, follow_id: user.user_id}})
                 .then(response => {
-                    return response
+                    this.$socket.emit('notification', {
+                        user_id: response.data.resValue.user_id,
+                        target_user_id: response.data.resValue.target_user_id,
+                        category: response.data.resValue.category,
+                        flag: false
+                    });
                 })
                 .catch(e => console.log(e))
             const idx = this.myFollowList.indexOf(user.user_id);
