@@ -4,10 +4,11 @@ import http from './http-common.js';
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production';
+// const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
-    strict: debug,
+    // strict: debug,
+    strict:false,
     state:{
         modalText: localStorage.getItem('modalText'),
         user_id:sessionStorage.getItem('user_id'),
@@ -223,14 +224,6 @@ export default new Vuex.Store({
         INSERT_FOLLOW(context, follow) {
             http
                 .post("/follow/insertFollow", follow)
-                .then(response => {
-                    return response
-                })
-                .catch(e => console.log(e))
-        },
-        DELETE_FOLLOW(context, follow) {
-            http
-                .delete("/follow/deleteFollow", follow)
                 .then(response => {
                     return response
                 })
