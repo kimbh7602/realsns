@@ -11,7 +11,7 @@
                                     data-swpr-responsive="[1, 2, 1, 2]">
                 <div class="swiper-wrapper">
                     <div :class="img.filter" class="img-fluid swiper-slide" v-for="img in items.imageList" :key="img.filter">
-                        <img :src = image.image_url class="img-fluid">
+                        <img :src = img.image_url class="img-fluid">
                     </div>
                 </div>
                 <div v-if="exist" class="swiper-pagination"  slot="pagination"></div>
@@ -353,8 +353,8 @@ export default {
         recaptchaScript.setAttribute('type',"text/javascript")
         recaptchaScript.setAttribute('src', "./theme/js/swiper.js")
         document.body.appendChild(recaptchaScript)
-        // this.items.content_val = this.items.content_val.toString().replaceAll("<br />","\n");
-        
+        this.items.content_val = this.items.content_val.replace("<br />",/\n/g);
+        console.log(this.itrlist);
         for(var a=0; a<this.itrlist.length; a++){
             var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
             var div = document.createElement('div');
