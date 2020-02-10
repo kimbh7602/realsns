@@ -4,29 +4,24 @@
       
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item" v-if="con.images[0].imageUrl">
-          <div v-if="con.dislike < 5 || readContents.includes(con.contentId)" :class="con.images[0].filter">
+          <div v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)" :class="con.images[0].filter">
             <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa m-0"/>
-            <!-- <div v-if="con.scrapButton && con.userId !== loginId" style="background-color:black;">
-              <p class="ch text-right text-white" >📥 {{con.userId}}님</p>
-            </div> 스크랩이 아닌 공유 기능으로 쓰기 --> 
-            <!-- <div v-if="con.scrapButton && con.userId == loginId" style="background-color:black">
-              <p class="ch text-right text-white" >📥 내 게시물</p>
-            </div> -->
           </div>
           
-          <div v-show="con.dislike > 4 && !readContents.includes(con.contentId)" class="m-0 pin">
+          <div v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)" class="m-0 pin">
             <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur"/>
             <p class="chcenter text-center text-white">신고가 누적된 게시물입니다.</p>
             <button class="ch btn btn-primary btn-sm" @click="readReCon(con.contentId)">보기</button>
           </div>
 
-          <div v-show="reportMyList.includes(con.contentId)" class="m-0">
+          <div v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)" class="m-0 pin">
             <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur"/>
             <p class="chcenter text-center text-white">내가 신고한 게시물입니다.</p>
+            <!-- <i class="ch icon-bell-o" type="button" @click="cancel(con.contentId)"></i> -->
           </div>
 
-          <div class="photo-text-more" v-if="con.dislike < 5 || readContents.includes(con.contentId)">
-            <h3 class="heading mx-2 ellipsis" v-on:click="goDetail(con.contentId)">{{con.contentId}} {{con.contentValue}}</h3>
+          <div class="photo-text-more" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
+            <h3 class="heading mx-2 ellipsis" id="conId" v-on:click="goDetail(con.contentId)">{{con.contentId}} {{con.contentValue}}</h3>
             <span v-if="con.imageLength == 0" class="meta">there's no photo</span>
             <span v-else-if="con.imageLength == 1" class="meta">photo just {{con.imageLength}}</span>
             <span v-else class="meta">photos {{con.imageLength}}</span>
@@ -48,33 +43,10 @@
                 </div>
 
                 <div v-if="con.userId !== loginId">
-                  <i class="icon-bell-o" @click="cancel(con.contentId)"></i>
-                  <!-- <i class="icon-bell" @click="clickBell()"></i> -->
-
-
-                  <!-- <div class="btn-group dropleft">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropleft
-                    </button>
-                    <div class="dropdown-menu">
-
-                    </div>
-                  </div> -->
-
-                  <div class="btn-group dropleft">
-                    <button class="btn btn-whatever btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-bell"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <button class="dropdown-item" type="button" @click="clickBell(con.contentId, options[0].op1, options[0].op1, con.timestamp)">{{ options[0].op1 }}</button>
-                      <button class="dropdown-item" type="button" @click="clickBell(con.contentId, options[0].op2, options[0].op2, con.timestamp)">{{ options[0].op2 }}</button>
-                      <button class="dropdown-item" type="button" @click="down()">{{ options[0].op3 }}</button>
-                      <div class="dropdown-item" v-if="drop">
-                        <input class="col-8" type="text" placeholder="신고 내용을 입력해주세요.">
-                        <button @click="clickBell(con.contentId, options[0].op3, options[0].op4, con.timestamp)" class="col-4">send</button>
-                      </div>
-                    </div>
-                  </div>
+                  <i class="icon-bell-o" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)"></i>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" v-else>
+                    <i class="icon-bell" id="reportId" @click="sendInfo(con.contentId, con.timestamp)"></i>
+                  </button>
                 </div>
 
               </div>
@@ -87,10 +59,49 @@
         </div>
       </div>
 
+      <!-- Modal -->
+      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="btn-group dropright">
+                <button class="btn btn-whatever btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                  신고 사항 선택
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op1)">{{ options[0].op1 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op2)">{{ options[0].op2 }}</button>
+                  <button class="dropdown-item" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{{ options[0].op3 }}</button>
+                </div>
+              </div>
+
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <input type="text" v-model="options[0].op4" placeholder="기타를 선택하신 분은 신고 내용을 입력해주세요.">
+                </div>
+                <input type="button" value="입력" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" @click="sendReport(options[0].op4)">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" @click="clickBell()">신고하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
     <div class="text-white text-center" v-if="this.contentErrorMsg">
       <h5>{{this.contentErrorMsg}}</h5>
     </div>
+    
   </div>
 </template>
 
@@ -128,10 +139,23 @@ export default {
         op3: "기타",
         op4: "",
       }],
-      drop: false,
+      info: [],
     }
   },
   methods: {
+    sendInfo(cid, time) {
+      this.info = []
+      this.info.push({
+        content_id: cid,
+        user_id: this.loginId,
+        report_category: "report",
+        report_val: "",
+        timestamp: time,
+      })
+    },
+    sendReport(report_val) {
+      this.info[0].report_val = report_val
+    },
     readReCon(cid) {
       this.readContents.push(cid)
     },
@@ -140,8 +164,10 @@ export default {
         .get('/userReport/myReportList/' + this.loginId)
         .then((res) => {
           if (res.data.resvalue.length > 0) {
-            this.reportMyList = res.data.resvalue
-          } 
+            for (var i = 0; i < res.data.resvalue.length; i++) {
+              this.reportMyList.push(res.data.resvalue[i].content_id)
+            }
+          }
         })
         .catch(() => {
           this.errored = true
@@ -401,8 +427,8 @@ export default {
                     dislike: idx.dislike,
                   })
                 }
-                this.sortList()
               }
+              this.sortList()
             })
           })
         .catch(()=>{
@@ -460,13 +486,13 @@ export default {
           })
       }
     },
-    clickBell(cid, cate, val, time) {
+    clickBell() {
       http
         .post('/userReport/report', {
-          content_id: cid,
-          report_category: cate,
-          report_val: val,
-          timestamp: time,
+          content_id: this.info[0].content_id,
+          report_category: this.info[0].report_category,
+          report_val: this.info[0].report_val,
+          timestamp: this.info[0].timestamp,
           user_id: this.loginId,
         })
         .then((res) => {
@@ -477,7 +503,8 @@ export default {
             console.log("신고 실패")
           }
           this.options[0].op4 = ""
-          this.drop = false
+          this.info = []
+          this.getReport()
         })
         .catch(()=>{
           this.errored = true;
@@ -510,22 +537,22 @@ export default {
         })
       }
     },
-    down() {
-      this.drop = true
-    },
   },
-  created() {
-    this.getLike()
-    this.getScrap()
-    this.getData()
-    this.getFollow()
-  },
+  // created() {
+  //   this.getLike()
+  //   this.getScrap()
+  //   this.getData()
+  //   this.getFollow()
+  //   this.getReport()
+  //   this.sortList()
+  // },
   watch: {
-    reportMyList: {
-      handler() {
-        this.getReport()
-      }
-    },
+    // reportMyList: {
+    //   handler() {
+    //     this.getReport()
+    //     this.sortList()
+    //   }
+    // },
     // readContents: {
     //   handler() {
     //     this.readReCon()
@@ -533,6 +560,11 @@ export default {
     // }
   },
   mounted() {
+    this.getLike()
+    this.getScrap()
+    this.getData()
+    this.getFollow()
+    this.sortList()
     this.getReport()
     $('html').scrollTop(0);
     this.$nextTick(() => {
@@ -582,5 +614,13 @@ export default {
     left: 50%;
     top: 50%;
     margin-left: 50%
+  }
+  .modal-dialog { 
+      width: 30%; 
+      height: 50%;
+  }
+  .modal-content{
+    height: auto;
+    min-height: 100%;
   }
 </style>
