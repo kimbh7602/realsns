@@ -165,7 +165,8 @@ export default {
                     this.$socket.emit('notification', {
                         user_id: response.data.resValue.user_id,
                         target_user_id: response.data.resValue.target_user_id,
-                        category: response.data.resValue.category
+                        category: response.data.resValue.category,
+                        flag: true
                     });
                 })
                 .catch(e => console.log(e))
@@ -179,7 +180,17 @@ export default {
             }
         },
         deleteFollow(id) {
-            this.$store.dispatch('DELETE_FOLLOW', {data: {follower_id: this.myId, follow_id: id}});
+            http
+                .delete("/follow/deleteFollow", {data: {follower_id: this.myId, follow_id: id}})
+                .then(response => {
+                    this.$socket.emit('notification', {
+                        user_id: response.data.resValue.user_id,
+                        target_user_id: response.data.resValue.target_user_id,
+                        category: response.data.resValue.category,
+                        flag: false
+                    });
+                })
+                .catch(e => console.log(e))
             const idx = this.myFollowList.indexOf(id);
             if (idx > -1) this.myFollowList.splice(idx, 1);
 
