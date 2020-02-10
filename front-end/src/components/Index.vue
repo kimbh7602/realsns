@@ -21,7 +21,6 @@
             <div class="m-0 pin" style="width:100%; height:300px">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
               <p class="chcenter text-center text-white">내가 신고한 게시물입니다.</p>
-              <!-- <i class="ch icon-bell-o" type="button" @click="cancel(con.contentId)"></i> -->
             </div>
           </div>
           <!-- 마우스 오버 했을 때 -->
@@ -142,6 +141,7 @@ export default {
           filter: "",
         }],
         scrapButton: false,
+        report: false,
       }],
       loginId: store.state.user_id,
       contentErrorMsg: "",
@@ -528,28 +528,34 @@ export default {
       }
     },
     clickBell() {
-      http
-        .post('/userReport/report', {
-          content_id: this.info[0].content_id,
-          report_category: this.info[0].report_category,
-          report_val: this.info[0].report_val,
-          timestamp: this.info[0].timestamp,
-          user_id: this.loginId,
-        })
-        .then((res) => {
-          this.reportMyList = []
-          if (res.data.resmsg == "신고 성공") {
-            console.log("신고 성공!!")
-          } else {
-            console.log("신고 실패")
-          }
-          this.options[0].op4 = ""
-          this.info = []
-          // this.getReport()
-        })
-        .catch(()=>{
-          this.errored = true;
-        })
+      if (this.info[0].report_val == "") {
+        this.$store.commit('setModalText', "신고 사항을 선택해주십시오.");
+        document.getElementById('modalBtn').click();
+      } else {
+        http
+          .post('/userReport/report', {
+            content_id: this.info[0].content_id,
+            report_category: this.info[0].report_category,
+            report_val: this.info[0].report_val,
+            timestamp: this.info[0].timestamp,
+            user_id: this.loginId,
+          })
+          .then((res) => {
+            this.reportMyList = []
+            if (res.data.resmsg == "신고 성공") {
+              this.$store.commit('setModalText', "신고가 접수되었습니다.");
+              document.getElementById('modalBtn').click();
+            } else {
+              console.log("신고 실패")
+            }
+            this.options[0].op4 = ""
+            this.info = []
+            this.getReport()
+          })
+          .catch(()=>{
+            this.errored = true;
+          })
+      }
     },    
     cancel(cid) {
       if (this.reportMyList.includes(cid)) {
@@ -564,11 +570,18 @@ export default {
             }
           })
           .then((res) => {
-            console.log(res)
-            console.log(res.data.resmsg)
             if (res.data.resmsg == "신고취소성공") {
-              this.reportMyList = []
+              const idx = this.reportMyList.findIndex(function(item) {
+                return item === res.data.resValue.target_event_id
+              })
+              this.reportMyList.splice(idx, 1)
+              this.$store.commit('setModalText', "신고가 취소되었습니다.");
+              document.getElementById('modalBtn').click();            
+            } else {
+              this.$store.commit('setModalText', "신고가 취소되지 않았습니다.");
+              document.getElementById('modalBtn').click();            
             }
+            this.sortList()
           })
           .catch(()=>{
             this.errored = true;
@@ -585,12 +598,12 @@ export default {
     // this.sortList()
   },
   watch: {
-    reportMyList: {
-      handler() {
-        this.getReport()
-        // this.sortList()
-      }
-    },
+    // reportMyList: {
+    //   handler() {
+    //     this.getReport()
+    //     // this.sortList()
+    //   }
+    // },
     // contents: {
     //   handler() {
     //     this.sortList()
@@ -603,13 +616,12 @@ export default {
     // }
   },
   mounted() {
-    console.log(this.contents)
     this.getLike()
     this.getScrap()
     this.getData()
     this.getFollow()
     this.sortList()
-    // this.getReport()
+    this.getReport()
     $('html').scrollTop(0);
     this.$nextTick(() => {
       // 모든 화면이 렌더링된 후 호출됩니다.
