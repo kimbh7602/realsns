@@ -5,7 +5,7 @@
     <Sideex />
     <main class="main-content">
       <!-- 공지 -->
-      <div v-if="loginCheck" class="top-noti" style=" background-color:black;width:101%; margin-bottom:5%;">
+      <div v-if="loginCheck" class="top-noti" style=" background-color:black;width:101%; margin-bottom:3%;">
         <!-- <div class="text-white offset-4 col-1" style="text-align:right; display:inline-block;">
           <span class="icon-notifications_active neon"></span>
           <img src="../public/theme/images/notice.png" style="width:28px;height:28px;" />

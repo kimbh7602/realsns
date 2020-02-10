@@ -3,7 +3,6 @@
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
     <div style="display:none" class="dummy" />
     <div class="offset-md-1 col-md-10">
-    <div style="height:10px;"></div>
     <!-- <div class="logo-image" style="background-image: url('./theme/images/mainpage.jpg') "> -->
     <div style="text-align:center; padding-bottom:10%;">
       <!-- <img src='../../public/theme/images/mail_512px.png' style="height:25%;width:25%;"/> -->

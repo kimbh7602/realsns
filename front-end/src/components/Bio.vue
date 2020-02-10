@@ -213,6 +213,12 @@
                     <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
                     <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
                   </div>
+                  <div v-if="items.user_id == uid"
+                    style="margin-top:20px; padding-left:20px; color:#007acc;">
+                    <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block" value="수정">
+                    <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block" value="삭제">
+                    <!-- <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,6 +351,7 @@
           .then((res) => {
             if (res.data.resmsg == "게시물 출력 성공") {
               this.items = res.data.resValue;
+              window.console.log(this.items);
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
@@ -484,6 +491,35 @@
             tag: tag
           }
         });
+      },
+      deleteContent(){
+        http
+          .delete("content/deleteContent/" + this.items.content_id)
+          .then(response => {
+            if (response.data['resmsg'] == "게시물 삭제 성공") {
+              this.$store.commit('setModalText', '게시물 삭제 성공');
+              document.getElementById('modalBtn').click();
+              this.$router.go(-1);
+            } else {
+              this.$store.commit('setModalText', "게시물 삭제 실패");
+              document.getElementById('modalBtn').click();
+            }
+
+          })
+          .catch((error) => {
+            this.errored = true;
+            alert(error);
+          })
+          .finally(() => (this.loading = false));
+      },
+      updateContent(){
+        this.$router.push({
+          name: 'updatecontent',
+          params:{
+            items: this.items,
+            prevpage: "bio",
+          }
+        })
       }
     },
     created() {
@@ -491,7 +527,7 @@
     },
     mounted() {
       $('html').scrollTop(0);
-      this.uid = store.state.user_id
+      this.uid = store.state.user_id;
     },
     updated() {
       let recaptchaScripta = document.createElement('script')
@@ -569,6 +605,13 @@
       margin-bottom: 30px;
       /* font-size: 20; */
     }
+  }
+
+  .bio-btn{
+    color:black;
+  }
+  .bio-btn:hover{
+    color:white;
   }
 
 
