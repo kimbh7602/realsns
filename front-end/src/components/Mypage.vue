@@ -299,10 +299,13 @@ export default {
         },
         goChating() {
             if (this.possible) {
+                
                 const userDm = {
                     user_id: this.myId,
                     other_id: this.userId,
+                    user: this.userInfo
                 };
+                console.log(this.userInfo)
                 this.insertUserDm(userDm);
                 // this.$store.commit('SET_TARGETDM', this.targetUserDm);
             } else {
