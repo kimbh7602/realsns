@@ -187,4 +187,13 @@ public class UserService implements IUserService {
 	public int totalcontents(int month) {
 		return dao.totalcontents(month);
 	}
+	
+	public int moncontents(int currentdate) {
+		return dao.moncontents(currentdate);
+	}
+	
+	@Override
+	public int currentdate() {
+		return dao.currentdate();
+	}
 }

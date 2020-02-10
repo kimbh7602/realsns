@@ -19,4 +19,6 @@ public interface IUserService {
 	public List<WordCloudVo> wordList();
 	public String usertoday();
 	public int totalcontents(int month);
+	public int moncontents(int currentdate);
+	public int currentdate();
 }
