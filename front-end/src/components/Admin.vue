@@ -178,6 +178,8 @@
                     }
                 })
             }else{
+                this.$store.commit('setModalText', '관리자만 접근할 수 있습니다.');
+                document.getElementById('modalBtn').click();
                 this.$router.push("/")
             }
         },
