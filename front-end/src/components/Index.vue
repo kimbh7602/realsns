@@ -6,19 +6,19 @@
         <div class="d-block photo-item">
           <!-- 이미지 처리 -->
           <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
-            <div :class="con.images[0].filter" style="width:100%; height:300px">
+            <div :class="con.images[0].filter" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa m-0" style="box-shadow: 3px 3px 3px;"/>
             </div>
           </div>
           <div class="polaroid" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">
-            <div class="m-0 pin" style="width:100%; height:300px">
+            <div class="m-0 pin" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
               <p class="chcenter text-center text-white">신고가 누적된 게시물입니다.</p>
               <button class="ch btn btn-primary btn-sm" @click="readReCon(con.contentId)">보기</button>
             </div>
           </div>
           <div class="polaroid" v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)">
-            <div class="m-0 pin" style="width:100%; height:300px">
+            <div class="m-0 pin" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
               <p class="chcenter text-center text-white">내가 신고한 게시물입니다.</p>
             </div>
@@ -661,10 +661,17 @@ export default {
     top: 40%;
   }
   .blur {
-    filter:blur(5px);
-    /* transform: scale(0.98); */
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    transform: scale(0.99);
+    overflow: hidden;
+    display: block;
     width: 100%;
     height: 100%;
+    clip: rect(100px, 100px, 100px, 100px);
   }
   .pin {
     left: 50%;
