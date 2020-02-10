@@ -110,5 +110,10 @@
 		from contents 
 		where month(timestamp)=#{month}
 	</select>
+
+	<select id="myInterest" parameterType="string" resultType="string">
+		select interest from users
+		where user_id = #{user_id}
+	</select>
 	
 </mapper>

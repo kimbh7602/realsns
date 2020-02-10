@@ -128,4 +128,10 @@ public class UserDAOImpl implements IUserDAO {
 		
 		return session.selectOne("ssafy.user.totalcontents", month);
 	}
+
+	@Override
+	public String myInterest(String user_id) {
+		String myInterest = session.selectOne("ssafy.user.myInterest", user_id);
+		return myInterest;
+	}
 }

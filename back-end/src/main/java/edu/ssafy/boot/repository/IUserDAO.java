@@ -19,4 +19,5 @@ public interface IUserDAO {
 	public List<String> interestFrequency();
 	public String usertoday();
 	public int totalcontents(int month);
+	public String myInterest(String user_id);
 }
