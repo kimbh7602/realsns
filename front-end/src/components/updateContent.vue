@@ -10,8 +10,8 @@
                                     data-swiper-breakpoints="true" data-scrollbar="true" data-swiper-loop="false"
                                     data-swpr-responsive="[1, 2, 1, 2]">
                 <div class="swiper-wrapper">
-                    <div :class="img.filter" class="img-fluid swiper-slide" v-for="img in imgs" :key="img.filter">
-                        ssss<img :src = image.img_url class="img-fluid">
+                    <div :class="img.filter" class="img-fluid swiper-slide" v-for="img in items.imageList" :key="img.filter">
+                        <img :src = image.image_url class="img-fluid">
                     </div>
                 </div>
                 <div v-if="exist" class="swiper-pagination"  slot="pagination"></div>
@@ -334,6 +334,14 @@ export default {
       }
 
     },
+    created(){
+        this.intro = this.items.content_val;
+        this.itrlist = this.items.hashtagList;
+        this.imgs = this.items.imageList;
+        this.selectedLocation.name = this.items.location_name;
+        this.selectedLocation.position.lat = this.items.lat;
+        this.selectedLocation.position.lng = this.items.lng;
+    },
     mounted(){
         $('html').scrollTop(0);
         console.log(this.items);
@@ -345,13 +353,8 @@ export default {
         recaptchaScript.setAttribute('type',"text/javascript")
         recaptchaScript.setAttribute('src', "./theme/js/swiper.js")
         document.body.appendChild(recaptchaScript)
-        this.items.content_val = this.items.content_val.toString().replaceAll("<br />","\n");
-        this.intro = this.items.content_val;
-        this.itrlist = this.items.hashtagList;
-        this.imgs = this.items.imageList;
-        this.selectedLocation.name = this.items.location_name;
-        this.selectedLocation.position.lat = this.items.lat;
-        this.selectedLocation.position.lng = this.items.lng;
+        // this.items.content_val = this.items.content_val.toString().replaceAll("<br />","\n");
+        
         for(var a=0; a<this.itrlist.length; a++){
             var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
             var div = document.createElement('div');
