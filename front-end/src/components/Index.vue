@@ -11,19 +11,23 @@
             </div>
           </div>
           <div class="polaroid" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">
-            <div class="m-0 pin" style="width:100%; height:100%">
+            <div style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
-              <p class="chcenter text-center text-white">신고가 누적된 게시물입니다.</p>
+              <p class="centertext text-white">신고가 누적된 게시물입니다.</p>
+              <button class="centerbutton btn btn-primary btn-sm" @click="readReCon(con.contentId)">보기</button>
             </div>
           </div>
           <div class="polaroid" v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)">
-            <div class="m-0 pin" style="width:100%; height:100%">
-              <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
-              <p class="chcenter text-center text-white">내가 신고한 게시물입니다.</p>
+            <div style="width:100%; height:100%">
+              <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid blur m-0" style="box-shadow: 3px 3px 3px;"/>
+              <div class="centertext">
+                <p class="text-white">내가 신고한 게시물입니다.</p>
+                <button class="btn btn-outline-light btn-sm py-0" @click="readReCon(con.contentId)">보기</button>
+              </div>
             </div>
           </div>
           <!-- 마우스 오버 했을 때 -->
-          <div class="photo-text-more">
+          <div class="photo-text-more" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
             <div class="">
               <div class="d-block photo-item">
                 <div class="postcard">
@@ -65,7 +69,6 @@
                         <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)">신고 취소</i>
                         <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)">신고</i>
                       </div>
-                      <button class="ch btn btn-primary btn-sm" @click="readReCon(con.contentId)" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">보기</button>
                     </div>
                   </div>
                 </div>
@@ -656,9 +659,28 @@ export default {
   .pa {
     position: relative;
   }
-  .chcenter {
+  .centertext {
     position: absolute;
-    top: 40%;
+    text-align: center;
+    padding: 5px;
+    display: block;
+    top: 37%;
+    left: 50%;
+    background-color: #333;
+    font-size: 13px;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+  }
+  .centerbutton {
+    position: absolute;
+    text-align: center;
+    display: block;
+    top: 45%;
+    left: 50%;
+    margin-top: 70px;
+    background-color: #333;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
   }
   .blur {
     -webkit-filter: blur(5px);
@@ -666,17 +688,12 @@ export default {
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(5px);
-    transform: scale(0.99);
+    /* opacity: 0.7; */
+    transform: scale(0.98);
     overflow: hidden;
     display: block;
-    width: 100%;
-    height: 100%;
-    clip: rect(100px, 100px, 100px, 100px);
-  }
-  .pin {
-    left: 50%;
-    top: 50%;
-    margin-left: 50%
+    width: 80%;
+    height: 80%;
   }
   .modal-dialog { 
       width: 30%; 
