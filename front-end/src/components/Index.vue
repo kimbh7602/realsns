@@ -39,20 +39,20 @@
                         <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                         </div>
                       </div>
-                      <div v-if="con.profile_url != null" style="width:37px;height:37px" class="stamp-img" :class="con.profile_filter">
-                        <img :src="con.profile_url" style="width:37px;height:37px; background: none;" />
+                      <div v-if="con.profileUrl != null" style="width:37px;height:37px" class="stamp-img" :class="con.profileFilter">
+                        <img :src="con.profileUrl" style="width:37px;height:37px; background: none;" />
                       </div>
                       <div v-else>
                         <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
                       </div>
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
-                      <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }} {{ con.contentId }}</p></div>
-                      <div class="mail-message offset-2 pt-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
-                      <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
+                      <div class="mail-title offset-1 col-9 mt-2 ml-3 pb-" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }}</p></div>
+                      <div class="mail-message offset-2 pt-0 pb-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
+                      <div class="col-11 col-offset-1 pt-0 pr-0" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
                     </div>
                     <!-- buttons -->
-                    <div class="mb-3 my-3 d-flex justify-content-around size content-button">
+                    <div class="mb-4 pb-2 d-flex justify-content-around size content-button">
                       <div @click="clickHeart(con.contentId)">
                         <i class="icon-heart" v-if="con.likeButton"></i>
                         <i class="icon-heart-o" v-else></i>
@@ -66,8 +66,8 @@
                         <i class="icon-bookmark-o" v-else></i>
                       </div>
                       <div v-if="con.userId !== loginId">
-                        <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)">신고 취소</i>
-                        <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)">신고</i>
+                        <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)"></i>
+                        <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)"></i>
                       </div>
                     </div>
                   </div>
@@ -144,7 +144,8 @@ export default {
           filter: "",
         }],
         scrapButton: false,
-        report: false,
+        profileUrl: "",
+        profileFilter: "",
       }],
       loginId: store.state.user_id,
       contentErrorMsg: "",
@@ -215,6 +216,8 @@ export default {
                 filter: res.data.resvalue[i].imageList[0].filter,
               }],
               dislike: res.data.resvalue[i].dislike,
+              profileUrl: res.data.resvalue[i].profile_url,
+              profileFilter: res.data.resvalue[i].profile_filter,
             })
           }
         })
@@ -264,6 +267,9 @@ export default {
                       images: this.userLikeList[idx2].images,
                       scrapButton: true,
                       dislike: this.userLikeList[idx2].dislike,
+                      profileUrl: this.userLikeList[idx2].profileUrl,
+                      profileFilter: this.userLikeList[idx2].profileFilter,
+
                     })
                   } else {
                     this.contents.push({
@@ -276,6 +282,8 @@ export default {
                       images: this.userLikeList[idx2].images,
                       scrapButton: false,
                       dislike: this.userLikeList[idx2].dislike,
+                      profileUrl: this.userLikeList[idx2].profileUrl,
+                      profileFilter: this.userLikeList[idx2].profileFilter,
                     })
                   }
                 }
@@ -294,6 +302,8 @@ export default {
                   }],
                   scrapButton: true,
                   dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
                 })
               } else {
                 this.contents.push({
@@ -309,6 +319,8 @@ export default {
                   }],
                   scrapButton: false,
                   dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
                 })
               }
             }
@@ -479,6 +491,9 @@ export default {
                     }],
                     scrapButton: true,
                     dislike: idx.dislike,
+                    profileUrl: idx.profile_url,
+                    profileFilter: idx.profile_filter
+
                   })
                 } else {
                   this.contents.push({
@@ -494,6 +509,8 @@ export default {
                     }],
                     scrapButton: false,
                     dislike: idx.dislike,
+                    profileUrl: idx.profile_url,
+                    profileFilter: idx.profile_filter
                   })
                 }
               }
