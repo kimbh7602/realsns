@@ -38,7 +38,7 @@
                                                   <span class="badge badge-primary badge-pill align-self-center" v-if="fetchedUnReadCnt.cnt > 0"> {{ userDm.cnt }}</span>
                                               </div>
                                           </div>
-                                          <div class="col-1"><span @click="deleteUserDm(userDm.dm_id)"><i class="icon-trash-o"></i></span></div>
+                                          <div class="col-1"><span><i class="icon-trash-o"></i></span></div>
                                       </div>
                                   </a>
                               </virtual-list>
@@ -247,7 +247,7 @@ export default {
     // 선택한 유저가 있을 때
     if (this.targetDm) {
       this.selectUserDm(this.targetDm);
-      console.log(this.targetDm)
+      // console.log(this.targetDm)
     }
   },
   beforeDestroy(){

@@ -11,19 +11,15 @@
                             <span class="m-0">{{ message.send_id }}</span>
                         </div>
                         <div class="m-0 d-flex" style="position:relative;">
-                            <h5><span class="badge bg-white p-2" style="position:absolute; word-break:break-all;">{{ message.message }}</span></h5>
+                            <h5 class="m-0 mt-2"><span class="badge badge-light p-2 text-left" style="white-space:normal;">{{ message.message }}</span></h5>
                             <small class="ml-2 align-self-center">{{ message.timestamp }}</small>
                         </div>
                     </div>
                 </div>
-                <div v-else class="d-flex justify-content-end" style="width:100%; height:auto;">
-                    <div>
-                        <small v-if="message.read_check == 0" class="mr-2 align-self-center text-warning">1</small>
-                        <small class="mr-2 align-self-center">{{ message.timestamp }}</small>
-                    </div>
-                    <div style="word-break: break-all; word-wrap: break-word;">
-                        <span class="badge badge-primary p-2">{{ message.message }}</span>
-                    </div>
+                <div v-else class="text-right">
+                    <h5 class="m-0 mt-2"><span class="badge badge-primary p-2 text-left" style="white-space:normal;">{{ message.message }}</span></h5>
+                    <small v-if="message.read_check == 0" class="mr-2 align-self-center text-warning">1</small>
+                    <small class="align-self-center">{{ message.timestamp }}</small>
                 </div>
             </div>
         </div>

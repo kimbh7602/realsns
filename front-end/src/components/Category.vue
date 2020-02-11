@@ -31,7 +31,7 @@
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
                           <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{uid}}</p></div>
-                          <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{item.content_val}}</div>
+                          <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson;text-align:left;white-space:pre;">{{item.content_val}}</div>
                           <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{item.user_id}}</div>
                         </div>
                         <div class="mb-3 my-3 d-flex justify-content-around size content-button">
