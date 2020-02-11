@@ -3,16 +3,16 @@
         <div class="card-body">
             <div v-for="message in fetchedDirectMessageList" :key="message.id">
                 <div class="row my-2" v-if="message.receive_id == userDm.user_id">
-                    <div class="col-md-1 d-flex justify-content-center align-items-center">
+                    <div class="col-md-1 d-flex justify-content-center align-items-center ml-2">
                         <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'" alt=""> 
                     </div>
-                    <div class="col-md-11 pl-3">
-                        <div class="w-100">
+                    <div class="col-md-10 pl-3">
+                        <!-- <div class="w-100">
                             <span class="m-0">{{ message.send_id }}</span>
-                        </div>
-                        <div class="m-0 d-flex" style="position:relative;">
+                        </div> -->
+                        <div class="m-0" style="position:relative;">
                             <h5 class="m-0 mt-2"><span class="badge badge-light p-2 text-left" style="white-space:normal;">{{ message.message }}</span></h5>
-                            <small class="ml-2 align-self-center">{{ message.timestamp }}</small>
+                            <small class="align-self-center">{{ message.timestamp }}</small>
                         </div>
                     </div>
                 </div>

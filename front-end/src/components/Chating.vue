@@ -123,7 +123,8 @@ export default {
             dm_id: userDm.dm_id,
             user_id: userDm.other_id,
             other_id: userDm.user_id,
-            recent_message: userDm.recent_message
+            recent_message: userDm.recent_message,
+            user: userDm.user
         }
       }
       this.$store.dispatch('FETCH_DIRECTMESSAGELIST', this.userDm);
@@ -145,7 +146,9 @@ export default {
     insertUserDm(follow) {
       const userDm = {
         user_id: this.userId,
-        other_id: follow,
+        other_id: follow.user_id,
+        recent_message: '',
+        user: follow
       };
       this.fetchedUserDmList.push(userDm);
       // console.log(this.fetchedUserDmList, userDm);
