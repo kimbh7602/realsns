@@ -248,6 +248,7 @@
         comments: {},
         tempComments: [],
         editflg: false,
+        origin_content_val:"",
       }
     },
     methods: {
@@ -351,13 +352,12 @@
           .then((res) => {
             if (res.data.resmsg == "게시물 출력 성공") {
               this.items = res.data.resValue;
-              window.console.log(this.items);
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
               // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
+              this.origin_content_val = this.items['content_val'];
               this.items['content_val'] = this.items['content_val'].replace(/\n/g, "<br />");
-              window.console.log(this.items['location_name']);
             }
           });
         // 댓글출력
@@ -473,7 +473,6 @@
       },
 
       findLocation() {
-        window.console.log(this.items['lat']);
         this.$router.push({
           name: "findcontent",
           params: {
@@ -517,7 +516,8 @@
           name: 'updatecontent',
           params:{
             items: this.items,
-            prevpage: "bio",
+            prevpage: "contentupdate",
+            origin_content_val:this.origin_content_val,
           }
         })
       }
