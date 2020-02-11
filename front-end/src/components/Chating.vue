@@ -38,7 +38,7 @@
                                                   <span class="badge badge-primary badge-pill align-self-center" v-if="fetchedUnReadCnt.cnt > 0"> {{ userDm.cnt }}</span>
                                               </div>
                                           </div>
-                                          <div class="col-1"><span @click="deleteUserDm(userDm.dm_id)"><i class="icon-trash-o"></i></span></div>
+                                          <div class="col-1"><span><i class="icon-trash-o"></i></span></div>
                                       </div>
                                   </a>
                               </virtual-list>
@@ -123,7 +123,8 @@ export default {
             dm_id: userDm.dm_id,
             user_id: userDm.other_id,
             other_id: userDm.user_id,
-            recent_message: userDm.recent_message
+            recent_message: userDm.recent_message,
+            user: userDm.user
         }
       }
       this.$store.dispatch('FETCH_DIRECTMESSAGELIST', this.userDm);
@@ -145,7 +146,9 @@ export default {
     insertUserDm(follow) {
       const userDm = {
         user_id: this.userId,
-        other_id: follow,
+        other_id: follow.user_id,
+        recent_message: '',
+        user: follow
       };
       this.fetchedUserDmList.push(userDm);
       // console.log(this.fetchedUserDmList, userDm);
@@ -247,7 +250,7 @@ export default {
     // 선택한 유저가 있을 때
     if (this.targetDm) {
       this.selectUserDm(this.targetDm);
-      console.log(this.targetDm)
+      // console.log(this.targetDm)
     }
   },
   beforeDestroy(){
