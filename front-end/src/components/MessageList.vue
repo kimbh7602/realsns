@@ -6,13 +6,13 @@
                     <div class="col-md-1 d-flex justify-content-center align-items-center ml-2">
                         <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'" alt=""> 
                     </div>
-                    <div class="col-md-10 pl-3">
+                    <div class="col-md-10 pl-3 p-0 d-flex align-self-center">
                         <!-- <div class="w-100">
                             <span class="m-0">{{ message.send_id }}</span>
                         </div> -->
                         <div class="m-0" style="position:relative;">
-                            <h5 class="m-0 mt-2"><span class="badge badge-light p-2 text-left" style="white-space:normal;">{{ message.message }}</span></h5>
-                            <small class="align-self-center">{{ message.timestamp }}</small>
+                            <h5 class="m-0 mt-1"><span class="badge badge-light p-2 text-left" style="white-space:normal;">{{ message.message }}</span></h5>
+                            <small>{{ message.timestamp }}</small>
                         </div>
                     </div>
                 </div>
