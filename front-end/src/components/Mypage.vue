@@ -9,8 +9,8 @@
 
                 <h4 class="text-white">{{userId}}</h4>
                 <div v-if="userId != myId">
-                    <input type="button" v-show="myFollowList.includes(userId)" @click="targetUser = userInfo" data-toggle="modal" data-target="#deleteFollowModal" class="btn btn-outline-primary" value="팔로잉" />
-                    <input type="button" v-show="!myFollowList.includes(userId)" @click="insertFollow(userInfo)" class="btn btn-primary" value="팔로우">
+                    <span v-show="myFollowList.includes(userId)" @click="targetUser = userInfo" data-toggle="modal" data-target="#deleteFollowModal" class="btn btn-outline-primary">팔로잉</span>
+                    <span v-show="!myFollowList.includes(userId)" @click="insertFollow(userInfo)" class="btn btn-primary">팔로우</span>
                     <span @click="goChating()" v-if="myId != userId" class="btn btn-outline-light ml-2" style="width: 72px;"><i class="icon-send"></i></span>
                 </div>
                 <div v-else>
