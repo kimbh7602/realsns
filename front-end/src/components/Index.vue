@@ -19,7 +19,7 @@
           </div>
           <div class="polaroid" v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)">
             <div style="width:100%; height:100%">
-              <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid blur m-0" style="box-shadow: 3px 3px 3px;"/>
+              <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0"/>
               <div class="centertext">
                 <p class="text-white">내가 신고한 게시물입니다.</p>
                 <button class="btn btn-outline-light btn-sm py-0" @click="readReCon(con.contentId)">보기</button>
@@ -688,8 +688,8 @@ export default {
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(5px);
-    /* opacity: 0.7; */
-    transform: scale(0.98);
+    opacity: 0.7;
+    /* transform: scale(1); */
     overflow: hidden;
     display: block;
     width: 80%;
