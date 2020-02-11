@@ -27,7 +27,7 @@
                   </div>
                   <div class="detail-mail-message mail-message offset-2 col-8"
                     style="color:black; font-family: loveson; word-break:break-all;text-align:left;"
-                    v-html="items.content_val">
+                    v-html="change_content_val">
                   </div>
                   <div class="col-11 col-offset-1"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
@@ -248,7 +248,7 @@
         comments: {},
         tempComments: [],
         editflg: false,
-        origin_content_val:"",
+        change_content_val:"",
       }
     },
     methods: {
@@ -356,8 +356,7 @@
                 this.items.profile_filter = "normal";
               }
               // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
-              this.origin_content_val = this.items['content_val'];
-              this.items['content_val'] = this.items['content_val'].replace(/\n/g, "<br />");
+              this.change_content_val = this.items['content_val'].replace(/\n/g, "<br />");
             }
           });
         // 댓글출력
@@ -517,7 +516,6 @@
           params:{
             items: this.items,
             prevpage: "contentupdate",
-            origin_content_val:this.origin_content_val,
           }
         })
       }

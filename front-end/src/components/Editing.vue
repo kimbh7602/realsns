@@ -44,7 +44,7 @@
                 src:"../../public/theme/images/ai.jpg",
                 scale_vertical:false,
                 scale_horizontal:false,
-                ratio:4/3,
+                ratio:1,
             }
         },
         methods:{
@@ -110,8 +110,10 @@
                     console.log(this.items)
 
             this.image = this.$refs.image;
-            if(this.prevpage!="addimage"||this.prevpage!="contentupdate"){
-                this.ratio = 1;
+            if(this.prevpage=="addimage"){
+                this.ratio = 4/3;
+            }else if(this.prevpage=="contentupdate"){
+                this.ratio = 4/3;
             }
             this.cropper = new Cropper(this.image, {
                 aspectRatio: this.ratio,

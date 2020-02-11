@@ -116,12 +116,14 @@ export default {
       });
     },
     goNextUpdate() {
+      window.console.log(this.prevpage)
       this.imgs[this.imgs.length-1].filter = this.filterType;
       this.$router.push({
         name: 'updatecontent', 
         params: {
           uimgs: this.imgs, 
           items: this.items,
+          prevpage: this.prevpage,
         }
       });
     },

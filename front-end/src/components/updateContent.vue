@@ -118,7 +118,7 @@ import $ from "jquery"
 // import store from "../store"
 export default {
     name:"updatecontent",
-    props:["uimgs","items","origin_content_val","prevpage"],
+    props:["uimgs","items","prevpage"],
     data(){
         return{
             intro:"",
@@ -349,7 +349,7 @@ export default {
     },
     mounted(){
         console.log(this.items)
-        this.intro = this.origin_content_val;
+        this.intro = this.items.content_val;
         this.itrlist = this.items.hashtagList;
         if(this.uimgs===undefined){
             this.imgs = this.items.imageList;
