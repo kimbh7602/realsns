@@ -47,12 +47,12 @@
                       </div>
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
-                      <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }} {{ con.contentId }}</p></div>
-                      <div class="mail-message offset-2 pt-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
-                      <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
+                      <div class="mail-title offset-1 col-9 mt-2 ml-3 pb-" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }}</p></div>
+                      <div class="mail-message offset-2 pt-0 pb-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
+                      <div class="col-11 col-offset-1 pt-0 pr-0" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
                     </div>
                     <!-- buttons -->
-                    <div class="mb-3 my-3 d-flex justify-content-around size content-button">
+                    <div class="mb-4 pb-2 d-flex justify-content-around size content-button">
                       <div @click="clickHeart(con.contentId)">
                         <i class="icon-heart" v-if="con.likeButton"></i>
                         <i class="icon-heart-o" v-else></i>
@@ -66,8 +66,8 @@
                         <i class="icon-bookmark-o" v-else></i>
                       </div>
                       <div v-if="con.userId !== loginId">
-                        <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)">신고 취소</i>
-                        <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)">신고</i>
+                        <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)"></i>
+                        <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)"></i>
                       </div>
                     </div>
                   </div>
