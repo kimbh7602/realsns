@@ -14,7 +14,6 @@
             <div class="m-0 pin" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
               <p class="chcenter text-center text-white">신고가 누적된 게시물입니다.</p>
-              <button class="ch btn btn-primary btn-sm" @click="readReCon(con.contentId)">보기</button>
             </div>
           </div>
           <div class="polaroid" v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)">
@@ -30,7 +29,7 @@
                 <div class="postcard">
                   <div class="content">
                     <!-- 누르면 상세 페이지로 -->
-                    <div v-on:click="goDetail(con.content_id)">
+                    <div v-on:click="goDetail(con.contentId)">
                       <!-- 우표 -->
                       <div class="stamp-cover" style="background:black; height:52px; width:52px;">
                         <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
@@ -45,7 +44,7 @@
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
                       <div class="mail-title offset-1 col-9" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }} {{ con.contentId }}</p></div>
-                      <div class="mail-message offset-2 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;">{{ con.contentValue }}</div>
+                      <div class="mail-message offset-2 pt-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
                       <div class="col-11 col-offset-1" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
                     </div>
                     <!-- buttons -->
@@ -66,6 +65,7 @@
                         <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)">신고 취소</i>
                         <i class="icon-bell-o" v-else id="reportId" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(con.contentId, con.timestamp)">신고</i>
                       </div>
+                      <button class="ch btn btn-primary btn-sm" @click="readReCon(con.contentId)" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">보기</button>
                     </div>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default {
             res.data.resvalue[i].user_like = true
             this.userLikeList.push({
               contentId: res.data.resvalue[i].content_id,
-              contentValue: res.data.resvalue[i].content_val,
+              contentValue: res.data.resvalue[i].content_val.replace(/\n/g, "<br />"),
               timestamp: res.data.resvalue[i].timestamp,
               likeButton: res.data.resvalue[i].user_like,
               userId: res.data.resvalue[i].user_id,
@@ -253,7 +253,7 @@ export default {
                   if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
                     this.contents.push({
                       contentId: this.userLikeList[idx2].contentId,
-                      contentValue: this.userLikeList[idx2].contentValue,
+                      contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
                       timestamp: this.userLikeList[idx2].timestamp,
                       likeButton: this.userLikeList[idx2].likeButton,
                       userId: this.userLikeList[idx2].userId,
@@ -265,7 +265,7 @@ export default {
                   } else {
                     this.contents.push({
                       contentId: this.userLikeList[idx2].contentId,
-                      contentValue: this.userLikeList[idx2].contentValue,
+                      contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
                       timestamp: this.userLikeList[idx2].timestamp,
                       likeButton: this.userLikeList[idx2].likeButton,
                       userId: this.userLikeList[idx2].userId,
@@ -280,7 +280,7 @@ export default {
               if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
                 this.contents.push({
                   contentId: res.data.resValue[idx].content_id,
-                  contentValue: res.data.resValue[idx].content_val,
+                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
                   timestamp: res.data.resValue[idx].timestamp,
                   likeButton: res.data.resValue[idx].user_like,
                   userId: res.data.resValue[idx].user_id,
@@ -295,7 +295,7 @@ export default {
               } else {
                 this.contents.push({
                   contentId: res.data.resValue[idx].content_id,
-                  contentValue: res.data.resValue[idx].content_val,
+                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
                   timestamp: res.data.resValue[idx].timestamp,
                   likeButton: res.data.resValue[idx].user_like,
                   userId: res.data.resValue[idx].user_id,
@@ -433,12 +433,6 @@ export default {
           this.followList.splice(idx, 1)
         }
       } else {
-        console.log(this.followList)
-        // if (this.followList.includes(user)) {
-        //   console.log("이미 있음")
-        // } else {
-        //   console.log("no no no ")
-        // }
         http
           .post('/follow/insertFollow', {
             follow_id: user,
@@ -471,7 +465,7 @@ export default {
                 if (this.scrapList.includes(idx.content_id)) {
                   this.contents.push({
                     contentId: idx.content_id,
-                    contentValue: idx.content_val,
+                    contentValue: idx.content_val.replace(/\n/g, "<br />"),
                     timestamp: idx.timestamp,
                     likeButton: idx.user_like,
                     userId: idx.user_id,
@@ -483,11 +477,10 @@ export default {
                     scrapButton: true,
                     dislike: idx.dislike,
                   })
-                } 
-                else {
+                } else {
                   this.contents.push({
                     contentId: idx.content_id,
-                    contentValue: idx.content_val,
+                    contentValue: idx.content_val.replace(/\n/g, "<br />"),
                     timestamp: idx.timestamp,
                     likeButton: idx.user_like,
                     userId: idx.user_id,
@@ -628,32 +621,6 @@ export default {
       }
     },
   },
-  created() {
-    // this.getLike()
-    // this.getScrap()
-    // this.getData()
-    // this.getFollow()
-    // this.getReport()
-    // this.sortList()
-  },
-  watch: {
-    // reportMyList: {
-    //   handler() {
-    //     this.getReport()
-    //     // this.sortList()
-    //   }
-    // },
-    // contents: {
-    //   handler() {
-    //     this.sortList()
-    //   }
-    // },
-    // readContents: {
-    //   handler() {
-    //     this.readReCon()
-    //   }
-    // }
-  },
   mounted() {
     this.getLike()
     this.getScrap()
@@ -688,12 +655,6 @@ export default {
   }
   .pa {
     position: relative;
-  }
-  .ch {
-    position: absolute;
-    top: 1px;
-    right: 10px;
-    font-size: 13px;
   }
   .chcenter {
     position: absolute;
