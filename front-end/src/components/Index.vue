@@ -39,8 +39,8 @@
                         <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                         </div>
                       </div>
-                      <div v-if="con.profile_url != null" style="width:37px;height:37px" class="stamp-img" :class="con.profile_filter">
-                        <img :src="con.profile_url" style="width:37px;height:37px; background: none;" />
+                      <div v-if="con.profileUrl != null" style="width:37px;height:37px" class="stamp-img" :class="con.profileFilter">
+                        <img :src="con.profileUrl" style="width:37px;height:37px; background: none;" />
                       </div>
                       <div v-else>
                         <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
@@ -144,7 +144,8 @@ export default {
           filter: "",
         }],
         scrapButton: false,
-        report: false,
+        profileUrl: "",
+        profileFilter: "",
       }],
       loginId: store.state.user_id,
       contentErrorMsg: "",
@@ -215,6 +216,8 @@ export default {
                 filter: res.data.resvalue[i].imageList[0].filter,
               }],
               dislike: res.data.resvalue[i].dislike,
+              profileUrl: res.data.resvalue[i].profile_url,
+              profileFilter: res.data.resvalue[i].profile_filter,
             })
           }
         })
@@ -264,6 +267,9 @@ export default {
                       images: this.userLikeList[idx2].images,
                       scrapButton: true,
                       dislike: this.userLikeList[idx2].dislike,
+                      profileUrl: this.userLikeList[idx2].profileUrl,
+                      profileFilter: this.userLikeList[idx2].profileFilter,
+
                     })
                   } else {
                     this.contents.push({
@@ -276,6 +282,8 @@ export default {
                       images: this.userLikeList[idx2].images,
                       scrapButton: false,
                       dislike: this.userLikeList[idx2].dislike,
+                      profileUrl: this.userLikeList[idx2].profileUrl,
+                      profileFilter: this.userLikeList[idx2].profileFilter,
                     })
                   }
                 }
@@ -294,6 +302,8 @@ export default {
                   }],
                   scrapButton: true,
                   dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
                 })
               } else {
                 this.contents.push({
@@ -309,6 +319,8 @@ export default {
                   }],
                   scrapButton: false,
                   dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
                 })
               }
             }
@@ -479,6 +491,9 @@ export default {
                     }],
                     scrapButton: true,
                     dislike: idx.dislike,
+                    profileUrl: idx.profile_url,
+                    profileFilter: idx.profile_filter
+
                   })
                 } else {
                   this.contents.push({
@@ -494,6 +509,8 @@ export default {
                     }],
                     scrapButton: false,
                     dislike: idx.dislike,
+                    profileUrl: idx.profile_url,
+                    profileFilter: idx.profile_filter
                   })
                 }
               }
