@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="rounded mx-4" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
+                <div class="rounded" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
                     <div class="text-left p-2" style="position: absolute; word-break:break-all;">
                         <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
                             <span class="text-success" v-if="item!=''">#{{item}} </span>
