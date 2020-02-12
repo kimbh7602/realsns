@@ -43,21 +43,21 @@
                                 <div v-else style="height: 2px; background-color:red">
                                     블록 문제발생
                                 </div>
-                            <div class="row text-center">
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-1 text-center">
-                                <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" />
-                                </div>
-                                <div class="col-md-1  text-center">
-                                    /
+                                <div class="row text-center">
+                                    <div class="col-md-4">
                                     </div>
                                     <div class="col-md-1 text-center">
-                                    {{numOfPages}}
-                            </div>
+                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" />
+                                    </div>
+                                    <div class="col-md-1  text-center">
+                                        /
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        {{numOfPages}}
+                                    </div>
 
-                                <div  class="col-md-2  text-center" @click.prevent="setPage(n)">이동</div>
-                            </div>
+                                    <div class="col-md-2  text-center" @click.prevent="setPage(n)">이동</div>
+                                </div>
                             </div>
                         </div>
                     </div>
