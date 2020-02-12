@@ -55,8 +55,10 @@ public class ContentController {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
 		List<ContentVo> list = ser.contentMyList(user_id);
+		System.out.println(list.toString());
 		msg.put("resmsg", "타임라인 출력 성공");
 		msg.put("resValue", list);
+		
 		resEntity = new ResponseEntity<Map<String,Object>>(msg, HttpStatus.OK);
 		return resEntity;
 	}
