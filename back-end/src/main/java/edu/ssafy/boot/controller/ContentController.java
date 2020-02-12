@@ -75,7 +75,7 @@ public class ContentController {
 	
 	@GetMapping("/detail/{content_id}")
 	@ApiOperation(value = "게시물 출력", response = ContentVo.class)
-	private @ResponseBody ResponseEntity<Map<String, Object>> detail(@PathVariable("content_id") int content_id, HttpServletRequest request) throws ServletException, IOException {
+	private @ResponseBody ResponseEntity<Map<String, Object>> detail(@PathVariable("content_id") int content_id, HttpServletRequest request){
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
 		ContentVo content = ser.detail(content_id);
@@ -92,21 +92,33 @@ public class ContentController {
 			}else{
 				String ext = imageName.substring(imageName.lastIndexOf(".")+1);
 				File file = new File(realPath + File.separator + imageName);
-	
+				
 				if (file.exists()) {
-	
-					fis = new FileInputStream(file);
-					bos = new ByteArrayOutputStream();
-	
-					int len = 0;
-					byte[] buf = new byte[1024];
-					while((len = fis.read(buf)) != -1){
-						bos.write(buf, 0, len);
+					try{
+		
+						fis = new FileInputStream(file);
+						bos = new ByteArrayOutputStream();
+		
+						int len = 0;
+						byte[] buf = new byte[1024];
+						while((len = fis.read(buf)) != -1){
+							bos.write(buf, 0, len);
+						}
+						byte[] fileArray = bos.toByteArray();
+						String imageString = new String(Base64.encodeBase64(fileArray));
+						String changeString = "data:image/"+ext+";base64, "+imageString;
+						imageVo.setBase64(changeString);
+					}catch(RuntimeException | IOException e){
+						System.out.println(e.getStackTrace());
+					}finally {
+						try {
+							if(fis!=null)fis.close();
+							if(bos!=null)bos.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					byte[] fileArray = bos.toByteArray();
-					String imageString = new String(Base64.encodeBase64(fileArray));
-					String changeString = "data:image/"+ext+";base64, "+imageString;
-					imageVo.setBase64(changeString);
 				}
 			}
 		}
@@ -212,10 +224,12 @@ public class ContentController {
 		String realPath = req.getServletContext().getRealPath(path);
 		
 		List<ImageVo> imageList = iSer.imageList(content_id);
+		System.out.println(imageList);
 
 		boolean isDelete = true;
 		for (ImageVo imageVo : imageList) {
 			String savePath = realPath+File.separator+imageVo.getImage_name();
+			System.out.println(savePath);
 			File file = new File(savePath);
 			if(file.exists()){
 				if(file.delete()){

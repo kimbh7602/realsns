@@ -43,10 +43,21 @@
                                 <div v-else style="height: 2px; background-color:red">
                                     블록 문제발생
                                 </div>
-                            </div>
-                            <input type="text" v-model="n" /><div @click.prevent="setPage(n)">가자</div>
-                            <div v-for="n in numOfPages" :key="n" @click.prevent="setPage(n)" class="btn btn-default">
-                                <div>{{n}}</div>
+                                <div class="row text-center">
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" />
+                                    </div>
+                                    <div class="col-md-1  text-center">
+                                        /
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        {{numOfPages}}
+                                    </div>
+
+                                    <div class="col-md-2  text-center" @click.prevent="setPage(n)">이동</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,7 +65,7 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 <style>
     /* #log{
@@ -69,10 +80,11 @@
     export default {
         data() {
             return {
+                n: 1,
                 chain: [],
                 trust: false,
                 currentPage: 1,
-                perPage: 10,
+                perPage: 25,
                 perPageOptions: [3, 6],
             }
         },

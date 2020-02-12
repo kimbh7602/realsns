@@ -321,7 +321,9 @@ export default {
         http
           .get(`/follow/followList/${this.myId}`)
           .then(response => {
-              this.myFollowList = response.data.resvalue;
+              response.data.resvalue.forEach(user => {
+                        this.myFollowList.push(user.user_id)
+                    })
           })
           .catch(e => console.log(e))
       },
@@ -382,10 +384,7 @@ small {
 }tr:hover{
   background-color: rgba(49, 49, 49, 0.747);
 }
-@media screen and (max-width: 768px) {
-    /* 모바일에 사용될 스트일 시트를 여기에 작성합니다. */
-    div { 
-      background-color: lightgreen; 
-    }
+.nav-link {
+  cursor: pointer;
 }
 </style>
