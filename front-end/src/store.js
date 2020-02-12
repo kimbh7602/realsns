@@ -87,6 +87,7 @@ export default new Vuex.Store({
             sessionStorage.removeItem("user_id");
             sessionStorage.removeItem("islogin");
             sessionStorage.removeItem("isadmin");
+            sessionStorage.removeItem("noticount");
             state.user_id='';
             state.noticount=0;
             state.islogin=false;
@@ -131,10 +132,6 @@ export default new Vuex.Store({
         SET_UNREADCNT(state, unReadCnt) {
             state.unReadCnt = unReadCnt;
         },
-        SET_NOTI(state, noticount) {
-            sessionStorage.setItem("noticount",noticount)
-            state.noticount = sessionStorage.getItem("noticount");
-        },
         SET_RECENTMESSAGE(state, message) {
             state.userDmList.forEach(element => {
                 if(element.dm_id == message.dm_id){
@@ -147,7 +144,11 @@ export default new Vuex.Store({
         },
         REMOVE_TARGETDM(state){
             state.tagetDM = {};
-        }
+        },
+        SET_NOTI(state, noticount) {
+            sessionStorage.setItem("noticount",noticount)
+            state.noticount = sessionStorage.getItem("noticount");
+        },
     },
     actions:{
         FETCH_USERDMLIST(context, userId) {
