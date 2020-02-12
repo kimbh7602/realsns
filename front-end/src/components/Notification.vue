@@ -6,36 +6,26 @@
             <div class="mb-5" data-aos="fade-up">
               <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2>
               <div class="text-right"><button class="btn btn-outline-success" @click="allRead">모두 읽음</button></div>
-              <nav class="navbar navbar-expand-lg " style="background-color: black;">
-                <button class="navbar-toggler" type="dropdown" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="dropdown" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="nav-link" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNotilength}}</span></a>
-                    <a class="nav-link" :class="{'active': check=='follow'}" @click="check='follow'">팔로우 <span class="badge badge-dark">{{followNoti}}</span></a>
-                    <a class="nav-link" :class="{'active': check=='like'}" @click="check='like'">좋아요 <span class="badge badge-dark">{{likeNoti}}</span></a>
-                    <a class="nav-link" :class="{'active': check=='scrap'}" @click="check='scrap'">스크랩 <span class="badge badge-dark">{{scrapNoti}}</span></a>
-                    <a class="nav-link" :class="{'active': check=='report'}" @click="check='report'">신고 <span class="badge badge-dark">{{reportNoti}}</span></a>
-                  </div>
+              <nav class="navbar navbar-expand-lg pb-0" style="background-color: black;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="icon-menu" style="font-size: 1.5em;"></i>
                 </button>
-                
                 <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav nav nav-tabs mr-auto" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNotilength}}</span></a>
+                  <ul class="navbar-nav nav nav-tabs row" id="myTab" role="tablist">
+                    <li class="nav-item col-lg px-1">
+                      <a class="nav-link m-0 px-0 text-center" :class="{'active': check=='all'}" @click="check='all'">전체 <span class="badge badge-primary">{{allNotilength}}</span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" :class="{'active': check=='follow'}" @click="check='follow'">팔로우 <span class="badge badge-dark">{{followNoti}}</span></a>
+                    <li class="nav-item col-lg px-1">
+                      <a class="nav-link m-0 px-0 text-center" :class="{'active': check=='follow'}" @click="check='follow'">팔로우 <span class="badge badge-dark">{{followNoti}}</span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" :class="{'active': check=='like'}" @click="check='like'">좋아요 <span class="badge badge-dark">{{likeNoti}}</span></a>
+                    <li class="nav-item col-lg px-1">
+                      <a class="nav-link m-0 px-0 text-center" :class="{'active': check=='like'}" @click="check='like'">좋아요 <span class="badge badge-dark">{{likeNoti}}</span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" :class="{'active': check=='scrap'}" @click="check='scrap'">스크랩 <span class="badge badge-dark">{{scrapNoti}}</span></a>
+                    <li class="nav-item col-lg px-1">
+                      <a class="nav-link m-0 px-0 text-center" :class="{'active': check=='scrap'}" @click="check='scrap'">스크랩 <span class="badge badge-dark">{{scrapNoti}}</span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" :class="{'active': check=='report'}" @click="check='report'">신고 <span class="badge badge-dark">{{reportNoti}}</span></a>
+                    <li class="nav-item col-lg px-1">
+                      <a class="nav-link m-0 px-0 text-center" :class="{'active': check=='report'}" @click="check='report'">신고 <span class="badge badge-dark">{{reportNoti}}</span></a>
                     </li>
                   </ul>
                 </div>
@@ -348,9 +338,6 @@ export default {
             return response
           })
           .catch(e => console.log(e))
-          .finally(()=>{
-              this.$store.dispatch('FETCH_NOTI', this.myId);
-          })
         
         if (item.is_checked == false) {
           this.allNotilength -= 1;
