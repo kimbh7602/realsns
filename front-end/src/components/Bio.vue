@@ -11,13 +11,12 @@
                   <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                   </div>
                 </div>
-                <div :class="items.profile_filter">
-                  <img :src="items.profile_url" style="width:37px;height:37px; z-index:4; background: none;"
-                    class="stamp-img" />
-                </div>
-                <!-- <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;"
-                  class="stamp-img" /> -->
-                <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index:5;"
+                <!-- <div :class="items.profile_filter">
+                  <img :src="items.profile_url" style="width:37px;height:37px; z-index:4; background: none;" class="stamp-img" />
+                </div> -->
+                <img :src="items.profile_url" :class="items.profile_filter" style="width:37px;height:37px; z-index:4;"
+                  class="stamp-img" />
+                <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px; z-index: 5;"
                   alt="Postage mark" class="postmark">
                 <!-- 끝 -->
                 <div class="col-12 col-lg-6"
@@ -27,7 +26,7 @@
                   </div>
                   <div class="detail-mail-message mail-message offset-2 col-8"
                     style="color:black; font-family: loveson; word-break:break-all;text-align:left;"
-                    v-html="items.content_val">
+                    v-html="change_content_val">
                   </div>
                   <div class="col-11 col-offset-1"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
@@ -213,10 +212,11 @@
                     <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
                     <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
                   </div>
-                  <div v-if="items.user_id == uid"
-                    style="margin-top:20px; padding-left:20px; color:#007acc;">
-                    <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block" value="수정">
-                    <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block" value="삭제">
+                  <div v-if="items.user_id == uid" style="margin-top:20px; padding-left:20px; color:#007acc;">
+                    <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block"
+                      value="수정">
+                    <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block"
+                      value="삭제">
                     <!-- <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span> -->
                   </div>
                 </div>
@@ -237,7 +237,6 @@
     props: ['cid'],
     data() {
       return {
-        tmpconid: "0",
         bell: this.iconbell,
         contentId: "",
         items: {},
@@ -248,6 +247,7 @@
         comments: {},
         tempComments: [],
         editflg: false,
+        change_content_val: "",
       }
     },
     methods: {
@@ -351,18 +351,16 @@
           .then((res) => {
             if (res.data.resmsg == "게시물 출력 성공") {
               this.items = res.data.resValue;
-              window.console.log(this.items);
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
               // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
-              this.items['content_val'] = this.items['content_val'].replace(/\n/g, "<br />");
-              window.console.log(this.items['location_name']);
+              this.change_content_val = this.items['content_val'].replace(/\n/g, "<br />");
             }
           });
         // 댓글출력
         http
-          .get('/comment/commentsList/' + this.tmpconid)
+          .get('/comment/commentsList/' + this.cid)
           .then((res) => {
             if (res.data.resmsg == "댓글 출력성공") {
               this.comments = res.data.resvalue;
@@ -421,7 +419,7 @@
           http
             .post("comment/insertComment", {
               re_comment_id: "",
-              content_id: this.contentId,
+              content_id: this.cid,
               user_id: this.$store.state.user_id,
               target_id: "",
               comment_val: this.comment_val,
@@ -449,7 +447,7 @@
         http
           .post("comment/insertReComment", {
             comment_id: commentid,
-            content_id: this.contentId,
+            content_id: this.cid,
             user_id: this.$store.state.user_id,
             target_id: "",
             comment_val: this.re_comment_val,
@@ -473,7 +471,6 @@
       },
 
       findLocation() {
-        window.console.log(this.items['lat']);
         this.$router.push({
           name: "findcontent",
           params: {
@@ -492,7 +489,7 @@
           }
         });
       },
-      deleteContent(){
+      deleteContent() {
         http
           .delete("content/deleteContent/" + this.items.content_id)
           .then(response => {
@@ -512,12 +509,12 @@
           })
           .finally(() => (this.loading = false));
       },
-      updateContent(){
+      updateContent() {
         this.$router.push({
           name: 'updatecontent',
-          params:{
+          params: {
             items: this.items,
-            prevpage: "bio",
+            prevpage: "contentupdate",
           }
         })
       }
@@ -607,11 +604,12 @@
     }
   }
 
-  .bio-btn{
-    color:black;
+  .bio-btn {
+    color: black;
   }
-  .bio-btn:hover{
-    color:white;
+
+  .bio-btn:hover {
+    color: white;
   }
 
 
