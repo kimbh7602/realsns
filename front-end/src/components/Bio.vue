@@ -377,8 +377,7 @@
                   this.comments[i].check = false;
                 }
               }
-              console.log(this.comments)
-              if (this.comment[i] > 3) {
+              if (this.comments.length > 3) {
                 this.isComment = true;
               } else {
                 this.isComment = false;
@@ -390,14 +389,14 @@
 
           });
 
-        if (this.comments.length != 0) {
-          this.comments.some(comment => {
-            if (this.tempComments.length >= 2) {
-              return true;
-            }
-            this.tempComments.push(comment);
-          })
-        }
+        // if (this.comments.length != 0) {
+        //   this.comments.some(comment => {
+        //     if (this.tempComments.length >= 2) {
+        //       return true;
+        //     }
+        //     this.tempComments.push(comment);
+        //   })
+        // }
       },
       // fancy() {
       //   $.fancybox.open([{
