@@ -22,11 +22,9 @@
                             <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                             </div>
                           </div>
-                          <div v-if="item.profile_url != null" style="width:37px;height:37px" class="stamp-img" :class="item.profile_filter">
+                          <div class="stamp-img" style="top:25px;right:25px;height:43px;width:43px;background-color:white;"></div>
+                          <div style="width:37px;height:37px" class="stamp-img" :class="item.profile_filter">
                             <img :src="item.profile_url" style="width:37px;height:37px; background: none;" />
-                          </div>
-                          <div v-else>
-                            <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
                           </div>
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
