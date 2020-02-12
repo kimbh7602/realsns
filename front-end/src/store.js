@@ -22,6 +22,7 @@ export default new Vuex.Store({
         followerList: [],
         unReadCnt: 0,
         targetDm: {},
+        noticount:0,
     },
     getters:{
         fetchedUserDmList(state) {
@@ -38,6 +39,10 @@ export default new Vuex.Store({
         },
         fetchedUnReadCnt(state) {
             return state.unReadCnt;
+        },
+        fetchednoticount(state) {
+            state.noticount = sessionStorage.getItem("noticount");
+            return state.noticount;
         },
     },
     mutations:{
@@ -83,6 +88,7 @@ export default new Vuex.Store({
             sessionStorage.removeItem("islogin");
             sessionStorage.removeItem("isadmin");
             state.user_id='';
+            state.noticount=0;
             state.islogin=false;
             state.isadmin=false;
             state.userDmList = [];
@@ -124,6 +130,10 @@ export default new Vuex.Store({
         },
         SET_UNREADCNT(state, unReadCnt) {
             state.unReadCnt = unReadCnt;
+        },
+        SET_NOTI(state, noticount) {
+            sessionStorage.setItem("noticount",noticount)
+            state.noticount = sessionStorage.getItem("noticount");
         },
         SET_RECENTMESSAGE(state, message) {
             state.userDmList.forEach(element => {
@@ -238,6 +248,15 @@ export default new Vuex.Store({
                 .post("/follow/insertFollow", follow)
                 .then(response => {
                     return response
+                })
+                .catch(e => console.log(e))
+        },
+        FETCH_NOTI(context, userid) {
+            http
+                .get(`/notification/uncheckedList/${userid}`)
+                .then(response => {
+                    context.commit('SET_NOTI', response.data.resvalue.length);
+                    return response.data.resvalue.length;
                 })
                 .catch(e => console.log(e))
         },

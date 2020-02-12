@@ -348,6 +348,9 @@ export default {
             return response
           })
           .catch(e => console.log(e))
+          .finally(()=>{
+              this.$store.dispatch('FETCH_NOTI', this.myId);
+          })
         
         if (item.is_checked == false) {
           this.allNotilength -= 1;

@@ -13,7 +13,7 @@
             <router-link to="/notification/" class="m-0">
                 <i class="icon-bell text-white" style="font-size:1.5em;">
                     <span class="badge" style="font-size:0.5em;">
-                        <em>{{notify}}</em>
+                        <em>{{$store.getters.fetchednoticount}}</em>
                     </span>
                 </i>
             </router-link>
@@ -100,15 +100,6 @@ export default {
             document.getElementById('modalBtn').click();
             this.$router.push("/login");
         },
-        fetchNoti() {
-            http
-                .get(`/notification/uncheckedList/${this.$store.state.user_id}`)
-                .then(response => {
-                    // console.log(response.data)
-                    this.notify = response.length;
-                })
-                .catch(e => console.log(e))
-      },
     },
     computed: {
         loginCheck: () => {
@@ -117,6 +108,14 @@ export default {
         AdminCheck: () => {
             return store.state.isadmin;
         },
+        getNoti(){
+            return store.getters.fetchednoticount
+        }
+    },
+    watch:{
+        fetchednoticount(n_val,o_val){
+            console.log(n_val+" "+o_val)
+        }
     },
     created() {
         http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
