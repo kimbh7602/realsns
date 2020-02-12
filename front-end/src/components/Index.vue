@@ -39,11 +39,9 @@
                         <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                         </div>
                       </div>
-                      <div v-if="con.profileUrl != null" style="width:37px;height:37px" class="stamp-img" :class="con.profileFilter">
+                      <div class="stamp-img" style="top:25px;right:25px;height:43px;width:43px;background-color:white;"></div>
+                      <div style="width:37px;height:37px" class="stamp-img" :class="con.profileFilter">
                         <img :src="con.profileUrl" style="width:37px;height:37px; background: none;" />
-                      </div>
-                      <div v-else>
-                        <img src="../../public/theme/images/ai.jpg" style="width:37px;height:37px;" class="stamp-img"/>
                       </div>
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
