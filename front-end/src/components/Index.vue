@@ -45,12 +45,12 @@
                       </div>
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
-                      <div class="mail-title offset-1 col-9 mt-2 ml-3 pb-" style="text-align:left;"><p style="color:black; font-size:2em; font-family: loveson;">Dear {{ loginId }}</p></div>
-                      <div class="mail-message offset-2 pt-0 pb-0 col-8 ellipsis" style="color:black; font-family: loveson; word-break:break-all;text-align:left;" v-html="con.contentValue">{{ con.contentValue }}</div>
-                      <div class="col-11 col-offset-1 pt-0 pr-0" style="color:black; font-family: loveson; word-break:break-all;text-align:right;">from {{ con.userId }}</div>
+                      <div class="mail-title offset-1 col-9 mt-2 ml-3 pb-" style="text-align:left;"><p class="mail-title-val">Dear {{ loginId }}</p></div>
+                      <div class="mail-message offset-2 pt-0 pb-0 col-8 ellipsis mail-message-val" v-html="con.contentValue">{{ con.contentValue }}</div>
+                      <div class="col-11 col-offset-1 pt-0 pr-0 mail-from-val">from {{ con.userId }}</div>
                     </div>
                     <!-- buttons -->
-                    <div class="mb-4 pb-2 d-flex justify-content-around size content-button">
+                    <div class="mb-4 pb-2 d-flex justify-content-around size content-button" style="font-size:1vw">
                       <div @click="clickHeart(con.contentId)">
                         <i class="icon-heart" v-if="con.likeButton"></i>
                         <i class="icon-heart-o" v-else></i>
@@ -667,16 +667,7 @@ export default {
 }
 </script>
 <style scoped>
-  .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    word-wrap: break-word;
-    line-height: 2;
-    height: 6rem;
-  }
+
   .pa {
     position: relative;
   }

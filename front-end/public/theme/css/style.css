@@ -1148,13 +1148,65 @@ figure.snip1477.hover img {
     background: #000 url('http://www.letstravelsomewhere.com/wp-content/themes/letstravelsomewhere2013/images/bg-airmail-5.jpg'); 
 }
 
+/*3줄까지 보이게*/
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 2;
+  height: 6rem;
+}
+
 .polaroid {
+  height:319px;
   background:#000; /*Change this to a background image or remove*/
   border:solid #fff;
   border-width:8px 11px 11px 8px;
   box-shadow:1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */
   -webkit-box-shadow:1px 1px 5px #333;
   -moz-box-shadow:1px 1px 5px #333;
+}
+@media (max-width: 575.98px) {
+  .postcard{
+    height:219px;
+  }
+  .photo-item .postcard .content{
+    height:219px;
+  }
+  .polaroid{
+    height:219px;
+  }
+  .photo-item .postcard .content .ellipsis{
+    -webkit-line-clamp: 3;
+    height:5rem;
+  }
+  .photo-item .postcard .content .mail-title-val{
+    margin-bottom: -10px;
+    font-size:1.5em;
+  }
+  .photo-item .postcard .content .mail-message-val{
+    margin-bottom:-5px;
+    font-size:0.8em;
+  }
+  .photo-item .postcard .content .mail-from-val{
+    margin-top:0px;
+    font-size:0.8em;
+  }
+}
+
+.mail-title-val{
+  color:black; font-size:2em; font-family: loveson;
+}
+
+.mail-message-val{
+  color:black; font-family: loveson; word-break:break-all;text-align:left; margin-bottom: 5px;
+}
+
+.mail-from-val{
+  color:black; font-family: loveson; word-break:break-all;text-align:right; margin-top:15px;
 }
 
 .postcard .content {

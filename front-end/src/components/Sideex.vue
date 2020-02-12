@@ -38,14 +38,14 @@
 
         <div class="main-menu">
         <ul class="js-clone-nav">
-            <li v-show="loginCheck" class="active"><router-link to="/">Home  <i class="icon-home text-white" style="font-size:1.3em;"></i></router-link></li>
+            <li v-show="loginCheck"><router-link to="/">Home  <i class="icon-home text-white" style="font-size:1.3em;"></i></router-link></li>
             <!-- <li><router-link to="/bio">Bio</router-link></li> -->
             <!-- <li v-show="loginCheck"><router-link to="/category">Category</router-link></li> -->
             <!-- <li v-show="loginCheck"><router-link to="/blog">Blog</router-link></li> -->
             <!-- <li v-show="loginCheck"><router-link to="/single">Single</router-link></li> -->
             <!-- <li><router-link to="/register">Register</router-link></li> -->
             <!-- <li><router-link to="/password">Password</router-link></li> -->
-            <li v-show="AdminCheck"><router-link to="/admin">Admin  <i class="icon-info-circle text-white" style="font-size:1.3em;"></i></router-link></li>
+            <li v-show="AdminCheck=='true'"><router-link to="/admin">{{AdminCheck}}Admin  <i class="icon-info-circle text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link :to="'/mypage/'+$store.state.user_id">MyPage  <i class="icon-user-circle text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link to="/chating">Chatting  <i class="icon-paper-plane-o text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link to="/addimage">Write  <i class="icon-camera-retro text-white" style="font-size:1.3em;"></i></router-link></li>
@@ -96,7 +96,7 @@ export default {
         logout(){
             // this.$socket.emit('logout', this.$store.state.user_id);
             this.$store.commit("logout");
-            this.isAdmin=false;
+            // this.isAdmin=false;
             document.getElementById('modalBtn').click();
             this.$router.push("/login");
         },
@@ -108,14 +108,6 @@ export default {
         AdminCheck: () => {
             return store.state.isadmin;
         },
-        getNoti(){
-            return store.getters.fetchednoticount
-        }
-    },
-    watch:{
-        fetchednoticount(n_val,o_val){
-            console.log(n_val+" "+o_val)
-        }
     },
     created() {
         http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
