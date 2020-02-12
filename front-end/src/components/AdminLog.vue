@@ -44,10 +44,14 @@
                                     블록 문제발생
                                 </div>
                             </div>
-                            <input type="text" v-model="n" /><div @click.prevent="setPage(n)">가자</div>
-                            <div v-for="n in numOfPages" :key="n" @click.prevent="setPage(n)" class="btn btn-default">
-                                <div>{{n}}</div>
+                            <input type="text" v-model="n" v-on:keyup.enter="setPage(n)" />
+                            <div>
+                                /{{numOfPages}}
                             </div>
+                            <div @click.prevent="setPage(n)">가자</div>
+                            <!-- <div v-for="n in numOfPages" :key="n" @click.prevent="setPage(n)" class="btn btn-default">
+                                <div>{{n}}</div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
