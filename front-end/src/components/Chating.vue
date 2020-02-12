@@ -52,7 +52,7 @@
                                       </div>
                                       <div class="d-flex col-md-10 justify-content-between align-self-center">
                                         <p class="mb-0 ml-2">{{ follow.user_id }}</p>
-                                        <button class="btn btn-sm btn-info" @click="insertUserDm(follow);">선택</button>
+                                        <button v-if="isChating(follow.user_id)" class="btn btn-sm btn-info" @click="insertUserDm(follow);">선택</button>
                                       </div>
                                     </div>
                                   </a>
@@ -153,6 +153,11 @@ export default {
           return response
         })
         .catch(e => console.log(e))
+      
+      this.socket.emit('read', {
+        send_id: userDm.other_id,
+        receive_id: userDm.user_id
+      });
       return false;
     },
     add() {
@@ -168,11 +173,17 @@ export default {
         recent_message: '',
         user: follow
       };
-      this.fetchedUserDmList.push(userDm);
+      // this.$store.dispatch('INSERT_USERDM', userDm);
+      http
+        .post('/userDm/insertUserDm', userDm)
+        .then(response => {
+          userDm.dm_id = response.data.resValue.dm_id;
+          this.fetchedUserDmList.push(userDm);
+          this.check = true;
+          this.selectUserDm(userDm);
+        })
+        .catch(e => console.log(e))
       // console.log(this.fetchedUserDmList, userDm);
-      this.$store.dispatch('INSERT_USERDM', userDm);
-      this.check = true;
-      this.selectUserDm(userDm);
     },
     insertDirectMessage(message) {
       // 소켓으로 메시지 전송
@@ -202,6 +213,17 @@ export default {
 
       const idx = this.fetchedUserDmList.indexOf(userDm);
       if (idx > -1) this.fetchedUserDmList.splice(idx, 1);
+    },
+
+    isChating(user_id) {
+      let flag = true;
+      this.fetchedUserDmList.forEach(dm => {
+        if(dm.user_id == user_id || dm.other_id == user_id){
+          flag = false;
+        }
+      })
+
+      return flag;
     }
   },
 
@@ -215,11 +237,7 @@ export default {
     //   // this.$socket.disconnect(true);
     // });
     
-    this.socket = io('http://192.168.100.41:3000');
     
-    this.socket.emit('login', {
-      user_id : this.userId
-    });
     // this.$socket.socket = io('http://192.168.100.41:3000');
     // this.$login({
     //                   user_id : this.userId
@@ -242,7 +260,6 @@ export default {
     this.socket.on('chat', (data) => {
       if((this.userDm.user_id == data.send_id && this.userDm.other_id == data.receive_id) || (this.userDm.user_id == data.receive_id && this.userDm.other_id == data.send_id)){
         this.PUSH_MSG_DATA(data);
-        window.console.log(data);
         if(data.receive_id == this.$store.state.user_id){
            http
             .put('/directMessage/readCheck', this.userDm)
@@ -250,6 +267,8 @@ export default {
               return response
             })
             .catch(e => console.log(e))
+
+          this.socket.emit('read', data);
         }
       }
       // $ths.datas.push(data);
@@ -262,6 +281,18 @@ export default {
       // })
       // this.$socket.disconnect();
     });
+
+    this.socket.on('read', (data) => {
+      if((this.userDm.user_id == data.send_id && this.userDm.other_id == data.receive_id) || (this.userDm.user_id == data.receive_id && this.userDm.other_id == data.send_id)){
+        if(data.send_id == this.$store.state.user_id){
+          this.fetchedDirectMessageList.forEach(element => {
+            if(element.send_id == this.$store.state.user_id){
+              element.read_check = true;
+            }
+          });
+        }
+      }
+    })
 
     // this.socket.on('notification', (data) => {
     //   // window.console.log('notification', data, this.$store.state.user_id);
@@ -277,8 +308,15 @@ export default {
     this.$store.dispatch('FETCH_USERDMLIST', this.userId);
   },
   created() {
+    this.socket = io('http://192.168.100.41:3000');
+    
+    this.socket.emit('login', {
+      user_id : this.userId
+    });
+
     // 선택한 유저가 있을 때
-    if (this.targetDm) {
+    if (this.targetDm != null && this.targetDm != undefined) {
+      window.console.log(this.targetDm);
       this.selectUserDm(this.targetDm);
       // console.log(this.targetDm)
     }

@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bb01a38-8b76-46b3-8b9b-9e680786fe5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/ContentDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/ContentDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Notification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Notification.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserDmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserDmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/IUserDmDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/IUserDmDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/UserDmDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/UserDmDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/IUserDmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/IUserDmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/UserDmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/UserDmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/directMessageSQLMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/directMessageSQLMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/userDmSQLMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/userDmSQLMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat_server-master/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chat_server-master/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +98,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="50" />
     <option name="y" value="-35" />
     <option name="width" value="1750" />
@@ -182,7 +188,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

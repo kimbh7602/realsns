@@ -21,7 +21,7 @@ export default new Vuex.Store({
         followList: [],
         followerList: [],
         unReadCnt: 0,
-        targetDm: {},
+        targetDm: null,
     },
     getters:{
         fetchedUserDmList(state) {
