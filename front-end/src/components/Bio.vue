@@ -193,12 +193,14 @@
                       data-scrollbar="true" data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
-                          <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
-                            <div :class="img.filter" style="width:100%; height:100%;">
-                              <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
-                                alt="Image" />
-                            </div>
-                          </a>
+                            <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
+                              <div style="background-color:black;">
+                                <div :class="img.filter" style="width:100%; height:100%;">
+                                  <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
+                                    alt="Image" />
+                                </div>
+                              </div>
+                            </a>
                         </div>
                       </div>
                     </div>
@@ -358,7 +360,6 @@
               }
               // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
               this.change_content_val = this.items['content_val'].replace(/\n/g, "<br />");
-              // console.log(this.items.hashtagList)
               if(this.items.hashtagList.length==0||this.items.hashtagList[0]==""){
                 this.nohashtag = true;
               }
