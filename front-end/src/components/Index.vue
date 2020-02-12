@@ -97,7 +97,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                   <button class="dropdown-item" type="button" @click="sendReport(options[0].op1)">{{ options[0].op1 }}</button>
                   <button class="dropdown-item" type="button" @click="sendReport(options[0].op2)">{{ options[0].op2 }}</button>
-                  <button class="dropdown-item" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{{ options[0].op3 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op3)" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{{ options[0].op3 }}</button>
                 </div>
               </div>
 
@@ -105,7 +105,7 @@
                 <div class="card card-body">
                   <input type="text" v-model="options[0].op4" placeholder="기타를 선택하신 분은 신고 내용을 입력해주세요.">
                 </div>
-                <input type="button" value="입력" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" @click="sendReport(options[0].op4)">
+                <input class="btn btn-outline-info" type="button" value="입력" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" @click="sendReport2(options[0].op4)">
               </div>
             </div>
             <div class="modal-footer">
@@ -170,12 +170,15 @@ export default {
       this.info.push({
         content_id: cid,
         user_id: this.loginId,
-        report_category: "report",
+        report_category: "",
         report_val: "",
         timestamp: time,
       })
     },
-    sendReport(report_val) {
+    sendReport(report_category) {
+      this.info[0].report_category = report_category
+    },
+    sendReport2(report_val) {
       this.info[0].report_val = report_val
     },
     readReCon(cid) {
@@ -580,8 +583,11 @@ export default {
       }
     },
     clickBell() {
-      if (this.info[0].report_val == "") {
+      if (this.info[0].report_category == "") {
         this.$store.commit('setModalText', "신고 사항을 선택해주십시오.");
+        document.getElementById('modalBtn').click();
+      } else if (this.info[0].report_category == "기타" && this.info[0].report_val == "") {
+        this.$store.commit('setModalText', "기타를 선택하신 이유를 적어주십시오.");
         document.getElementById('modalBtn').click();
       } else {
         http

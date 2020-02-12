@@ -304,7 +304,9 @@ export default {
         http
           .get(`/follow/followList/${this.myId}`)
           .then(response => {
-              this.myFollowList = response.data.resvalue;
+              response.data.resvalue.forEach(user => {
+                        this.myFollowList.push(user.user_id)
+                    })
           })
           .catch(e => console.log(e))
       },
@@ -364,5 +366,9 @@ small {
   opacity: 0.5;
 }tr:hover{
   background-color: rgba(49, 49, 49, 0.747);
+}
+
+.nav-link {
+  cursor: pointer;
 }
 </style>
