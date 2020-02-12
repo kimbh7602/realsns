@@ -203,7 +203,7 @@
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div v-if="!nohashtag">
                     <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)"
                         style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info"
                         :value="'#'+tag" /></span>
@@ -249,6 +249,7 @@
         tempComments: [],
         editflg: false,
         change_content_val: "",
+        nohashtag:false,
       }
     },
     methods: {
@@ -357,6 +358,10 @@
               }
               // this.items['content_val'] = this.items['content_val'].replace(/\r/g, "<br />");
               this.change_content_val = this.items['content_val'].replace(/\n/g, "<br />");
+              // console.log(this.items.hashtagList)
+              if(this.items.hashtagList.length==0||this.items.hashtagList[0]==""){
+                this.nohashtag = true;
+              }
             }
           });
         // 댓글출력

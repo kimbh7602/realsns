@@ -35,7 +35,7 @@
                     <!-- 누르면 상세 페이지로 -->
                     <div v-on:click="goDetail(con.contentId)">
                       <!-- 우표 -->
-                      <div class="stamp-cover" style="background:black; height:52px; width:52px;">
+                      <div class="stamp-cover">
                         <div class="stamp" style=" margin:1px; float:right; background-color:white; height:50px; width:50px;">
                         </div>
                       </div>

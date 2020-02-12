@@ -26,7 +26,7 @@
         </div>
         
         <div class="site-logo" style="margin-left:3%;">
-            <router-link style="font-family: hand_mail; font-size:2.5em" v-show="loginCheck" to="/">떠올리다</router-link>
+            <router-link class="logo-text" v-show="loginCheck" to="/">떠올리다</router-link>
             <!-- <router-link style="font-family: hand_mail; font-size:2.5em" v-show="!loginCheck" to="/login">떠올리다</router-link> -->
         </div>
         <div v-if="loginCheck" class="site-logo site-btn">
@@ -45,7 +45,7 @@
             <!-- <li v-show="loginCheck"><router-link to="/single">Single</router-link></li> -->
             <!-- <li><router-link to="/register">Register</router-link></li> -->
             <!-- <li><router-link to="/password">Password</router-link></li> -->
-            <li v-show="AdminCheck=='true'"><router-link to="/admin">{{AdminCheck}}Admin  <i class="icon-info-circle text-white" style="font-size:1.3em;"></i></router-link></li>
+            <li v-show="AdminCheck=='true'"><router-link to="/admin">Admin  <i class="icon-info-circle text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link :to="'/mypage/'+$store.state.user_id">MyPage  <i class="icon-user-circle text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link to="/chating">Chatting  <i class="icon-paper-plane-o text-white" style="font-size:1.3em;"></i></router-link></li>
             <li v-show="loginCheck"><router-link to="/addimage">Write  <i class="icon-camera-retro text-white" style="font-size:1.3em;"></i></router-link></li>
