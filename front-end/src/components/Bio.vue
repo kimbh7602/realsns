@@ -213,10 +213,11 @@
                     <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
                     <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
                   </div>
-                  <div v-if="items.user_id == uid"
-                    style="margin-top:20px; padding-left:20px; color:#007acc;">
-                    <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block" value="수정">
-                    <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block" value="삭제">
+                  <div v-if="items.user_id == uid" style="margin-top:20px; padding-left:20px; color:#007acc;">
+                    <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block"
+                      value="수정">
+                    <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block"
+                      value="삭제">
                     <!-- <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span> -->
                   </div>
                 </div>
@@ -237,7 +238,6 @@
     props: ['cid'],
     data() {
       return {
-        tmpconid: "0",
         bell: this.iconbell,
         contentId: "",
         items: {},
@@ -248,7 +248,7 @@
         comments: {},
         tempComments: [],
         editflg: false,
-        change_content_val:"",
+        change_content_val: "",
       }
     },
     methods: {
@@ -361,7 +361,7 @@
           });
         // 댓글출력
         http
-          .get('/comment/commentsList/' + this.tmpconid)
+          .get('/comment/commentsList/' + this.cid)
           .then((res) => {
             if (res.data.resmsg == "댓글 출력성공") {
               this.comments = res.data.resvalue;
@@ -420,7 +420,7 @@
           http
             .post("comment/insertComment", {
               re_comment_id: "",
-              content_id: this.contentId,
+              content_id: this.cid,
               user_id: this.$store.state.user_id,
               target_id: "",
               comment_val: this.comment_val,
@@ -448,7 +448,7 @@
         http
           .post("comment/insertReComment", {
             comment_id: commentid,
-            content_id: this.contentId,
+            content_id: this.cid,
             user_id: this.$store.state.user_id,
             target_id: "",
             comment_val: this.re_comment_val,
@@ -490,7 +490,7 @@
           }
         });
       },
-      deleteContent(){
+      deleteContent() {
         http
           .delete("content/deleteContent/" + this.items.content_id)
           .then(response => {
@@ -510,10 +510,10 @@
           })
           .finally(() => (this.loading = false));
       },
-      updateContent(){
+      updateContent() {
         this.$router.push({
           name: 'updatecontent',
-          params:{
+          params: {
             items: this.items,
             prevpage: "contentupdate",
           }
@@ -605,11 +605,12 @@
     }
   }
 
-  .bio-btn{
-    color:black;
+  .bio-btn {
+    color: black;
   }
-  .bio-btn:hover{
-    color:white;
+
+  .bio-btn:hover {
+    color: white;
   }
 
 
