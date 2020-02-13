@@ -181,8 +181,8 @@ public class UserController {
 			HttpServletResponse response, HttpServletRequest request) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		UserVo user = null;
-		String path = "/profile";
-		String realPath = request.getServletContext().getRealPath(path);
+		String path = "/images/profile";
+		String realPath = "/var/www/html"+path;
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
 
@@ -403,8 +403,8 @@ public class UserController {
 
 	private UserVo imageUpload(UserVo user, HttpServletResponse res, HttpServletRequest req) {
 		FileOutputStream fos;
-		String path = "/profile";
-		String realPath = req.getServletContext().getRealPath(path);
+		String path = "/images/profile";
+		String realPath = "/var/www/html"+path;
 
 		boolean isDone = true;
 		if (user.getProfileImage() != null && user.getProfileImage().getBase64() != "") {
@@ -445,8 +445,8 @@ public class UserController {
 	}
 
 	private boolean imageDelete(String user_id, HttpServletResponse res, HttpServletRequest req) {
-		String path = "/profile";
-		String realPath = req.getServletContext().getRealPath(path);
+		String path = "/images/profile";
+		String realPath = "/var/www/html"+path;
 
 		boolean isDelete = true;
 		UserVo user = ser.info(user_id);

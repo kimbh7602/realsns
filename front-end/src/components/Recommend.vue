@@ -132,7 +132,7 @@ export default {
                   res.data.data.translations.forEach(element => {
                     const keyword = element.translatedText;
                     axios
-                      .get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
+                      .get("http://192.168.100.41:5000/searchByKeyword/" + keyword)
                       .then((res) => {
                         axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
                                 "q": res.data,

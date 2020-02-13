@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bb01a38-8b76-46b3-8b9b-9e680786fe5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/dto/ImageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/dto/ImageVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/NotificationDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/NotificationDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/webapp/temp/kimbh.png" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/webapp/temp/kimbh.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Calendar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Calendar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Crawling.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Crawling.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/FindContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/FindContent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/ImageFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/ImageFilter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/LoginSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/LoginSide.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Recommend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Recommend.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Sideex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Sideex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/WriteContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/WriteContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/updateContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/updateContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/http-common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/http-common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/plugins/notificationPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/plugins/notificationPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/plugins/socketPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/plugins/socketPlugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,10 +68,10 @@
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="141">
-              <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+              <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <marker date="1581555383635" expanded="true" signature="3311:3314" ph="..." />
+                <marker date="1581573801767" expanded="true" signature="3311:3314" ph="..." />
               </folding>
             </state>
           </provider>
@@ -105,7 +118,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="50" />
     <option name="y" value="-35" />
     <option name="width" value="1750" />
@@ -195,7 +208,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
@@ -243,10 +256,10 @@
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
-          <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+          <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1581555383635" expanded="true" signature="3311:3314" ph="..." />
+            <marker date="1581573801767" expanded="true" signature="3311:3314" ph="..." />
           </folding>
         </state>
       </provider>

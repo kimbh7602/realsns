@@ -165,7 +165,7 @@ public class NotificationDAOImpl implements INotificationDAO {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("user_id", user_id);
         map.put("content_id", content_id);
-        int delete = session.selectOne("ssafy.notification.deleteReport", map);
+        int delete = session.delete("ssafy.notification.deleteReport", map);
         if(delete > 0){
             return true;
         }else{

@@ -1,7 +1,7 @@
 // import Vue from 'vue';
 // import io from 'socket.io-client';
 
-// let notification = io('http://52.79.166.146:3001');
+// let notification = io('http://192.168.100.41:3001');
 
 // const NotificationPlugin = {
 //   install(vue) {
