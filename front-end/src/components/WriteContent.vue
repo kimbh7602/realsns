@@ -335,6 +335,15 @@ export default {
         else if(this.imgs.length>0){
             this.filterType = this.imgs[this.imgs.length-1].filter;
             this.exist=true;
+            // this.imgs.forEach(img => {
+            //     window.console.log(img.base64);
+            //     axios.post("http://192.168.100.41:5000/tag", {
+            //         img_url: img.base64
+            //     })
+            //     .then((res) => {
+            //         window.console.log(res.data);
+            //     })
+            // })
         }
         let recaptchaScripta = document.createElement('script')
         recaptchaScripta.setAttribute('type',"text/javascript")
