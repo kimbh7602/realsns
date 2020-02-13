@@ -155,8 +155,8 @@ export default {
         .catch(e => console.log(e))
       
       this.socket.emit('read', {
-        send_id: userDm.other_id,
-        receive_id: userDm.user_id
+        send_id: userDm.user_id,
+        receive_id: userDm.other_id
       });
       return false;
     },

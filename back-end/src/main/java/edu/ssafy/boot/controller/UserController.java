@@ -417,7 +417,7 @@ public class UserController {
 			String image_name = user.getUser_id() + "." + ext;
 			String savePath = realPath + File.separator + image_name;
 			System.out.println(savePath);
-			String image_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/"
+			String image_url = req.getScheme() + "://" + req.getServerName() + path + "/"
 					+ image_name;
 
 			File f = new File(savePath);
@@ -436,7 +436,7 @@ public class UserController {
 				isDone = false;
 			}
 		} else {
-			user.setProfile_url(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/"
+			user.setProfile_url(req.getScheme() + "://" + req.getServerName() + path + "/"
 					+ "default.png");
 			user.setProfile_filter("normal");
 		}

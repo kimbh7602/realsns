@@ -84,8 +84,8 @@ public class ContentController {
 		Map<String, Object> msg = new HashMap<String, Object>();
 		ContentVo content = ser.detail(content_id);
 
-		String path = "/upload";
-		String realPath = request.getServletContext().getRealPath(path);
+		String path = "/images/upload";
+		String realPath = "/var/www/html" + path;
 		FileInputStream fis = null;
 		ByteArrayOutputStream bos = null;
 		List<ImageVo> imageList = content.getImageList();
@@ -186,13 +186,13 @@ public class ContentController {
 
 	private String tempImageUpload(ImageVo image, HttpServletResponse res, HttpServletRequest req) {
 		FileOutputStream fos;
-		String path = "/temp";
-		String realPath = req.getServletContext().getRealPath(path);
+		String path = "/images/temp";
+		String realPath = "/var/www/html" + path;
 
 		byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
 		String image_name = image.getUser_id() + ".png";
 		String savePath = realPath + File.separator + image_name;
-		String img_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/"
+		String img_url = req.getScheme() + "://" + req.getServerName() + path + "/"
 				+ image_name;
 		
 		File f = new File(savePath);
@@ -219,14 +219,14 @@ public class ContentController {
 
 	private boolean imageUpload(ContentVo content, HttpServletResponse res, HttpServletRequest req) {
 		FileOutputStream fos;
-		String path = "/upload";
-		String realPath = req.getServletContext().getRealPath(path);
+		String path = "/images/upload";
+		String realPath = "/var/www/html" + path;
 
 		int num = 1;
 		boolean isDone = true;
 		if (content.getImageList().size() == 1 && content.getImageList().get(0).getBase64() == "") {
 			iSer.insertImage(new ImageVo(content.getContent_id(), "default.png", req.getScheme() + "://"
-					+ req.getServerName() + ":" + req.getServerPort() + path + "/" + "default.png", "normal"));
+					+ req.getServerName() + path + "/" + "default.png", "normal"));
 		} else {
 
 			for (ImageVo image : content.getImageList()) {
@@ -235,7 +235,7 @@ public class ContentController {
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
 				String image_name = content.getContent_id() + "-" + num + "." + ext;
 				String savePath = realPath + File.separator + image_name;
-				String image_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path
+				String image_url = req.getScheme() + "://" + req.getServerName() + path
 						+ "/" + image_name;
 
 				File f = new File(savePath);
@@ -282,8 +282,8 @@ public class ContentController {
 	}
 
 	private boolean imageDelete(int content_id, HttpServletResponse res, HttpServletRequest req) {
-		String path = "/upload";
-		String realPath = req.getServletContext().getRealPath(path);
+		String path = "/images/upload";
+		String realPath = "/var/www/html" + path;
 
 		List<ImageVo> imageList = iSer.imageList(content_id);
 		System.out.println(imageList);
