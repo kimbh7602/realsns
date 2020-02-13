@@ -160,6 +160,19 @@ public class NotificationDAOImpl implements INotificationDAO {
         return count;
     }
 
+    @Override
+    public boolean deleteReport(String user_id, int content_id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("user_id", user_id);
+        map.put("content_id", content_id);
+        int delete = session.selectOne("ssafy.notification.deleteReport", map);
+        if(delete > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 
 }

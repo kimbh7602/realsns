@@ -238,7 +238,7 @@ export default {
     // });
     
     
-    // this.$socket.socket = io('http://192.168.100.41:3000');
+    // this.$socket.socket = io('http://52.79.166.146:3000');
     // this.$login({
     //                   user_id : this.userId
     //                 });
@@ -308,7 +308,7 @@ export default {
     this.$store.dispatch('FETCH_USERDMLIST', this.userId);
   },
   created() {
-    this.socket = io('http://192.168.100.41:3000');
+    this.socket = io('http://52.79.166.146:3000');
     
     this.socket.emit('login', {
       user_id : this.userId
@@ -323,7 +323,7 @@ export default {
   },
   beforeDestroy(){
     this.socket.emit('disconnectEvt', function(){});
-    // this.$socket = io('http://192.168.100.41:3000');
+    // this.$socket = io('http://52.79.166.146:3000');
     // this.$socket.on('notification', (data) => {
     //   // window.console.log('notification', data, this.$store.state.user_id);
     //   if(data.target_user_id == this.$store.state.user_id){

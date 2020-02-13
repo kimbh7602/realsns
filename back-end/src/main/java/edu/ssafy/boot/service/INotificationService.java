@@ -15,5 +15,6 @@ public interface INotificationService {
     public boolean deleteScrap(String user_id, int content_id);
     public boolean deleteFollow(String follower_id, String follow_id);
     public boolean deleteComment(String user_id, String target_id, int comment_id);
+    public boolean deleteReport(String user_id, int content_id);
     public int countUnchecked(String user_id);
 }

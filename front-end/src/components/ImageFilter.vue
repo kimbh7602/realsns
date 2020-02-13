@@ -110,25 +110,25 @@ export default {
         })
         .then((res) => {
           window.console.log(res.data.resValue);
-          // const img_url = res.data.resValue;
-          // axios.post("http://192.168.100.41:5000/tag", {
-          //           img_url: img_url
-          //       })
-          //       .then((res) => {
-          //           window.console.log(res.data);
-          //           this.$router.push({
-          //             name: 'addimage', 
-          //             params: {
-          //               fimgs: this.imgs, 
-          //             }
-          //           });
-          //       })
-          this.$router.push({
-            name: 'addimage', 
-            params: {
-              fimgs: this.imgs, 
-            }
-          });
+          const img_url = res.data.resValue;
+          axios.post("http://52.79.166.146:5000/tag", {
+                    img_url: img_url
+                })
+                .then((res) => {
+                    window.console.log(res.data);
+                    this.$router.push({
+                      name: 'addimage', 
+                      params: {
+                        fimgs: this.imgs, 
+                      }
+                    });
+                })
+          // this.$router.push({
+          //   name: 'addimage', 
+          //   params: {
+          //     fimgs: this.imgs, 
+          //   }
+          // });
         })
 
       // this.$router.push({

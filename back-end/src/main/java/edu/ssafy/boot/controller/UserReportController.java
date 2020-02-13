@@ -89,7 +89,7 @@ public class UserReportController {
             notification.setCategory("report");
             ContentVo content = cSer.detail(report.getContent_id());
             notification.setTarget_user_id(content.getUser_id());
-            boolean delete = nSer.deleteLike(report.getUser_id(), report.getContent_id());
+            boolean delete = nSer.deleteReport(report.getUser_id(), report.getContent_id());
             Map<String, Object> map = new HashMap<String, Object>();
             if (dislike && delete){
                 map.put("resmsg", "신고취소성공");
