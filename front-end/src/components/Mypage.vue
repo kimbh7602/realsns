@@ -2,27 +2,27 @@
     <div class="container-fluid photos">
       <div class="row justify-content-center">
 
-        <div class="col-7 d-flex justify-content-center">
-            <div class="col-12 mb-4 p-5 text-center bg-light" data-aos="fade-up">
+        <div class="col-5 d-flex justify-content-center">
+            <div class="col-12 mb-4 p-3 text-center bg-light" data-aos="fade-up">
 
                 <img class="rounded-circle mt-3 mb-2" width="150px" height="150px" style="object-fit: cover;" :src="userInfo.profile_url">
                 <h4>{{userId}}</h4>
                 <div v-if="userId != myId" class="d-flex justify-content-center row p-2">
                     <span v-show="myFollowList.includes(userId)" @click="targetUser = userInfo" data-toggle="modal" data-target="#deleteFollowModal" class="site-logo btn btn-outline-primary col-5 m-2" style="width:100%;">팔로잉</span>
                     <span v-show="!myFollowList.includes(userId)" @click="insertFollow(userInfo)" class="site-logo btn btn-primary col-5 m-2" style="width:100%;">팔로우</span>
-                    <span @click="goChating()" v-if="myId != userId" class="site-logo btn btn-info text-white col-5 m-2" style="width:100%;"><i class="icon-send"></i></span>
+                    <span @click="goChating()" v-if="myId != userId" class="site-logo btn btn-outline-info col-5 m-2" style="width:100%;"><i class="icon-send"></i></span>
                 </div>
                 <div v-else class="d-flex justify-content-center row">
-                    <router-link class="px-2 m-0 col-5" to="/pwconfirm"><button class="site-logo btn btn-info" style="width:100%; height:50px;">정보수정</button></router-link>
-                    <router-link class="px-2 m-0 col-5" to="/chart"><button class="site-logo btn btn-primary" style="width:100%; height:50px;">통계</button></router-link>
+                    <router-link class="px-2 m-0 col-5" to="/pwconfirm"><button class="site-logo btn btn-outline-info" style="width:100%; height:50px;">정보수정</button></router-link>
+                    <router-link class="px-2 m-0 col-5" to="/chart"><button class="site-logo btn btn-outline-primary" style="width:100%; height:50px;">통계</button></router-link>
                 </div>
 
-                <div class="text-left mt-4">
+                <div class="text-left mt-4 mx-5">
                     <span v-for="(item, index) in userInfo.interestList.slice(0, 8)" :key="`item${index}`">
                         <span class="mr-2" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
                     </span>
                 </div>
-                <div class="rounded my-2" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
+                <div class="rounded my-2 mx-5" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
                     <div class="text-left p-3" style="position: absolute; white-space:pre-wrap;">
                         <div>{{userInfo.description}}</div>
                     </div>
