@@ -10,7 +10,7 @@
           <span class="icon-notifications_active neon"></span>
           <img src="../public/theme/images/notice.png" style="width:28px;height:28px;" />
         </div> -->
-        <div class="all-scroll offset-4 col-7" style="display:inline-block;">
+        <div class="all-scroll offset-4 col-4" style="display:inline-block;">
           <div class="swiper-scrollbar"></div>
           <div class="swiper-container oflow-visible" style="padding-top:10px; background-color:black; height:50px;"
             data-slide-effect="slide" data-autoheight="false" data-swiper-speed="5000" data-swiper-margin="25"
