@@ -52,6 +52,8 @@
 
 <script>
 import $ from "jquery"
+import http from "../http-common"
+
 export default {
   name: "ImageFilter",
   props: ["imgs","prevpage","oldpw","items"],
@@ -99,12 +101,42 @@ export default {
     },
     goAddImage() {
       this.imgs[this.imgs.length-1].filter = this.filterType;
-      this.$router.push({
-        name: 'addimage', 
-        params: {
-          fimgs: this.imgs, 
-        }
-      });
+      
+      http
+        .post(`/content/tempImage`, {
+          user_id: this.$store.state.user_id,
+          base64: this.imgs[this.imgs.length-1].base64,
+          filter: this.imgs[this.imgs.length-1].filter
+        })
+        .then((res) => {
+          window.console.log(res.data.resValue);
+          // const img_url = res.data.resValue;
+          // axios.post("http://192.168.100.41:5000/tag", {
+          //           img_url: img_url
+          //       })
+          //       .then((res) => {
+          //           window.console.log(res.data);
+          //           this.$router.push({
+          //             name: 'addimage', 
+          //             params: {
+          //               fimgs: this.imgs, 
+          //             }
+          //           });
+          //       })
+          this.$router.push({
+            name: 'addimage', 
+            params: {
+              fimgs: this.imgs, 
+            }
+          });
+        })
+
+      // this.$router.push({
+      //   name: 'addimage', 
+      //   params: {
+      //     fimgs: this.imgs, 
+      //   }
+      // });
     },
     goNext() {
       this.imgs[this.imgs.length-1].filter = this.filterType;

@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bb01a38-8b76-46b3-8b9b-9e680786fe5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserDmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserDmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/IUserDmDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/IUserDmDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/UserDmDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/repository/UserDmDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/IUserDmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/IUserDmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/UserDmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/service/UserDmService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/directMessageSQLMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/directMessageSQLMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/userDmSQLMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/resources/mybatis/userDmSQLMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat_server-master/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chat_server-master/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/Chating.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/ContentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/dto/ImageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/edu/ssafy/boot/dto/ImageVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/ImageFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/ImageFilter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/WriteContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/WriteContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,30 +20,31 @@
     <session id="67182765">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="713" />
+          <entry key="py" value="1036" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="713" />
+          <entry key="Python" value="1036" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="2" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
     </session>
@@ -56,12 +54,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-532">
-              <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+            <state relative-caret-position="141">
+              <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
-                <marker date="1580976940464" expanded="true" signature="2653:2656" ph="..." />
+                <element signature="e#0#41#0" expanded="true" />
+                <marker date="1581555383635" expanded="true" signature="3311:3314" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/venv/Lib/site-packages/flask/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45638">
+              <caret line="2461" column="42" selection-start-line="2461" selection-start-column="42" selection-end-line="2461" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -98,7 +105,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="50" />
     <option name="y" value="-35" />
     <option name="width" value="1750" />
@@ -188,7 +195,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -234,12 +242,19 @@
     <entry file="file://$PROJECT_DIR$/test2.py" />
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-532">
-          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        <state relative-caret-position="141">
+          <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1580976940464" expanded="true" signature="2653:2656" ph="..." />
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1581555383635" expanded="true" signature="3311:3314" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/venv/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45638">
+          <caret line="2461" column="42" selection-start-line="2461" selection-start-column="42" selection-end-line="2461" selection-end-column="42" />
         </state>
       </provider>
     </entry>
