@@ -262,7 +262,7 @@ export default {
             let keyword = this.searchKeyword;
             keyword.replace(" ", "+");
 
-            const url = "http://192.168.100.41:5000/location/"+keyword;
+            const url = "http://52.79.166.146:5000/location/"+keyword;
             
             axios.get(url)
                 .then((response)=>{
@@ -337,7 +337,7 @@ export default {
             this.exist=true;
             // this.imgs.forEach(img => {
             //     window.console.log(img.base64);
-            //     axios.post("http://192.168.100.41:5000/tag", {
+            //     axios.post("http://52.79.166.146:5000/tag", {
             //         img_url: img.base64
             //     })
             //     .then((res) => {

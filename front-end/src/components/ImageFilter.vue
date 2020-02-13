@@ -112,7 +112,7 @@ export default {
         .then((res) => {
           window.console.log(res.data.resValue);
           const img_url = res.data.resValue;
-          axios.post("http://192.168.100.41:5000/tag", {
+          axios.post("http://52.79.166.146:5000/tag", {
                     img_url: img_url
                 })
                 .then((res) => {
