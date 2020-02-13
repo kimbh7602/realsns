@@ -71,7 +71,6 @@ import $ from "jquery"
                     //   user_id : this.user_id
                     // });
                     this.$store.dispatch('FETCH_NOTI', this.user_id);
-                    console.log(this.$store.getters.fetchednoticount);
                     document.getElementById('modalBtn').click();
                     this.$router.push("/");
                 }else{

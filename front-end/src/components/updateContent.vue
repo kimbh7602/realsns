@@ -152,14 +152,17 @@ export default {
                 }
             },
             selectedLocation: null,
+            swiper:"",
         }
     },
     methods:{
         deleteImage(event, img, index){
-            window.console.log(event.target.parentNode.parentNode)
+            // window.console.log(event.target.parentNode.parentNode)
+            var slide = event.target.parentNode.parentNode.parentNode;
+            window.console.log(slide)
             event.target.parentNode.parentNode.remove();
-            window.console.log(img)
-            window.console.log(index)
+            // window.console.log(img)
+            // window.console.log(index)
             this.items.imageList.splice(index, 1);
             window.console.log(this.items.imageList);
                     let recaptchaScripta = document.createElement('script')

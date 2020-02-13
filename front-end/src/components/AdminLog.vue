@@ -47,7 +47,7 @@
                                     <div class="col-md-4">
                                     </div>
                                     <div class="col-md-1 text-center">
-                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" />
+                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" style="text-align:center"/>
                                     </div>
                                     <div class="col-md-1  text-center">
                                         /
@@ -85,7 +85,6 @@
                 trust: false,
                 currentPage: 1,
                 perPage: 25,
-                perPageOptions: [3, 6],
             }
         },
         mounted() {
