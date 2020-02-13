@@ -13,7 +13,7 @@
             <router-link to="/notification/" class="m-0">
                 <i class="icon-bell text-white" style="font-size:1.5em;">
                     <span class="badge" style="font-size:0.5em;">
-                        <em>{{$store.getters.fetchednoticount}}</em>
+                        <em>{{NotifyCount}}</em>
                     </span>
                 </i>
             </router-link>
@@ -108,6 +108,9 @@ export default {
         AdminCheck: () => {
             return store.state.isadmin;
         },
+        NotifyCount: () => {
+            return store.state.noticount;
+        }
     },
     created() {
         http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)

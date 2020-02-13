@@ -323,6 +323,7 @@ export default {
             http
               .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
               .then(response => {
+                this.$store.dispatch('FETCH_NOTI', this.myId);
                 return response
               })
               .catch(e => console.log(e))
@@ -335,6 +336,7 @@ export default {
           .put(`notification/updateCheck/${item.notification_id}`)
           .then(response => {
             // console.log(response.data)
+            this.$store.dispatch('FETCH_NOTI', this.myId);
             return response
           })
           .catch(e => console.log(e))
