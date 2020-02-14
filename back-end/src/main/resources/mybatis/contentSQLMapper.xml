@@ -87,4 +87,21 @@
 		select * from contents
 		where hashtag like concat('%', #{tag}, '%')
 	</select>
+	
+	<insert id="insertTempImage" parameterType="TempImageVo">
+		insert into temp_image
+			(user_id, image_name, image_url)
+		values
+			(#{user_id}, #{image_name}, #{image_url})
+	</insert>
+	
+	<delete id="deleteTempImage" parameterType="string">
+		delete from temp_image
+		where user_id = #{user_id}
+	</delete>
+	
+	<select id="isTempImageExist" parameterType="string" resultType="TempImageVo">
+		select * from temp_image
+		where user_id = #{user_id}
+	</select>
 </mapper>

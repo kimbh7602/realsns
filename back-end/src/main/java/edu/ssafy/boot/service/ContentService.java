@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.LocationVo;
+import edu.ssafy.boot.dto.TempImageVo;
 import edu.ssafy.boot.repository.IContentDAO;
 
 @Service("ContentService")
@@ -128,6 +129,21 @@ public class ContentService implements IContentService {
 	@Override
 	public List<ContentVo> contentListHashtagList(List<String> tagList) {
 		return dao.contentListHashtagList(tagList);
+	}
+
+	@Override
+	public TempImageVo isTempImageExist(String user_id) {
+		return dao.isTempImageExist(user_id);
+	}
+
+	@Override
+	public boolean deleteTempImage(String user_id) {
+		return dao.deleteTempImage(user_id);
+	}
+
+	@Override
+	public boolean insertTempImage(TempImageVo tempImage) {
+		return dao.insertTempImage(tempImage);
 	}
 	
 }

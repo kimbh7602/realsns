@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.ImageVo;
 import edu.ssafy.boot.dto.LocationVo;
+import edu.ssafy.boot.dto.TempImageVo;
 import edu.ssafy.boot.service.IContentService;
 import edu.ssafy.boot.service.IImageService;
 import io.swagger.annotations.ApiOperation;
@@ -185,30 +187,47 @@ public class ContentController {
 	}
 
 	private String tempImageUpload(ImageVo image, HttpServletResponse res, HttpServletRequest req) {
+		Random rnd =new Random();
+
+		StringBuffer buf =new StringBuffer();
+
+		for(int i=0;i<10;i++){
+			if(rnd.nextBoolean()){
+				buf.append((char)((int)(rnd.nextInt(26))+97));
+			}else{
+				buf.append((rnd.nextInt(10)));
+			}
+		}
+		
 		FileOutputStream fos;
 		String path = "/images/temp";
 		String realPath = "/var/www/html" + path;
 
 		byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
-		String image_name = image.getUser_id() + ".png";
+		String image_name = image.getUser_id() + "-" + buf.toString() + ".png";
 		String savePath = realPath + File.separator + image_name;
 		String img_url = req.getScheme() + "://" + req.getServerName() + path + "/"
 				+ image_name;
 		
-		File f = new File(savePath);
-
-		if (f.exists()) {
-			if (f.delete()) {
-				System.out.println(image_name + " 삭제 성공");
-			} else {
-				System.out.println(image_name + " 삭제 실패");
+		TempImageVo tempImage = new TempImageVo(image.getUser_id(), image_name, img_url);
+		TempImageVo oldTemp = ser.isTempImageExist(image.getUser_id());
+		if(oldTemp != null) {
+			String deletePath = realPath + File.separator + oldTemp.getImage_name();
+			File f = new File(deletePath);
+			if (f.exists()) {
+				if (f.delete() && ser.deleteTempImage(image.getUser_id())) {
+					System.out.println(image_name + " 삭제 성공");
+				} else {
+					System.out.println(image_name + " 삭제 실패");
+				}
 			}
 		}
 
 		try {
-			f.createNewFile();
+			File f = new File(savePath);
 			fos = new FileOutputStream(f);
 			fos.write(decode);
+			ser.insertTempImage(tempImage);
 			fos.close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -230,10 +249,22 @@ public class ContentController {
 		} else {
 
 			for (ImageVo image : content.getImageList()) {
+				Random rnd =new Random();
+
+				StringBuffer buf =new StringBuffer();
+
+				for(int i=0;i<10;i++){
+					if(rnd.nextBoolean()){
+						buf.append((char)((int)(rnd.nextInt(26))+97));
+					}else{
+						buf.append((rnd.nextInt(10)));
+					}
+				}
+				
 				String ext = image.getBase64().substring(image.getBase64().indexOf("/") + 1,
 						image.getBase64().indexOf(";"));
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
-				String image_name = content.getContent_id() + "-" + num + "." + ext;
+				String image_name = content.getContent_id() + "-" + buf.toString() + "." + ext;
 				String savePath = realPath + File.separator + image_name;
 				String image_url = req.getScheme() + "://" + req.getServerName() + path
 						+ "/" + image_name;

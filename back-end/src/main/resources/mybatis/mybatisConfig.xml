@@ -17,6 +17,7 @@
 		<typeAlias type="edu.ssafy.boot.dto.LocationVo" alias="LocationVo" />
 		<typeAlias type="edu.ssafy.boot.dto.NotificationVo" alias="NotificationVo" />
 		<typeAlias type="edu.ssafy.boot.dto.UserReportVo" alias="UserReportVo" />
+		<typeAlias type="edu.ssafy.boot.dto.TempImageVo" alias="TempImageVo" />
 	</typeAliases>
 
 	<mappers>

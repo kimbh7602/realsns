@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.ImageVo;
 import edu.ssafy.boot.dto.LocationVo;
+import edu.ssafy.boot.dto.TempImageVo;
 import edu.ssafy.boot.dto.UserVo;
 
 @Repository("ContentDAOImpl")
@@ -194,5 +195,31 @@ public class ContentDAOImpl implements IContentDAO {
 			}
 		}
 		return contentList;
+	}
+
+	@Override
+	public TempImageVo isTempImageExist(String user_id) {
+		TempImageVo tempImage = session.selectOne("ssafy.content.isTempImageExist", user_id);
+		return tempImage;
+	}
+
+	@Override
+	public boolean deleteTempImage(String user_id) {
+		int delete = session.delete("ssafy.content.deleteTempImage", user_id);
+		if(delete > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertTempImage(TempImageVo tempImage) {
+		int insert = session.insert("ssafy.content.insertTempImage", tempImage);
+		if(insert > 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

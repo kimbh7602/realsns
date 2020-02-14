@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.LocationVo;
+import edu.ssafy.boot.dto.TempImageVo;
 
 public interface IContentService {
 	public List<ContentVo> contentMyList(String user_id);
@@ -18,4 +19,7 @@ public interface IContentService {
 	public List<String> deleteReportedContents();
 	public List<ContentVo> contentListHashtag(String tag);
 	public List<ContentVo> contentListHashtagList(List<String> tagList);
+	public TempImageVo isTempImageExist(String user_id);
+	public boolean deleteTempImage(String user_id);
+	public boolean insertTempImage(TempImageVo tempImage);
 }
