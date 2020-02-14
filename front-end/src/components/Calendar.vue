@@ -121,7 +121,7 @@ export default {
 
             this.scheduleList.push(schedule);
 
-            axios.post("http://52.79.166.146:80/api/notice/insertNotice", schedule)
+            axios.post("http://52.79.166.146/api/notice/insertNotice", schedule)
                 .then((response)=>{
                     this.$store.commit('setModalText', response.data.resmsg);
                     document.getElementById('modalBtn').click(); 
@@ -141,7 +141,7 @@ export default {
             // this.scheduleList.pop(scheduleData);
             // alert(scheduleData.schedule.id);
             
-             axios.delete("http://52.79.166.146:80/api/notice/deleteNotice/"+scheduleData.schedule.id)
+             axios.delete("http://52.79.166.146/api/notice/deleteNotice/"+scheduleData.schedule.id)
                 .then((response)=>{
                     this.$store.commit('setModalText', response.data.resmsg);
                     document.getElementById('modalBtn').click();     
@@ -174,7 +174,7 @@ export default {
                 schedule = element;
             });
 
-            axios.put("http://52.79.166.146:80/api/notice/updateNotice", schedule)
+            axios.put("http://52.79.166.146/api/notice/updateNotice", schedule)
                 .then((response)=>{
                     this.$store.commit('setModalText', response.data.resmsg);
                     document.getElementById('modalBtn').click(); 
@@ -187,7 +187,7 @@ export default {
     },
     mounted() {
         $('html').scrollTop(0);
-        axios.get("http://52.79.166.146:80/api/notice/noticeList")
+        axios.get("http://52.79.166.146/api/notice/noticeList")
                 .then((response)=>{
                     // alert(response.data.resmsg);
                     // alert(response.data.resValue[0].start._date);
