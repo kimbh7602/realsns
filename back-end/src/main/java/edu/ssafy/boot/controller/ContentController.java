@@ -206,7 +206,7 @@ public class ContentController {
 		byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
 		String image_name = image.getUser_id() + "-" + buf.toString() + ".png";
 		String savePath = realPath + File.separator + image_name;
-		String img_url = req.getScheme() + "://" + req.getServerName() + path + "/"
+		String img_url = req.getScheme() + "://" + req.getServerName()+ ":8090" + path + "/"
 				+ image_name;
 		
 		TempImageVo tempImage = new TempImageVo(image.getUser_id(), image_name, img_url);
@@ -245,7 +245,7 @@ public class ContentController {
 		boolean isDone = true;
 		if (content.getImageList().size() == 1 && content.getImageList().get(0).getBase64() == "") {
 			iSer.insertImage(new ImageVo(content.getContent_id(), "default.png", req.getScheme() + "://"
-					+ req.getServerName() + path + "/" + "default.png", "normal"));
+					+ req.getServerName()+ ":8090" + path + "/" + "default.png", "normal"));
 		} else {
 
 			for (ImageVo image : content.getImageList()) {
@@ -266,7 +266,7 @@ public class ContentController {
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
 				String image_name = content.getContent_id() + "-" + buf.toString() + "." + ext;
 				String savePath = realPath + File.separator + image_name;
-				String image_url = req.getScheme() + "://" + req.getServerName() + path
+				String image_url = req.getScheme() + "://" + req.getServerName()+ ":8090" + path
 						+ "/" + image_name;
 
 				File f = new File(savePath);
