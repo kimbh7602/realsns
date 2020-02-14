@@ -28,7 +28,7 @@
 import $ from "jquery"
 export default {
   name: "App",
-  props:["fimgs","prevpage","items"],
+  props:["fimgs","prevpage","items","ftags"],
   data() {
     return {
       step: 1,
@@ -81,6 +81,7 @@ export default {
             name: 'editing',
             params:{
               imgs: this.imgs,
+              tags: this.tags,
               step: this.step+1,
               prevpage: this.prev,
             }
@@ -91,6 +92,7 @@ export default {
             name: 'editing',
             params:{
               imgs: this.imgs,
+              tags: this.tags,
               step: this.step+1,
               prevpage: this.prev,
               items: this.items,
@@ -119,11 +121,13 @@ export default {
     goNext() {
       if(this.imgs.length==0){
         this.imgs.push(this.defaultImag);
+        this.tags.push([]);
       }
       this.$router.push({
           name: 'writecontent', 
           params: {
-            imgs: this.imgs, 
+            imgs: this.imgs,
+            tags: this.tags,
           }
         })
     },
@@ -134,6 +138,7 @@ export default {
     // console.log(this.fimgs);
     if(this.fimgs!=undefined){
       this.imgs = this.fimgs;
+      this.tags = this.ftags;
       this.first = false;
     }
     $('html').scrollTop(0);

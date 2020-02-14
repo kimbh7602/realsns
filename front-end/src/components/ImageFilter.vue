@@ -122,6 +122,7 @@ export default {
                       name: 'addimage', 
                       params: {
                         fimgs: this.imgs, 
+                        ftags: this.tags
                       }
                     });
                 })

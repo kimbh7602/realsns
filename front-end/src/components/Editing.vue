@@ -35,7 +35,7 @@
     import Cropper from "cropperjs";
     export default {
         name: "editing",
-        props: ["imgs","prevpage","oldpw","items"],
+        props: ["imgs","prevpage","oldpw","items","tags"],
         data() {
             return {
                 cropper: {},
@@ -67,6 +67,7 @@
                     name: 'imagefilter', 
                     params: {
                     imgs: this.imgs,
+                    tags: this.tags,
                     prevpage: this.prevpage,
                     oldpw: this.oldpw,
                     items: this.items,
