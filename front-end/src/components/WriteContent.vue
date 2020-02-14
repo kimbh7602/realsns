@@ -358,9 +358,8 @@ export default {
             div.appendChild(bold);
             div.appendChild(span);
             document.getElementById('itrl').appendChild(div);
-            window.console.log(tag);
-            window.console.log(text);
-            this.recommendTag.pop(text);
+            const idx = this.recommendTag.findIndex(tag);
+            this.recommendTag.splice(idx, 1);
       }
 
     },
