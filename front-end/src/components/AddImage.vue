@@ -39,6 +39,7 @@ export default {
         filter:""
       },
       imgs:[],
+      tags:[],
       caption: "",
       first:true,
       defaultImag:{base64:"",filter:"normal"},
@@ -70,6 +71,7 @@ export default {
         this.image = e.target.result;
         this.imginfo.base64 = this.image;
         this.imgs.push(this.imginfo);
+        this.tags.push([]);
         this.step = 2;
         // EventBus.$emit("imglink", { image: this.image });
         window.console.log(this.prevpage)

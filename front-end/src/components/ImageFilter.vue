@@ -57,7 +57,7 @@ import axios from 'axios'
 
 export default {
   name: "ImageFilter",
-  props: ["imgs","prevpage","oldpw","items"],
+  props: ["imgs","prevpage","oldpw","items","tags"],
   data(){
       return{
         filters:[{ name: "normal" },
@@ -117,6 +117,7 @@ export default {
                 })
                 .then((res) => {
                     window.console.log(res.data);
+                    this.tags[this.tags.length-1] = res.data['label_kr'];
                     this.$router.push({
                       name: 'addimage', 
                       params: {

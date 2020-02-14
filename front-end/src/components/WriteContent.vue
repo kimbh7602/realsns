@@ -110,7 +110,7 @@ import $ from "jquery"
 import store from "../store"
 export default {
     name:"writecontent",
-    props:["imgs"],
+    props:["imgs","tags"],
     data(){
         return{
             intro:"",
@@ -144,7 +144,8 @@ export default {
                 height: -35
                 }
             },
-            selectedLocation: null
+            selectedLocation: null,
+            recommendTag:[]
         }
     },
     methods:{
@@ -344,6 +345,13 @@ export default {
             //         window.console.log(res.data);
             //     })
             // })
+            this.tags.forEach(labels => {
+                labels.forEach(label => {
+                    if(!this.recommendTag.includes(label)){
+                        this.recommendTag.push(label);
+                    }
+                })
+            })
         }
         let recaptchaScripta = document.createElement('script')
         recaptchaScripta.setAttribute('type',"text/javascript")
