@@ -358,7 +358,11 @@ export default {
             div.appendChild(bold);
             div.appendChild(span);
             document.getElementById('itrl').appendChild(div);
-            this.recommendTag.pop(tag);
+            this.recommendTag.forEach(label => {
+                if(label == tag){
+                    recommendTag.pop(label);
+                }
+            });
       }
 
     },
