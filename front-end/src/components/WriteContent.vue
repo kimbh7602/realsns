@@ -32,7 +32,7 @@
             <label class="text-white" for="recommendTag">Recommend Hashtag</label>
             <div id="" style="display:inline-block"></div>
             <div id="recommend">
-                <div class="roundedge" v-for="(tag, index) in recommendTag" :key="index">{{tag}}</div>
+                <div style="cursor:pointer;" class="roundedge" v-for="(tag, index) in recommendTag" :key="index"><span @click="insertTag(tag)">{{tag}}<span></div>
             </div>
             </div>
         </div>
@@ -334,6 +334,31 @@ export default {
           }else{
               this.isLocation = false;
           }
+      },
+
+      insertTag(tag){
+          var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var div = document.createElement('div');
+            var span = document.createElement('span');
+            var bold = document.createElement('bold')
+            var text = tag;
+            // if(text==""){
+            //   return;
+            // }
+            // this.itrlist.push(text);
+            bold.innerText = text;
+            div.style.background=colorCode;
+            div.classList.add('roundedge');
+            div.classList.add('itrlone');
+            div.classList.add('text-white');
+            span.classList.add('icon-remove')
+            span.addEventListener("click", function(event){
+              event.target.parentNode.remove();
+            });
+            div.appendChild(bold);
+            div.appendChild(span);
+            document.getElementById('itrl').appendChild(div);
+            this.recommendTag.pop(tag);
       }
 
     },
