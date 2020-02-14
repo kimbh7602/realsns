@@ -27,6 +27,15 @@
             <div id="itrl"></div>
             </div>
         </div>
+        <div class="row form-group">                    
+            <div class="col-md-12" id="parentItrl">
+            <label class="text-white" for="recommendTag">Recommend Hashtag</label>
+            <div id="" style="display:inline-block"></div>
+            <div id="recommend">
+                <div class="roundedge" v-for="(tag, index) in recommendTag" :key="index">{{tag}}</div>
+            </div>
+            </div>
+        </div>
         <div class="row form-group mb-5">
             <div class="col-md-12">
             <label class="text-white" for="uintr">Story</label> 
