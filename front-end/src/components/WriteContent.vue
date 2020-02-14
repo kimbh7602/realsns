@@ -373,7 +373,7 @@ export default {
             this.exist=true;
             // this.imgs.forEach(img => {
             //     window.console.log(img.base64);
-            //     axios.post("http://52.79.166.146:5000/tag", {
+            //     axios.post("http://52.79.166.146:8080:5000/tag", {
             //         img_url: img.base64
             //     })
             //     .then((res) => {
