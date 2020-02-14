@@ -145,7 +145,8 @@ export default {
       this.$router.push({
         name: 'writecontent', 
         params: {
-          imgs: this.imgs, 
+          imgs: this.imgs,
+          tags: this.tags
         }
       });
     },
