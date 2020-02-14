@@ -32,7 +32,7 @@
             <label class="text-white" for="recommendTag">Recommend Hashtag</label>
             <div id="" style="display:inline-block"></div>
             <div id="recommend">
-                <div style="cursor:pointer;" class="roundedge" v-for="(tag, index) in recommendTag" :key="index"><span @click="insertTag(tag)">{{tag}}<span></div>
+                <div style="cursor:pointer;" class="roundedge" v-for="(tag, index) in recommendTag" :key="index"><span @click="insertTag(tag)">{{tag}}</span></div>
             </div>
             </div>
         </div>
