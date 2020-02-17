@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.ImageVo;
 import edu.ssafy.boot.dto.UserLikeVo;
+import edu.ssafy.boot.dto.UserVo;
 
 @Repository("UserLikeDAOImpl")
 public class UserLikeDAOImpl implements IUserLikeDAO {
@@ -42,6 +43,11 @@ public class UserLikeDAOImpl implements IUserLikeDAO {
         for (ContentVo contentVo : contentList) {
             List<ImageVo> imageList = session.selectList("ssafy.image.imageList", contentVo.getContent_id());
             contentVo.setImageList(imageList);
+            UserVo user = session.selectOne("ssafy.user.info", contentVo.getUser_id());
+			if(user.getProfile_url() != null && user.getProfile_filter() != null){
+				contentVo.setProfile_url(user.getProfile_url());
+				contentVo.setProfile_filter(user.getProfile_filter());
+			}
         }
         return contentList;
     }

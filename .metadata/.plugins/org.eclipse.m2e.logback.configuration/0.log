@@ -360,3 +360,11 @@
 2020-02-17 10:06:15,913 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
 2020-02-17 10:06:15,991 [Worker-25: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
 2020-02-17 10:06:15,991 [Worker-25: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-17 11:11:02,681 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-17 11:11:02,681 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-17 11:11:02,681 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-17 11:11:02,697 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-17 11:11:02,697 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-17 11:11:17,518 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-17 11:11:17,596 [Worker-45: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-17 11:11:17,596 [Worker-45: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
