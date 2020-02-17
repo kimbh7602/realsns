@@ -350,8 +350,15 @@ export default {
     })
 
     this.$nextTick(() => {
-      this.$store.commit('SET_USERDMLIST', this.userDmList);
-      this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
+      this.fetchedUserDmList.forEach(dm => {
+         http
+            .post(`/directMessage/unReadCnt`, dm)
+            .then((res) => {
+              const cnt = res.data.resvalue;
+              dm.cnt = cnt;
+              window.console.log(cnt);
+            })
+      })
     })
 
     // this.socket.on('notification', (data) => {
