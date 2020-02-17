@@ -395,10 +395,10 @@ export default {
         //   const index = this.contents.findIndex(function(item) {return item.contentId === del[j]})
         //   this.contents.splice(index, 1)
         // }
-        // const idx = this.followList.indexOf(user)
-        // if (idx > -1) {
-        //   this.followList.splice(idx, 1)
-        // }
+        const idx = this.followList.indexOf(user)
+        if (idx > -1) {
+          this.followList.splice(idx, 1)
+        }
       } else {
         http
           .post('/follow/insertFollow', {
@@ -416,10 +416,10 @@ export default {
           .catch(()=>{
             this.errored = true;
           })
-        // const idx = this.followList.indexOf(user)
-        // if (idx == -1) {
-        //   this.followList.push(user)
-        // }
+        const idx = this.followList.indexOf(user)
+        if (idx == -1) {
+          this.followList.push(user)
+        }
         // http
         //   .get('/content/contentUserList/' + user)
         //   .then((res) => {
