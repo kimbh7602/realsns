@@ -418,9 +418,10 @@ export default {
       },
       clickResearch(){
           this.isLocationSelect=!this.isLocationSelect;
-          document.getElementById("search-location-input").value = ""
-          document.getElementById("searched-location-input").value = ""
-          window.console.log(document.getElementById("search-location-input"))
+          this.searchKeyword = ""
+          this.selectedLocation.name = ""
+        //   document.getElementById("searched-location-input").value = ""
+        //   window.console.log(document.getElementById("search-location-input"))
         //   document.querySelector(".search-location-input").value = ""
         //   document.querySelector(".searched-location-input").value = ""
       },
