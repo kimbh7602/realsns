@@ -1,31 +1,35 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
-            <div class="col-5 p-4 text-center bg-light" data-aos="fade-up">
-                <img class="rounded-circle mt-3 mb-2" width="150px" height="150px" style="object-fit: cover;" :class="userInfo.profile_filter" :src="userInfo.profile_url">
-                <h4>{{userId}}</h4>
-                <div v-if="userId != myId" class="d-flex justify-content-center row p-2">
-                    <span v-show="myFollowList.includes(userId)" @click="targetUser = userInfo" data-toggle="modal" data-target="#deleteFollowModal" class="site-logo btn btn-outline-primary col-5 m-2" style="width:100%;">팔로잉</span>
-                    <span v-show="!myFollowList.includes(userId)" @click="insertFollow(userInfo)" class="site-logo btn btn-primary col-5 m-2" style="width:100%;">팔로우</span>
-                    <span @click="goChating()" v-if="myId != userId" class="site-logo btn btn-outline-info col-5 m-2" style="width:100%;"><i class="icon-send"></i></span>
+        <div class="postcard" style="height:auto;">
+            <div class="content" style="width:100%; height:auto;">
+                <div class="p-4 text-center bg-light" data-aos="fade-up">
+                    <img class="rounded-circle mt-3 mb-2" width="150px" height="150px" style="object-fit: cover;" :class="userInfo.profile_filter" :src="userInfo.profile_url">
+                    <h4>{{userId}}</h4>
+                    <div v-if="userId != myId" class="d-flex justify-content-center row p-2">
+                        <button v-show="myFollowList.includes(userId)" @click="targetUser = userInfo" data-toggle="modal" data-target="#deleteFollowModal" class="site-logo btn btn-outline-primary col-5 m-2" style="width:100%; height:50px;">팔로잉</button>
+                        <button v-show="!myFollowList.includes(userId)" @click="insertFollow(userInfo)" class="site-logo btn btn-primary col-5 m-2" style="width:100%; height:50px;">팔로우</button>
+                        <button @click="goChating()" v-if="myId != userId" class="site-logo btn btn-outline-info col-5 m-2" style="width:100%; height:50px;"><i class="icon-send"></i></button>
 
-                </div>
-                <div v-else class="d-flex justify-content-center row">
-                    <router-link class="px-2 m-0 col-5" to="/pwconfirm"><button class="site-logo btn btn-outline-info" style="width:100%; height:50px;">정보수정</button></router-link>
-                    <router-link class="px-2 m-0 col-5" to="/chart"><button class="site-logo btn btn-outline-primary" style="width:100%; height:50px;">통계</button></router-link>
-                </div>
+                    </div>
+                    <div v-else class="d-flex justify-content-center row">
+                        <router-link class="px-2 m-0 col-5" to="/pwconfirm"><button class="site-logo btn btn-outline-info" style="width:100%; height:50px;">정보수정</button></router-link>
+                        <router-link class="px-2 m-0 col-5" to="/chart"><button class="site-logo btn btn-outline-primary" style="width:100%; height:50px;">통계</button></router-link>
+                    </div>
 
-                <div class="text-left mt-4 mx-5">
-                    <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
-                        <span class="mr-2" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
-                    </span>
-                </div>
-                <div class="rounded my-2 mx-5" style="position: relative; height:100px; border: 1px dotted gray; overflow: auto;">
-                    <div class="text-left p-3" style="position: absolute; white-space:pre-wrap;">
-                        <div>{{userInfo.description}}</div>
+                    <div class="text-left mt-4 mx-5" style="margin-bottom:5%;">
+                        <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
+                            <span class="mr-2" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
+                        </span>
+                    </div>
+                    <div class="my-2 mx-5" style="position: relative; height:100px; border-top: 2px solid black; overflow: auto;">
+                        <div class="text-left p-3" style="position: absolute; white-space:pre-wrap;">
+                            <div>{{userInfo.description}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
       </div>
       
       <div class="row justify-content-center mb-4">
@@ -350,5 +354,13 @@ export default {
 }
 .site-logo {
     box-shadow: 0px 3px 5px 1px grey;
+}
+.postcard{
+    width:50%;
+}
+@media(max-width: 777px){
+    .postcard{
+        width:80%;
+    }
 }
 </style>
