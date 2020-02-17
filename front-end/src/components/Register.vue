@@ -148,7 +148,7 @@
                     <div class="row form-group mb-5">
                       <div class="col-md-12">
                         <label class="text-white" for="uintr">Introduce</label> 
-                        <textarea name="message" id="message" v-model="intro" cols="30" rows="7" class="form-control" style="resize:none;" placeholder="Please introduce yourself"></textarea>
+                        <textarea name="message" id="message" v-model="intro" cols="30" rows="7" class="form-control yscroll" style="resize:none;" placeholder="Please introduce yourself"></textarea>
                       </div>
                     </div>
                     <!-- register/reset button -->
@@ -190,6 +190,26 @@
     .selected-image{
       height:30vw;
       background-size: cover;
+    }
+    .yscroll::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+    }
+
+    .yscroll::-webkit-scrollbar
+    {
+      width: 12px;
+      background-color: #F5F5F5;
+    }
+
+    .yscroll::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #000000;
+      border: 1px solid #ffffff;
     }
 </style>
 

@@ -22,8 +22,8 @@
                             <span class="mr-2" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
                         </span>
                     </div>
-                    <div class="my-2 mx-5" style="position: relative; height:100px; border-top: 2px solid black; overflow: auto;">
-                        <div class="text-left p-3" style="position: absolute; white-space:pre-wrap;">
+                    <div class="my-2 mx-5 yscroll" style="position: relative; height:100px; border-top: 2px solid black; overflow-y: auto;">
+                        <div class="text-left p-3" style="position: absolute; white-space:pre-wrap;word-break:break-all;" >
                             <div>{{userInfo.description}}</div>
                         </div>
                     </div>
@@ -362,5 +362,25 @@ export default {
     .postcard{
         width:80%;
     }
+}
+.yscroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.yscroll::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.yscroll::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #000000;
+  border: 1px solid #ffffff;
 }
 </style>
