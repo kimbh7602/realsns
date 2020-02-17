@@ -211,7 +211,7 @@ export default {
                 var xicon = document.createElement('i');
                 xicon.classList.add('icon-close');
                 xicon.classList.add('text-white');
-                xicon.addEventListener("click", function(e){
+                xicon.addEventListener("click", function(e, i){
                     this.deleteImage(e, i);
                 });
                 xdiv.appendChild(xicon);
