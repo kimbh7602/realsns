@@ -5,7 +5,7 @@
         <div class="col-md-8 pt-4">
             <div class="mb-5" data-aos="fade-up">
               <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2>
-              <div class="text-right"><button class="btn btn-outline-success" @click="allRead">모두 읽음</button></div>
+              <div class="text-right"><button class="btn btn-outline-success" data-toggle="modal" data-target="#allReadModal">모두 읽음</button></div>
               <nav class="navbar navbar-expand-lg pb-0" style="background-color: black;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="icon-menu" style="font-size: 1.5em;"></i>
@@ -223,20 +223,20 @@
 
 
 
-        <!-- 팔로우취소 모달
-        <div class="modal" id="deleteFollowModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog col-12" role="document">
-                <div class="modal-content">
-                <div class="modal-body">
-                    <p>팔로우 취소하시겠습니까?</p>
-                </div>
-                <div class="modal-footer p-2">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary btn-sm" @click="deleteFollow(targetUser)" data-dismiss="modal">확인</button>
-                </div>
-                </div>
-            </div>
-        </div> -->
+      <!-- 모두읽음 모달 -->
+      <div class="modal fade mt-5" id="allReadModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-body py-4">
+                    알림을 모두 삭제하겠습니까?
+                  </div>
+                  <div class="modal-footer py-2">
+                      <button type="button" class="btn btn-danger btn-sm py-1 px-3" @click="allRead" data-dismiss="modal">확인</button>
+                      <button type="button" class="btn btn-secondary btn-sm py-1 px-3" data-dismiss="modal">취소</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       </div>
     </div>
@@ -388,18 +388,21 @@ export default {
           .catch(e => console.log(e))
       },
       allRead() {
-        if (confirm('알림을 모두 삭제하겠습니까?')) {
-          for (let i in this.allNoti) {
-            http
-              .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
-              .then(response => {
-                this.$store.dispatch('FETCH_NOTI', this.myId);
-                return response
-              })
-              .catch(e => console.log(e))
-          }
-          this.allNoti = [];
+        for (let i in this.allNoti) {
+          http
+            .put(`notification/updateCheck/${this.allNoti[i].notification_id}`)
+            .then(response => {
+              this.$store.dispatch('FETCH_NOTI', this.myId);
+              return response
+            })
+            .catch(e => console.log(e))
         }
+        this.allNoti = [];
+        this.allNotilength = 0;
+        this.followNoti = 0;
+        this.likeNoti = 0;
+        this.scrapNoti = 0;
+        this.reportNoti = 0;
       },
       read(item) {
         http
