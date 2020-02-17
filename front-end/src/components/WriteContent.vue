@@ -99,7 +99,7 @@
                             </div>
                         </div> -->
                         <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
-                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-danger text-white" @click="closeModal" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
 
@@ -449,6 +449,11 @@ export default {
             document.getElementById('itrl').appendChild(div);
             const idx = this.recommendTag.indexOf(tag);
             this.recommendTag.splice(idx, 1);
+        },
+
+        closeModal(){
+            const mapModalBtn = document.querySelector("#mapModalBtn");
+            mapModalBtn.click();
         },
 
     },
