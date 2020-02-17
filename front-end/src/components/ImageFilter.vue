@@ -21,29 +21,19 @@
             </div>
         </div>
       </div>
-        <div style="margin-top:1%; margin-left:5%;margin-right:5%; height:50px;">
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block;">
-            <input type="button" value="이전" @click="goPrev" class="btn btn-primary btn-md text-white">
-          </div>
-          <div v-else class="col-4 col-md-4 col-lg-4" style="display:inline-block;">
-            <input type="button" value="이전" @click="goReg" class="btn btn-primary btn-md text-white">
-          </div>
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:center;">
-            <input type="button" value="추가" @click="goAddImage" class="btn btn-info btn-md text-white">
-          </div>
-          <div v-if="prevpage=='addimage'" class="col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
-          </div>
-           <div v-else-if="prevpage=='useredit'" class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNextEdit" class="btn btn-success btn-md text-white">
-          </div>
-           <div v-else-if="prevpage=='contentupdate'" class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNextUpdate" class="btn btn-success btn-md text-white">
-          </div>
-          <div v-else class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:right;">
-            <input type="button" value="다음" @click="goNextReg" class="btn btn-success btn-md text-white">
-          </div>
+
+      <div class="container col-md-12 px-0">
+        <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-if="prevpage == 'addimage'" @click="goPrev">이전</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else @click="goReg">이전</button>
+          <button type="button" class="btn btn-outline-light col-sm btnadd p-2" v-if="prevpage == 'addimage'" @click="goAddImage">추가</button>
+          <button type="button" class="btn btn-outline-light col-sm btnnext p-2" v-if="prevpage == 'addimage'" @click="goNext">다음</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else-if="prevpage == 'useredit'" @click="goNextEdit">다음</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else-if="prevpage=='contentupdate'" @click="goNextUpdate">다음</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else @click="goNextReg">다음</button>
         </div>
+      </div>
+      
     </div>
 </div>
 </template>
@@ -121,8 +111,8 @@ export default {
                     this.$router.push({
                       name: 'addimage', 
                       params: {
-                        fimgs: this.imgs, 
-                        ftags: this.tags
+                        fimgs: this.imgs,
+                        ftags: this.tags,
                       }
                     });
                 })
@@ -147,7 +137,7 @@ export default {
         name: 'writecontent', 
         params: {
           imgs: this.imgs,
-          tags: this.tags
+          tags: this.tags,
         }
       });
     },
@@ -188,8 +178,9 @@ export default {
     },
   },
   mounted() {
-            console.log(this.items)
       $('html').scrollTop(0);
+      document.querySelector('script[src$="script.js"]').remove()
+      document.querySelector('script[src$="swiper.js"]').remove()
       let recaptchaScripta = document.createElement('script')
       recaptchaScripta.setAttribute('type',"text/javascript")
       recaptchaScripta.setAttribute('src', "./theme/js/script.js")
@@ -211,4 +202,22 @@ export default {
   width:100%;
   z-index: 1;
 }
+</style>
+
+<style scoped>
+.btnprev:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
+.btnadd:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
+.btnnext:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
 </style>

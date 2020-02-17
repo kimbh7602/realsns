@@ -8,17 +8,13 @@
       <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
     </div>
     <div style="margin-top:3%;margin-left:5%;margin-right:5%; height:50px;">
-      <div style="display:inline-block; float :left">
-        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="취소" @click="goPrev" class="btn btn-outline-primary btn-md text-white">
-      </div>
-      <div style="display:inline-block; float:right">
-        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="다음" @click="goNext" class="btn btn-outline-info btn-md text-white">
-      </div>
-      <div>
-        <!-- <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="다음" @click="goNext" class="btn btn-outline-info btn-block text-white">
-        <input style="box-shadow: 0px 3px 5px 1px grey;" type="button" value="취소" @click="goPrev" class="btn btn-outline-primary btn-block text-white"> -->
-      </div>
     </div>
+      <div class="container col-md-12 px-0">
+        <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+          <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
+          <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="goPrev">
+        </div>
+      </div>
     <input ref="fileInput" type="file" accept="image/*" style="display:none;" name="file" id="file" class="inputfile" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload"/>
     </div>
   </div>
@@ -28,7 +24,7 @@
 import $ from "jquery"
 export default {
   name: "App",
-  props:["fimgs","prevpage","items","ftags"],
+  props:["fimgs","prevpage","items", "ftags"],
   data() {
     return {
       step: 1,
@@ -74,7 +70,6 @@ export default {
         this.tags.push([]);
         this.step = 2;
         // EventBus.$emit("imglink", { image: this.image });
-        window.console.log(this.prevpage)
         if(this.prevpage==undefined){
           this.prev = "addimage";
           this.$router.push({
@@ -126,16 +121,13 @@ export default {
       this.$router.push({
           name: 'writecontent', 
           params: {
-            imgs: this.imgs,
+            imgs: this.imgs, 
             tags: this.tags,
           }
         })
     },
   },
   mounted(){
-            console.log(this.items)
-
-    // console.log(this.fimgs);
     if(this.fimgs!=undefined){
       this.imgs = this.fimgs;
       this.tags = this.ftags;
