@@ -11,6 +11,14 @@
             <span @click="rotatem90" class="col-1 icon-rotate-left"></span>
             <span @click="vertical_scale" class="col-1 icon-arrows-v"></span>
             <span @click="horizontal_scale" class="col-1 icon-arrows-h"></span>
+            
+        </div>
+        <div class="container col-md-6 px-0">
+            <div class="btn-group col-12 px-2 mx-2" role="group" aria-label="Basic example">
+                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="이전" v-if="prevpage=='addimage'" @click="goAddImage">
+                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="이전" v-else @click="goPrev">
+                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
+            </div>
         </div>
         <!-- <div class="offset-3 col-6" style="padding-left:4%;">
             <img :src="destination" class="img-preview">
@@ -26,13 +34,6 @@
             <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
           </div>
         </div> -->
-        <div class="container col-md-6 px-0">
-            <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="이전" v-if="prevpage=='addimage'" @click="goAddImage">
-                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="이전" v-else @click="goPrev">
-                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
-            </div>
-        </div>
         
     </div>
 </template>

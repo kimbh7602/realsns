@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
         
         <div class="col-6 pt-4" data-aos="fade-up">
-          <h2 class="text-white mb-4">Register</h2>
+          <h2 class="text-white mb-4">회원 가입</h2>
           
 
           <div class="row">
@@ -152,12 +152,20 @@
                       </div>
                     </div>
                     <!-- register/reset button -->
-                    <div class="row form-group">
+                    <!-- <div class="row form-group">
                       <div class="col-md-12">
                         <input type="submit" value="가입" class="col-md-3 btn btn-primary btn-md text-white">
                         <input type="reset" value="취소" @click="deleteDiv" class="offset-md-6 col-md-3 btn btn-danger btn-md text-white">
                       </div>
+                    </div> -->
+
+                    <div class="container col-md-12 px-0 mt-4">
+                      <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+                        <input type="reset" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="deleteDiv">
+                        <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="가입">
+                      </div>
                     </div>
+
                   </form>
                 </div>
                 

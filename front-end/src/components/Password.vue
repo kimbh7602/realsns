@@ -21,7 +21,7 @@
                       <label class="text-white" for="uid">ID</label>
                       <div class="d-flex bd-highlight">
                         <div class="w-100 bd-highlight">
-                          <input type="text" v-model="uid" id="uid" class="form-control">
+                          <input type="text" v-model="uid" id="uid" class="form-control" placeholder="아이디를 입력해주세요.">
                         </div>
                         <div class="flex-shrink-1 bd-highlight">
                           <input type="button" value="다음" class="btn btn-link" v-on:click="checkId()">
@@ -47,13 +47,21 @@
                       </div>
                     </div>
 
-                    <!-- register/reset button -->
-                    <div class="row form-group">
+                    <!-- <div class="row form-group">
                       <div class="col-md-12">
                         <input type="submit" value="임시 비밀번호 발급" class="btn btn-primary btn-md text-white">
                         <input type="reset" value="다시시도" @click="resetboolean" class="btn btn-danger btn-md text-white">
                       </div>
+                    </div> -->
+
+                    <!-- register/reset button -->
+                    <div class="container col-md-12 px-0 mt-4">
+                      <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+                        <input type="reset" class="btn btn-outline-light col-sm btnprev p-2" value="다시 시도" @click="resetboolean">
+                        <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="임시 비밀번호 발급">
+                      </div>
                     </div>
+
                     
                   </div>
                 </form>

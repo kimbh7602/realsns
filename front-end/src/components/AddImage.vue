@@ -1,9 +1,11 @@
 <template>
   <div class="offset-3 col-6" data-aos="fade-up">
     <div class="col-12">
-    <div class="selected-image"  @click="$refs.fileInput.click()" style="margin-bottom:0px; border:5px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
-      <div style="height:35%"></div>
-      <div style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
+    <div class="selected-image"  @click="$refs.fileInput.click()" style="margin-bottom:0px; border:1px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
+      <!-- <div style="height:35%"></div> -->
+      <!-- <div style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')"> -->
+      <div class="text-center text-primary" style="background-repeat:no-repeat; position: relative; top: 45%;">
+      이 곳을 클릭하여 사진을 추가하세요.
       </div>
       <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
     </div>
@@ -11,8 +13,8 @@
     </div>
       <div class="container col-md-12 px-0">
         <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-          <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
           <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="goPrev">
+          <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
         </div>
       </div>
     <input ref="fileInput" type="file" accept="image/*" style="display:none;" name="file" id="file" class="inputfile" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload"/>

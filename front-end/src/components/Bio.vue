@@ -31,7 +31,23 @@
                   </div>
                   <div class="col-11 col-offset-1"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
-                    from {{items.user_id}}</div>
+                    from <router-link :to="'/mypage/'+ items.user_id" style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right; font-weight: normal;">{{items.user_id}}</router-link></div>
+
+                    <!-- <p><router-link :to="'/mypage/'+ items.user_id">go {{items.user_id}} page</router-link> </p> -->
+                    <div class="m-0">
+                      <router-link class="" :to="'/mypage/'+ items.user_id">
+                        <button class="slidebtn"> Go {{items.user_id}} page → </button>
+                      </router-link>
+                    </div>
+                  <!-- <div>
+                    <ul>
+                      <li>
+                        <router-link class="btn text-dark" :to="'/mypage/'+ items.user_id">
+                            Go {{items.user_id}} page → 
+                        </router-link>
+                      </li>
+                    </ul>
+                  </div> -->
                   <!-- 댓글 -->
                   <div class="col-lg-12 col-sm-12 row"
                     style="margin:0; color:black; vertical-align:bottom; text-align:left;">
@@ -52,16 +68,16 @@
                   </div>
                   <!-- 댓글출력 -->
                   <div v-if="!isComment">
-                    <div class="row" style="text-align:left;" v-for="(comment, index) in tempComments" :key="index">
+                    <!-- <div class="row" style="text-align:left;" v-for="(comment, index) in comments" :key="index">
                       <div class="col-lg-1"></div>
                       <div class="col-lg-3 col-sm-3"
                         style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
-                        {{comment.user_id}}</div>
+                        {{comment.user_id}}</div> -->
                       <!-- <div class="col-1"></div> -->
-                      <div class="comment-val col-lg-7 col-sm-9"
+                      <!-- <div class="comment-val col-lg-7 col-sm-9"
                         style="display:inline-block; padding-left:5px; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:bottom;">
                         {{comment.comment_val}}</div>
-                    </div>
+                    </div> -->
                     <div style="padding-top:20px; text-align:center;">
                       <svg @click="isComment = true;" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg"
                         height="25" viewBox="0 0 512 512" width="25" class="">
@@ -125,7 +141,7 @@
                           <div class="col-1 col-sm-1 col-md-1 col-lg-1">ㄴ</div>
                           <div class="col-2 col-sm-2 col-md-1 col-lg-2"
                             style="display:inline-block; font-weight:bold; font-size:1.2em; font-family: loveson; word-break:break-all; vertical-align:top;">
-                            {{comment.user_id}}</div>
+                            나</div>
                           <!-- <div class="col-1"></div> -->
                           <div class="col-7 col-sm-7 col-md-8 col-lg-7"><input type="text"
                               class="text-black form-control" v-model="re_comment_val"
@@ -187,13 +203,14 @@
                   style="display:inline-block; vertical-align:middle; z-index:0; padding-top:15px; padding-bottom:15px;">
                   <div class="all-scroll pos-relative mt-50">
                     <div class="swiper-scrollbar"></div>
-                    <div class="swiper-container oflow-visible" data-slide-effect="slide" data-autoheight="false"
+                    <div class="swiper-container oflow-visible" data-slidebtn-effect="slidebtn" data-autoheight="false"
                       data-swiper-wheel-control="true" data-swiper-speed="8000" data-swiper-margin="25"
-                      data-swiper-slides-per-view="1" data-swiper-breakpoints="true" data-swiper-autoplay="true"
+                      data-swiper-slidebtns-per-view="1" data-swiper-breakpoints="true" data-swiper-autoplay="true"
                       data-scrollbar="true" data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
                             <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
+
                               <div style="background-color:black;">
                                 <div :class="img.filter" style="width:100%; height:100%;">
                                   <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
@@ -215,7 +232,7 @@
                     <img style="width:20px; height:20px; margin-bottom:7px;" src="/theme/images/placeholder.png" />
                     <span style="cursor:pointer;" @click="findLocation"> {{items.location_name}}</span>
                   </div>
-                  <div v-if="items.user_id == uid" style="margin-top:20px; padding-left:20px; color:#007acc;">
+                  <div v-if="items.user_id == uid || this.isadmin==='true'" style="margin-top:20px; padding-left:20px; color:#007acc;">
                     <input type="button" @click="updateContent" class="bio-btn btn btn-outline-info btn-block"
                       value="수정">
                     <input type="button" @click="deleteContent" class="bio-btn btn btn-outline-primary btn-block"
@@ -252,6 +269,7 @@
         editflg: false,
         change_content_val: "",
         nohashtag:false,
+        isadmin:this.$store.state.isadmin,
       }
     },
     methods: {
@@ -316,7 +334,7 @@
             if (response.data['resmsg'] == "댓글 삭제성공") {
               this.getData();
             } else {
-              alert("대댓글추가 실패!");
+              alert("대댓글삭제 실패!");
             }
           })
           .catch(() => {
@@ -355,6 +373,8 @@
           .then((res) => {
             if (res.data.resmsg == "게시물 출력 성공") {
               this.items = res.data.resValue;
+                    console.log(this.items)
+
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }
@@ -372,20 +392,20 @@
             if (res.data.resmsg == "댓글 출력성공") {
               this.comments = res.data.resvalue;
               for (var i = 0; i < this.comments.length; i++) {
-                if (this.comments[i].user_id === this.uid) {
+                if (this.comments[i].user_id === this.uid || this.$store.state.isadmin==='true') {
                   this.comments[i].check = true;
                 } else {
                   this.comments[i].check = false;
                 }
               }
-              if (this.comments.length > 3) {
-                this.isComment = true;
-              } else {
-                this.isComment = false;
-              }
+              // if (this.comments.length > 3) {
+              //   this.isComment = true; 
+              // } else {
+              //   this.isComment = false;
+              // }
             } else {
               this.$store.commit('setModalText', "댓글 출력 실패");
-              document.getElementById('modalBtn').click();
+              document.getElementById('modalBtn').click();  
             }
 
           });
@@ -497,12 +517,12 @@
       },
       deleteContent() {
         http
-          .delete("content/deleteContent/" + this.items.content_id)
+          .delete("content/deleteContent/" + this.items.content_id +","+ this.uid)
           .then(response => {
             if (response.data['resmsg'] == "게시물 삭제 성공") {
               this.$store.commit('setModalText', '게시물 삭제 성공');
               document.getElementById('modalBtn').click();
-              this.$router.go(-1);
+              this.$router.push("/");
             } else {
               this.$store.commit('setModalText', "게시물 삭제 실패");
               document.getElementById('modalBtn').click();
@@ -533,6 +553,8 @@
       this.uid = store.state.user_id;
     },
     updated() {
+      document.querySelector('script[src$="script.js"]').remove()
+      document.querySelector('script[src$="swiper.js"]').remove()
       let recaptchaScripta = document.createElement('script')
       recaptchaScripta.setAttribute('type', "text/javascript")
       recaptchaScripta.setAttribute('src', "./theme/js/script.js")
@@ -549,9 +571,6 @@
   .size {
     font-size: 2em;
   }
-</style>
-
-<style>
   .fancy-box-mask {
     position: fixed;
     left: 0;
@@ -623,4 +642,47 @@
   /* .comment-val {
     line-height: 1.3em;
   } */
+</style>
+
+<style lang="scss" scoped>
+// slidebtn
+.slidebtn:hover,
+.slidebtn:focus {
+  box-shadow: inset 20em 0 0 0 var(--hover);
+}
+$colors: (
+  fill: #a972cb,
+  pulse: #ef6eae, 
+  close: #ff7f82, 
+  raise: #ffa260, 
+  up: #e4cb58, 
+  // slidebtn: #8fc866, 
+  offset: #19bc8b,
+  slidebtn: #333
+
+);
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 45deg)};
+  }
+}
+.slidebtn {  
+  color: var(--color);
+  transition: 1s;
+  &:hover,
+  &:focus { 
+    border-color: var(--hover);
+    color: #fff;
+  }
+}
+.slidebtn {
+  background: none;
+  border: 0px solid;
+  line-height: 1;
+  // margin-top: 10px;
+  // margin-left: 8px;
+  // padding: 1em 2em;
+//   padding-left: 10px;  // 글씨 왼쪽의 패딩 줄임.
+}
 </style>

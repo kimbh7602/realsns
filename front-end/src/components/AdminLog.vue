@@ -44,16 +44,23 @@
                                     블록 문제발생
                                 </div>
                                 <div class="row text-center">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-1  text-center">
+                                        <div class="icon-chevron-left" @click="setPage(n-1)" />
                                     </div>
                                     <div class="col-md-1 text-center">
-                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)" style="text-align:center"/>
+                                        <input type="text" size="4" v-model="n" v-on:keyup.enter="setPage(n)"
+                                            style="text-align:center" />
                                     </div>
                                     <div class="col-md-1  text-center">
                                         /
                                     </div>
                                     <div class="col-md-1 text-center">
                                         {{numOfPages}}
+                                    </div>
+                                    <div class="col-md-1  text-center">
+                                        <div class="icon-chevron-right" @click="setPage(n+1)" />
                                     </div>
 
                                     <div class="col-md-2  text-center" @click.prevent="setPage(n)">이동</div>
@@ -95,8 +102,7 @@
                     if (response.data['resmsg'] == "조회성공") {
                         tmp = response.data['resvalue'];
                         this.chain = tmp;
-                        console.log(this.chain)
-
+                        // console.log(this.chain)
                     }
                 })
             http
@@ -109,7 +115,10 @@
         },
         methods: {
             setPage(n) {
-                this.currentPage = n;
+                if (n > 0 && n <= this.numOfPages) {
+                    this.currentPage = n;
+                    this.n = this.currentPage;
+                }
             },
         },
         computed: {

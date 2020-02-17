@@ -127,7 +127,7 @@ export default {
                             .then((response)=>{
                                 const keyword = response.data.data.translations[0].translatedText;
                                 
-                                axios.get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
+                                axios.get("http://192.168.100.41:5000/searchByKeyword/" + keyword)
                                     .then((response) => {
                                         this.keywordList = response.data;
                                         axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
@@ -142,7 +142,7 @@ export default {
                                                     return(this.resultList.length>=3);
                                                 });
                                                 this.resultList.forEach(keyword => {
-                                                    const url = "http://52.79.166.146:5000/instagram/"+keyword;
+                                                    const url = "http://192.168.100.41:5000/instagram/"+keyword;
 
                                                     axios.get(url)
                                                         .then((response) => {

@@ -20,14 +20,14 @@
             <input type="text" required v-model="user_id" id="user_id" @keydown.enter="login" class="form-control">
         </div>
     </div>
-    <label class="text-white" for="password">PW</label>
+    <label class="text-white pt-2" for="password">PW</label>
     <div class="d-flex bd-highlight">
         <div class="w-100 bd-highlight">
             <input type="password" required v-model="password" id="password" @keydown.enter="login" class="form-control">
         </div>
     </div>
     <br><br>
-    <input type="button" value="Login" @click="login" class="btn btn-outline-light btn-block text-white">
+    <input type="button" value="Login" @click="login" class="btn btn-outline-light btn-block">
     <br>
     <div style="margin-top:1%;margin-left:5%;margin-right:5%; height:50px;">
       <div style="margin-bottom:3px; text-align:center"><span @click="register" style="cursor:pointer; border-bottom:1px solid;">아직 회원이 아니신가요?</span></div>

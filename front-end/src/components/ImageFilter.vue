@@ -5,7 +5,7 @@
             <img :src = imgs[imgs.length-1].base64 class="img-fluid">
       </div>
       <div class="all-scroll pos-relative mt-50">
-          <h5 class="mb-50"><b>Filters</b></h5>                                            
+          <h5 class="mt-3 mb-4"><b>Filters</b></h5>                                            
           <div class="swiper-scrollbar"></div>
           <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false" data-wheel-control="true"
                                     data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="3"
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="container col-md-12 px-0">
+      <div class="container col-md-12 px-0 mt-4">
         <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-if="prevpage == 'addimage'" @click="goPrev">이전</button>
           <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else @click="goReg">이전</button>

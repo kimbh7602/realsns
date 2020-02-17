@@ -61,7 +61,7 @@
             <label class="text-white">Location Search</label> 
             <input v-model="searchKeyword" @keyup.enter="searchLocation" id="search-location-input" type="text" class="form-control search-location-input">
             <br>
-            <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block text-white">
+            <input @click="searchLocation" type="button" value="찾기" class="btn btn-outline-light btn-block btnprev">
             </div>
         </div>
         <div v-if="!isLocation&&!isLocationSelect">
