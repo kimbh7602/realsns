@@ -360,7 +360,7 @@ export default {
     // });
   },
   created() {
-    this.socket = io('http://192.168.100.41:3000');
+    this.socket = io('http://52.79.166.146:3000');
     
     this.socket.emit('login', {
       user_id : this.userId

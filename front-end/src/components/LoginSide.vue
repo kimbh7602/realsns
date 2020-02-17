@@ -59,7 +59,7 @@ export default {
         },
     },
     created() {
-    // this.socket = io('http://192.168.100.41:3000');
+    // this.socket = io('http://52.79.166.146:3000');
     this.$socket.on('notification', (data) => {
     //   window.console.log('notification', data, this.$store.state.user_id);
       if(data.target_user_id == this.$store.state.user_id){
