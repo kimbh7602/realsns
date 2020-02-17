@@ -39,7 +39,9 @@
 </template>
 
 <script>
-    import Cropper from "cropperjs";
+    import '/home/ubuntu/realsns/node_modules/cropperjs/dist/cropper.css';
+    import '/home/ubuntu/realsns/node_modules/cropperjs/dist/cropper.min.css';
+    import Cropper from "/home/ubuntu/realsns/node_modules/cropperjs";
     export default {
         name: "editing",
         props: ["imgs","prevpage","oldpw","items","tags"],

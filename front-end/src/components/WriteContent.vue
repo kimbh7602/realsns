@@ -188,6 +188,17 @@ export default {
         deleteImage(event, index){
         // deleteImage(event, img, index){
             this.imgs.splice(index, 1);
+            
+            this.tags.splice(index, 1);
+            this.recommendTag = [];
+            this.tags.forEach(labels => {
+                labels.forEach(label => {
+                    if(!this.recommendTag.includes(label)){
+                        this.recommendTag.push(label);
+                    }
+                })
+            })
+
             var swiper_wrapper = document.createElement('div');
             swiper_wrapper.classList.add('swiper-wrapper');
             for(var i = 0; i<this.imgs.length; i++){
@@ -247,7 +258,7 @@ export default {
             var span = document.createElement('span');
             var bold = document.createElement('bold')
             var text = document.getElementById('interest').value;
-            var dcheck = 0;
+           var dcheck = 0;
             if(text==""){
               return;
             }
@@ -451,22 +462,23 @@ export default {
             var span = document.createElement('span');
             var bold = document.createElement('bold')
             var text = tag;
-            // var dcheck = 0;
-            // if(this.itrlisttemp.length==0){
-            //   this.itrlisttemp.push(text);
-            // }else{
-            //   for(var idx=0;idx<this.itrlisttemp.length;idx++){
-            //     if(this.itrlisttemp[idx]==text){
-            //       dcheck=-1;
-            //       return;
-            //     }
-            //   }
-            //   if(dcheck==0){
-            //     this.itrlisttemp.push(text);
-            //   }else{
-            //     dcheck=0;
-            //   }
-            // }
+            var dcheck = 0;
+            if(this.itrlisttemp.length==0){
+              this.itrlisttemp.push(text);
+            }else{
+              for(var idx=0;idx<this.itrlisttemp.length;idx++){
+                if(this.itrlisttemp[idx]==text){
+                  dcheck=-1;
+                  return;
+                }
+              }
+              if(dcheck==0){
+                this.itrlisttemp.push(text);
+              }else{
+                dcheck=0;
+              }
+            }
+            // this.itrlist.push(text);
             bold.innerText = text;
             div.style.background=colorCode;
             div.classList.add('roundedge');
@@ -479,8 +491,8 @@ export default {
             div.appendChild(bold);
             div.appendChild(span);
             document.getElementById('itrl').appendChild(div);
-            const idx = this.recommendTag.indexOf(tag);
-            this.recommendTag.splice(idx, 1);
+            const index = this.recommendTag.indexOf(tag);
+            this.recommendTag.splice(index, 1);
         },
 
     },
