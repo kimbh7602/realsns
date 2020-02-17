@@ -1,11 +1,12 @@
 <template>
-  <div id="app" class="site-wrap">
+  <div id="app" class="yscroll site-wrap">
     <!-- <Sidebar v-if="loginCheck" />
     <LoginSide v-if="!loginCheck" /> -->
     <Sideex />
-    <main class="main-content">
       <!-- 공지 -->
-      <div v-if="loginCheck" class="top-noti row col-12" style=" background-color:black;width:101%; margin-bottom:3%;">
+    
+    <main class="main-content">
+      <div v-if="loginCheck" class="top-noti" style="padding-right:0px; margin-right:0px; width:101%; background-color:black; margin-bottom:3%;">
         <!-- <div class="text-white offset-4 col-1" style="text-align:right; display:inline-block;">
           <span class="icon-notifications_active neon"></span>
           <img src="../public/theme/images/notice.png" style="width:28px;height:28px;" />
@@ -30,14 +31,6 @@
           <div>today</div>
           <div>{{visit}}</div>
         </div>
-
-        <!-- <div style="display:inline-block;" class="col-4"> -->
-        <!-- <input style="margin-right:20px;" type="button" class="text-white btn btn-outline-info" value="WRITE" /> -->
-
-        <!-- <input type="button" class="text-white btn btn-outline-warning" value="LOGOUT" /> -->
-        <!-- <img style="height:100%;" src="/theme/images/edit.png" />
-              <img style="width:100%;" src="/theme/images/logout.png" /> -->
-        <!-- </div> -->
       </div>
 
       <!-- 공지 2 -->
@@ -97,7 +90,6 @@
         http
           .get('/notice/noticeNow')
           .then((res) => {
-            // console.log(res)
             if (res.data.resmsg === "조회성공") {
               this.noticeError = ""
               const noticeTitle = []
@@ -118,7 +110,6 @@
     },
     created() {
       // this.getNotice();
-      // console.log(this.noti);
     },
     mounted() {
       this.getNotice();
@@ -134,7 +125,8 @@
     updated() {
       //modal 뜰 때 body에 padding 붙는거 없애주는거
       document.body.style.paddingRight = 0;
-
+      document.querySelector('script[src$="script.js"]').remove()
+      document.querySelector('script[src$="swiper.js"]').remove()
       let recaptchaScript = document.createElement('script')
       recaptchaScript.setAttribute('type', "text/javascript")
       recaptchaScript.setAttribute('src', "./theme/js/swiper.js")
@@ -149,6 +141,9 @@
 <style>
   .snotifyToast__title {
     font-size: 17px;
+  }
+  body{
+    padding-right:0px;
   }
 
   .snotifyToast__body {
@@ -165,9 +160,10 @@
 
   #myModal {
     z-index: 99999;
+    padding-right:0px;
   }
 
-  @media (min-width: 992px) {
+  /* @media (min-width: 992px) {
     #myModal {
       padding-right: 0px;
       position: absolute;
@@ -179,5 +175,5 @@
     #myModal {
       top: 255px;
     }
-  }
+  } */
 </style>
