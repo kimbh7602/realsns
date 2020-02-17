@@ -229,7 +229,9 @@ export default {
             uniqnum: "",
             uintr:"",
             itrlist:[],
+            itrlisttemp:[],
             uitrlist:[],
+            uitrlisttemp:[],
             intro:"",
             loading:true,
             errored:false,
@@ -384,8 +386,26 @@ export default {
             var span = document.createElement('span');
             var bold = document.createElement('bold')
             var text = document.getElementById('interest').value;
+            var dcheck = 0;
             if(text==""){
               return;
+            }
+            if(this.itrlisttemp.length==0){
+              this.itrlisttemp.push(text);
+            }else{
+              for(var idx=0;idx<this.itrlisttemp.length;idx++){
+                if(this.itrlisttemp[idx]==text){
+                  dcheck=-1;
+                  document.getElementById('interest').value = '';
+                  return;
+                }
+              }
+              if(dcheck==0){
+                this.itrlisttemp.push(text);
+              }else{
+                dcheck=0;
+              }
+
             }
             // this.itrlist.push(text);
             bold.innerText = text;
@@ -425,6 +445,23 @@ export default {
             var text = document.getElementById('uninterest').value;
             if(text==""){
               return;
+            }
+            var udcheck =0;
+            if(this.uitrlisttemp.length==0){
+              this.uitrlisttemp.push(text);
+            }else{
+              for(var idx=0;idx<this.uitrlisttemp.length;idx++){
+                if(this.uitrlisttemp[idx]==text){
+                  udcheck=-1;
+                  document.getElementById('uninterest').value = '';
+                  return;
+                }
+              }
+              if(udcheck==0){
+                this.uitrlisttemp.push(text);
+              }else{
+                udcheck=0;
+              }
             }
             // this.itrlist.push(text);
             bold.innerText = text;
