@@ -349,6 +349,11 @@ export default {
       }
     })
 
+    this.$nextTick(() => {
+      this.$store.commit('SET_USERDMLIST', this.userDmList);
+      this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
+    })
+
     // this.socket.on('notification', (data) => {
     //   // window.console.log('notification', data, this.$store.state.user_id);
     //   if(data.target_user_id == this.$store.state.user_id){
@@ -392,11 +397,6 @@ export default {
       this.selectUserDm(this.targetDm);
       // console.log(this.targetDm)
     }
-  },
-
-  updated() {
-    this.$store.commit('SET_USERDMLIST', this.userDmList);
-    this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
   },
 
   beforeDestroy(){
