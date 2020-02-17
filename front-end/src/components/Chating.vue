@@ -371,7 +371,7 @@ export default {
     this.$nextTick(() => {
       this.fetchedUserDmList.forEach(dm => {
          http
-            .post(`/directMessage/unReadCnt`, dm)
+            .post(`/directMessage/unReadCnt/${this.userId}`, dm)
             .then((res) => {
               const cnt = res.data.resvalue;
               dm.cnt = cnt;
