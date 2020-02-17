@@ -323,6 +323,25 @@ export default {
 
           this.socket.emit('read', data);
         }
+
+        http
+          .get(`/userDm/userDmList/${this.userId}`)
+          .then(response => {
+            this.userDmList = response.data.resvalue;
+            this.userDmList.forEach(dm => {
+              http
+                .post(`/directMessage/unReadCnt`, dm)
+                .then((res) => {
+                  const cnt = res.data.resvalue;
+                  dm.cnt = cnt;
+                  window.console.log(cnt);
+                })
+            })
+          })
+          .catch(e => console.log(e))
+          .finally(() => {
+            this.$store.commit('SET_USERDMLIST', this.userDmList);
+          })
       }
       // this.fetchedUserDmList.forEach(dm => {
       //   http
