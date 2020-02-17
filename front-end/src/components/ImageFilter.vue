@@ -133,13 +133,39 @@ export default {
     },
     goNext() {
       this.imgs[this.imgs.length-1].filter = this.filterType;
-      this.$router.push({
-        name: 'writecontent', 
-        params: {
-          imgs: this.imgs,
-          tags: this.tags,
-        }
-      });
+
+      http
+        .post(`/content/tempImage`, {
+          user_id: this.$store.state.user_id,
+          base64: this.imgs[this.imgs.length-1].base64,
+          filter: this.imgs[this.imgs.length-1].filter
+        })
+        .then((res) => {
+          window.console.log(res.data.resValue);
+          const img_url = res.data.resValue;
+          axios.post("http://52.79.166.146:5000/tag", {
+                    img_url: img_url
+                })
+                .then((res) => {
+                    window.console.log(res.data);
+                    this.tags[this.tags.length-1] = res.data['label_kr'];
+                    this.$router.push({
+                      name: 'writecontent', 
+                      params: {
+                        imgs: this.imgs,
+                        tags: this.tags,
+                      }
+                    });
+                })
+        })
+
+      // this.$router.push({
+      //   name: 'writecontent', 
+      //   params: {
+      //     imgs: this.imgs,
+      //     tags: this.tags,
+      //   }
+      // });
     },
     goNextUpdate() {
       window.console.log(this.prevpage)
