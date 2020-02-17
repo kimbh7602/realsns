@@ -39,8 +39,6 @@
 </template>
 
 <script>
-    import 'cropperjs/dist/cropper.css';
-    import 'cropperjs/dist/cropper.min.css';
     import Cropper from "cropperjs";
     export default {
         name: "editing",
@@ -117,8 +115,6 @@
             },
         },
         mounted() {
-                    console.log(this.imgs)
-
             this.image = this.$refs.image;
             if(this.prevpage=="addimage"){
                 this.ratio = 4/3;
