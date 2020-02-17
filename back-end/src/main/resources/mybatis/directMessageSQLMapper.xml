@@ -29,7 +29,7 @@
             receive_id = #{user_id}
     </update>
 
-    <select id="unReadCnt" parameterType="UserDmVo" resultType="int">
+    <select id="unReadCnt" parameterType="map" resultType="int">
         select count(*) from direct_message
         where
             dm_id = #{dm_id} and

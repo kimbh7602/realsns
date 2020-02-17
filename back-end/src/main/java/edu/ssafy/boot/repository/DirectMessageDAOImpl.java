@@ -1,6 +1,8 @@
 package edu.ssafy.boot.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +53,11 @@ public class DirectMessageDAOImpl implements IDirectMessageDAO {
     }
 
     @Override
-    public int directMessageUnReadCnt(UserDmVo userDm) {
-        return session.selectOne("ssafy.directMessage.unReadCnt", userDm);
+    public int directMessageUnReadCnt(UserDmVo userDm, String user_id) {
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("dm_id", userDm.getDm_id());
+    	map.put("user_id", user_id);
+        return session.selectOne("ssafy.directMessage.unReadCnt", map);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package edu.ssafy.boot.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,8 +40,8 @@ public class DirectMessageService implements IDirectMessageService {
     }
 
     @Override
-    public int directMessageUnReadCnt(UserDmVo userDm) {
-        return dao.directMessageUnReadCnt(userDm);
+    public int directMessageUnReadCnt(UserDmVo userDm, String user_id) {
+        return dao.directMessageUnReadCnt(userDm, user_id);
     }
 
     @Override

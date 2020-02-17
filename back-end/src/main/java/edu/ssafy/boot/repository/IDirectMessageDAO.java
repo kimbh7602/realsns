@@ -10,6 +10,6 @@ public interface IDirectMessageDAO {
     public boolean deleteDirectMessage(DirectMessageVo directMessage);
     public List<DirectMessageVo> directMessageList(UserDmVo userDm);
     public boolean directMessageReadCheck(UserDmVo userDm);
-    public int directMessageUnReadCnt(UserDmVo userDm);
+    public int directMessageUnReadCnt(UserDmVo userDm, String user_id);
     public void deleteOldMessage();
 }
