@@ -3,6 +3,7 @@ from flask_cors import CORS
 from urllib import parse
 from selenium import webdriver
 from selenium.webdriver import ActionChains
+from pyvirtualdisplay import Display
 import time
 import requests
 
@@ -19,7 +20,9 @@ def index():
 def naver_crawling(tag):
     url_tmp = "www.instagram.com/explore/tags/" + tag
     url = "https://" + parse.quote(url_tmp)
-    driver = webdriver.Chrome()
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    driver = webdriver.Chrome('/home/ubuntu/chromedriver')
     driver.get(url)
     time.sleep(2)
 
@@ -84,7 +87,9 @@ def image_tag():
 def search_by_keyword(keyword):
     url = "https://www.twinword.com/writer/"
 
-    driver = webdriver.Chrome()
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
+    driver = webdriver.Chrome('/home/ubuntu/chromedriver')
     driver.get(url)
     # time.sleep(3)
 
