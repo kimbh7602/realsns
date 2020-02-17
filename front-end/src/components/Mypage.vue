@@ -28,29 +28,33 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="box mx-5" style="height: 25px; background: #F78181;">
+                    <div>{{userInfo.description}}
+                    </div>
+                </div> -->
             </div>
         </div>
       </div>
       
       <div class="row justify-content-center mb-4">
-        <div class="col-5 d-flex justify-content-center">
+        <div class="col-md-5 d-flex justify-content-center">
             <div class="row">
-                <div class="text-center col">
+                <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="content()">게시물</a>
                     <h4 v-if="userContent">{{userContent.length}}</h4>
                     <h4 v-else>0</h4>
                 </div>
-                <div class="text-center col">
+                <div class="text-center col-3">
                     <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followerModal">팔로워</a>
                     <h4 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h4>
                     <h4 v-else>0</h4>
                 </div>
-                <div class="text-center col">
+                <div class="text-center col-3">
                     <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followModal">팔로우</a>
                     <h4 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h4>
                     <h4 v-else>0</h4>
                 </div>
-                <div v-if="userId==myId" class="text-center col">
+                <div v-if="userId==myId" class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="scrap()">스크랩</a>
                     <h4 v-if="userScrap">{{userScrap.length}}</h4>
                     <h4  v-else>0</h4>
@@ -67,13 +71,13 @@
         <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header modal-lg">
                         <h5 class="modal-title text-dark ml-1" id="exampleModalLabel">팔로워</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="overflow: auto; height:400px;">
                         <div v-for="(follower, index) in fetchedFollowerList" :key="`follower${index}`" class="d-flex align-items-center justify-content-between mb-3">
                             <a :href="`/mypage/${follower.user_id}`" class="text-dark d-flex m-0 align-items-center">
                                 <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follower.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
@@ -97,7 +101,7 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="overflow: auto; height:400px;">
                         <div v-for="(follow, index) in fetchedFollowList" :key="`follow${index}`" class="d-flex align-items-center justify-content-between mb-3">
                              <a :href="`/mypage/${follow.user_id}`" class="text-dark d-flex m-0 align-items-center">
                                 <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follow.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
