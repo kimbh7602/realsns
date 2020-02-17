@@ -356,9 +356,9 @@ export default {
               .catch(()=>{
                 this.errored = true;
               })
-            if (this.contents[idx].userId !== this.loginId && this.followList.includes(this.contents[idx].userId) == false) {
-              this.contents.splice(idx, 1)
-            }
+            // if (this.contents[idx].userId !== this.loginId && this.followList.includes(this.contents[idx].userId) == false) {
+            //   this.contents.splice(idx, 1)
+            // }
           }
         }
       }
@@ -385,20 +385,20 @@ export default {
           .catch(()=>{
             this.errored = true;
           })
-        const del = []
-        for (var i = 0; i < this.contents.length; i++) {
-          if (this.contents[i].userId == user && !this.contents[i].likeButton) {
-            del.push(this.contents[i].contentId)
-          }
-        }
-        for (var j =0; j < del.length; j++) {
-          const index = this.contents.findIndex(function(item) {return item.contentId === del[j]})
-          this.contents.splice(index, 1)
-        }
-        const idx = this.followList.indexOf(user)
-        if (idx > -1) {
-          this.followList.splice(idx, 1)
-        }
+        // const del = []
+        // for (var i = 0; i < this.contents.length; i++) {
+        //   if (this.contents[i].userId == user && !this.contents[i].likeButton) {
+        //     del.push(this.contents[i].contentId)
+        //   }
+        // }
+        // for (var j =0; j < del.length; j++) {
+        //   const index = this.contents.findIndex(function(item) {return item.contentId === del[j]})
+        //   this.contents.splice(index, 1)
+        // }
+        // const idx = this.followList.indexOf(user)
+        // if (idx > -1) {
+        //   this.followList.splice(idx, 1)
+        // }
       } else {
         http
           .post('/follow/insertFollow', {
@@ -416,62 +416,62 @@ export default {
           .catch(()=>{
             this.errored = true;
           })
-        const idx = this.followList.indexOf(user)
-        if (idx == -1) {
-          this.followList.push(user)
-        }
-        http
-          .get('/content/contentUserList/' + user)
-          .then((res) => {
-            const li = []
-            this.contents.forEach(i => {
-              li.push(i.contentId)
-            })
-            res.data.resValue.forEach(idx => {
-              if (!li.includes(idx.content_id)) {
-                if (this.scrapList.includes(idx.content_id)) {
-                  this.contents.push({
-                    contentId: idx.content_id,
-                    contentValue: idx.content_val.replace(/\n/g, "<br />"),
-                    timestamp: idx.timestamp,
-                    likeButton: idx.user_like,
-                    userId: idx.user_id,
-                    imageLength: idx.imageList.length,
-                    images: [{
-                      imageUrl: idx.imageList[0].image_url,
-                      filter: idx.imageList[0].filter,
-                    }],
-                    scrapButton: true,
-                    dislike: idx.dislike,
-                    profileUrl: idx.profile_url,
-                    profileFilter: idx.profile_filter
+        // const idx = this.followList.indexOf(user)
+        // if (idx == -1) {
+        //   this.followList.push(user)
+        // }
+        // http
+        //   .get('/content/contentUserList/' + user)
+        //   .then((res) => {
+        //     const li = []
+        //     this.contents.forEach(i => {
+        //       li.push(i.contentId)
+        //     })
+        //     res.data.resValue.forEach(idx => {
+        //       if (!li.includes(idx.content_id)) {
+        //         if (this.scrapList.includes(idx.content_id)) {
+        //           this.contents.push({
+        //             contentId: idx.content_id,
+        //             contentValue: idx.content_val.replace(/\n/g, "<br />"),
+        //             timestamp: idx.timestamp,
+        //             likeButton: idx.user_like,
+        //             userId: idx.user_id,
+        //             imageLength: idx.imageList.length,
+        //             images: [{
+        //               imageUrl: idx.imageList[0].image_url,
+        //               filter: idx.imageList[0].filter,
+        //             }],
+        //             scrapButton: true,
+        //             dislike: idx.dislike,
+        //             profileUrl: idx.profile_url,
+        //             profileFilter: idx.profile_filter
 
-                  })
-                } else {
-                  this.contents.push({
-                    contentId: idx.content_id,
-                    contentValue: idx.content_val.replace(/\n/g, "<br />"),
-                    timestamp: idx.timestamp,
-                    likeButton: idx.user_like,
-                    userId: idx.user_id,
-                    imageLength: idx.imageList.length,
-                    images: [{
-                      imageUrl: idx.imageList[0].image_url,
-                      filter: idx.imageList[0].filter,
-                    }],
-                    scrapButton: false,
-                    dislike: idx.dislike,
-                    profileUrl: idx.profile_url,
-                    profileFilter: idx.profile_filter
-                  })
-                }
-              }
-              this.sortList()
-            })
-          })
-        .catch(()=>{
-          this.errored = true;
-        })
+        //           })
+        //         } else {
+        //           this.contents.push({
+        //             contentId: idx.content_id,
+        //             contentValue: idx.content_val.replace(/\n/g, "<br />"),
+        //             timestamp: idx.timestamp,
+        //             likeButton: idx.user_like,
+        //             userId: idx.user_id,
+        //             imageLength: idx.imageList.length,
+        //             images: [{
+        //               imageUrl: idx.imageList[0].image_url,
+        //               filter: idx.imageList[0].filter,
+        //             }],
+        //             scrapButton: false,
+        //             dislike: idx.dislike,
+        //             profileUrl: idx.profile_url,
+        //             profileFilter: idx.profile_filter
+        //           })
+        //         }
+        //       }
+        //       this.sortList()
+        //     })
+        //   })
+        // .catch(()=>{
+        //   this.errored = true;
+        // })
       }
     },
     clickScrap(id, button) {
