@@ -3,7 +3,7 @@ from flask_cors import CORS
 from urllib import parse
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-from pyvirtualdisplay import Display
+from PyVirtualDisplay import Display
 import time
 import requests
 
