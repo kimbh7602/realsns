@@ -106,9 +106,11 @@
                 <input class="btn btn-outline-info" type="button" value="입력" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" @click="sendReport2(options[0].op4)">
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" @click="clickBell()">신고하기</button>
+            <div class="modal-footer d-flex justify-content-end py-2">
+              <div class="d-block">
+                <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="clickBell()">신고</button>
+                <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
+              </div>
             </div>
           </div>
         </div>

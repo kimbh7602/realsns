@@ -114,15 +114,15 @@
         </div>
         
       </div>
-      <div class="modal" id="deleteUserDmModal" tabindex="-1" role="dialog">
-          <div class="modal-dialog col-12" role="document">
+      <div class="modal fade mt-5" id="deleteUserDmModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
               <div class="modal-content">
-              <div class="modal-body">
-                  <p>정말 나가시겠습니까?</p>
+              <div class="modal-body py-4 text-center">
+                  정말 나가시겠습니까?
               </div>
-              <div class="modal-footer p-2">
-                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary btn-sm" @click="deleteUserDm(targetDeleteDm)" data-dismiss="modal">확인</button>
+              <div class="modal-footer py-2">
+                  <button type="button" class="btn btn-danger btn-sm py-1 px-3" @click="deleteUserDm(targetDeleteDm)" data-dismiss="modal">확인</button>
+                  <button type="button" class="btn btn-secondary btn-sm py-1 px-3" data-dismiss="modal">취소</button>
               </div>
               </div>
           </div>

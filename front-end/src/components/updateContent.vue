@@ -46,7 +46,7 @@
             <label class="text-white">Location Search</label> 
             <input v-model="searchKeyword"  @keyup.enter="searchLocation" type="text" id="search-location-input" class="form-control">
             <br>
-            <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block text-white">
+            <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
             </div>
         </div>
         <div v-if="!isLocation&&!isLocationSelect">
@@ -76,9 +76,15 @@
                         ></gmap-marker>
                         </gmap-map>
                     </div>
-                    <div class="modal-footer">
+                    <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
                         <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+                    </div> -->
+                    <div class="modal-footer d-flex justify-content-end py-2">
+                        <div class="d-block">
+                            <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="selectLocation()">선택</button>
+                            <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
+                        </div>
                     </div>
                 </div>
 
@@ -91,12 +97,18 @@
             </div>
         </div>
         
-        <div style="margin-top:1%; margin-left:5%;margin-right:5%; height:50px;">
+        <!-- <div style="margin-top:1%; margin-left:5%;margin-right:5%; height:50px;">
             <div style="display:inline-block; float :left">
             <input type="button" value="처음으로" @click="goPrev" class="btn btn-primary btn-md text-white">
             </div>
             <div style="display:inline-block; float:right">
             <input type="button" value="다음" @click="goNext" class="btn btn-success btn-md text-white">
+            </div>
+        </div> -->
+        <div class="container col-md-12 px-0 mt-4">
+            <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-light col-sm btnprev p-2" @click="goPrev">처음으로</button>
+            <button type="button" class="btn btn-outline-light col-sm btnprev p-2" @click="goNext">다음</button>
             </div>
         </div>
         <p id="mapModalBtn" style="display:none;" data-toggle="modal" data-target="#mapModal"></p>
@@ -342,7 +354,7 @@ export default {
             let keyword = this.searchKeyword;
             keyword.replace(" ", "+");
 
-            const url = "http://52.79.166.146:5000/location/"+keyword;
+            const url = "http://192.168.100.41:5000/location/"+keyword;
             
             axios.get(url)
                 .then((response)=>{

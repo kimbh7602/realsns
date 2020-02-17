@@ -57,8 +57,8 @@
                     <!-- register/reset button -->
                     <div class="container col-md-12 px-0 mt-4">
                       <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                        <input type="reset" class="btn btn-outline-light col-sm btnprev p-2" value="다시 시도" @click="resetboolean">
                         <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="임시 비밀번호 발급">
+                        <input type="reset" class="btn btn-outline-light col-sm btnprev p-2" value="다시 시도" @click="resetboolean">
                       </div>
                     </div>
 

@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
-        <div class="postcard" style="height:auto;">
+        <div class="postcard" style="height:auto;" data-aos="fade-up">
             <div class="content" style="width:100%; height:auto;">
-                <div class="p-4 text-center bg-light" data-aos="fade-up">
+                <div class="p-4 text-center bg-light">
                     <img class="rounded-circle mt-3 mb-2" width="150px" height="150px" style="object-fit: cover;" :class="userInfo.profile_filter" :src="userInfo.profile_url">
                     <h4>{{userId}}</h4>
                     <div v-if="userId != myId" class="d-flex justify-content-center row p-2">
@@ -64,7 +64,7 @@
       <category v-else :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->
-        <div class="modal mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <!-- 팔로우 모달 -->
-        <div class="modal mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -112,16 +112,16 @@
         </div>
 
         <!-- 팔로우취소 모달 -->
-        <div class="modal" id="deleteFollowModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog col-12" role="document">
+        <div class="modal fade mt-5" id="deleteFollowModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-body">
-                    <p>팔로우 취소하시겠습니까?</p>
-                </div>
-                <div class="modal-footer p-2">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary btn-sm" @click="deleteFollow(targetUser)" data-dismiss="modal">확인</button>
-                </div>
+                    <div class="modal-body py-4">
+                        팔로우를 취소하시겠습니까?
+                    </div>
+                    <div class="modal-footer py-2">
+                        <button type="button" class="btn btn-danger btn-sm py-1 px-3" @click="deleteFollow(targetUser)" data-dismiss="modal">확인</button>
+                        <button type="button" class="btn btn-secondary btn-sm py-1 px-3" data-dismiss="modal">취소</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -334,24 +334,24 @@ export default {
 </script>
 
 <style scoped>
-.modal-dialog { 
+/* .modal-dialog { 
     width: 30%; 
     height: 50%;
 }
 .modal-content{
     height: auto;
     min-height: 100%;
-}
+} */
 
 #deleteFollowModal .modal-dialog {
-    margin-top: 130px;
+    margin-top: 120px;
     width: 25%;
     height: 50%;
 }
-#deleteFollowModal .modal-content{
+/* #deleteFollowModal .modal-content{
     height: auto;
     min-height: 30%;
-}
+} */
 .site-logo {
     box-shadow: 0px 3px 5px 1px grey;
 }

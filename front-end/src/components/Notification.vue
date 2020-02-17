@@ -208,13 +208,13 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body py-4">
               <p class="m-2"> 팔로우를 취소하시겠습니까? </p>
             </div>
-            <div class="modal-footer d-flex justify-content-end">
+            <div class="modal-footer d-flex justify-content-end py-2">
               <div class="d-block">
-                <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" @click="deleteFollow()">확인</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-danger py-1 px-3" data-dismiss="modal" @click="deleteFollow()">확인</button>
+                <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">취소</button>
               </div>
             </div>
           </div>

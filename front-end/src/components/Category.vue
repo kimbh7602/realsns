@@ -85,12 +85,9 @@
         <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999;">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
+              <!-- <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+              </div> -->
               <div class="modal-body">
                 <div class="btn-group dropright">
                   <button class="btn btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
@@ -110,10 +107,10 @@
                   <input type="text" v-model="options[0].op7" placeholder="신고 내용">
                 </div>
               </div>
-              <div class="modal-footer d-flex justify-content-end">
+              <div class="modal-footer d-flex justify-content-end py-2">
                 <div class="d-block">
-                  <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" @click="clickBell()">신고하기</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="clickBell(), opBtn()">신고</button>
+                  <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal" @click="opBtn()">닫기</button>
                 </div>
               </div>
             </div>
@@ -167,6 +164,9 @@ export default {
     }
   },
   methods: {
+    opBtn() {
+      this.optionButton = false
+    },
     reportOption(id) {
       if (id === 6) {
         this.optionButton = true
@@ -305,7 +305,7 @@ export default {
       http
       .get('content/contentUserList/'+this.uid)
       .then((res)=>{
-        console.log(res)
+        // console.log(res)
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
@@ -377,8 +377,9 @@ export default {
       http
       .get('scrap/scrapList/'+this.uid)
       .then((res)=>{
+        this.contentErrorMsg = ""
+        // console.log(res)
         if (res.data.resvalue.length > 0) {
-          this.contentErrorMsg = ""
           if (res.data.resmsg == "스크랩목록성공") {
             for (var i = 0; i < res.data.resvalue.length; i++) {
               for (var j = 0; j < this.contentIds.length; j++) {
@@ -390,7 +391,8 @@ export default {
             this.Items = res.data.resvalue;
           }
         } else {
-          this.contentErrorMsg = "게시물이 없습니다."
+          this.contentErrorMsg = "스크랩 목록이 비었습니다."
+          this.Items = []
         }
       })
       .catch(()=>{
@@ -539,6 +541,9 @@ export default {
                   return item2.content_id === cid
                 })
                 this.Items.splice(idx2, 1)
+                // if (this.Items == []) {
+                //   this.contentErrorMsg = "스크랩 목록이 비었습니다."
+                // }
               }
             } else {
               console.log(res.data.resmsg)
@@ -572,6 +577,7 @@ export default {
       }
     },
     fetchData() {
+      window.console.log(this.myPage);
       if(this.myPage == undefined){
         this.getData()
       }else if(this.myPage == true){

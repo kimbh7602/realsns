@@ -157,19 +157,13 @@
       <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">알림</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-body py-4">
+              탈퇴하시겠습니까?
             </div>
-            <div class="modal-body">
-              <p class="m-2"> 탈퇴하시겠습니까? </p>
-            </div>
-            <div class="modal-footer d-flex justify-content-end">
+            <div class="modal-footer d-flex justify-content-end py-2">
               <div class="d-block">
-                <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" @click="del">확인</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="del">확인</button>
+                <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">취소</button>
               </div>
             </div>
           </div>

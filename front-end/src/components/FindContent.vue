@@ -16,7 +16,7 @@
                     <label class="text-white">Location Search</label> 
                     <input v-model="searchKeyword" type="text" class="form-control">
                     <br>
-                    <input data-toggle="modal" data-target="#mapModal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block text-white">
+                    <input data-toggle="modal" data-target="#mapModal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
                     </div>
                 </div>
                 <div v-if="!isLocation&&!isLocationSelect">
@@ -77,10 +77,17 @@
                                 ></gmap-marker>
                                 </gmap-map>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer d-flex justify-content-end py-2">
+                                <div class="d-block">
+                                    <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="selectLocation()">선택</button>
+                                    <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
+                                </div>
+                            </div>
+
+                            <!-- <div class="modal-footer">
                                 <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
                                 <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
