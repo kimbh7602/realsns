@@ -151,6 +151,7 @@ export default {
             intro:"",
             filterType:"",
             itrlist:[],
+            itrlisttemp:[],
             defaultImag:{base64:"",filter:"normal"},
             errored:false,
             loading:true,
@@ -245,10 +246,28 @@ export default {
             var span = document.createElement('span');
             var bold = document.createElement('bold')
             var text = document.getElementById('interest').value;
+            var dcheck = 0;
             if(text==""){
               return;
             }
+            if(this.itrlisttemp.length==0){
+              this.itrlisttemp.push(text);
+            }else{
+              for(var idx=0;idx<this.itrlisttemp.length;idx++){
+                if(this.itrlisttemp[idx]==text){
+                  dcheck=-1;
+                  document.getElementById('interest').value = '';
+                  return;
+                }
+              }
+              if(dcheck==0){
+                this.itrlisttemp.push(text);
+              }else{
+                dcheck=0;
+              }
+            }
             // this.itrlist.push(text);
+            
             bold.innerText = text;
             div.style.background=colorCode;
             div.classList.add('roundedge');
@@ -431,10 +450,22 @@ export default {
             var span = document.createElement('span');
             var bold = document.createElement('bold')
             var text = tag;
-            // if(text==""){
-            //   return;
+            // var dcheck = 0;
+            // if(this.itrlisttemp.length==0){
+            //   this.itrlisttemp.push(text);
+            // }else{
+            //   for(var idx=0;idx<this.itrlisttemp.length;idx++){
+            //     if(this.itrlisttemp[idx]==text){
+            //       dcheck=-1;
+            //       return;
+            //     }
+            //   }
+            //   if(dcheck==0){
+            //     this.itrlisttemp.push(text);
+            //   }else{
+            //     dcheck=0;
+            //   }
             // }
-            // this.itrlist.push(text);
             bold.innerText = text;
             div.style.background=colorCode;
             div.classList.add('roundedge');
