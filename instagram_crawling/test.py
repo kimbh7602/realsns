@@ -20,7 +20,7 @@ def index():
 def naver_crawling(tag):
     url_tmp = "www.instagram.com/explore/tags/" + tag
     url = "https://" + parse.quote(url_tmp)
-    display = Display(visible=0, size=(1024, 768))
+    display = Display(visible=0, size=(1920, 1080))
     display.start()
     driver = webdriver.Chrome('/home/ubuntu/chromedriver')
     driver.get(url)
@@ -87,7 +87,7 @@ def image_tag():
 def search_by_keyword(keyword):
     url = "https://www.twinword.com/writer/"
 
-    display = Display(visible=0, size=(1024, 768))
+    display = Display(visible=0, size=(1920, 1080))
     display.start()
     driver = webdriver.Chrome('/home/ubuntu/chromedriver')
     driver.get(url)
