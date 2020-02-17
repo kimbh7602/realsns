@@ -393,6 +393,12 @@ export default {
       // console.log(this.targetDm)
     }
   },
+
+  updated() {
+    this.$store.commit('SET_USERDMLIST', this.userDmList);
+    this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
+  },
+
   beforeDestroy(){
     this.socket.emit('disconnectEvt', function(){});
     this.cfheck2 = false;
