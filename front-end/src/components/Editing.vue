@@ -39,8 +39,8 @@
 </template>
 
 <script>
-    import 'cropperjs/dist/cropper.css';
-    import 'cropperjs/dist/cropper.min.css';
+    import '/home/ubuntu/realsns/node_modules/cropperjs/dist/cropper.css';
+    import '/home/ubuntu/realsns/node_modules/cropperjs/dist/cropper.min.css';
     import Cropper from "cropperjs";
     export default {
         name: "editing",
