@@ -491,8 +491,8 @@ export default {
             div.appendChild(bold);
             div.appendChild(span);
             document.getElementById('itrl').appendChild(div);
-            const idx = this.recommendTag.indexOf(tag);
-            this.recommendTag.splice(idx, 1);
+            const index = this.recommendTag.indexOf(tag);
+            this.recommendTag.splice(index, 1);
         },
 
     },
