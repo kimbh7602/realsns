@@ -51,37 +51,26 @@
 	<delete id="deleteLike" parameterType="map">
 		delete from notification
 		where user_id = #{user_id}
-		and category = 'like'
 		and target_event_id = #{content_id}
 	</delete>
 
 	<delete id ="deleteScrap" parameterType="map">
 		delete from notification
 		where user_id = #{user_id}
-		and category = 'scrap'
 		and target_event_id = #{content_id}
 	</delete>
 
 	<delete id="deleteFollow" parameterType="map">
 		delete from notification
 		where user_id = #{follower_id}
-		and category = 'follow'
 		and target_user_id = #{follow_id}
 	</delete>
 
 	<delete id="deleteComment" parameterType="map">
 		delete from notification
 		where user_id = #{user_id}
-		and category = 'comment'
 		and target_user_id = #{target_id}
 		and target_event_id = #{comment_id}
-	</delete>
-
-	<delete id="deleteReport" parameterType="map">
-		delete from notification
-		where user_id = #{user_id}
-		and category = 'report'
-		and target_event_id = #{content_id}
 	</delete>
 
 	<delete id="deleteReported" parameterType="int">

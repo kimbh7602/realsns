@@ -39,7 +39,6 @@ public class NotificationDAOImpl implements INotificationDAO {
                 notificationVo.setContent(content);
             }
         }
-        // System.out.println("123");
         return notificationList;
     }
 
@@ -158,19 +157,6 @@ public class NotificationDAOImpl implements INotificationDAO {
     public int countUnchecked(String user_id) {
         int count = session.selectOne("ssafy.notification.countUnchecked", user_id);
         return count;
-    }
-
-    @Override
-    public boolean deleteReport(String user_id, int content_id) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("user_id", user_id);
-        map.put("content_id", content_id);
-        int delete = session.delete("ssafy.notification.deleteReport", map);
-        if(delete > 0){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     

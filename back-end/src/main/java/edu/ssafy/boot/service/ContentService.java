@@ -146,4 +146,5 @@ public class ContentService implements IContentService {
 		return dao.insertTempImage(tempImage);
 	}
 	
+	
 }

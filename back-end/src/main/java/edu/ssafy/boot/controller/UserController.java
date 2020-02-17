@@ -530,4 +530,15 @@ public class UserController {
 		}
 		return resEntity;
 	}
+	
+	@GetMapping("/logout/{user_id}")
+	@ApiOperation(value = "로그아웃블록처리")
+	private void logout(@PathVariable("user_id") String user_id, HttpServletRequest req) {
+		LogVo log = new LogVo(user_id, req.getRemoteAddr(), "로그아웃");
+		BlockVo block = new BlockVo(log);
+		serbc.addBlock(block);
+		
+	}
+	
+	
 }

@@ -88,7 +88,6 @@ public class ScrapController {
 			ContentVo content = cSer.detail(scrap.getContent_id());
             notification.setTarget_user_id(content.getUser_id());
 			boolean deleteNotification = nSer.deleteScrap(scrap.getUser_id(), scrap.getContent_id());
-			System.out.println(deleteNotification);
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (delete && deleteNotification){
 				map.put("resmsg", "스크랩취소성공");

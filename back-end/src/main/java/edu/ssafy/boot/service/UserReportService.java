@@ -53,4 +53,17 @@ public class UserReportService implements IUserReportService {
 		return contentList;
 	}
     
+    @Override
+    public List<String> getreportcategory(String content_id) {
+        return dao.getreportcategory(content_id);
+    }
+    @Override
+    public int getreportvalue(String content_id, String key) {
+        return dao.getreportvalue(content_id, key);
+    }
+    
+    @Override
+    public List<String> getreportexval(String content_id) {
+        return dao.getreportexval(content_id);
+    }
 }

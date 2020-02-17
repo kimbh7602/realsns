@@ -1,2 +1,322 @@
 2020-01-10 16:22:58,984 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2020-01-10 16:31:38,116 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-02-13 16:17:06,560 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-02-13 16:23:36,166 [Worker-11: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: edu.ssafy:BootMVCRest:0.0.9-SNAPSHOT @ C:\aws_project\realsns\back-end\pom.xml.
+2020-02-13 16:23:37,465 [Worker-12: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: edu.ssafy:BootMVCRest:0.0.9-SNAPSHOT @ C:\aws_project\realsns\back-end\pom.xml.
+2020-02-13 16:23:38,926 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:38,933 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:23:38,952 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:23:38,996 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:38,997 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:23:42,037 [Worker-15: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: edu.ssafy:BootMVCRest:0.0.9-SNAPSHOT @ C:\aws_project\realsns\back-end\pom.xml.
+2020-02-13 16:23:42,688 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:42,692 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:23:42,703 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:23:42,731 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:42,731 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:23:43,707 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:43,708 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:23:43,711 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:23:43,714 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:23:43,715 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:25:33,401 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2020-02-13 16:25:42,074 [Worker-16: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-13 16:25:42,074 [Worker-16: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B package
+2020-02-13 16:26:04,822 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-13 16:26:04,901 [Worker-16: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-13 16:26:04,901 [Worker-16: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-13 16:48:07,119 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:48:07,120 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:48:07,121 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:48:07,124 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:48:07,124 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:48:08,147 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:48:08,147 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:48:08,149 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:48:08,151 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:48:08,151 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:49:21,271 [Worker-24: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:49:21,272 [Worker-24: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:49:21,274 [Worker-24: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:49:21,276 [Worker-24: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:49:21,276 [Worker-24: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:49:22,299 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:49:22,299 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-13 16:49:22,301 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-13 16:49:22,303 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 16:49:22,303 [Worker-26: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 16:49:25,901 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-13 16:49:25,966 [Worker-26: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-13 16:49:25,966 [Worker-26: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-13 17:31:25,950 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 17:31:25,960 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-13 17:31:25,961 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-13 17:31:25,961 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-13 17:31:25,961 [Worker-45: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-13 17:31:37,498 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-13 17:31:37,570 [Worker-44: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-13 17:31:37,570 [Worker-44: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 11:43:57,654 [Worker-127: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:43:57,654 [Worker-127: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 11:43:57,654 [Worker-127: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 11:43:57,654 [Worker-127: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:43:57,654 [Worker-127: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 11:44:08,170 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 11:44:08,265 [Worker-125: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 11:44:08,265 [Worker-125: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 11:48:28,836 [Worker-128: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:48:28,836 [Worker-128: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 11:48:28,837 [Worker-128: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 11:48:28,839 [Worker-128: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:48:28,839 [Worker-128: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 11:48:33,613 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 11:48:33,676 [Worker-126: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 11:48:33,676 [Worker-126: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 11:54:35,542 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:54:35,543 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 11:54:35,543 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 11:54:35,545 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:54:35,545 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 11:54:49,007 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:54:49,008 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 11:54:49,008 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 11:54:49,009 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 11:54:49,010 [Worker-131: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 11:55:01,179 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 11:55:01,245 [Worker-132: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 11:55:01,245 [Worker-132: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 12:01:12,856 [Worker-135: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 12:01:12,856 [Worker-135: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 12:01:12,856 [Worker-135: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 12:01:12,857 [Worker-135: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 12:01:12,858 [Worker-135: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 12:01:16,622 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 12:01:16,686 [Worker-134: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 12:01:16,686 [Worker-134: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 13:37:17,348 [Worker-159: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:17,349 [Worker-159: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:37:17,351 [Worker-159: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:37:17,353 [Worker-159: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:17,353 [Worker-159: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:37:18,382 [Worker-160: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:18,383 [Worker-160: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:37:18,384 [Worker-160: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:37:18,387 [Worker-160: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:18,387 [Worker-160: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:37:50,157 [Worker-162: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:50,157 [Worker-162: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:37:50,159 [Worker-162: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:37:50,162 [Worker-162: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:37:50,162 [Worker-162: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:39:24,323 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:39:24,323 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:39:24,325 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:39:24,327 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:39:24,327 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:51:09,733 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:51:09,733 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 13:51:09,733 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 13:51:09,735 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:51:09,735 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:51:55,776 [Worker-165: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:51:55,776 [Worker-165: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 13:51:55,776 [Worker-165: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 13:51:55,778 [Worker-165: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:51:55,778 [Worker-165: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:52:01,752 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:52:01,752 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 13:52:01,752 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 13:52:01,754 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:52:01,754 [Worker-152: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:52:59,947 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:52:59,947 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 13:52:59,947 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 13:52:59,949 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:52:59,949 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:54:56,123 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:54:56,123 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:54:56,124 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:54:56,126 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:54:56,126 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 13:56:07,499 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:56:07,500 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 13:56:07,502 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 13:56:07,505 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 13:56:07,505 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:15:14,299 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:15:14,300 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:15:14,301 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:15:14,304 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:15:14,304 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:15:46,799 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:15:46,800 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 14:15:46,800 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 14:15:46,802 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:15:46,802 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:16:04,054 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:16:04,054 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 14:16:04,054 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 14:16:04,056 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:16:04,056 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:16:11,664 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:16:11,664 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:16:11,666 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:16:11,668 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:16:11,668 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:10,186 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:10,186 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:10,188 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:10,190 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:10,190 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:11,208 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:11,208 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:11,210 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:11,212 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:11,212 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:24,041 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:24,042 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:24,043 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:24,046 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:24,046 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:25,062 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:25,063 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:25,064 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:25,066 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:25,066 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:52,328 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:52,328 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:52,330 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:52,332 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:52,332 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:18:53,349 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:53,350 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:18:53,351 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:18:53,353 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:18:53,354 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:21:40,463 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:21:40,463 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-02-14 14:21:40,463 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-02-14 14:21:40,465 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:21:40,465 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:03,028 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:03,029 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:03,030 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:03,032 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:03,033 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:04,049 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:04,049 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:04,051 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:04,053 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:04,053 [Worker-161: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:11,488 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:11,488 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:11,490 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:11,493 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:11,493 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:12,511 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:12,511 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:12,513 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:12,516 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:12,516 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:14,801 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:14,801 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:14,803 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:14,805 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:14,805 [Worker-174: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:15,822 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:15,823 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:15,824 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:15,826 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:15,826 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:19,015 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:19,015 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:19,018 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:19,019 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:19,019 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:43,162 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:43,163 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:43,164 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:43,166 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:43,166 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:22:54,576 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:54,576 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:22:54,578 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:22:54,580 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:22:54,580 [Worker-170: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:24:41,609 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:24:41,610 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:24:41,611 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:24:41,612 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:24:41,613 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:24:46,232 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:24:46,232 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:24:46,234 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:24:46,235 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:24:46,235 [Worker-173: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:25:26,358 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:25:26,358 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:25:26,360 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:25:26,361 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:25:26,361 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:25:48,868 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:25:48,868 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 14:25:48,870 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 14:25:48,872 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 14:25:48,872 [Worker-175: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 14:26:14,509 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 14:26:14,576 [Worker-176: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 14:26:14,576 [Worker-176: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 17:44:17,661 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:44:17,668 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:44:17,680 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:44:17,686 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:44:17,686 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:44:17,836 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:44:17,837 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:44:17,841 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:44:17,850 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:44:17,851 [Worker-240: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:46:13,855 [Worker-231: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:13,856 [Worker-231: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:46:13,858 [Worker-231: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:46:13,862 [Worker-231: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:13,862 [Worker-231: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:46:14,882 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:14,883 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:46:14,885 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:46:14,889 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:14,889 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:46:16,290 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:16,291 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:46:16,293 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:46:16,297 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:46:16,297 [Worker-242: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:46:19,903 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 17:46:19,983 [Worker-243: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 17:46:19,983 [Worker-243: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 17:48:50,217 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:48:50,219 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:48:50,221 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:48:50,224 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:48:50,224 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:49:41,192 [Worker-245: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:49:41,192 [Worker-245: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:49:41,194 [Worker-245: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:49:41,196 [Worker-245: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:49:41,196 [Worker-245: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:49:44,369 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 17:49:44,508 [Worker-231: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 17:49:44,508 [Worker-231: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package
+2020-02-14 17:53:20,206 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:53:20,207 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:53:20,209 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:53:20,212 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:53:20,212 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:53:27,864 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:53:27,865 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-02-14 17:53:27,867 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2020-02-14 17:53:27,869 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-02-14 17:53:27,869 [Worker-244: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\aws_project\realsns\back-end\src\test\resources
+2020-02-14 17:53:30,770 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-02-14 17:53:30,903 [Worker-244: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\aws_project\realsns\back-end
+2020-02-14 17:53:30,903 [Worker-244: Launching back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B -Dmaven.test.skip=true -DskipTests package

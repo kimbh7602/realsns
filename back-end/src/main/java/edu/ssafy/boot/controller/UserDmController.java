@@ -123,7 +123,6 @@ public class UserDmController {
         ResponseEntity<Map<String, Object>> resEntity = null;
         try {
             List<UserDmVo> userDmList = ser.allDmList();
-            System.out.println(userDmList);
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("resmsg", "DM목록성공");
             map.put("resvalue", userDmList);

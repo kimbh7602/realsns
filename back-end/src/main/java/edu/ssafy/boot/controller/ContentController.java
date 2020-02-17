@@ -30,10 +30,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.ssafy.boot.dto.BlockVo;
 import edu.ssafy.boot.dto.ContentVo;
 import edu.ssafy.boot.dto.ImageVo;
 import edu.ssafy.boot.dto.LocationVo;
+import edu.ssafy.boot.dto.LogVo;
 import edu.ssafy.boot.dto.TempImageVo;
+import edu.ssafy.boot.service.IBlockchainService;
 import edu.ssafy.boot.service.IContentService;
 import edu.ssafy.boot.service.IImageService;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +51,10 @@ public class ContentController {
 	IContentService ser;
 
 	@Autowired
+	@Qualifier("BlockchainService")
+	IBlockchainService serbc;
+	
+	@Autowired
 	@Qualifier("ImageService")
 	IImageService iSer;
 
@@ -58,7 +65,6 @@ public class ContentController {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
 		List<ContentVo> list = ser.contentMyList(user_id);
-		System.out.println(list.toString());
 		msg.put("resmsg", "타임라인 출력 성공");
 		msg.put("resValue", list);
 		resEntity = new ResponseEntity<Map<String,Object>>(msg, HttpStatus.OK);
@@ -152,7 +158,7 @@ public class ContentController {
 
 	@PostMapping("/insertContent")
 	@ApiOperation(value = "게시물 추가")
-	private @ResponseBody ResponseEntity<Map<String, Object>> insertContent(@RequestBody ContentVo content,
+	private @ResponseBody ResponseEntity<Map<String, Object>> insertContent(@RequestBody ContentVo content, 
 			HttpServletResponse res, HttpServletRequest req) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
@@ -162,9 +168,13 @@ public class ContentController {
 		boolean resImage = imageUpload(content, res, req);
 		if (resContent && resImage) {
 			msg.put("resmsg", "게시물 추가 성공");
+			LogVo log = new LogVo(content.getUser_id(), req.getRemoteAddr(), "게시물등록");
+			BlockVo block = new BlockVo(log);
+			serbc.addBlock(block);
 		} else {
 			msg.put("resmsg", "게시물 추가 실패");
 		}
+		
 		resEntity = new ResponseEntity<Map<String, Object>>(msg, HttpStatus.OK);
 		return resEntity;
 	}
@@ -245,7 +255,7 @@ public class ContentController {
 		boolean isDone = true;
 		if (content.getImageList().size() == 1 && content.getImageList().get(0).getBase64() == "") {
 			iSer.insertImage(new ImageVo(content.getContent_id(), "default.png", req.getScheme() + "://"
-					+ req.getServerName()+ ":8090" + path + "/" + "default.png", "normal"));
+					+ req.getServerName() + ":" + req.getServerPort() + path + "/" + "default.png", "normal"));
 		} else {
 
 			for (ImageVo image : content.getImageList()) {
@@ -266,7 +276,7 @@ public class ContentController {
 				byte[] decode = Base64.decodeBase64(image.getBase64().substring(image.getBase64().lastIndexOf(",")));
 				String image_name = content.getContent_id() + "-" + buf.toString() + "." + ext;
 				String savePath = realPath + File.separator + image_name;
-				String image_url = req.getScheme() + "://" + req.getServerName()+ ":8090" + path
+				String image_url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path
 						+ "/" + image_name;
 
 				File f = new File(savePath);
@@ -282,7 +292,6 @@ public class ContentController {
 					image.setImage_url(image_url);
 
 					iSer.insertImage(image);
-					System.out.println(image.toString());
 					num++;
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -295,9 +304,9 @@ public class ContentController {
 		return isDone;
 	}
 
-	@DeleteMapping("/deleteContent/{content_id}")
+	@DeleteMapping("/deleteContent/{content_id},{user_id}")
 	@ApiOperation(value = "게시물 삭제")
-	private @ResponseBody ResponseEntity<Map<String, Object>> updateContent(@PathVariable("content_id") int content_id,
+	private @ResponseBody ResponseEntity<Map<String, Object>> deleteContent(@PathVariable("content_id") int content_id,@PathVariable("user_id") String user_id,
 			HttpServletResponse res, HttpServletRequest req) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
@@ -305,6 +314,10 @@ public class ContentController {
 		boolean resImage = imageDelete(content_id, res, req);
 		if (resContent && resImage) {
 			msg.put("resmsg", "게시물 삭제 성공");
+			LogVo log = new LogVo(user_id, req.getRemoteAddr(), "게시물삭제");
+			BlockVo block = new BlockVo(log);
+			serbc.addBlock(block);
+			
 		} else {
 			msg.put("resmsg", "게시물 삭제 실패");
 		}
@@ -350,6 +363,9 @@ public class ContentController {
 		boolean resInsertImage = imageUpload(content, res, req);
 		if (resContent && resDeleteImage && resInsertImage) {
 			msg.put("resmsg", "게시물 수정 성공");
+			LogVo log = new LogVo(content.getUser_id(), req.getRemoteAddr(), "게시물수정");
+			BlockVo block = new BlockVo(log);
+			serbc.addBlock(block);
 		} else {
 			msg.put("resmsg", "게시물 수정	 실패");
 		}
@@ -380,7 +396,6 @@ public class ContentController {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> msg = new HashMap<String, Object>();
 		List<ContentVo> list = ser.contentListHashtag(tag);
-		System.out.println(list);
 		msg.put("resmsg", "해시태그 포함 게시물 리스트 출력 성공");
 		msg.put("resValue", list);
 		resEntity = new ResponseEntity<Map<String, Object>>(msg, HttpStatus.OK);
