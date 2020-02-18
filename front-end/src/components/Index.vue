@@ -687,8 +687,8 @@ export default {
         document.querySelector("ul").remove();
         // document.querySelector("ul").remove();
 
-        const contentDivs = document.querySelectorAll(".content-div");
-        window.addEventListener('scroll', function(e){
+        // const contentDivs = document.querySelectorAll(".content-div");
+        window.addEventListener('scroll', function(){
           window.console.log($(window).scrollTop());
         })
     }); 
