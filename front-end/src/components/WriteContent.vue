@@ -1,10 +1,10 @@
 <template>
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
     <div class="offset-md-1 col-md-10">
-        <div class="all-scroll pos-relative mt-50">
+        <div class="write-scroll all-scroll pos-relative mt-50">
             <h5 class="mb-50"><b>Image</b></h5>                                            
             <div class="swiper-scrollbar"></div>
-            <div class="swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
+            <div class="write-swiper swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
                                     data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="1"
                                     data-swiper-breakpoints="true" data-scrollbar="true" data-swiper-loop="false"
                                     data-swpr-responsive="[1, 2, 1, 2]">
@@ -185,10 +185,13 @@ export default {
         }
     },
     methods:{
-        deleteImage(event, index){
+        deleteImage(index){
         // deleteImage(event, img, index){
             this.imgs.splice(index, 1);
-            
+            if(this.imgs.length==0){
+                document.querySelector('.write-scroll').remove();
+                return;
+            }
             this.tags.splice(index, 1);
             this.recommendTag = [];
             this.tags.forEach(labels => {
@@ -211,8 +214,8 @@ export default {
                 var xicon = document.createElement('i');
                 xicon.classList.add('icon-close');
                 xicon.classList.add('text-white');
-                xicon.addEventListener("click", function(e){
-                    this.deleteImage(e, i);
+                xicon.addEventListener("click", function(i){
+                    this.deleteImage(i);
                 });
                 xdiv.appendChild(xicon);
 
@@ -226,8 +229,8 @@ export default {
                 swiper_slide.appendChild(div);
                 swiper_wrapper.append(swiper_slide);
             }
-            var tt = event.target.parentNode.parentNode.parentNode.parentNode;
-            event.target.parentNode.parentNode.parentNode.remove();
+            var tt = document.querySelector('.write-swiper');
+            document.querySelector('.write-swiper>.swiper-wrapper').remove();
             tt.appendChild(swiper_wrapper);
 
             document.querySelector('script[src$="script.js"]').remove()

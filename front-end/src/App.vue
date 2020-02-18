@@ -33,6 +33,23 @@
         </div>
       </div>
 
+      <!-- writecontent에서 삭제 안되서 추가한부분 -->
+      <div class="write-scroll all-scroll pos-relative mt-50" style="display:none;">
+          <h5 class="mb-50"><b>Image</b></h5>                                            
+          <div class="swiper-scrollbar"></div>
+          <div class="write-swiper swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
+                                  data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="1"
+                                  data-swiper-breakpoints="true" data-scrollbar="true" data-swiper-loop="false"
+                                  data-swpr-responsive="[1, 2, 1, 2]">
+              <div class="swiper-wrapper">
+                  <div class="img-fluid swiper-slide">
+                      <div style="text-align:right; background-color:black;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
       <!-- 공지 2 -->
       <!-- <MARQUEE onmouseover=this.stop() style="WIDTH: 100%; HEIGHT: 10px" onmouseout=this.start() scrollAmount=1 scrollmount=10 direction=up>
         <div style="PADDING-RIGHT: 0px; OVERFLOW-Y: auto; PADDING-LEFT: 0px; OVERFLOW-X: hidden; PADDING-BOTTOM: 3px; WIDTH: 100%; PADDING-TOP: 3px">

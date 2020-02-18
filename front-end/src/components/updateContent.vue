@@ -1,10 +1,10 @@
 <template>
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
     <div class="offset-md-1 col-md-10">
-        <div class="all-scroll pos-relative mt-50">
+        <div class="write-scroll all-scroll pos-relative mt-50">
             <h5 class="mb-50"><b>Image</b></h5>                                            
             <div class="swiper-scrollbar"></div>
-            <div class="swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
+            <div class="write-swiper swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
                                     data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="1"
                                     data-swiper-breakpoints="true" data-scrollbar="true" data-swiper-loop="false"
                                     data-swpr-responsive="[1, 2, 1, 2]">
@@ -167,24 +167,29 @@ export default {
         }
     },
     methods:{
-        deleteImage(event, index){
+        deleteImage(index){
         // deleteImage(event, img, index){
             this.imgs.splice(index, 1);
+            if(this.imgs.length==0){
+                document.querySelector('.write-scroll').remove();
+                return;
+            }
+
             var swiper_wrapper = document.createElement('div');
             swiper_wrapper.classList.add('swiper-wrapper');
             for(var i = 0; i<this.imgs.length; i++){
-                var swiper_slide = document.createElement('div');
-                swiper_slide.classList.add('img-fluid');
-                swiper_slide.classList.add('swiper-slide');
 
+                
                 var xdiv = document.createElement('div');
                 xdiv.setAttribute('style', 'text-align:right; background-color:black;');
                 var xicon = document.createElement('i');
                 xicon.classList.add('icon-close');
                 xicon.classList.add('text-white');
-                xicon.addEventListener("click", function(e){
-                    this.deleteImage(e, i);
+                xicon.addEventListener("click", function(i){
+                    this.deleteImage(i);
                 });
+                // xicon.addEventListener("click", this.deleteImage(i));
+                // xicon.onclick = this.deleteImage(i);
                 xdiv.appendChild(xicon);
 
                 var div = document.createElement('div');
@@ -193,13 +198,31 @@ export default {
                 simg.classList.add('img-fluid');
                 simg.setAttribute('src',this.imgs[i].base64);
                 div.appendChild(simg);
+
+                
+                var swiper_slide = document.createElement('div');
+                swiper_slide.classList.add('img-fluid');
+                swiper_slide.classList.add('swiper-slide');
+                swiper_slide.id = "slide"+i;
                 swiper_slide.appendChild(xdiv);
                 swiper_slide.appendChild(div);
-                swiper_wrapper.append(swiper_slide);
+
+
+                swiper_wrapper.appendChild(swiper_slide);
+                // window.console.log(swiper_wrapper);
             }
-            var tt = event.target.parentNode.parentNode.parentNode.parentNode;
-            event.target.parentNode.parentNode.parentNode.remove();
+            // var tt = document.querySelector('.swiper-container');
+            var tt = document.querySelector('.write-swiper');
+            // var tt = event.target.parentNode.parentNode.parentNode.parentNode;
+            // window.console.log(tt);
+            // window.console.log(document.querySelector('.swiper-container'));
+            // document.querySelector('.swiper-container>.swiper-wrapper').remove();
+            window.console.log(document.querySelector('.write-swiper>.swiper-wrapper'));
+            document.querySelector('.write-swiper>.swiper-wrapper').remove();
+            // event.target.parentNode.parentNode.parentNode.remove();
+            // window.console.log(swiper_wrapper);
             tt.appendChild(swiper_wrapper);
+            window.console.log(tt);
 
             document.querySelector('script[src$="script.js"]').remove()
             document.querySelector('script[src$="swiper.js"]').remove()
