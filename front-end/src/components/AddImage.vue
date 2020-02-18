@@ -145,7 +145,9 @@ export default {
   mounted(){
     if(this.fimgs!=undefined){
       this.imgs = this.fimgs;
-      this.tags = this.ftags;
+      if(this.ftags!=undefined){
+        this.tags = this.ftags;
+      }
       this.first = false;
     }
     $('html').scrollTop(0);
