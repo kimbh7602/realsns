@@ -595,29 +595,9 @@ export default {
           })
       }
     },
-  },
-  mounted() {
-    this.getLike()
-    this.getScrap()
-    this.getData()
-    this.getFollow()
-    this.sortList()
-    this.getReport()
-    $('html').scrollTop(0);
-    this.$nextTick(() => {
-      // 모든 화면이 렌더링된 후 호출됩니다.
-      // console.log(document.querySelectorAll("ul").length)
-        $('.js-clone-nav').each(function() {
-          var $this = $(this);
-          $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
-        });
-        document.querySelector("ul").remove();
-        // document.querySelector("ul").remove();
 
-      if(window.innerWidth <= 501){
-          setTimeout(() => {
-            const contentDivs = document.querySelectorAll(".content-div");
-            window.addEventListener('scroll', function(){
+    scrollHandler(){
+      const contentDivs = document.querySelectorAll(".content-div");
               contentDivs.forEach(div => {
                 const parent = div.offsetParent;
                 var value = $(window).scrollTop() - parent.offsetTop;
@@ -639,11 +619,37 @@ export default {
                   }
                 }
               })
-            })
+    }
+  },
+  mounted() {
+    this.getLike()
+    this.getScrap()
+    this.getData()
+    this.getFollow()
+    this.sortList()
+    this.getReport()
+    $('html').scrollTop(0);
+    this.$nextTick(() => {
+      // 모든 화면이 렌더링된 후 호출됩니다.
+      // console.log(document.querySelectorAll("ul").length)
+        $('.js-clone-nav').each(function() {
+          var $this = $(this);
+          $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+        });
+        document.querySelector("ul").remove();
+        // document.querySelector("ul").remove();
+
+      if(window.innerWidth <= 501){
+          setTimeout(() => {
+            window.addEventListener('scroll', this.scrollHandler)
           }, 500);
         }
     })
   },
+
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.scrollHandler);
+  }
 }
 </script>
 <style scoped>

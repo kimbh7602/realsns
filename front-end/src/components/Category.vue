@@ -591,19 +591,10 @@ export default {
         this.getUserScrap();
         this.getReport();
       }
-    }
-  },
-  created() {
-    this.getLike();
-    this.fetchData();
-  },
-  mounted() {
-    $('html').scrollTop(0);
-    this.$nextTick(() => {
-      if(window.innerWidth <= 501){
-          setTimeout(() => {
-            const contentDivs = document.querySelectorAll(".content-div");
-            window.addEventListener('scroll', function(){
+    },
+
+    scrollHandler(){
+      const contentDivs = document.querySelectorAll(".content-div");
               contentDivs.forEach(div => {
                 const parent = div.offsetParent;
                 var value = $(window).scrollTop() - parent.offsetTop;
@@ -625,7 +616,18 @@ export default {
                   }
                 }
               })
-            })
+    }
+  },
+  created() {
+    this.getLike();
+    this.fetchData();
+  },
+  mounted() {
+    $('html').scrollTop(0);
+    this.$nextTick(() => {
+      if(window.innerWidth <= 501){
+          setTimeout(() => {
+            window.addEventListener('scroll', this.scrollHandler)
           }, 500);
         }
     })
@@ -641,6 +643,10 @@ export default {
     recaptchaScriptb.setAttribute('type',"text/javascript")
     recaptchaScriptb.setAttribute('src', "./theme/js/swiper.js")
     document.body.appendChild(recaptchaScriptb)
+  },
+
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.scrollHandler);
   }
 }
 </script>
