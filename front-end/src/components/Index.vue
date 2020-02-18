@@ -688,6 +688,7 @@ export default {
         // document.querySelector("ul").remove();
 
         const contentDivs = document.querySelectorAll(".content-div");
+        window.console.log(contentDivs);
         window.addEventListener('scroll', function(){
           // window.console.log($(window).scrollTop());
           contentDivs.forEach(div => {
