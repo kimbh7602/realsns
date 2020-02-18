@@ -377,14 +377,14 @@ export default {
               window.console.log(response.data.resValue);
               
               this.contents = response.data.resValue;
-              this.$nextTick(() => {
-                  if(window.innerWidth <= 501){
-                      setTimeout(() => {
-                          window.addEventListener('scroll', this.scrollHandler)
-                      }, 500);
-                  }
+            //   this.$nextTick(() => {
+            //       if(window.innerWidth <= 501){
+            //           setTimeout(() => {
+            //               window.addEventListener('scroll', this.scrollHandler)
+            //           }, 500);
+            //       }
 
-              })
+            //   })
           })
       },
 
