@@ -154,7 +154,18 @@ public class ContentDAOImpl implements IContentDAO {
 
 	@Override
 	public List<ContentVo> contentListHashtag(String tag) {
-		List<ContentVo> contentList = session.selectList("ssafy.content.contentListHashtag", tag);
+		List<ContentVo> allContentList = session.selectList("ssafy.content.contentListHashtag");
+		List<ContentVo> contentList = new ArrayList<ContentVo>();
+		for (ContentVo contentVo : allContentList) {
+			String hashtag = contentVo.getHashtag();
+			String[] tagArr = hashtag.split(" ");
+			for (String str : tagArr) {
+				if(str.equals(tag)) {
+					contentList.add(contentVo);
+					break;
+				}
+			}
+		}
 		for (ContentVo contentVo : contentList) {
 			List<ImageVo> imageList = session.selectList("ssafy.content.imageListByContentId", contentVo.getContent_id());
 			contentVo.setImageList(imageList);

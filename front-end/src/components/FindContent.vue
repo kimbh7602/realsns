@@ -383,14 +383,11 @@ export default {
                 }
               this.contents = response.data.resValue;
 
-              this.$nextTick(() => {
                 if(window.innerWidth <= 501){
                     setTimeout(() => {
                         window.addEventListener('scroll', this.scrollHandler)
                     }, 500);
-                    }
-                })
-
+                }
           })
       },
 
