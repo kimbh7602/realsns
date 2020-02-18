@@ -161,8 +161,9 @@
 
                     <div class="container col-md-12 px-0 mt-4">
                       <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                        <input type="reset" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="deleteDiv">
-                        <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="가입">
+                        <button type="button" class="btn btn-outline-light col-sm btnprev p-2" @click="goPrev">이전</button>
+                        <button type="reset" class="btn btn-outline-light col-sm btnadd p-2" @click="deleteDiv">재작성</button>
+                        <button type="submit" class="btn btn-outline-light col-sm btnnext p-2">가입</button>
                       </div>
                     </div>
 
@@ -254,6 +255,9 @@ export default {
         }
     },
     methods:{
+      goPrev(){
+        this.$router.go(-1);
+      },
         startTimer: function() {
           this.timer = setInterval(() => this.countdown(), 1000);
           this.resetButton = true;
@@ -588,3 +592,21 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.btnprev:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
+.btnadd:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
+.btnnext:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+} 
+</style>
