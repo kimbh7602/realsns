@@ -129,8 +129,7 @@ export default {
           }
         })
     },
-  },
-  goNextUpdate() {
+    goNextUpdate() {
       window.console.log(this.prevpage)
       this.imgs[this.imgs.length-1].filter = this.filterType;
       this.$router.push({
@@ -142,6 +141,7 @@ export default {
         }
       });
     },
+  },
   mounted(){
     if(this.fimgs!=undefined){
       this.imgs = this.fimgs;
