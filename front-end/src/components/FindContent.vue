@@ -34,9 +34,9 @@
                             Select Search Distance
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" @click="dist=0.01; distString='1 Km'">1 Km</a>
-                            <a class="dropdown-item" href="#" @click="dist=0.005; distString='500 m'">500 m</a>
-                            <a class="dropdown-item" href="#" @click="dist=0.003; distString='300 m'">300 m</a>
+                            <a class="dropdown-item" href="javascript:void(0)" @click="dist=0.01; distString='1 Km'">1 Km</a>
+                            <a class="dropdown-item" href="javascript:void(0)" @click="dist=0.005; distString='500 m'">500 m</a>
+                            <a class="dropdown-item" href="javascript:void(0)" @click="dist=0.003; distString='300 m'">300 m</a>
                         </div>
                         <!-- <select v-model="dist" class="form-control" aria-placeholder="Select Search Distance" style="font-color:white; background-color:black; border:none; text-align:center;">
                             <option disabled value="" selected class="form-control" style="border:none;">Select Search Distance</option>

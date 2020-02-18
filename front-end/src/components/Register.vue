@@ -61,7 +61,7 @@
                     <div class="row form-group">
                       <div class="col-md-12">
                         <label class="text-white" for="utel">Tel</label> 
-                        <input type="tel" id="tel" v-model="utel" class="form-control" pattern="(010)-\d{3,4}-\d{4}" placeholder="010-XXXX-XXXX">
+                        <input type="tel" id="tel" v-model="utel" class="form-control" pattern="(010|011|017|019)-\d{3,4}-\d{4}" placeholder="010-XXXX-XXXX">
                       </div>
                     </div>
                     <!-- email -->

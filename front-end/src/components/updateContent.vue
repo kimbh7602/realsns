@@ -293,7 +293,6 @@ export default {
             this.$router.push("/addimage");
         },
         goNext() {
-            console.log(this.selectedLocation.position.lat)
             // this.imgs[this.imgs.length-1].filter = this.filterType;
             var itrltemp = document.getElementsByClassName('itrlone');
             for(var i=0; i<itrltemp.length; i++){
@@ -303,7 +302,6 @@ export default {
                 this.$store.commit('setModalText', "내용을 입력해주세요.");
                 document.getElementById('modalBtn').click();
             }
-            window.console.log(this.imgs)
             if(this.isLocationSelect){
                 http
                     .put("/content/updateContent",{
