@@ -228,6 +228,7 @@
 import http from '../http-common';
 import axios from 'axios'
 import $ from "jquery"
+import store from '../store'
 export default {
     props:['location_name', 'lat', 'lng'],
     data() {
