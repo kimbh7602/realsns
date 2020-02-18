@@ -690,9 +690,7 @@ export default {
         if(window.innerWidth <= 501){
           setTimeout(() => {
             const contentDivs = document.querySelectorAll(".content-div");
-            window.console.log(contentDivs);
             window.addEventListener('scroll', function(){
-              // window.console.log($(window).scrollTop());
               contentDivs.forEach(div => {
                 const parent = div.offsetParent;
                 var value = $(window).scrollTop() - parent.offsetTop;

@@ -2,7 +2,7 @@
     <div class="container-fluid photos">
       <div class="row align-items-stretch">
         <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
-          <div class="d-block photo-item">
+          <div class="d-block photo-item content-div">
             <div class="polaroid" v-if="item.dislike < 5 && !reportMyList.includes(item.content_id) || readReportList.includes(item.content_id)">
               <div v-on:click="goDetail(item.content_id)" :class="item.imageList[0].filter" class="" style="width:100%; height:100%">
                 <img :src="item.imageList[0].image_url" style="box-shadow: 3px 3px 3px;" alt="Image"/>
@@ -599,6 +599,36 @@ export default {
   },
   mounted() {
     $('html').scrollTop(0);
+    this.$nextTick(() => {
+      if(window.innerWidth <= 501){
+          setTimeout(() => {
+            const contentDivs = document.querySelectorAll(".content-div");
+            window.addEventListener('scroll', function(){
+              contentDivs.forEach(div => {
+                const parent = div.offsetParent;
+                var value = $(window).scrollTop() - parent.offsetTop;
+                if(value > -120 && value < 0){
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 1;
+                      nodeList[3].style.visibility = "visible";
+                    }
+                  }
+                }else{
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 0;
+                      nodeList[3].style.visibility = "hidden";
+                    }
+                  }
+                }
+              })
+            })
+          }, 500);
+        }
+    })
   },
   updated(){
     document.querySelector('script[src$="script.js"]').remove()

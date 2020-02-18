@@ -98,7 +98,7 @@
                     <div class="row align-items-stretch">
                     <!-- 게시물 하나 -->
                     <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
-                        <div class="d-block photo-item">
+                        <div class="d-block photo-item content-div">
                         <!-- 이미지 처리 -->
                         <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
                             <div :class="con.images[0].filter" style="width:100%; height:100%">
@@ -381,7 +381,38 @@ export default {
                     }
                 }
                 }
-              this.Items = response.data.resValue;
+              this.contents = response.data.resValue;
+
+              this.$nextTick(() => {
+                if(window.innerWidth <= 501){
+                    setTimeout(() => {
+                        const contentDivs = document.querySelectorAll(".content-div");
+                        window.addEventListener('scroll', function(){
+                        contentDivs.forEach(div => {
+                            const parent = div.offsetParent;
+                            var value = $(window).scrollTop() - parent.offsetTop;
+                            if(value > -120 && value < 0){
+                            const nodeList = div.childNodes;
+                            if(nodeList.length >= 4){
+                                if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                nodeList[3].style.opacity = 1;
+                                nodeList[3].style.visibility = "visible";
+                                }
+                            }
+                            }else{
+                            const nodeList = div.childNodes;
+                            if(nodeList.length >= 4){
+                                if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                nodeList[3].style.opacity = 0;
+                                nodeList[3].style.visibility = "hidden";
+                                }
+                            }
+                            }
+                        })
+                        })
+                    }, 500);
+                    }
+                })
 
           })
       },
@@ -905,6 +936,37 @@ export default {
                     }
                     this.sortList()
                     // this.getReport()
+
+                    this.$nextTick(() => {
+                        if(window.innerWidth <= 501){
+                            setTimeout(() => {
+                                const contentDivs = document.querySelectorAll(".content-div");
+                                window.addEventListener('scroll', function(){
+                                contentDivs.forEach(div => {
+                                    const parent = div.offsetParent;
+                                    var value = $(window).scrollTop() - parent.offsetTop;
+                                    if(value > -120 && value < 0){
+                                    const nodeList = div.childNodes;
+                                    if(nodeList.length >= 4){
+                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                        nodeList[3].style.opacity = 1;
+                                        nodeList[3].style.visibility = "visible";
+                                        }
+                                    }
+                                    }else{
+                                    const nodeList = div.childNodes;
+                                    if(nodeList.length >= 4){
+                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                        nodeList[3].style.opacity = 0;
+                                        nodeList[3].style.visibility = "hidden";
+                                        }
+                                    }
+                                    }
+                                })
+                                })
+                            }, 500);
+                            }
+                        })
                 } else {
                     this.contentErrorMsg = "타임라인이 없습니다."
                 }
