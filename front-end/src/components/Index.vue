@@ -555,7 +555,7 @@ export default {
                 });
             } else {
               console.log(res.data.resmsg)
-              // this.contents[idx].scrapButton = true
+              this.contents[idx].scrapButton = true
             }
           })
           .catch(()=>{
@@ -583,7 +583,7 @@ export default {
                 });
             } else {
               console.log(res.data.resmsg)
-              // this.contents[idx2].scrapButton = false
+              this.contents[idx2].scrapButton = false
             }
           })
           .catch(()=>{

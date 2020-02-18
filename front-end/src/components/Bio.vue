@@ -29,16 +29,15 @@
                     style="color:black; font-family: loveson; word-break:break-all;text-align:left;"
                     v-html="change_content_val">
                   </div>
-                  <div class="col-11 col-offset-1"
+                  <div class="col-11 col-offset-1 mb-2"
                     style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right;">
                     from <router-link :to="'/mypage/'+ items.user_id" style="color:black; font-family: loveson; word-break:break-all; vertical-align:bottom; text-align:right; font-weight: normal;">{{items.user_id}}</router-link></div>
 
                     <!-- <p><router-link :to="'/mypage/'+ items.user_id">go {{items.user_id}} page</router-link> </p> -->
-                    <div class="m-0">
-                      <router-link class="" :to="'/mypage/'+ items.user_id">
-                        <button class="slidebtn"> Go {{items.user_id}} page → </button>
-                      </router-link>
-                    </div>
+
+                  <router-link class="d-block my-0 py-0" :to="'/mypage/'+ items.user_id" style="font-weight: normal;">
+                      <button class="slidebtn" style="font-size: 13px;"> Go {{items.user_id}} page → </button>
+                  </router-link>
                   <!-- <div>
                     <ul>
                       <li>
@@ -224,7 +223,7 @@
                   </div>
                   <div v-if="!nohashtag">
                     <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)"
-                        style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info"
+                        style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info py-1 px-2 mt-1"
                         :value="'#'+tag" /></span>
                   </div>
                   <div v-if="items.location_name != undefined"
@@ -648,7 +647,7 @@
 // slidebtn
 .slidebtn:hover,
 .slidebtn:focus {
-  box-shadow: inset 20em 0 0 0 var(--hover);
+  box-shadow: inset 12em 0 0 0 var(--hover);
 }
 $colors: (
   fill: #a972cb,
@@ -658,7 +657,7 @@ $colors: (
   up: #e4cb58, 
   // slidebtn: #8fc866, 
   offset: #19bc8b,
-  slidebtn: #333
+  slidebtn: rgb(114, 114, 114)
 
 );
 @each $button, $color in $colors {
@@ -679,10 +678,10 @@ $colors: (
 .slidebtn {
   background: none;
   border: 0px solid;
-  line-height: 1;
+  // line-height: 1;
   // margin-top: 10px;
   // margin-left: 8px;
-  // padding: 1em 2em;
+  padding: 0.5em 1.5em;
 //   padding-left: 10px;  // 글씨 왼쪽의 패딩 줄임.
 }
 </style>

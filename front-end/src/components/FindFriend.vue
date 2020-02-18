@@ -81,7 +81,7 @@
                                 <img v-else src="https://t1.daumcdn.net/qna/image/1542632018000000528" class="mt-2" width="130px" height="130px" style="object-fit: cover;">
                                 <div class="media-body">
                                     <div class="notification align-self-center ml-3">
-                                        <h4 class="mt-2 text-white ml-2">{{ result.user_id }} 님</h4>
+                                        <h4 class="mb-2 text-white ml-2">{{ result.user_id }} 님</h4>
                                         <div class="row">
                                             <div class="bbb " v-for="r in result.interest.split(' ', 2)" :key="r.id">
                                                 <button class="blob-btn">
@@ -270,7 +270,7 @@ export default {
   margin-bottom: 2px;
   text-align: center;
   text-transform: uppercase;
-  color:#c291e0;
+  color: #65a525;
   font-size: 13px;
   font-weight: bold;
   background-color: transparent;
@@ -288,9 +288,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-//   border: 2px solid #0fe0f5;
-  border: 1px solid #c291e0;
-
+  border: 1px solid #65a525;
 }
 .blob-btn:after {
   content: "";
@@ -334,8 +332,7 @@ export default {
 //   top: 6px;
   width: 25%;
   height: 200%;
-//   background: #0fe0f5;
-  background:#c291e0;
+  background:#65a525;
   border-radius: 100%;
   -webkit-transform: translate3d(0, 150%, 0) scale(1.7);
           transform: translate3d(0, 150%, 0) scale(1.7);
@@ -387,18 +384,12 @@ export default {
   box-shadow: inset 20em 0 0 0 var(--hover);
 }
 $colors: (
-  fill: #a972cb,
-  pulse: #ef6eae, 
-  close: #ff7f82, 
-  raise: #ffa260, 
-  up: #e4cb58, 
-  slide: #8fc866, 
-  offset: #19bc8b
+  slide: #d6d6d6, 
 );
 @each $button, $color in $colors {
   .#{$button} {
     --color: #{$color};
-    --hover: #{adjust-hue($color, 45deg)};
+    --hover: #{adjust-hue($color, 0deg)};
   }
 }
 .slide {  
@@ -407,7 +398,7 @@ $colors: (
   &:hover,
   &:focus { 
     border-color: var(--hover);
-    color: #fff;
+    color: #262626;
   }
 }
 .slide {

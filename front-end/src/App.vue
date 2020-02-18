@@ -66,11 +66,11 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-body" style="text-align:center;">
+          <div class="modal-body py-4" style="text-align: center;">
             {{$store.state.modalText}}
           </div>
-          <div class="modal-footer">
-            <button type="button" id="modalClose-btn" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+          <div class="modal-footer py-2">
+            <button type="button" id="modalClose-btn" class="btn btn-secondary text-white py-1 px-3" data-dismiss="modal">닫기</button>
           </div>
         </div>
       </div>

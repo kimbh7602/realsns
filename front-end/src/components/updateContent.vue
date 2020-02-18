@@ -23,9 +23,14 @@
                 <div class="swiper-button-next" slot="button-next"></div>
             </div>
         </div>
-        <div class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:center;">
-            <input type="button" value="추가" @click="goAddImage" class="btn btn-info btn-md text-white">
+        <div class="container col-md-12 px-0 mt-4">
+            <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
+                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="추가" @click="goAddImage">
+            </div>
         </div>
+        <!-- <div class="offset-4 col-4 col-md-4 col-lg-4" style="display:inline-block; text-align:center;">
+            <input type="button" value="추가" @click="goAddImage" class="btn btn-info btn-md text-white">
+        </div> -->
         <div class="row form-group">                    
             <div class="col-md-12" id="parentItrl">
             <label class="text-white" for="itrlist">Hashtag</label>
