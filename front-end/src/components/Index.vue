@@ -694,7 +694,7 @@ export default {
             contentDivs.forEach(div => {
               const parent = div.offsetParent;
               var value = $(window).scrollTop() - parent.offsetTop;
-              if(value > 0 && value < 239){
+              if(value > 120 && value < 0){
                 const nodeList = div.childNodes;
                 if(nodeList.length >= 4){
                   if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
