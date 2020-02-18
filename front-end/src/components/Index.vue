@@ -691,6 +691,7 @@ export default {
         window.addEventListener('scroll', function(){
           // window.console.log($(window).scrollTop());
           contentDivs.forEach(div => {
+            window.console.log(div);
             const parent = div.offsetParent;
             var value = $(window).scrollTop() - parent.offsetTop;
             if(value > 0 && value < 239){
