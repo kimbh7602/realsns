@@ -686,34 +686,36 @@ export default {
         });
         document.querySelector("ul").remove();
         // document.querySelector("ul").remove();
-        setTimeout(() => {
-          const contentDivs = document.querySelectorAll(".content-div");
-          window.console.log(contentDivs);
-          window.addEventListener('scroll', function(){
-            // window.console.log($(window).scrollTop());
-            contentDivs.forEach(div => {
-              const parent = div.offsetParent;
-              var value = $(window).scrollTop() - parent.offsetTop;
-              if(value > -120 && value < 0){
-                const nodeList = div.childNodes;
-                if(nodeList.length >= 4){
-                  if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                    nodeList[3].style.opacity = 1;
-                    nodeList[3].style.visibility = "visible";
+        if(window.innerWidth < 991.98){
+          setTimeout(() => {
+            const contentDivs = document.querySelectorAll(".content-div");
+            window.console.log(contentDivs);
+            window.addEventListener('scroll', function(){
+              // window.console.log($(window).scrollTop());
+              contentDivs.forEach(div => {
+                const parent = div.offsetParent;
+                var value = $(window).scrollTop() - parent.offsetTop;
+                if(value > -120 && value < 0){
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 1;
+                      nodeList[3].style.visibility = "visible";
+                    }
+                  }
+                }else{
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 0;
+                      nodeList[3].style.visibility = "hidden";
+                    }
                   }
                 }
-              }else{
-                const nodeList = div.childNodes;
-                if(nodeList.length >= 4){
-                  if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                    nodeList[3].style.opacity = 0;
-                    nodeList[3].style.visibility = "hidden";
-                  }
-                }
-              }
+              })
             })
-          })
-        }, 500);
+          }, 500);
+        }
     }); 
   },
 }
