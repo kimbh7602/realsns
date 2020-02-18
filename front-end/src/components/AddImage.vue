@@ -14,7 +14,8 @@
       <div class="container col-md-12 px-0">
         <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
           <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="goPrev">
-          <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="다음" @click="goNext">
+          <button type="button" class="btn btn-outline-light col-sm btnnext p-2" v-if="prevpage == 'addimage'" @click="goNext">다음</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else-if="prevpage=='contentupdate'" @click="goNextUpdate">다음</button>
         </div>
       </div>
     <input ref="fileInput" type="file" accept="image/*" style="display:none;" name="file" id="file" class="inputfile" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload"/>
@@ -129,6 +130,18 @@ export default {
         })
     },
   },
+  goNextUpdate() {
+      window.console.log(this.prevpage)
+      this.imgs[this.imgs.length-1].filter = this.filterType;
+      this.$router.push({
+        name: 'updatecontent', 
+        params: {
+          uimgs: this.imgs, 
+          items: this.items,
+          prevpage: this.prevpage,
+        }
+      });
+    },
   mounted(){
     if(this.fimgs!=undefined){
       this.imgs = this.fimgs;
