@@ -19,7 +19,7 @@
 
                     <div class="text-left mt-4 mx-5" style="margin-bottom:5%;">
                         <span v-for="(item, index) in userInfo.interestList" :key="`item${index}`">
-                            <span class="mr-2" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
+                            <span class="mr-2" @click="contentListHashtag(item)" style="color: #4285f4;" v-if="item!=''">#{{item}}</span>
                         </span>
                     </div>
                     <div class="my-2 mx-5 yscroll" style="position: relative; height:100px; border-top: 2px solid black; overflow-y: auto;">
@@ -166,6 +166,14 @@ export default {
         
     },
     methods: {
+        contentListHashtag(tag) {
+            this.$router.push({
+            name: "contentListHashtag",
+            params: {
+                tag: tag
+            }
+            });
+        },
         insertFollow(user) {
             // this.$store.dispatch('INSERT_FOLLOW', {follower_id: this.myId, follow_id: id});
             http
