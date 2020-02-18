@@ -2,8 +2,8 @@
   <div class="container-fluid photos">
     <div class="row align-items-stretch">
       <!-- 게시물 하나 -->
-      <div class="col-6 col-md-6 col-lg-4 content-div" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
-        <div class="d-block photo-item">
+      <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
+        <div class="d-block photo-item content-div">
           <!-- 이미지 처리 -->
           <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
             <div :class="con.images[0].filter" style="width:100%; height:100%">
@@ -687,10 +687,13 @@ export default {
         document.querySelector("ul").remove();
         // document.querySelector("ul").remove();
 
-        // const contentDivs = document.querySelectorAll(".content-div");
-        // window.addEventListener('scroll', function(){
-        //   window.console.log($(window).scrollTop());
-        // })
+        const contentDivs = document.querySelectorAll(".content-div");
+        window.addEventListener('scroll', function(){
+          window.console.log($(window).scrollTop());
+          contentDivs.forEach(div => {
+            
+          })
+        })
     }); 
   },
 }
