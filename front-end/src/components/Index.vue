@@ -686,6 +686,7 @@ export default {
         });
         document.querySelector("ul").remove();
         // document.querySelector("ul").remove();
+        window.console.log(window.innerWidth);
         if(window.innerWidth < 991.98){
           setTimeout(() => {
             const contentDivs = document.querySelectorAll(".content-div");
