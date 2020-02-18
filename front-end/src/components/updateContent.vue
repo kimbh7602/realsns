@@ -290,7 +290,12 @@ export default {
             this.itrlist.splice(0);
         },
         goPrev() {
-            this.$router.push("/addimage");
+            this.$router.push({
+                name: 'bio', 
+                params: {
+                    cid:this.items.content_id,
+                }
+            });
         },
         goNext() {
             // this.imgs[this.imgs.length-1].filter = this.filterType;
