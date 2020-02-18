@@ -309,7 +309,7 @@
           http
             .put("/comment/updateComment", {
               comment_id: id,
-              content_id: 0,
+              content_id: this.cid,
               re_comment_id: rid,
               user_id: this.uid,
               target_id: "",
