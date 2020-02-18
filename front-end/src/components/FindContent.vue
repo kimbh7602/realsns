@@ -46,7 +46,7 @@
                         </select> -->
                         </div>
                     </div>
-                    <input @click="isLocation = true; isLocationSelect=false; dist=0.01; distString='1 Km'" type="button" value="다시 위치검색" class="btn btn-outline-warning btn-block">
+                    <input @click="isLocation = true; isLocationSelect=false; dist=0.01; distString='1 Km'" type="button" value="다시 위치검색" data-dismiss="modal" class="btn btn-outline-warning btn-block">
                     <input @click="findContentByLocation" type="button" value="게시물 검색" class="btn btn-outline-info btn-block">
                     <br/><br/><br/>
                     </div>
@@ -472,30 +472,7 @@ export default {
                     this.$nextTick(() => {
                         if(window.innerWidth <= 501){
                             setTimeout(() => {
-                                const contentDivs = document.querySelectorAll(".content-div");
-                                window.addEventListener('scroll', function(){
-                                contentDivs.forEach(div => {
-                                    const parent = div.offsetParent;
-                                    var value = $(window).scrollTop() - parent.offsetTop;
-                                    if(value > -120 && value < 0){
-                                    const nodeList = div.childNodes;
-                                    if(nodeList.length >= 4){
-                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                                        nodeList[3].style.opacity = 1;
-                                        nodeList[3].style.visibility = "visible";
-                                        }
-                                    }
-                                    }else{
-                                    const nodeList = div.childNodes;
-                                    if(nodeList.length >= 4){
-                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                                        nodeList[3].style.opacity = 0;
-                                        nodeList[3].style.visibility = "hidden";
-                                        }
-                                    }
-                                    }
-                                })
-                                })
+                              window.addEventListener('scroll', this.scrollHandler)
                             }, 500);
                             }
                         })
@@ -1053,30 +1030,7 @@ export default {
                     this.$nextTick(() => {
                         if(window.innerWidth <= 501){
                             setTimeout(() => {
-                                const contentDivs = document.querySelectorAll(".content-div");
-                                window.addEventListener('scroll', function(){
-                                contentDivs.forEach(div => {
-                                    const parent = div.offsetParent;
-                                    var value = $(window).scrollTop() - parent.offsetTop;
-                                    if(value > -120 && value < 0){
-                                    const nodeList = div.childNodes;
-                                    if(nodeList.length >= 4){
-                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                                        nodeList[3].style.opacity = 1;
-                                        nodeList[3].style.visibility = "visible";
-                                        }
-                                    }
-                                    }else{
-                                    const nodeList = div.childNodes;
-                                    if(nodeList.length >= 4){
-                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
-                                        nodeList[3].style.opacity = 0;
-                                        nodeList[3].style.visibility = "hidden";
-                                        }
-                                    }
-                                    }
-                                })
-                                })
+                              window.addEventListener('scroll', this.scrollHandler)
                             }, 500);
                             }
                         })
