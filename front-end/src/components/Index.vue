@@ -695,7 +695,10 @@ export default {
               const parent = div.offsetParent;
               var value = $(window).scrollTop() - parent.offsetTop;
               if(value > 0 && value < 239){
-                window.console.log(div);
+                const nodeList = div.childNodes;
+                if(nodeList.length >= 4){
+                  window.console.log(nodeList[3].className);
+                }
               }
             })
           })
