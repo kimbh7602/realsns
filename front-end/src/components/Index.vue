@@ -688,10 +688,8 @@ export default {
         // document.querySelector("ul").remove();
 
         const contentDivs = document.querySelectorAll(".content-div");
-        contentDivs.forEach(contentDiv => {
-          contentDiv.addEventListener("scroll", () => {
-            window.console.log(contentDiv.offsetTop);
-          })
+        window.addEventListener('scroll', function(e){
+          window.console.log($(window).scrollTop());
         })
     }); 
   },
