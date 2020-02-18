@@ -46,7 +46,7 @@
                         </select> -->
                         </div>
                     </div>
-                    <input @click="isLocationSelect=!isLocationSelect; dist=0.01; distString='1 Km'" type="button" value="다시 위치검색" class="btn btn-outline-warning btn-block">
+                    <input @click="isLocation = true; isLocationSelect=false; dist=0.01; distString='1 Km'" type="button" value="다시 위치검색" class="btn btn-outline-warning btn-block">
                     <input @click="findContentByLocation" type="button" value="게시물 검색" class="btn btn-outline-info btn-block">
                     <br/><br/><br/>
                     </div>
@@ -368,23 +368,140 @@ export default {
       },
 
       findContentByLocation(){
+          this.contents = [{
+                contentId: "",
+                contentValue: "",
+                timestamp: "",
+                likeButton: false,
+                userId: "",
+                imageLength: 0,
+                images: [{
+                imageUrl: "",
+                filter: "",
+                }],
+                scrapButton: false,
+                profileUrl: "",
+                profileFilter: "",
+            }]
           http.post("/content/findByLocation",{
               lat: this.selectedLocation.position.lat,
               lng: this.selectedLocation.position.lng,
               dist: this.dist
           })
-          .then((response)=>{
-              window.console.log(response.data.resValue);
-              
-              this.contents = response.data.resValue;
-            //   this.$nextTick(() => {
-            //       if(window.innerWidth <= 501){
-            //           setTimeout(() => {
-            //               window.addEventListener('scroll', this.scrollHandler)
-            //           }, 500);
-            //       }
+          .then((res)=>{
+              if (res.data.resValue.length > 0) {
+                    this.contentErrorMsg = ""
+                    for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                    for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
+                        if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
+                        res.data.resValue[idx].user_like = true
+                        delete this.userLikeList[idx2].contentId
+                        }
+                        if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
+                        if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
+                            this.contents.push({
+                            contentId: this.userLikeList[idx2].contentId,
+                            contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
+                            timestamp: this.userLikeList[idx2].timestamp,
+                            likeButton: this.userLikeList[idx2].likeButton,
+                            userId: this.userLikeList[idx2].userId,
+                            imageLength: this.userLikeList[idx2].imageLength,
+                            images: this.userLikeList[idx2].images,
+                            scrapButton: true,
+                            dislike: this.userLikeList[idx2].dislike,
+                            profileUrl: this.userLikeList[idx2].profileUrl,
+                            profileFilter: this.userLikeList[idx2].profileFilter,
 
-            //   })
+                            })
+                        } else {
+                            this.contents.push({
+                            contentId: this.userLikeList[idx2].contentId,
+                            contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
+                            timestamp: this.userLikeList[idx2].timestamp,
+                            likeButton: this.userLikeList[idx2].likeButton,
+                            userId: this.userLikeList[idx2].userId,
+                            imageLength: this.userLikeList[idx2].imageLength,
+                            images: this.userLikeList[idx2].images,
+                            scrapButton: false,
+                            dislike: this.userLikeList[idx2].dislike,
+                            profileUrl: this.userLikeList[idx2].profileUrl,
+                            profileFilter: this.userLikeList[idx2].profileFilter,
+                            })
+                        }
+                        }
+                    }
+                    if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                        this.contents.push({
+                        contentId: res.data.resValue[idx].content_id,
+                        contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                        timestamp: res.data.resValue[idx].timestamp,
+                        likeButton: res.data.resValue[idx].user_like,
+                        userId: res.data.resValue[idx].user_id,
+                        imageLength: res.data.resValue[idx].imageList.length,
+                        images: [{
+                            imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                            filter: res.data.resValue[idx].imageList[0].filter,
+                        }],
+                        scrapButton: true,
+                        dislike: res.data.resValue[idx].dislike,
+                        profileUrl: res.data.resValue[idx].profile_url,
+                        profileFilter: res.data.resValue[idx].profile_filter,
+                        })
+                    } else {
+                        this.contents.push({
+                        contentId: res.data.resValue[idx].content_id,
+                        contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                        timestamp: res.data.resValue[idx].timestamp,
+                        likeButton: res.data.resValue[idx].user_like,
+                        userId: res.data.resValue[idx].user_id,
+                        imageLength: res.data.resValue[idx].imageList.length,
+                        images: [{
+                            imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                            filter: res.data.resValue[idx].imageList[0].filter,
+                        }],
+                        scrapButton: false,
+                        dislike: res.data.resValue[idx].dislike,
+                        profileUrl: res.data.resValue[idx].profile_url,
+                        profileFilter: res.data.resValue[idx].profile_filter,
+                        })
+                    }
+                    }
+                    this.sortList()
+                    // this.getReport()
+
+                    this.$nextTick(() => {
+                        if(window.innerWidth <= 501){
+                            setTimeout(() => {
+                                const contentDivs = document.querySelectorAll(".content-div");
+                                window.addEventListener('scroll', function(){
+                                contentDivs.forEach(div => {
+                                    const parent = div.offsetParent;
+                                    var value = $(window).scrollTop() - parent.offsetTop;
+                                    if(value > -120 && value < 0){
+                                    const nodeList = div.childNodes;
+                                    if(nodeList.length >= 4){
+                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                        nodeList[3].style.opacity = 1;
+                                        nodeList[3].style.visibility = "visible";
+                                        }
+                                    }
+                                    }else{
+                                    const nodeList = div.childNodes;
+                                    if(nodeList.length >= 4){
+                                        if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                                        nodeList[3].style.opacity = 0;
+                                        nodeList[3].style.visibility = "hidden";
+                                        }
+                                    }
+                                    }
+                                })
+                                })
+                            }, 500);
+                            }
+                        })
+                } else {
+                    this.contentErrorMsg = "타임라인이 없습니다."
+                }
           })
       },
 
