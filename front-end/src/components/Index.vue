@@ -686,20 +686,21 @@ export default {
         });
         document.querySelector("ul").remove();
         // document.querySelector("ul").remove();
-
-        const contentDivs = document.querySelectorAll(".content-div");
-        window.console.log(contentDivs);
-        window.addEventListener('scroll', function(){
-          // window.console.log($(window).scrollTop());
-          contentDivs.forEach(div => {
-            window.console.log(div);
-            const parent = div.offsetParent;
-            var value = $(window).scrollTop() - parent.offsetTop;
-            if(value > 0 && value < 239){
+        setTimeout(() => {
+          const contentDivs = document.querySelectorAll(".content-div");
+          window.console.log(contentDivs);
+          window.addEventListener('scroll', function(){
+            // window.console.log($(window).scrollTop());
+            contentDivs.forEach(div => {
               window.console.log(div);
-            }
+              const parent = div.offsetParent;
+              var value = $(window).scrollTop() - parent.offsetTop;
+              if(value > 0 && value < 239){
+                window.console.log(div);
+              }
+            })
           })
-        })
+        }, 1000);
     }); 
   },
 }
