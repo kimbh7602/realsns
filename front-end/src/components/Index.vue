@@ -697,7 +697,18 @@ export default {
               if(value > 0 && value < 239){
                 const nodeList = div.childNodes;
                 if(nodeList.length >= 4){
-                  window.console.log(nodeList[3].className);
+                  if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                    nodeList[3].style.opacity = 1;
+                    nodeList[3].style.visibility = "visible";
+                  }
+                }
+              }else{
+                const nodeList = div.childNodes;
+                if(nodeList.length >= 4){
+                  if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                    nodeList[3].style.opacity = 0;
+                    nodeList[3].style.visibility = "hidden";
+                  }
                 }
               }
             })
