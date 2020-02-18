@@ -259,22 +259,42 @@ export default {
                   res.data.resValue[idx].user_like = true
                 }
               }
-              this.contents.push({
-                contentId: res.data.resValue[idx].content_id,
-                contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                timestamp: res.data.resValue[idx].timestamp,
-                likeButton: res.data.resValue[idx].user_like,
-                userId: res.data.resValue[idx].user_id,
-                imageLength: res.data.resValue[idx].imageList.length,
-                images: [{
-                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                  filter: res.data.resValue[idx].imageList[0].filter,
-                }],
-                scrapButton: false,
-                dislike: res.data.resValue[idx].dislike,
-                profileUrl: res.data.resValue[idx].profile_url,
-                profileFilter: res.data.resValue[idx].profile_filter,
-              })
+              if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                this.contents.push({
+                  contentId: res.data.resValue[idx].content_id,
+                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                  timestamp: res.data.resValue[idx].timestamp,
+                  likeButton: res.data.resValue[idx].user_like,
+                  userId: res.data.resValue[idx].user_id,
+                  imageLength: res.data.resValue[idx].imageList.length,
+                  images: [{
+                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                    filter: res.data.resValue[idx].imageList[0].filter,
+                  }],
+                  scrapButton: true,
+                  dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
+                })
+              }
+              else{
+                this.contents.push({
+                  contentId: res.data.resValue[idx].content_id,
+                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                  timestamp: res.data.resValue[idx].timestamp,
+                  likeButton: res.data.resValue[idx].user_like,
+                  userId: res.data.resValue[idx].user_id,
+                  imageLength: res.data.resValue[idx].imageList.length,
+                  images: [{
+                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                    filter: res.data.resValue[idx].imageList[0].filter,
+                  }],
+                  scrapButton: false,
+                  dislike: res.data.resValue[idx].dislike,
+                  profileUrl: res.data.resValue[idx].profile_url,
+                  profileFilter: res.data.resValue[idx].profile_filter,
+                })
+              }
             }
             this.sortList()
             // this.getReport()
