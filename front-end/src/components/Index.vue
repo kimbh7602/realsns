@@ -718,6 +718,11 @@ export default {
         }
     }); 
   },
+
+  beforeDestroy() {
+    window.console.log('remove event');
+    window.removeEventListener('scroll', this.scrollHandler);
+  }
 }
 </script>
 <style scoped>
