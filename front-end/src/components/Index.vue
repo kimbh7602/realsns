@@ -689,7 +689,7 @@ export default {
 
         const contentDivs = document.querySelectorAll(".content-div");
         window.addEventListener('scroll', function(){
-          window.console.log($(window).scrollTop());
+          // window.console.log($(window).scrollTop());
           contentDivs.forEach(div => {
             const parent = div.offsetParent;
             var value = $(window).scrollTop() - parent.offsetTop;
