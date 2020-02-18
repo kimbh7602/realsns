@@ -368,6 +368,21 @@ export default {
       },
 
       findContentByLocation(){
+          this.contents = [{
+                contentId: "",
+                contentValue: "",
+                timestamp: "",
+                likeButton: false,
+                userId: "",
+                imageLength: 0,
+                images: [{
+                imageUrl: "",
+                filter: "",
+                }],
+                scrapButton: false,
+                profileUrl: "",
+                profileFilter: "",
+            }]
           http.post("/content/findByLocation",{
               lat: this.selectedLocation.position.lat,
               lng: this.selectedLocation.position.lng,
