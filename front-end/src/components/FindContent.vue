@@ -375,13 +375,6 @@ export default {
           })
           .then((response)=>{
               window.console.log(response.data.resValue);
-              for (var i = 0; i < response.data.resValue.length; i++) {
-                for (var j = 0; j < this.contentIds.length; j++) {
-                    if (response.data.resValue[i].content_id == this.contentIds[j].con_id) {
-                    response.data.resValue[i].user_like = true
-                    }
-                }
-                }
               this.contents = response.data.resValue;
 
                 if(window.innerWidth <= 501){
