@@ -41,7 +41,7 @@
 
                     <div class="row align-items-stretch">
                         <div class="col-6 col-md-6 col-lg-4" style="padding: 10px 10px" data-aos="fade-up"  v-for="(img, index) in content.list" :key="index">
-                        <div class="d-block photo-item">
+                        <div class="d-block photo-item content-div">
                             <div class="all-scroll pos-relative mt-50">
                             <div class="swiper-scrollbar"></div>
                             <div class="swiper-container oflow-visible" data-slide-effect="coverflow" data-autoheight="false"  data-swiper-wheel-control="true"
