@@ -114,7 +114,7 @@
                           </div>
                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
                             <div v-if="comment.check===true" class="icon-pencil"
-                              @click="changeedit(comment.comment_id)"></div>
+                              @click="changeedit(comment.comment_id,comment.user_id)"></div>
                           </div>
                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
                             <div v-if="comment.check===true" class="icon-close" @click="delcomment(comment.comment_id)">
@@ -124,7 +124,7 @@
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2" v-bind:id="'edit_button'+comment.comment_id"
                           style="display:none;">
                           <div class="col-6 col-sm-6  col-md-6 col-lg-6">
-                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id)">
+                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id,comment.user_id)">
                             </div>
                           </div>
                           <div class="col-6 col-sm-6 col-me-6 col-lg-6">
@@ -173,7 +173,7 @@
                         <div v-if="comment.check===true" class="row col-2 col-sm-2 col-md-2 col-lg-2"
                           style="display:flex;" v-bind:id="'view_button'+comment.comment_id">
                           <div class="col-1 col-sm-1 col-md-1 col-lg-1">
-                            <div class="icon-pencil" @click="changeedit(comment.comment_id)">
+                            <div class="icon-pencil" @click="changeedit(comment.comment_id,comment.user_id)">
                             </div>
                           </div>
                           <div class="col-1 col-sm-1 col-md-1 col-lg-1">
@@ -184,7 +184,7 @@
                         <div class="row col-2 col-sm-2 col-md-2 col-lg-2" v-bind:id="'edit_button'+comment.comment_id"
                           style="display:none;">
                           <div class="col-1 col-sm-1 col-md-1 col-lg-1">
-                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id)">
+                            <div class="icon-arrow_back" @click="changeedit(comment.comment_id,comment.user_id)">
                             </div>
                           </div>
                           <div class="col-1 col-sm-1 col-md-1 col-lg-1">
@@ -272,7 +272,8 @@
       }
     },
     methods: {
-      changeedit(e) {
+      changeedit(e,id) {
+        if(id===this.uid){
         var text = document.getElementById('view' + e);
         var input = document.getElementById('edit' + e);
         var text_button = document.getElementById("view_button" + e)
@@ -295,6 +296,10 @@
           this.editflg = false;
           this.getData();
         }
+        }else if(id!==this.uid){
+          this.$store.commit('setModalText', '본인 게시물만 수정가능합니다.');
+          document.getElementById('modalBtn').click();
+        }
       },
       editcomment(id, value, rid) {
         if (value === "") {
@@ -312,7 +317,7 @@
             })
             .then(response => {
               if (response.data['resmsg'] == "수정성공") {
-                this.changeedit(id);
+                this.changeedit(id,this.uid);
                 this.getData();
               } else {
                 alert("댓글수정 실패!");
