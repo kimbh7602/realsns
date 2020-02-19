@@ -659,6 +659,7 @@ export default {
   },
   created() {
     this.uid = this.$store.state.user_id;
+    this.parentFollowList = this.pFollowList;
     this.getLike();
     this.getDislike();
     this.fetchData();
