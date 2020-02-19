@@ -140,10 +140,9 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage","myFollowList"],
+  props:["userId", "myPage"],
   data() {
     return {
-      pFollowList:[],
       dList:[],
       errored: false,
       uid: "",
@@ -659,8 +658,6 @@ export default {
   },
   created() {
     this.uid = this.$store.state.user_id;
-    this.pFollowList = this.myFollowList;
-    console.log(this.pFollowList);
     this.getLike();
     this.getDislike();
     this.fetchData();
