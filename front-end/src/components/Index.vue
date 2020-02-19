@@ -392,14 +392,12 @@ export default {
                 user_id: this.loginId
               })
               .then((response) =>{
-                // if(this.loginId!=this.contents[idx].userId){
-                  this.$socket.emit('notification', {
-                    user_id: response.data.resValue.user_id,
-                    target_user_id: response.data.resValue.target_user_id,
-                    category: response.data.resValue.category,
-                    flag: true,
-                  });
-                // }
+                this.$socket.emit('notification', {
+                  user_id: response.data.resValue.user_id,
+                  target_user_id: response.data.resValue.target_user_id,
+                  category: response.data.resValue.category,
+                  flag: true,
+                });
               })
               .catch(()=>{
                 this.errored = true;
