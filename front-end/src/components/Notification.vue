@@ -9,7 +9,7 @@
                   </div>
               </div>
               <!-- <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2> -->
-              <div class="text-right"><button class="btn btn-outline-success" data-toggle="modal" data-target="#allReadModal">모두 읽음</button></div>
+              <div class="text-right" v-if="allNotilength>0"><button class="btn btn-outline-success" data-toggle="modal" data-target="#allReadModal">모두 읽음</button></div>
               <nav class="navbar navbar-expand-lg pb-0" style="background-color: black;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="icon-menu" style="font-size: 1.5em;"></i>
