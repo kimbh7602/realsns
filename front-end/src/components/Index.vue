@@ -144,6 +144,7 @@ export default {
         timestamp: "",
         likeButton: false,
         userId: "",
+        dislikeList:[],
         imageLength: 0,
         images: [{
           imageUrl: "",
@@ -219,6 +220,30 @@ export default {
           this.errored = true
         })
     },
+    getDislike(){
+      http
+        .get('/user/dislikeList/' + this.loginId)
+        .then((res) => {
+          if (res.data.resmsg == "조회성공") {
+              res.data.resValue.forEach(element =>{
+                const dis = element;
+                window.console.log(dis);
+              })
+          }
+        })
+        .catch(() => {
+          this.errored = true
+        })      
+    },
+    // matchingDislike(){
+    //   for(var idx7=0; idx7<this.contents.length; idx7++){
+    //     // for(var idx8=0; idx8<this.dislikeList.length; idx8++){
+    //        if (this.dislikeList.includes(this.contents[idx7].hashtag)) {
+             
+    //        }
+    //     // }
+    //   }
+    // },
     getLike() {
       http
         .get('/userLike/userLikeList/' + this.loginId)
@@ -736,6 +761,7 @@ export default {
     }
   },
   mounted() {
+    this.getDislike()
     this.getLike()
     this.getScrap()
     this.getData()
