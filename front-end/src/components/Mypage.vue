@@ -61,7 +61,7 @@
                 </div>
                 <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="scrap()">스크랩</a>
-                    <h4 v-if="userScrap">{{userScrap.length}}</h4>
+                    <h4 v-if="userScrap" v-text="scrapCount"></h4>
                     <h4  v-else>0</h4>
                 </div>
             </div>

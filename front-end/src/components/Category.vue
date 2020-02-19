@@ -357,7 +357,7 @@ export default {
       .get('scrap/scrapList/' + this.uid)
       .then((res)=>{
         if (res.data.resvalue.length > 0) {
-          this.contentErrorMsg = ""
+          // this.contentErrorMsg = ""
           if (res.data.resmsg == "스크랩목록성공") {
             for (var i = 0; i < res.data.resvalue.length; i++) {
               res.data.resvalue[i].content_val = res.data.resvalue[i].content_val.replace(/\n/g, "<br />");
