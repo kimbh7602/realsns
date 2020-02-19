@@ -184,7 +184,11 @@ export default {
             'fetchedFollowList',
             'fetchedFollowerList',
             'fetchedUserDmList',
-        ])
+        ]),
+        
+        scrapCount(){
+            return store.state.scrapCount;
+        }
         
     },
     methods: {
@@ -282,6 +286,8 @@ export default {
                 .get(`scrap/scrapList/${id}`)
                 .then(response => {
                     this.userScrap = response.data.resvalue;
+                    this.userScraplength = this.userScrap.length;
+                    this.$store.commit('SET_SCRAPCOUNT', this.userScrap.length);
                 })
         },
         content() {
