@@ -224,6 +224,10 @@ export default {
                                     }
                                   })
 
+
+                
+        })
+        .finally(() => {
                                   http
                                     .post(`/content/contentListHashtagList/`, this.Interests)
                                     .then((res) => {
@@ -315,10 +319,6 @@ export default {
 
                   
                 })
-
-                
-        })
-        .finally(() => {
           
         })
     },
