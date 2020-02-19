@@ -67,10 +67,10 @@
                         <i class="icon-user-plus" v-else>{{con.userId}}</i>
                       </div>
                       <div @click="clickScrap(con.contentId, con.scrapButton)" v-if="con.userId !== loginId">
-                        <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
-                        <i class="icon-bookmark-o" v-else></i>
-                        <!-- <i class="icon-bookmark" v-if="con.scrapButton"></i>
+                        <!-- <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
                         <i class="icon-bookmark-o" v-else></i> -->
+                        <i class="icon-bookmark" v-if="con.scrapButton"></i>
+                        <i class="icon-bookmark-o" v-else></i>
                       </div>
                       <div v-if="con.userId !== loginId">
                         <i class="icon-bell" v-if="reportMyList.includes(con.contentId)" @click="cancel(con.contentId)"></i>
