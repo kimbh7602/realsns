@@ -545,6 +545,8 @@ export default {
                 //   this.contentErrorMsg = "스크랩 목록이 비었습니다."
                 // }
               }
+
+              this.$store.commit('SET_SCRAPCOUNT', this.scrapList.length);
             } else {
               console.log(res.data.resmsg)
             }

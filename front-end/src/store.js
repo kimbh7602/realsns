@@ -23,6 +23,7 @@ export default new Vuex.Store({
         unReadCnt: 0,
         noticount:0,
         targetDm: null,
+        scrapCount:0,
     },
     getters:{
         fetchedUserDmList(state) {
@@ -149,6 +150,9 @@ export default new Vuex.Store({
             sessionStorage.setItem("noticount",noticount)
             state.noticount = sessionStorage.getItem("noticount");
         },
+        SET_SCRAPCOUNT(state, scrapCount) {
+            state.scrapCount = scrapCount;
+        }
     },
     actions:{
         FETCH_USERDMLIST(context, userId) {
