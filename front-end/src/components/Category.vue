@@ -617,6 +617,7 @@ export default {
     }
   },
   created() {
+    this.uid = this.$store.state.user_id;
     this.getLike();
     this.fetchData();
   },
