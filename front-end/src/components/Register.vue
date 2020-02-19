@@ -4,7 +4,7 @@
 
         
         <div class="col-6 pt-4" data-aos="fade-up">
-          <div class="row mb-5">
+          <div class="row mb-5" style="margin-bottom:0px">
               <div class="col-12">
                 <h2 class="text-white mb-4">Register</h2>
               </div>

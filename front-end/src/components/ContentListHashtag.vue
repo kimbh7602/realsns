@@ -2,12 +2,12 @@
   <div class="container-fluid photos">
     <div class="row align-items-stretch">
       <!-- 게시물 하나 -->
-      <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
           <div class="row mb-5">
             <div class="col-12">
               <h2 class="text-white mb-4">Hashtag List</h2>
             </div>
         </div>
+      <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item content-div">
           <!-- 이미지 처리 -->
           <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
