@@ -45,7 +45,7 @@
                         </select> -->
                         </div>
                     </div>
-                    <input @click="isLocation = true; isLocationSelect=false; dist=0.01; distString='1 Km'" type="button" value="다시 위치검색" class="btn btn-outline-warning btn-block">
+                    <input @click="isLocation = true; isLocationSelect=false; dist=0.01; distString='1 Km'; searchKeyword='';" type="button" value="다시 위치검색" class="btn btn-outline-warning btn-block">
                     <input @click="findContentByLocation" type="button" value="게시물 검색" class="btn btn-outline-info btn-block">
                     <br/><br/><br/>
                     </div>

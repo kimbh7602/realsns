@@ -14,7 +14,7 @@
                 <div class="row form-group mb-5">
                     <div class="col-md-12">
                     <label class="text-white">Instagram Hashtag Search</label>
-                    <input style="text-align:center;" v-model="searchKeyword" type="text" class="form-control"><br>
+                    <input style="text-align:center;" v-model="searchKeyword" @keyup.enter="searchHashtag" type="text" class="form-control"><br>
                     <!-- <input type="subject" autocomplete='off' @keyup.enter.prevent='appendDiv' @keydown.space.prevent='appendDiv' id="interest" class="form-control">
                     <div style="margin-top:10px; margin-bottom:10px;" id="itrl"></div> -->
                     <input @click="searchHashtag" type="button" value="Search" class="btn btn-outline-light btn-block text-white">
