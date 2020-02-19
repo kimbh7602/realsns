@@ -584,6 +584,7 @@ export default {
         this.getUserScrap();
         this.getReport();
       }else if(this.myPage == false){
+        window.console.log("scrapPage");
         this.getFollow();
         this.getScrap();
         this.getUserScrap();
