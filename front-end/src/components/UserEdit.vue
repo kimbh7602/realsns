@@ -270,29 +270,29 @@
         })
         .finally(() => {
           this.loading = false;
-          for(var a=0; a<this.itrlist.length; a++){
-            var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
-            var div = document.createElement('div');
-            var span = document.createElement('span');
-            var bold = document.createElement('bold')
-            var text = this.itrlist[a];
-            if(text==""){
-              return;
-            }
-            // this.itrlist.push(text);
-            bold.innerText = text;
-            div.style.background=colorCode;
-            div.classList.add('roundedge');
-            div.classList.add('itrlone');
-            div.classList.add('text-white');
-            span.classList.add('icon-remove')
-            span.addEventListener("click", function(event){
-              event.target.parentNode.remove();
-            });
-            div.appendChild(bold);
-            div.appendChild(span);
-            document.getElementById('itrl').appendChild(div);
-          }
+          // for(var a=0; a<this.itrlist.length; a++){
+          //   var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+          //   var div = document.createElement('div');
+          //   var span = document.createElement('span');
+          //   var bold = document.createElement('bold')
+          //   var text = this.itrlist[a];
+          //   if(text==""){
+          //     return;
+          //   }
+          //   // this.itrlist.push(text);
+          //   bold.innerText = text;
+          //   div.style.background=colorCode;
+          //   div.classList.add('roundedge');
+          //   div.classList.add('itrlone');
+          //   div.classList.add('text-white');
+          //   span.classList.add('icon-remove')
+          //   span.addEventListener("click", function(event){
+          //     event.target.parentNode.remove();
+          //   });
+          //   div.appendChild(bold);
+          //   div.appendChild(span);
+          //   document.getElementById('itrl').appendChild(div);
+          // }
           for(var b=0; b<this.uitrlist.length; b++){
             colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
             var div1 = document.createElement('div');
