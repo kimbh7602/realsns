@@ -5,10 +5,10 @@
             <h2 class="text-white mb-4">Recommend List</h2>
           </div>
       </div>
-      <div v-if="!isLoading&&(Items == null || Items.length == 0)" style="text-align:center;">
+      <div v-if="!isLoading&&(contents == null || contents.length == 0)" style="text-align:center;">
                     검색 결과가 없습니다.
                 </div>
-                <div style="text-align:center;" v-if="isLoading&&(Items == null || Items.length == 0)">
+                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0)">
                     <img class="col-md-12" src="/theme/images/loading10.gif" />
                 </div>
       <div v-else class="row align-items-stretch">
@@ -294,7 +294,7 @@ export default {
                                           }
                                         })
                                       });
-                                      this.Items.sort(function(a, b){
+                                      this.contents.sort(function(a, b){
                                         return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
                                       });
                                       if(window.innerWidth <= 501){
