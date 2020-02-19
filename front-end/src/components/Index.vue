@@ -235,14 +235,17 @@ export default {
                         // if (!this.dList.includes(res.data.resvalue[idx9].content_id)) {
                           window.console.log("왜?")
                           this.dList.push(res.data.resValue[idx]);
-                          window.console.log("this.dList");
                           // window.console.log(this.dList);
                         // }
                       }
                     }
                   })
-                  .catch(()=>{
+                  .catch((error)=>{
+                    window.console.log(error);
                     this.errored = true
+                  })
+                  .finally(()=>{
+                    
                   })
               })
           }
