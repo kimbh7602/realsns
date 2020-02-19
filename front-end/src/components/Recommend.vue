@@ -173,6 +173,12 @@ export default {
                                       this.Items.sort(function(a, b){
                                         return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
                                       });
+                                      if(window.innerWidth <= 501){
+                                        setTimeout(() => {
+                                          window.removeEventListener('scroll', this.scrollHandler);
+                                          window.addEventListener('scroll', this.scrollHandler)
+                                        }, 500);
+                                      }
                                     })
                                 })
                               })
@@ -347,6 +353,30 @@ export default {
         document.getElementById('modalBtn').click();
       }
     },
+    scrollHandler(){
+      const contentDivs = document.querySelectorAll(".content-div");
+              contentDivs.forEach(div => {
+                const parent = div.offsetParent;
+                var value = $(window).scrollTop() - parent.offsetTop;
+                if(value > -130 && value < 10){
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 1;
+                      nodeList[3].style.visibility = "visible";
+                    }
+                  }
+                }else{
+                  const nodeList = div.childNodes;
+                  if(nodeList.length >= 4){
+                    if(nodeList[3].className != undefined && nodeList[3].className == "photo-text-more"){
+                      nodeList[3].style.opacity = 0;
+                      nodeList[3].style.visibility = "hidden";
+                    }
+                  }
+                }
+              })
+    },
   },
   created() {
     this.userId = this.$store.state.user_id;
@@ -370,6 +400,10 @@ export default {
     recaptchaScriptb.setAttribute('type',"text/javascript")
     recaptchaScriptb.setAttribute('src', "./theme/js/swiper.js")
     document.body.appendChild(recaptchaScriptb)
+  },
+
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.scrollHandler);
   }
 }
 </script>
