@@ -279,7 +279,7 @@ export default {
                       contentId: this.userLikeList[idx2].contentId,
                       contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
                       timestamp: this.userLikeList[idx2].timestamp,
-                      likeButton: this.userLikeList[idx2].likeButton,
+                      likeButton: true,
                       userId: this.userLikeList[idx2].userId,
                       imageLength: this.userLikeList[idx2].imageLength,
                       images: this.userLikeList[idx2].images,
