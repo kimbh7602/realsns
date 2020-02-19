@@ -330,13 +330,13 @@ export default {
       .get('content/contentUserList/'+this.userId)
       .then((res)=>{
         if (res.data.resValue.length > 0) {
-          this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
-            this.myContentList = res.data.resValue;
-            window.console.log(this.myContentList);
+            for (var i = 0; i < res.data.resValue.length; i++) {
+              if (!this.myContentList.includes(res.data.resValue[i].content_id)) {
+                this.myContentList.push(res.data.resValue[i].content_id)
+              }
+            }
           }
-        } else {
-          this.contentErrorMsg = "게시물이 없습니다."
         }
       })
       .catch(()=>{
