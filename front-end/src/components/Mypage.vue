@@ -1,5 +1,10 @@
 <template>
     <div class="container-fluid photos">
+            <!-- <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-white mb-4">My Page</h2>
+                </div>
+            </div> -->
       <div class="row justify-content-center">
         <div class="postcard" style="height:auto;" data-aos="fade-up">
             <div class="content" style="width:100%; height:auto;">
@@ -38,7 +43,7 @@
       
       <div class="row justify-content-center mb-4">
         <div class="col-md-5 d-flex justify-content-center">
-            <div class="row">
+            <div v-if="userId==myId" class="row">
                 <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="content()">게시물</a>
                     <h4 v-if="userContent">{{userContent.length}}</h4>
@@ -54,10 +59,27 @@
                     <h4 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h4>
                     <h4 v-else>0</h4>
                 </div>
-                <div v-if="userId==myId" class="text-center col-3">
+                <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="scrap()">스크랩</a>
                     <h4 v-if="userScrap">{{userScrap.length}}</h4>
                     <h4  v-else>0</h4>
+                </div>
+            </div>
+            <div v-else class="row">
+                <div class="text-center col-4">
+                    <a href="javascript:void(0)" class="m-0 p-0" @click="content()">게시물</a>
+                    <h4 v-if="userContent">{{userContent.length}}</h4>
+                    <h4 v-else>0</h4>
+                </div>
+                <div class="text-center col-4">
+                    <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followerModal">팔로워</a>
+                    <h4 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h4>
+                    <h4 v-else>0</h4>
+                </div>
+                <div class="text-center col-4">
+                    <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followModal">팔로우</a>
+                    <h4 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h4>
+                    <h4 v-else>0</h4>
                 </div>
             </div>
         </div>
@@ -68,7 +90,7 @@
       <category v-else :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->
-        <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header modal-lg">
@@ -92,7 +114,7 @@
             </div>
         </div>
         <!-- 팔로우 모달 -->
-        <div class="modal fade mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -116,7 +138,7 @@
         </div>
 
         <!-- 팔로우취소 모달 -->
-        <div class="modal fade mt-5" id="deleteFollowModal" tabindex="-1" role="dialog">
+        <div class="modal fade mt-5" id="deleteFollowModal" tabindex="-1" role="dialog" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body py-4">
@@ -151,7 +173,6 @@ export default {
             userInfo: {},
             userContent: [],
             userScrap: [],
-            userScraplength:0,
             check: 'content',
             targetUserDm: {},
             possible: true,

@@ -1,12 +1,11 @@
 <template>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
-
             <div class="col-md-8 pt-4">
                 <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">
                     <div class="col-12">
-                        <h2 class="text-white mb-4 text-center">게시물 찾기</h2>
+                      <h2 class="text-white mb-4">Location List</h2>
                     </div>
                 </div>
                 <input id="mapModalBtn" data-toggle="modal" data-target="#mapModal" style="display:none;" />
@@ -52,7 +51,7 @@
                     </div>
                 </div>
                 
-                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index:99999;">
+                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index:99998;">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body" style="text-align:center;">
@@ -157,7 +156,7 @@
                                         <i class="icon-user-plus" v-else>{{con.userId}}</i>
                                     </div>
                                     <div @click="clickScrap(con.contentId, con.scrapButton)" v-if="con.userId !== loginId">
-                                        <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
+                                        <i class="icon-bookmark" v-if="con.scrapButton"></i>
                                         <i class="icon-bookmark-o" v-else></i>
                                     </div>
                                     <div v-if="con.userId !== loginId">

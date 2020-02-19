@@ -3,12 +3,12 @@
         <div class="row justify-content-center">
 
             <div class="col-md-8 pt-4">
-                <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">
                     <div class="col-12">
-                        <h2 class="text-white mb-4 text-center">Search In Instagram</h2>
+                        <h2 class="text-white mb-4">Search In Instagram</h2>
                     </div>
                 </div>
+                <!-- 제목 -->
                 
                 <!-- 친구 검색 바 -->
                 <div class="row form-group mb-5">

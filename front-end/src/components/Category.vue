@@ -44,7 +44,7 @@
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
                           <div class="mail-title offset-1 col-9 mt-2 ml-3" style="text-align:left;"><p class="mail-title-val">Dear {{uid}}</p></div>
-                          <div class="mail-message offset-2 col-8 ellipsis pt-0 pb-0 mail-message-val">{{item.content_val}}</div>
+                          <div class="mail-message offset-2 col-8 ellipsis pt-0 pb-0 mail-message-val" v-html="item.content_val">{{item.content_val}}</div>
                           <div class="col-11 col-offset-1 pt-0 pr-0 mail-from-val">from {{item.user_id}}</div>
                         </div>
                         <div class="mb-4 pb-2 d-flex justify-content-around">
@@ -199,7 +199,6 @@ export default {
         .get('/userReport/myReportList/' + this.uid)
         .then((res) => {
           if (res.data.resvalue.length > 0) {
-            // console.log(res.data.resvalue)
             for (var i = 0; i < res.data.resvalue.length; i++) {
               this.reportMyList.push(res.data.resvalue[i].content_id)
             }
@@ -305,11 +304,11 @@ export default {
       http
       .get('content/contentUserList/'+this.uid)
       .then((res)=>{
-        // console.log(res)
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
+              res.data.resValue[i].content_val = res.data.resValue[i].content_val.replace(/\n/g, "<br />");
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
                   res.data.resValue[i].user_like = true
@@ -330,10 +329,12 @@ export default {
       http
       .get('content/contentUserList/'+this.userId)
       .then((res)=>{
+        window.consle.log(res.data.resValue);
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
+              res.data.resValue[i].content_val = res.data.resValue[i].content_val.replace(/\n/g, "<br />");
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
                   res.data.resValue[i].user_like = true
@@ -359,6 +360,7 @@ export default {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "스크랩목록성공") {
             for (var i = 0; i < res.data.resvalue.length; i++) {
+              res.data.resValue[i].content_val = res.data.resValue[i].content_val.replace(/\n/g, "<br />");
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resvalue[i].content_id == this.contentIds[j].con_id) {
                   res.data.resvalue[i].user_like = true
@@ -378,10 +380,10 @@ export default {
       .get('scrap/scrapList/'+this.uid)
       .then((res)=>{
         this.contentErrorMsg = ""
-        // console.log(res)
         if (res.data.resvalue.length > 0) {
           if (res.data.resmsg == "스크랩목록성공") {
             for (var i = 0; i < res.data.resvalue.length; i++) {
+              res.data.resValue[i].content_val = res.data.resValue[i].content_val.replace(/\n/g, "<br />");
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resvalue[i].content_id == this.contentIds[j].con_id) {
                   res.data.resvalue[i].user_like = true
@@ -548,7 +550,6 @@ export default {
 
               this.$store.commit('SET_SCRAPCOUNT', this.scrapList.length);
             } else {
-              console.log(res.data.resmsg)
             }
           })
           .catch(()=>{
@@ -570,7 +571,6 @@ export default {
               });
               this.scrapList.push(cid)
             } else {
-              console.log(res.data.resmsg)
             }
           })
           .catch(()=>{
@@ -579,7 +579,6 @@ export default {
       }
     },
     fetchData() {
-      window.console.log(this.myPage);
       if(this.myPage == undefined){
         this.getData()
       }else if(this.myPage == true){

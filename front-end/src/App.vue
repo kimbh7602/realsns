@@ -94,6 +94,7 @@
       return {
         noti: [],
         noticeError: "",
+        visit:"",
       }
     },
     components: {
@@ -180,7 +181,7 @@
   }
 
   #myModal {
-    z-index: 99998;
+    z-index: 99999;
     padding-right:0px;
   }
 

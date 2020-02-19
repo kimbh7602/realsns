@@ -1,5 +1,10 @@
 <template>
     <div data-aos="fade-up" style="width:100%">
+        <div class="row mb-5">
+            <div class="offset-3 col-6">
+                <h2 class="text-white mb-4">Image Edit</h2>
+            </div>
+        </div>
         <div class="offset-3 col-6 cropper-container" style=" height:480px; width:auto;">
             <img ref="image" :src="imgs[imgs.length-1].base64" crossorigin style="height:80%;width:80%;">
             <!-- <img ref="image" src="../../public/theme/images/temp.jpg" crossorigin> -->

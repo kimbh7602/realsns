@@ -3,9 +3,11 @@
     <div class="row justify-content-center">
 
       <div class="col-6 pt-4" data-aos="fade-up">
-        <h2 class="text-white mb-4">Useredit</h2>
-
-
+        <div class="row">
+            <div class="col-12">
+              <h2 class="text-white mb-4">User Edit</h2>
+            </div>
+        </div>
         <div class="row">
           <div class="col-12">
             <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p> -->
@@ -28,9 +30,9 @@
                           <div v-if="!this.imginfo.base64" class="selected-image"
                             style="border:2px solid white;" @dragover.prevent @dragenter.prevent
                             @drop.prevent="dragupload" v-on:change="fileUpload"  @click="$refs.fileInput.click()">
-                            <div style="height:35%"></div>
-                            <div
-                              style="margin:auto; width:20%; height:35%; background-size:contain; background-repeat:no-repeat; background-image:url('./theme/images/plus.png')">
+                            <div style="height:48%"></div>
+                            <div class="text-center text-primary">
+                            이 곳을 클릭하여 사진을 추가하세요.
                             </div>
                             <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
                           </div>

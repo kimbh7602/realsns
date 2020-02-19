@@ -1,6 +1,11 @@
 <template>
   <div class="container-fluid photos">
     <div class="row align-items-stretch">
+      <!-- <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="text-white mb-4">Content List</h2>
+        </div>
+      </div> -->
       <!-- 게시물 하나 -->
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item content-div">
@@ -58,11 +63,13 @@
                         <i class="icon-heart-o" v-else></i>
                       </div>
                       <div @click="clickFollow(con.userId)" v-if="con.userId !== loginId">
-                        <i class="icon-check" v-if="followList.includes(con.userId)">{{con.userId}}</i>
+                        <i class="icon-check" v-if="followList.includes(con.contentId)">{{con.userId}}</i>
                         <i class="icon-user-plus" v-else>{{con.userId}}</i>
                       </div>
                       <div @click="clickScrap(con.contentId, con.scrapButton)" v-if="con.userId !== loginId">
-                        <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
+                        <!-- <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
+                        <i class="icon-bookmark-o" v-else></i> -->
+                        <i class="icon-bookmark" v-if="con.scrapButton"></i>
                         <i class="icon-bookmark-o" v-else></i>
                       </div>
                       <div v-if="con.userId !== loginId">

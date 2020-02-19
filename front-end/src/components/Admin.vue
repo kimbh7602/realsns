@@ -1,10 +1,12 @@
 <template v-slot:default>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
-
             <div class="col-md-12 pt-4" data-aos="fade-up">
-                <h2 class="text-white mb-4">Admin</h2>
-
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <h2 class="text-white mb-4">Admin</h2>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">

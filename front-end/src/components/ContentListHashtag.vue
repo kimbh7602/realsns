@@ -1,5 +1,10 @@
 <template>
   <div class="container-fluid photos">
+    <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="text-white mb-4">Hashtag List</h2>
+        </div>
+    </div>
     <div class="row align-items-stretch">
       <!-- 게시물 하나 -->
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
@@ -60,7 +65,7 @@
                         <i class="icon-user-plus" v-else>{{con.userId}}</i>
                       </div>
                       <div @click="clickScrap(con.contentId, con.scrapButton)" v-if="con.userId !== loginId">
-                        <i class="icon-bookmark" v-if="scrapList.includes(con.contentId)"></i>
+                        <i class="icon-bookmark" v-if="con.scrapButton"></i>
                         <i class="icon-bookmark-o" v-else></i>
                       </div>
                       <div v-if="con.userId !== loginId">
@@ -78,7 +83,7 @@
       </div>
 
       <!-- Modal -->
-      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

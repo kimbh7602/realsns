@@ -5,7 +5,7 @@
         <div class="col-md-8 pt-4 px-0">
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                    <h2 class="text-white mb-4 text-center">Direct Message</h2>
+                  <h2 class="text-white mb-4 text-center">Chatting</h2>
                 </div>
             </div>
             
@@ -114,7 +114,7 @@
         </div>
         
       </div>
-      <div class="modal fade mt-5" id="deleteUserDmModal" tabindex="-1" role="dialog">
+      <div class="modal fade mt-5" id="deleteUserDmModal" tabindex="-1" role="dialog" style="z-index:99999;">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
               <div class="modal-body py-4 text-center">

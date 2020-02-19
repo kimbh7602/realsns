@@ -1,8 +1,12 @@
 <template>
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-white mb-4">Write Content</h2>
+        </div>
+    </div>
     <div class="offset-md-1 col-md-10">
         <div class="write-scroll all-scroll pos-relative mt-50">
-            <h5 class="mb-50"><b>Image</b></h5>                                            
             <div class="swiper-scrollbar"></div>
             <div class="write-swiper swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
                                     data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="1"
@@ -68,7 +72,7 @@
             <input @click="isLocation=!isLocation" type="button" value="위치정보 등록" class="btn btn-outline-light btn-block">
             <br/><br/><br/>
         </div>
-        <div v-if="isSearching" class="modal-content search-location-googlemap">
+        <div v-if="isSearching" class="modal-content search-location-googlemap" style="z-index:99998;">
                     <div class="modal-body" style="text-align:center;">
                         <gmap-map
                         :center="center"
@@ -91,16 +95,16 @@
                         ></gmap-marker>
                         </gmap-map>
                     </div>
-                    <div class="modal-footer">
-                        <!-- <div class="container col-md-12 px-0">
-                            <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                                <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="확인">
-                                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="cancle">
-                            </div>
-                        </div> -->
-                        <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
-                        <button type="button" class="btn btn-danger text-white"  @click="isSearching = false;" data-dismiss="modal">닫기</button>
+                    <div class="modal-footer d-flex justify-content-end py-2">
+                        <div class="d-block">
+                            <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="selectLocation()">선택</button>
+                            <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
+                        </div>
                     </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+                    </div> -->
                 </div>
 
         <div v-if="isLocationSelect" class="row form-group mb-5">

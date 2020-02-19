@@ -3,12 +3,15 @@
         <div class="row justify-content-center">
 
             <div class="col-md-6 pt-4" data-aos="fade-up">
-                <h2 class="text-white mb-4">UserList</h2>
-
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <h2 class="text-white mb-4">User List</h2>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p>
+                        <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="" method="post">
