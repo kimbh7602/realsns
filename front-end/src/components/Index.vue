@@ -227,13 +227,27 @@ export default {
           if (res.data.resmsg == "조회성공") {
               res.data.resValue.forEach(element =>{
                 const dis = element;
-                window.console.log(dis);
+                http
+                  .get('content/contentListHashtag/'+dis)
+                  .then((res)=>{
+                    if(res.data.resValue.length>0){
+                      for(var idx9=0; idx9<res.data.resValue.length; idx9++){
+                        this.dislikeList.push(res.data.resValue[idx9].content_id);
+                      }
+                    }
+                  })
+                  .catch(()=>{
+                    this.errored = true
+                  })
               })
           }
         })
         .catch(() => {
           this.errored = true
-        })      
+        })
+        .finally(()=>{
+          window.console.log(this.dislikeList);
+        })
     },
     // matchingDislike(){
     //   for(var idx7=0; idx7<this.contents.length; idx7++){
