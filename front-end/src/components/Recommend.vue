@@ -215,102 +215,108 @@ export default {
                                   return(num>=3);
                                 });
 
-                                http
-                                .get(`/user/allInterestList`)
-                                .then((res) => {
-                                  window.console.log("여긴가")
-                                  res.data.resValue.forEach( element => {
-                                    if(element != "" && !this.Interests.includes(element)){
-                                      this.Interests.push(element);
-                                    }
-                                  })
-
-
-                
+                                })
+                                .finally(()=>{
                                   http
-                                    .post(`/content/contentListHashtagList/`, this.Interests)
-                                    .then((res) => {
-                                      window.console.log(this.Interests)
-                                      this.isLoading = false;
-                                      if (this.contents[0].contentId == "") {
-                                        this.contents = []
-                                      }
-
-                                      if (res.data.resValue.length > 0) {
-                                        this.contentErrorMsg = ""
-                                        for (var idx = 0; idx < res.data.resValue.length; idx++) {
-                                          for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
-                                            if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
-                                              res.data.resValue[idx].user_like = true
-                                            }
-                                          }
-                                          if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
-                                            if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                                              this.contents.push({
-                                                contentId: res.data.resValue[idx].content_id,
-                                                contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                                                timestamp: res.data.resValue[idx].timestamp,
-                                                likeButton: res.data.resValue[idx].user_like,
-                                                userId: res.data.resValue[idx].user_id,
-                                                hashtag: res.data.resValue[idx].hashtag,
-                                                imageLength: res.data.resValue[idx].imageList.length,
-                                                images: [{
-                                                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                                  filter: res.data.resValue[idx].imageList[0].filter,
-                                                }],
-                                                scrapButton: true,
-                                                dislike: res.data.resValue[idx].dislike,
-                                                profileUrl: res.data.resValue[idx].profile_url,
-                                                profileFilter: res.data.resValue[idx].profile_filter,
-                                              })
-                                            }
-                                            else{
-                                              this.contents.push({
-                                                contentId: res.data.resValue[idx].content_id,
-                                                contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                                                timestamp: res.data.resValue[idx].timestamp,
-                                                likeButton: res.data.resValue[idx].user_like,
-                                                userId: res.data.resValue[idx].user_id,
-                                                hashtag: res.data.resValue[idx].hashtag,
-                                                imageLength: res.data.resValue[idx].imageList.length,
-                                                images: [{
-                                                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                                  filter: res.data.resValue[idx].imageList[0].filter,
-                                                }],
-                                                scrapButton: false,
-                                                dislike: res.data.resValue[idx].dislike,
-                                                profileUrl: res.data.resValue[idx].profile_url,
-                                                profileFilter: res.data.resValue[idx].profile_filter,
-                                              })
-                                            }
-                                          }
-                                        }
-                                        // this.sortList()
-                                        // this.getReport()
-                                      } else {
-                                        this.contentErrorMsg = "추천 게시물이 없습니다."
-                                      }
-
-                                      // this.Items = res.data.resValue;
-                                      // this.Items.forEach(element => {
-                                      this.contents.forEach(element => {
-                                        element.value = 0;
-                                        this.myInterest.forEach(interest => {
-                                          if(element.hashtag.includes(interest)){
-                                            element.value++;
-                                          }
-                                        })
-                                      });
-                                      this.contents.sort(function(a, b){
-                                        return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
-                                      });
-                                      if(window.innerWidth <= 501){
-                                        setTimeout(() => {
-                                          window.removeEventListener('scroll', this.scrollHandler);
-                                          window.addEventListener('scroll', this.scrollHandler)
-                                        }, 500);
+                                  .get(`/user/allInterestList`)
+                                  .then((res) => {
+                                    window.console.log("여긴가")
+                                    res.data.resValue.forEach( element => {
+                                      if(element != "" && !this.Interests.includes(element)){
+                                        this.Interests.push(element);
                                       }
                                     })
+
+
+                  
+
+                                })
+                                .finally(()=>{
+                                    http
+                                      .post(`/content/contentListHashtagList/`, this.Interests)
+                                      .then((res) => {
+                                        window.console.log(this.Interests)
+                                        this.isLoading = false;
+                                        if (this.contents[0].contentId == "") {
+                                          this.contents = []
+                                        }
+
+                                        if (res.data.resValue.length > 0) {
+                                          this.contentErrorMsg = ""
+                                          for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                                            for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
+                                              if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
+                                                res.data.resValue[idx].user_like = true
+                                              }
+                                            }
+                                            if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
+                                              if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                                                this.contents.push({
+                                                  contentId: res.data.resValue[idx].content_id,
+                                                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                                                  timestamp: res.data.resValue[idx].timestamp,
+                                                  likeButton: res.data.resValue[idx].user_like,
+                                                  userId: res.data.resValue[idx].user_id,
+                                                  hashtag: res.data.resValue[idx].hashtag,
+                                                  imageLength: res.data.resValue[idx].imageList.length,
+                                                  images: [{
+                                                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                                    filter: res.data.resValue[idx].imageList[0].filter,
+                                                  }],
+                                                  scrapButton: true,
+                                                  dislike: res.data.resValue[idx].dislike,
+                                                  profileUrl: res.data.resValue[idx].profile_url,
+                                                  profileFilter: res.data.resValue[idx].profile_filter,
+                                                })
+                                              }
+                                              else{
+                                                this.contents.push({
+                                                  contentId: res.data.resValue[idx].content_id,
+                                                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                                                  timestamp: res.data.resValue[idx].timestamp,
+                                                  likeButton: res.data.resValue[idx].user_like,
+                                                  userId: res.data.resValue[idx].user_id,
+                                                  hashtag: res.data.resValue[idx].hashtag,
+                                                  imageLength: res.data.resValue[idx].imageList.length,
+                                                  images: [{
+                                                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                                    filter: res.data.resValue[idx].imageList[0].filter,
+                                                  }],
+                                                  scrapButton: false,
+                                                  dislike: res.data.resValue[idx].dislike,
+                                                  profileUrl: res.data.resValue[idx].profile_url,
+                                                  profileFilter: res.data.resValue[idx].profile_filter,
+                                                })
+                                              }
+                                            }
+                                          }
+                                          // this.sortList()
+                                          // this.getReport()
+                                        } else {
+                                          this.contentErrorMsg = "추천 게시물이 없습니다."
+                                        }
+
+                                        // this.Items = res.data.resValue;
+                                        // this.Items.forEach(element => {
+                                        this.contents.forEach(element => {
+                                          element.value = 0;
+                                          this.myInterest.forEach(interest => {
+                                            if(element.hashtag.includes(interest)){
+                                              element.value++;
+                                            }
+                                          })
+                                        });
+                                        this.contents.sort(function(a, b){
+                                          return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
+                                        });
+                                        if(window.innerWidth <= 501){
+                                          setTimeout(() => {
+                                            window.removeEventListener('scroll', this.scrollHandler);
+                                            window.addEventListener('scroll', this.scrollHandler)
+                                          }, 500);
+                                        }
+                                      })
+
                                 })
                               })
                       })
