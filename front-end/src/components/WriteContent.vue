@@ -91,16 +91,16 @@
                         ></gmap-marker>
                         </gmap-map>
                     </div>
-                    <div class="modal-footer">
-                        <!-- <div class="container col-md-12 px-0">
-                            <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                                <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="확인">
-                                <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="취소" @click="cancle">
-                            </div>
-                        </div> -->
-                        <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
-                        <button type="button" class="btn btn-danger text-white"  @click="isSearching = false;" data-dismiss="modal">닫기</button>
+                    <div class="modal-footer d-flex justify-content-end py-2">
+                        <div class="d-block">
+                            <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="selectLocation()">선택</button>
+                            <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
+                        </div>
                     </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-success text-white" @click="selectLocation" data-dismiss="modal">선택</button>
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">닫기</button>
+                    </div> -->
                 </div>
 
         <div v-if="isLocationSelect" class="row form-group mb-5">

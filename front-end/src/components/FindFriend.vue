@@ -65,10 +65,48 @@
                                 <img v-else src="https://t1.daumcdn.net/qna/image/1542632018000000528" class="mb-3" width="130px" height="130px" style="object-fit: cover;">
                                 <div class="media-body">
                                     <div class="notification align-self-center ml-3">
-                                        <h4 class="mt-2 text-white">{{ result.user_id }} 님</h4>
-                                        <p v-if="result.description">{{ result.description }}</p>
-                                        <p v-else> 반갑습니다 </p>
-                                        <router-link :to="'/mypage/'+ result.user_id" class="text-primary">Go {{result.user_id}} page</router-link>
+                                        <h4 class="mb-2 text-white ml-2">{{ result.user_id }} 님</h4>
+                                        <p v-if="result.description" class="txt_line mb-3 ml-2">{{ result.description }}</p>
+                                        <p v-else class="txt_line mb-3 ml-2"> 떠올리다 </p>
+                                        <router-link :to="'/mypage/'+ result.user_id" class="text-primary ml-2">Go {{result.user_id}} page</router-link>
+
+                                        
+                                        <!-- <h4 class="mb-2 text-white ml-2">{{ result.user_id }} 님</h4>
+                                        <div class="row" v-if="result.description">
+                                            <div class="bbb">
+                                                <button class="blob-btn">
+                                                    <p class="txt_line">{{ result.description }}</p>
+                                                    <span class="blob-btn__inner">
+                                                        <span class="blob-btn__blobs">
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                        </span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row" v-else>
+                                            <div class="bbb">
+                                                <button class="blob-btn">
+                                                    <p class="txt_line"> 떠올리다 </p>
+                                                    <span class="blob-btn__inner">
+                                                        <span class="blob-btn__blobs">
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                            <span class="blob-btn__blob"></span>
+                                                        </span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="buttons">
+                                            <router-link class="px-0 mx-0" :to="'/mypage/'+ result.user_id">
+                                                <button class="slide">Go {{result.user_id}} page → </button>
+                                            </router-link>
+                                        </div> -->
                                     </div>
                                 </div> 
                             </div>
@@ -252,6 +290,16 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.txt_line {
+    width: 170px;
+    padding:2 10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+</style>
 
 <style lang="scss" scoped>
 // blob_btn
