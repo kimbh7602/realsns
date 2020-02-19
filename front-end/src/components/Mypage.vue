@@ -187,7 +187,7 @@ export default {
         ]),
         
         scrapCount(){
-            return store.state.scrapCount;
+            return this.$store.state.scrapCount;
         }
         
     },
