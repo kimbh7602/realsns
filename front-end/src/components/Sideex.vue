@@ -73,6 +73,18 @@
                         <router-link to="/findfriend">Find a Friend <i class="icon-binoculars text-white"
                                 style="font-size:1.3em;"></i></router-link>
                     </li>
+                    <li v-show="loginCheck">
+                        <router-link to="/findcontent">Find Contents <i class="icon-map-marker text-white"
+                                style="font-size:1.3em;"></i></router-link>
+                    </li>
+                    <li v-show="loginCheck">
+                        <router-link to="/crawling">Hashtag Search <i class="icon-tag text-white"
+                                style="font-size:1.3em;"></i></router-link>
+                    </li>
+                    <li v-show="loginCheck">
+                        <router-link to="/Recommend">Recommend <i class="icon-thumbs-up text-white"
+                                style="font-size:1.3em;"></i></router-link>
+                    </li>
                     <li style="padding-top:50%;" v-show="!loginCheck" class="active">
                         <router-link to="/login">Home <i class="icon-home text-white" style="font-size:1.3em;"></i>
                         </router-link>
