@@ -302,10 +302,11 @@ export default {
         goNext() {
             // this.imgs[this.imgs.length-1].filter = this.filterType;
             var itrltemp = document.getElementsByClassName('itrlone');
-            window.console.log(itrltemp);
+            this.itrlist = [];
             for(var i=0; i<itrltemp.length; i++){
                 this.itrlist[i] = itrltemp[i].innerText;
             }
+            window.console.log(itrltemp);
             if(this.imgs[0].base64==""&&this.intro==""){
                 this.$store.commit('setModalText', "내용을 입력해주세요.");
                 document.getElementById('modalBtn').click();
