@@ -232,9 +232,8 @@ export default {
                   .then((res)=>{
                     if(res.data.resmsg=='해시태그 포함 게시물 리스트 출력 성공'){
                       for(var idx9=0; idx9<res.data.resValue.length; idx9++){
-                        window.console.log(res.data.resValue.length)
-                        this.dislikeList.push(res.data.resValue[idx9].content_id);
                         window.console.log(res.data.resValue[idx9].content_id);
+                        this.dislikeList.push(res.data.resValue[idx9].content_id);
                       }
                     }
                   })
