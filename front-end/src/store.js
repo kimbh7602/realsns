@@ -22,6 +22,7 @@ export default new Vuex.Store({
         followerList: [],
         unReadCnt: 0,
         noticount:0,
+        scrapcount:0,
         targetDm: null,
     },
     getters:{
@@ -52,6 +53,12 @@ export default new Vuex.Store({
         setModalText: function(state, modalText){
             localStorage.setItem("modalText", modalText);
             state.modalText = localStorage.getItem("modalText");
+        },
+        getScrapCount: function(state){
+            state.scrapcount = sessionStorage.getItem('scrapcount')
+        },
+        setScrapCount: function(state, scrapcount){
+            sessionStorage.setItem("scrapcount", scrapcount);
         },
         getId(state){
             state.user_id = sessionStorage.getItem('user_id');
