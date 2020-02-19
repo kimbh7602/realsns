@@ -241,8 +241,6 @@ export default {
                                             }
                                           }
                                           if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
-                                            window.console.log("내꺼 아닌거")
-                                            window.console.log(res.data.resValue[idx].content_id);
                                             if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
                                               this.contents.push({
                                                 contentId: res.data.resValue[idx].content_id,
@@ -281,9 +279,6 @@ export default {
                                                 profileFilter: res.data.resValue[idx].profile_filter,
                                               })
                                             }
-                                          }
-                                          else{
-                                            window.console.log(res.data.resValue[idx].content_id);
                                           }
                                         }
                                         // this.sortList()
@@ -679,6 +674,7 @@ export default {
   created() {
     this.userId = this.$store.state.user_id;
     this.getLike()
+    this.getMypage()
     this.getScrap()
     this.getData()
     this.getFollow()
