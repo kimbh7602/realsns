@@ -961,6 +961,7 @@ export default {
                         }
                         if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
                           if (this.scrapList.includes(this.userLikeList[idx2].contentId)) {
+                            window.console.log(this.userLikeList[idx2].contentId)
                             this.contents.push({
                               contentId: this.userLikeList[idx2].contentId,
                               contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
@@ -976,6 +977,7 @@ export default {
 
                             })
                           } else {
+                                                        window.console.log(this.userLikeList[idx2].contentId)
                             this.contents.push({
                               contentId: this.userLikeList[idx2].contentId,
                               contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
@@ -993,6 +995,8 @@ export default {
                         }
                       }
                       if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                                                    window.console.log(res.data.resValue[idx].content_id)
+
                         this.contents.push({
                           contentId: res.data.resValue[idx].content_id,
                           contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1010,6 +1014,7 @@ export default {
                           profileFilter: res.data.resValue[idx].profile_filter,
                         })
                       } else {
+                        window.console.log(res.data.resValue[idx].content_id)
                         this.contents.push({
                           contentId: res.data.resValue[idx].content_id,
                           contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
