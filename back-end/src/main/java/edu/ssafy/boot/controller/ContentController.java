@@ -334,6 +334,9 @@ public class ContentController {
 
 		boolean isDelete = true;
 		for (ImageVo imageVo : imageList) {
+			if(imageVo.getImage_name().equals("default.png")) {
+				continue;
+			}
 			String savePath = realPath + File.separator + imageVo.getImage_name();
 			System.out.println(savePath);
 			File file = new File(savePath);
