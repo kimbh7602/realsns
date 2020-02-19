@@ -208,10 +208,10 @@
                       data-scrollbar="true" data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide" style="" v-for="img in items.imageList" :key="img.index">
-                            <a :href="img.image_url" data-fancybox="gallery">
+                            <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
 
                               <div style="background-color:black;">
-                                <div :class="img.filter">
+                                <div :class="img.filter" style="width:100%; height:100%;">
                                   <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
                                     alt="Image" />
                                 </div>
