@@ -321,8 +321,8 @@ export default {
                   res.data.resValue[idx].user_like = true
                   delete this.userLikeList[idx2].contentId
                 }
-                if (this.userLikeList[idx2].contentId && idx) {
-                  if (this.scrapList.includes(res.data.resValue[idx2].content_id)) {
+                if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
+                  if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
                     this.contents.push({
                       contentId: this.userLikeList[idx2].contentId,
                       contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
