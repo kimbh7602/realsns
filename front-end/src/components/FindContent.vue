@@ -13,7 +13,7 @@
                 <div v-if="isLocation&&!isLocationSelect" class="row form-group mb-5">
                     <div class="col-md-12">
                     <label class="text-white">Location Search</label> 
-                    <input v-model="searchKeyword" type="text" class="form-control">
+                    <input v-model="searchKeyword" @keyup.enter="searchLocation" type="text" class="form-control">
                     <br>
                     <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
                     </div>
