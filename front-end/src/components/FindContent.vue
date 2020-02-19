@@ -535,21 +535,7 @@ export default {
         .then((res) => {
           for (var i = 0; i < res.data.resvalue.length; i++) {
             res.data.resvalue[i].user_like = true
-            this.userLikeList.push({
-              contentId: res.data.resvalue[i].content_id,
-              contentValue: res.data.resvalue[i].content_val.replace(/\n/g, "<br />"),
-              timestamp: res.data.resvalue[i].timestamp,
-              likeButton: res.data.resvalue[i].user_like,
-              userId: res.data.resvalue[i].user_id,
-              imageLength: res.data.resvalue[i].imageList.length,
-              images: [{
-                imageUrl: res.data.resvalue[i].imageList[0].image_url,
-                filter: res.data.resvalue[i].imageList[0].filter,
-              }],
-              dislike: res.data.resvalue[i].dislike,
-              profileUrl: res.data.resvalue[i].profile_url,
-              profileFilter: res.data.resvalue[i].profile_filter,
-            })
+            this.userLikeList.push(res.data.resvalue[i].content_id)
           }
         })
         .catch(()=>{
@@ -950,58 +936,15 @@ export default {
                     },
                     name: this.location_name
                 }
-
                 if (res.data.resValue.length > 0) {
                     this.contentErrorMsg = ""
                     for (var idx = 0; idx < res.data.resValue.length; idx++) {
-                      for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
-                        if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
-                          res.data.resValue[idx].user_like = true
-                          delete this.userLikeList[idx2].contentId
-                        }
-                        if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
-                          if (this.scrapList.includes(this.userLikeList[idx2].contentId)) {
-                            window.console.log(this.userLikeList[idx2].contentId)
-                            this.contents.push({
-                              contentId: this.userLikeList[idx2].contentId,
-                              contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
-                              timestamp: this.userLikeList[idx2].timestamp,
-                              likeButton: this.userLikeList[idx2].likeButton,
-                              userId: this.userLikeList[idx2].userId,
-                              imageLength: this.userLikeList[idx2].imageLength,
-                              images: this.userLikeList[idx2].images,
-                              scrapButton: true,
-                              dislike: this.userLikeList[idx2].dislike,
-                              profileUrl: this.userLikeList[idx2].profileUrl,
-                              profileFilter: this.userLikeList[idx2].profileFilter,
-
-                            })
-                          }
-                          // else {
-                          //   window.console.log(this.userLikeList[idx2].contentId)
-                          //   this.contents.push({
-                          //     contentId: this.userLikeList[idx2].contentId,
-                          //     contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
-                          //     timestamp: this.userLikeList[idx2].timestamp,
-                          //     likeButton: this.userLikeList[idx2].likeButton,
-                          //     userId: this.userLikeList[idx2].userId,
-                          //     imageLength: this.userLikeList[idx2].imageLength,
-                          //     images: this.userLikeList[idx2].images,
-                          //     scrapButton: false,
-                          //     dislike: this.userLikeList[idx2].dislike,
-                          //     profileUrl: this.userLikeList[idx2].profileUrl,
-                          //     profileFilter: this.userLikeList[idx2].profileFilter,
-                          //   })
-                          // }
-                        }
-                      }
-                      if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                        window.console.log(res.data.resValue[idx].content_id)
+                      if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
                         this.contents.push({
                           contentId: res.data.resValue[idx].content_id,
                           contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
                           timestamp: res.data.resValue[idx].timestamp,
-                          likeButton: res.data.resValue[idx].user_like,
+                          likeButton: true,
                           userId: res.data.resValue[idx].user_id,
                           imageLength: res.data.resValue[idx].imageList.length,
                           images: [{
@@ -1013,13 +956,46 @@ export default {
                           profileUrl: res.data.resValue[idx].profile_url,
                           profileFilter: res.data.resValue[idx].profile_filter,
                         })
-                      } else {
-                        window.console.log(res.data.resValue[idx].content_id)
+                      } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
                         this.contents.push({
                           contentId: res.data.resValue[idx].content_id,
                           contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
                           timestamp: res.data.resValue[idx].timestamp,
-                          likeButton: res.data.resValue[idx].user_like,
+                          likeButton: true,
+                          userId: res.data.resValue[idx].user_id,
+                          imageLength: res.data.resValue[idx].imageList.length,
+                          images: [{
+                            imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                            filter: res.data.resValue[idx].imageList[0].filter,
+                          }],
+                          scrapButton: false,
+                          dislike: res.data.resValue[idx].dislike,
+                          profileUrl: res.data.resValue[idx].profile_url,
+                          profileFilter: res.data.resValue[idx].profile_filter,
+                        })
+                      } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                        this.contents.push({
+                          contentId: res.data.resValue[idx].content_id,
+                          contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                          timestamp: res.data.resValue[idx].timestamp,
+                          likeButton: false,
+                          userId: res.data.resValue[idx].user_id,
+                          imageLength: res.data.resValue[idx].imageList.length,
+                          images: [{
+                            imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                            filter: res.data.resValue[idx].imageList[0].filter,
+                          }],
+                          scrapButton: true,
+                          dislike: res.data.resValue[idx].dislike,
+                          profileUrl: res.data.resValue[idx].profile_url,
+                          profileFilter: res.data.resValue[idx].profile_filter,
+                        })
+                      } else{
+                        this.contents.push({
+                          contentId: res.data.resValue[idx].content_id,
+                          contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                          timestamp: res.data.resValue[idx].timestamp,
+                          likeButton: false,
                           userId: res.data.resValue[idx].user_id,
                           imageLength: res.data.resValue[idx].imageList.length,
                           images: [{
