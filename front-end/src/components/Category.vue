@@ -140,9 +140,10 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage"],
+  props:["userId", "myPage", "pFollowList"],
   data() {
     return {
+      parentFollowList:[],
       dList:[],
       errored: false,
       uid: "",
