@@ -6,9 +6,18 @@
       <div v-else class="row align-items-stretch">
         <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
           <div class="d-block photo-item content-div">
-            <div class="polaroid" v-if="item.dislike < 5 && !reportMyList.includes(item.content_id) || readReportList.includes(item.content_id)">
+            <div class="polaroid" v-if="readContents.includes(item.content_id) || (item.dislike < 5 && !reportMyList.includes(item.content_id) && !dList.includes(item.content_id))">
               <div v-on:click="goDetail(item.content_id)" :class="item.imageList[0].filter" class="" style="width:100%; height:100%">
                 <img :src="item.imageList[0].image_url" style="box-shadow: 3px 3px 3px;" alt="Image"/>
+              </div>
+            </div>
+            <div class="polaroid" v-show="item.dislike < 5 && !reportMyList.includes(item.content_id) && !readContents.includes(item.content_id) && dList.includes(item.content_id)">
+              <div style="width:100%; height:100%" :class="item.imageList[0].filter">
+                <img :src="item.imageList[0].image_url" alt="Image" class="img-fluid pa blur m-0"/>
+                <div class="centertext">
+                  <p class="text-white">비관심 게시물입니다.</p>
+                  <button class="btn btn-outline-light btn-sm py-0" @click="readReCon(item.content_id)">보기</button>
+                </div>
               </div>
             </div>
             <div class="polaroid" v-show="item.dislike > 4 && !readReportList.includes(item.content_id) && !reportMyList.includes(item.content_id)">
@@ -132,6 +141,7 @@ export default {
   props:["userId", "myPage"],
   data() {
     return {
+      dList:[],
       errored: false,
       uid: "",
       contentIds: [],
@@ -164,6 +174,35 @@ export default {
     }
   },
   methods: {
+    getDislike(){
+      http
+        .get('/user/dislikeList/' + this.loginId)
+        .then((res) => {
+          if (res.data.resmsg == "조회성공") {
+              res.data.resValue.forEach(element =>{
+                const dis = element;
+                if(dis!=""){
+                  http
+                    .get('content/contentListHashtag/'+dis)
+                    .then((res)=>{
+                      if(res.data.resmsg=='해시태그 포함 게시물 리스트 출력 성공'){
+                        for(var idx=0; idx<res.data.resValue.length; idx++){
+                            this.dList.push(res.data.resValue[idx].content_id);
+                        }
+                      }
+                    })
+                    .catch((error)=>{
+                      window.console.log(error);
+                      this.errored = true
+                    })
+                }
+              })
+          }
+        })
+        .catch(() => {
+          this.errored = true
+        })
+    },
     opBtn() {
       this.optionButton = false
     },
@@ -618,6 +657,7 @@ export default {
   created() {
     this.uid = this.$store.state.user_id;
     this.getLike();
+    this.getDislike();
     this.fetchData();
   },
   mounted() {
