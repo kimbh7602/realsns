@@ -294,7 +294,7 @@
           //   document.getElementById('itrl').appendChild(div);
           // }
           for(var b=0; b<this.uitrlist.length; b++){
-            colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
             var div1 = document.createElement('div');
             var span1 = document.createElement('span');
             var bold1 = document.createElement('bold')
