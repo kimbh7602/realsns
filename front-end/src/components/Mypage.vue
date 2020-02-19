@@ -43,7 +43,7 @@
       
       <div class="row justify-content-center mb-4">
         <div class="col-md-5 d-flex justify-content-center">
-            <div class="row">
+            <div v-if="userId==myId" class="row">
                 <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="content()">게시물</a>
                     <h4 v-if="userContent">{{userContent.length}}</h4>
@@ -59,10 +59,27 @@
                     <h4 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h4>
                     <h4 v-else>0</h4>
                 </div>
-                <div v-if="userId==myId" class="text-center col-3">
+                <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="scrap()">스크랩</a>
                     <h4 v-if="userScrap">{{userScrap.length}}</h4>
                     <h4  v-else>0</h4>
+                </div>
+            </div>
+            <div v-else class="row">
+                <div class="text-center col-4">
+                    <a href="javascript:void(0)" class="m-0 p-0" @click="content()">게시물</a>
+                    <h4 v-if="userContent">{{userContent.length}}</h4>
+                    <h4 v-else>0</h4>
+                </div>
+                <div class="text-center col-4">
+                    <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followerModal">팔로워</a>
+                    <h4 v-if="fetchedFollowerList">{{fetchedFollowerList.length}}</h4>
+                    <h4 v-else>0</h4>
+                </div>
+                <div class="text-center col-4">
+                    <a href="" class="m-0 p-0" data-toggle="modal" data-target="#followModal">팔로우</a>
+                    <h4 v-if="fetchedFollowList">{{fetchedFollowList.length}}</h4>
+                    <h4 v-else>0</h4>
                 </div>
             </div>
         </div>
