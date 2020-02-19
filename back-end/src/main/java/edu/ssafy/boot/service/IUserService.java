@@ -22,4 +22,5 @@ public interface IUserService {
 	public List<String> myInterest(String user_id);
 	public int moncontents(int currentdate);
 	public int currentdate();
+	public List<String> myDislike(String user_id);
 }
