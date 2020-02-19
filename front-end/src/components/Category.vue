@@ -329,7 +329,6 @@ export default {
       http
       .get('content/contentUserList/'+this.userId)
       .then((res)=>{
-        window.consle.log(res.data.resValue);
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
