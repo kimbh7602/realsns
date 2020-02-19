@@ -1,9 +1,13 @@
 <template>
    <div class="container-fluid photos">
       <div class="row justify-content-center">
-        <h2 class="text-white mb-4">Notification</h2>
         <div class="col-md-8 pt-4">
             <div class="mb-5" data-aos="fade-up">
+              <div class="row mb-5">
+                  <div class="col-12">
+                    <h2 class="text-white mb-4">Notification</h2>
+                  </div>
+              </div>
               <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2>
               <div class="text-right"><button class="btn btn-outline-success" data-toggle="modal" data-target="#allReadModal">모두 읽음</button></div>
               <nav class="navbar navbar-expand-lg pb-0" style="background-color: black;">

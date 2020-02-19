@@ -1,8 +1,12 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
-            <h2 class="text-white mb-4">My Page</h2>
         <div class="postcard" style="height:auto;" data-aos="fade-up">
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-white mb-4">My Page</h2>
+                </div>
+            </div>
             <div class="content" style="width:100%; height:auto;">
                 <div class="p-4 text-center bg-light">
                     <img class="rounded-circle mt-3 mb-2" width="150px" height="150px" style="object-fit: cover;" :class="userInfo.profile_filter" :src="userInfo.profile_url">

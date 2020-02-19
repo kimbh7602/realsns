@@ -1,6 +1,10 @@
 <template>
   <div class="offset-3 col-6" data-aos="fade-up">
-    <h2 class="text-white mb-4">Add Image</h2>
+    <div class="row mb-5" data-aos="fade-up">
+        <div class="col-12">
+          <h2 class="text-white mb-4">Add Image</h2>
+        </div>
+    </div>
     <div class="col-12">
     <div class="selected-image"  @click="$refs.fileInput.click()" style="margin-bottom:0px; border:1px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload">
       <!-- <div style="height:35%"></div> -->

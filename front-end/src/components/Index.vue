@@ -1,7 +1,11 @@
 <template>
   <div class="container-fluid photos">
     <div class="row align-items-stretch">
-      <h2 class="text-white mb-4">Content List</h2>
+      <!-- <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="text-white mb-4">Content List</h2>
+        </div>
+      </div> -->
       <!-- 게시물 하나 -->
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item content-div">

@@ -1,10 +1,13 @@
 <template>
   <div class="container-fluid photos">
     <div class="row justify-content-center">
-        <h2 class="text-white mb-4">Pw Confirm</h2>
 
       <div class="col-md-6 pt-4" data-aos="fade-up">
-
+        <div class="row mb-5">
+            <div class="col-12">
+              <h2 class="text-white mb-4">Pw Confirm</h2>
+            </div>
+        </div>
 
         <div class="row">
           <div class="col-md-12">

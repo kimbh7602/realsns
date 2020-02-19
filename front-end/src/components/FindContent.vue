@@ -1,12 +1,11 @@
 <template>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
-            <h2 class="text-white mb-4">Location List</h2>
             <div class="col-md-8 pt-4">
                 <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">
                     <div class="col-12">
-                        <h2 class="text-white mb-4 text-center">게시물 찾기</h2>
+                      <h2 class="text-white mb-4">Location List</h2>
                     </div>
                 </div>
                 <input id="mapModalBtn" data-toggle="modal" data-target="#mapModal" style="display:none;" />

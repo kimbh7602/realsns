@@ -1,6 +1,10 @@
 <template>
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
-      <h2 class="text-white mb-4">Edit Content</h2>
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-white mb-4">Edit Content</h2>
+        </div>
+    </div>
     <div class="offset-md-1 col-md-10">
         <div class="write-scroll all-scroll pos-relative mt-50">
             <div class="swiper-scrollbar"></div>
