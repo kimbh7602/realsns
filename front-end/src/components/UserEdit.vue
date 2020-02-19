@@ -96,15 +96,7 @@
                       <div id="" style="display:inline-block"></div>
                       <input type="subject" autocomplete='off' @keyup.enter.prevent='appendDiv'
                         @keydown.space.prevent='appendDiv' id="interest" class="form-control">
-                      <div id="itrl" v-if='itrlist !== null'>
-                        <div v-for="inter in itrlist" :key="inter" class="roundedge itrlone text-white"
-                          style="background: rgb(53, 219, 181);">
-                          <b>{{inter}}</b>
-                          <span class="icon-remove">
-                          </span>
-                        </div>
-                      </div>
-                      <div id="itrl" v-if='itrlist === null'>
+                      <div id="itrl">
                       </div>
                     </div>
                   </div>
@@ -115,15 +107,7 @@
                       <div id="" style="display:inline-block"></div>
                       <input type="subject" autocomplete='off' @keyup.enter.prevent='appenduDiv'
                         @keydown.space.prevent='appenduDiv' id="uninterest" class="form-control">
-                      <div id="uitrl" v-if='uitrlist !== null'>
-                        <div v-for="uinter in uitrlist" :key="uinter" class="roundedge uitrlone text-white"
-                          style="background: rgb(53, 219, 181);">
-                          <b>{{uinter}}</b>
-                          <span class="icon-remove">
-                          </span>
-                        </div>
-                      </div>
-                      <div id="uitrl" v-if='uitrlist === null'>
+                      <div id="uitrl">
                       </div>
                     </div>
                   </div>
@@ -284,10 +268,55 @@
           this.errored = true;
           alert(error);
         })
-        .finally(() => (this.loading = false));
-
-
-
+        .finally(() => {
+          this.loading = false;
+          for(var a=0; a<this.itrlist.length; a++){
+            var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var div = document.createElement('div');
+            var span = document.createElement('span');
+            var bold = document.createElement('bold')
+            var text = this.itrlist[a];
+            if(text==""){
+              return;
+            }
+            // this.itrlist.push(text);
+            bold.innerText = text;
+            div.style.background=colorCode;
+            div.classList.add('roundedge');
+            div.classList.add('itrlone');
+            div.classList.add('text-white');
+            span.classList.add('icon-remove')
+            span.addEventListener("click", function(event){
+              event.target.parentNode.remove();
+            });
+            div.appendChild(bold);
+            div.appendChild(span);
+            document.getElementById('itrl').appendChild(div);
+          }
+          for(var b=0; b<this.itrlist.length; b++){
+            var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var div = document.createElement('div');
+            var span = document.createElement('span');
+            var bold = document.createElement('bold')
+            var text = this.itrlist[b];
+            if(text==""){
+              return;
+            }
+            // this.itrlist.push(text);
+            bold.innerText = text;
+            div.style.background=colorCode;
+            div.classList.add('roundedge');
+            div.classList.add('uitrlone');
+            div.classList.add('text-white');
+            span.classList.add('icon-remove')
+            span.addEventListener("click", function(event){
+              event.target.parentNode.remove();
+            });
+            div.appendChild(bold);
+            div.appendChild(span);
+            document.getElementById('uitrl').appendChild(div);
+          }
+        });
     },
     methods: {
       appendDiv() {
