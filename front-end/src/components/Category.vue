@@ -140,7 +140,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage","myFollowList"],
+  props:["userId", "myPage"],
   data() {
     return {
       dList:[],
@@ -153,7 +153,6 @@ export default {
       readReportList: [],
       scrapList: [],
       reportMyList: [],
-      tempFollowList:[],
       options: [{
         op1: "선정적인 게시물",
         op2: "폭력적인 게시물",
@@ -621,11 +620,11 @@ export default {
         this.getData()
       }else if(this.myPage == true){
         this.getMypage();
-        // this.getFollow();
+        this.getFollow();
         this.getUserScrap();
         this.getReport();
       }else if(this.myPage == false){
-        // this.getFollow();
+        this.getFollow();
         this.getScrap();
         this.getUserScrap();
         this.getReport();
@@ -674,7 +673,6 @@ export default {
     })
   },
   updated(){
-    this.followList = this.myFollowList;
     document.querySelector('script[src$="script.js"]').remove()
     document.querySelector('script[src$="swiper.js"]').remove()
     let recaptchaScripta = document.createElement('script')
