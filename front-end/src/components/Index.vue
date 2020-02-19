@@ -322,8 +322,7 @@ export default {
                   delete this.userLikeList[idx2].contentId
                 }
                 if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
-                  window.console.log(res.data.resValue[idx2].content_id);
-                  if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
+                  if (this.scrapList.includes(res.data.resValue[idx2].content_id)) {
                     this.contents.push({
                       contentId: this.userLikeList[idx2].contentId,
                       contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
