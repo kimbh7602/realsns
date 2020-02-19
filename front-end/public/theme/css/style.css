@@ -751,8 +751,10 @@ h1, h2, h3, h4, h5,
     float: none;
     width: auto;
     display: inline;
-    margin:0px;
   }
+.site-mobile-menu .site-mobile-menu-body .site-nav-wrap .site-nav-wrap li a{
+  margin:0px;
+}
 
 .blog-entry .img-wrap {
   -webkit-box-flex: 0;
