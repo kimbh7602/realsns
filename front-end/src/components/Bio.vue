@@ -207,15 +207,15 @@
                       data-swiper-slidebtns-per-view="1" data-swiper-breakpoints="true" data-swiper-autoplay="true"
                       data-scrollbar="true" data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="color:white;" v-for="img in items.imageList" :key="img.index">
+                        <div class="swiper-slide" v-for="img in items.imageList" :key="img.index">
                             <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
 
-                              <div style="background-color:black;">
-                                <div :class="img.filter" style="width:100%; height:100%;">
+                              <!-- <div style="background-color:black;">
+                                <div :class="img.filter" style="width:100%; height:100%;"> -->
                                   <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
                                     alt="Image" />
-                                </div>
-                              </div>
+                                <!-- </div>
+                              </div> -->
                             </a>
                         </div>
                       </div>
