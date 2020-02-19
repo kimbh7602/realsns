@@ -306,7 +306,6 @@ export default {
       http
         .get('/content/contentMyList/' + this.loginId)
         .then((res) => {
-          window.console.log(res.data.resValue);
           if (res.data.resValue.length > 0) {
             this.contentErrorMsg = ""
             for (var idx = 0; idx < res.data.resValue.length; idx++) {
