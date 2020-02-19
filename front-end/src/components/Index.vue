@@ -231,9 +231,9 @@ export default {
                   .get('content/contentListHashtag/'+dis)
                   .then((res)=>{
                     if(res.data.resValue.length>0){
-                      window.console.log(res.data.resValue);
                       for(var idx9=0; idx9<res.data.resValue.length; idx9++){
                         this.dislikeList.push(res.data.resValue[idx9].content_id);
+                        window.console.log(this.dislikeList);
                       }
                     }
                   })
