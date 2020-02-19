@@ -279,6 +279,9 @@ export default {
                                                 profileFilter: res.data.resValue[idx].profile_filter,
                                               })
                                             }
+                                          } else{
+                                            window.console.log("안들은거")
+                                            window.console.log(res.data.resValue[idx].content_id)
                                           }
                                         }
                                         // this.sortList()
