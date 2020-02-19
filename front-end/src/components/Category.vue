@@ -6,12 +6,12 @@
       <div v-else class="row align-items-stretch">
         <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
           <div class="d-block photo-item content-div">
-            <div class="polaroid" v-if="readContents.includes(item.content_id) || (item.dislike < 5 && !reportMyList.includes(item.content_id) && !dList.includes(item.content_id))">
+            <div class="polaroid" v-if="readReportList.includes(item.content_id) || (item.dislike < 5 && !reportMyList.includes(item.content_id) && !dList.includes(item.content_id))">
               <div v-on:click="goDetail(item.content_id)" :class="item.imageList[0].filter" class="" style="width:100%; height:100%">
                 <img :src="item.imageList[0].image_url" style="box-shadow: 3px 3px 3px;" alt="Image"/>
               </div>
             </div>
-            <div class="polaroid" v-show="item.dislike < 5 && !reportMyList.includes(item.content_id) && !readContents.includes(item.content_id) && dList.includes(item.content_id)">
+            <div class="polaroid" v-show="item.dislike < 5 && !reportMyList.includes(item.content_id) && !readReportList.includes(item.content_id) && dList.includes(item.content_id)">
               <div style="width:100%; height:100%" :class="item.imageList[0].filter">
                 <img :src="item.imageList[0].image_url" alt="Image" class="img-fluid pa blur m-0"/>
                 <div class="centertext">
