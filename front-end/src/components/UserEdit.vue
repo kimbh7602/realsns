@@ -294,7 +294,7 @@
             document.getElementById('itrl').appendChild(div);
           }
           for(var b=0; b<this.uitrlist.length; b++){
-            colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var colorCode1  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
             var div1 = document.createElement('div');
             var span1 = document.createElement('span');
             var bold1 = document.createElement('bold')
@@ -304,7 +304,7 @@
             }
             // this.itrlist.push(text);
             bold1.innerText = text1;
-            div1.style.background=colorCode;
+            div1.style.background=colorCode1;
             div1.classList.add('roundedge');
             div1.classList.add('uitrlone');
             div1.classList.add('text-white');
