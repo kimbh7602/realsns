@@ -199,7 +199,6 @@ export default {
         .get('/userReport/myReportList/' + this.uid)
         .then((res) => {
           if (res.data.resvalue.length > 0) {
-            // console.log(res.data.resvalue)
             for (var i = 0; i < res.data.resvalue.length; i++) {
               this.reportMyList.push(res.data.resvalue[i].content_id)
             }
@@ -305,9 +304,7 @@ export default {
       http
       .get('content/contentUserList/'+this.uid)
       .then((res)=>{
-        // console.log(res)
         if (res.data.resValue.length > 0) {
-          window.console.log(res.data.resValue);
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
@@ -332,6 +329,7 @@ export default {
       http
       .get('content/contentUserList/'+this.userId)
       .then((res)=>{
+        window.consle.log(res.data.resValue);
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
@@ -382,7 +380,6 @@ export default {
       .get('scrap/scrapList/'+this.uid)
       .then((res)=>{
         this.contentErrorMsg = ""
-        // console.log(res)
         if (res.data.resvalue.length > 0) {
           if (res.data.resmsg == "스크랩목록성공") {
             for (var i = 0; i < res.data.resvalue.length; i++) {
@@ -551,7 +548,6 @@ export default {
                 // }
               }
             } else {
-              console.log(res.data.resmsg)
             }
           })
           .catch(()=>{
@@ -573,7 +569,6 @@ export default {
               });
               this.scrapList.push(cid)
             } else {
-              console.log(res.data.resmsg)
             }
           })
           .catch(()=>{
@@ -582,7 +577,6 @@ export default {
       }
     },
     fetchData() {
-      window.console.log(this.myPage);
       if(this.myPage == undefined){
         this.getData()
       }else if(this.myPage == true){
