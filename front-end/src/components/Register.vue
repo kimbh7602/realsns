@@ -27,7 +27,7 @@
                         <div class="d-flex bd-highlight">
                           <div class="col-12 bd-highlight">
                             <div v-if="!this.imgs" class="col-12 selected-image" style="margin-bottom:0px; border:2px solid white;" @dragover.prevent @dragenter.prevent @drop.prevent="dragupload" v-on:change="fileUpload"  @click="$refs.fileInput.click()" >
-                              <div style="height:35%"></div>
+                              <div style="height:48%"></div>
                                 <div class="text-center text-primary">
                                 이 곳을 클릭하여 사진을 추가하세요.
                                 </div>
