@@ -568,8 +568,7 @@ export default {
                 flag:true
               });
               this.scrapList.push(cid)
-            } else {
-            }
+            } 
           })
           .catch(()=>{
             this.errored = true;
