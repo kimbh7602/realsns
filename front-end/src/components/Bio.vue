@@ -223,7 +223,7 @@
                   </div>
                   <div v-if="!nohashtag">
                     <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)"
-                        style="margin-left:5px; margin-right:5px;" type="button" class="btn btn-outline-info py-1 px-2 mt-1"
+                        style="margin-left:5px; margin-right:5px;" type="button" class="elip btn btn-outline-info py-1 px-2 mt-1"
                         :value="'#'+tag" /></span>
                   </div>
                   <div v-if="items.location_name != undefined"
@@ -689,4 +689,11 @@ $colors: (
   padding: 0.5em 1.5em;
 //   padding-left: 10px;  // 글씨 왼쪽의 패딩 줄임.
 }
+.elip {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 3%;
+    overflow: hidden;
+  }
 </style>
