@@ -180,7 +180,7 @@
   }
 
   #myModal {
-    z-index: 99999;
+    z-index: 99998;
     padding-right:0px;
   }
 
