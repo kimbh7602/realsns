@@ -1416,9 +1416,3 @@ img.postmark2 {
   right: 20px;
   top: 50px;
 } */
-
-@media(min-width:991.98px){
-  header .toggle-div{
-    display:none;
-  }
-}
