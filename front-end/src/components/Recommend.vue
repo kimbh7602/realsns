@@ -227,6 +227,7 @@ export default {
                                   http
                                     .post(`/content/contentListHashtagList/`, this.Interests)
                                     .then((res) => {
+                                      window.console.log(this.Interests)
                                       this.isLoading = false;
                                       if (this.contents[0].contentId == "") {
                                         this.contents = []
