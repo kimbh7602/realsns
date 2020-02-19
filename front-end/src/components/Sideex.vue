@@ -78,7 +78,7 @@
                                 style="font-size:1.9em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">
-                        <router-link to="/crawling">Hashtag Search <i class="icon-tag text-white"
+                        <router-link to="/crawling">Tag Search <i class="icon-tag text-white"
                                 style="font-size:1.5em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">
