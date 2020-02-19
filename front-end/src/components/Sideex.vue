@@ -172,6 +172,7 @@
             http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
                 .then((response) => {
                     this.notify = response.data.resvalue;
+                    this.$store.commit('SET_NOTI', this.notify);
                 })
                 .catch(error => {
                     window.console.log(error);
@@ -190,6 +191,7 @@
                     http.get(`/notification/countUnchecked/${this.$store.state.user_id}`)
                         .then((response) => {
                             this.notify = response.data.resvalue;
+                            this.$store.commit('SET_NOTI', this.notify);
                         })
                         .catch(error => {
                             window.console.log(error);
