@@ -187,7 +187,6 @@ export default {
       http
         .get(`/user/myInterest/${this.userId}`)
         .then((res) => {
-          window.console.log("여긴한번?")
           res.data.resValue.forEach(element => {
             this.myInterest.push(element);
             this.Interests.push(element);
@@ -242,7 +241,6 @@ export default {
                   http
                     .post(`/content/contentListHashtagList/`, this.Interests)
                     .then((res) => {
-                      window.console.log(this.Interests)
                       this.isLoading = false;
                       if (this.contents[0].contentId == "") {
                         this.contents = []
@@ -694,7 +692,7 @@ export default {
   mounted() {
     $('html').scrollTop(0);
     this.$nextTick(() => {
-      
+      window.console.log(this.Interests)
     })
   },
   updated(){
