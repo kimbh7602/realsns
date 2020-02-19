@@ -1,5 +1,10 @@
 <template>
     <div class="container-fluid photos">
+            <!-- <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-white mb-4">My Page</h2>
+                </div>
+            </div> -->
       <div class="row justify-content-center">
         <div class="postcard" style="height:auto;" data-aos="fade-up">
             <div class="content" style="width:100%; height:auto;">
