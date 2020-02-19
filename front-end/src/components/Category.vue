@@ -39,7 +39,8 @@
                 </div>
               </div>
             </div>
-              <div class="photo-text-more" v-if="item.dislike < 5 && !reportMyList.includes(item.content_id) || readReportList.includes(item.content_id)">
+            <div class="photo-text-more" v-if="readReportList.includes(item.content_id) || (item.dislike < 5 && !reportMyList.includes(item.content_id) && !dList.includes(item.content_id))">
+              <!-- <div class="photo-text-more" v-if="item.dislike < 5 && !reportMyList.includes(item.content_id) || readReportList.includes(item.content_id)"> -->
                 <div class="">
                   <div class="d-block photo-item">
                     <div class="postcard">
@@ -659,7 +660,6 @@ export default {
     this.uid = this.$store.state.user_id;
     this.getLike();
     this.getDislike();
-    console.log(this.dList);
     this.fetchData();
   },
   mounted() {
