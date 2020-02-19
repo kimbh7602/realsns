@@ -951,6 +951,9 @@ export default {
                 }
 
                 if (res.data.resValue.length > 0) {
+                  if (this.contents[0].contentId == "") {
+                    this.contents = [];
+                  }
                     this.contentErrorMsg = ""
                     for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
