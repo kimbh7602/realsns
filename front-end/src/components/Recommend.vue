@@ -225,7 +225,7 @@ export default {
                                   })
 
                                   http
-                                    .post(`/content/contentListHashtagList`, this.Interests)
+                                    .post(`/content/contentListHashtagList/`, this.Interests)
                                     .then((res) => {
                                       this.isLoading = false;
                                       if (this.contents[0].contentId == "") {
@@ -279,9 +279,6 @@ export default {
                                                 profileFilter: res.data.resValue[idx].profile_filter,
                                               })
                                             }
-                                          } else{
-                                            window.console.log("안들은거")
-                                            window.console.log(res.data.resValue[idx].content_id)
                                           }
                                         }
                                         // this.sortList()
