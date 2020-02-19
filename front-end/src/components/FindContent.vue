@@ -666,7 +666,7 @@ export default {
           .catch(()=>{
             this.errored = true;
           })
-        const del = []
+        // const del = []
         // for (var i = 0; i < this.contents.length; i++) {
         //   if (this.contents[i].userId == user && !this.contents[i].likeButton) {
         //     del.push(this.contents[i].contentId)
