@@ -10,7 +10,7 @@
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item content-div">
           <!-- 이미지 처리 -->
-          <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId) || !dList.includes(con.contentId)">
+          <div class="polaroid" v-if="readContents.includes(con.contentId) || (con.dislike < 5 && !reportMyList.includes(con.contentId) && !dList.includes(con.contentId))">
             <div :class="con.images[0].filter" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa m-0" style="box-shadow: 3px 3px 3px;"/>
             </div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <!-- 마우스 오버 했을 때 -->
-          <div class="photo-text-more" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId) || !dList.includes(con.contentId)">
+          <div class="photo-text-more" v-if="readContents.includes(con.contentId) || (con.dislike < 5 && !reportMyList.includes(con.contentId) && !dList.includes(con.contentId))">
             <div class="">
               <div class="d-block photo-item">
                 <div class="postcard">
