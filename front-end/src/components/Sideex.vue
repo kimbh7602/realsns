@@ -37,7 +37,7 @@
                     @click="logout" value="Logout" />
                 <!-- <router-link to="/addimage">Write</router-link> -->
             </div>
-            <div class="toggle-div d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="display:none; position: relative; top: 3px;">
+            <div class="toggle-div d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;">
                 <a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a>
             </div>
 
