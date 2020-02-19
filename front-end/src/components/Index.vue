@@ -61,7 +61,7 @@
                       </div>
                       <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                       <!-- 우편 내용 -->
-                      <div class="mail-title offset-1 col-9 mt-2 ml-3" style="text-align:left;"><p class="mail-title-val">Dear {{ loginId }}</p></div>
+                      <div class="mail-title offset-1 col-9 mt-2 ml-3" style="text-align:left;"><p class="mail-title-val">Dear {{ loginId }} {{con.contentId}}</p></div>
                       <div class="mail-message offset-2 pt-0 pb-0 col-8 ellipsis mail-message-val" v-html="con.contentValue">{{ con.contentValue }}</div>
                       <div class="col-11 col-offset-1 pt-0 pr-0 mail-from-val">from {{ con.userId }}</div>
                     </div>
@@ -791,6 +791,7 @@ export default {
     this.getReport()
     $('html').scrollTop(0);
     this.$nextTick(() => {
+      console.log(this.dList);
       // 모든 화면이 렌더링된 후 호출됩니다.
       // console.log(document.querySelectorAll("ul").length)
         $('.js-clone-nav').each(function() {
