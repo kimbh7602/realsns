@@ -31,7 +31,7 @@
                             style="border:2px solid white;" @dragover.prevent @dragenter.prevent
                             @drop.prevent="dragupload" v-on:change="fileUpload"  @click="$refs.fileInput.click()">
                             <div style="height:35%"></div>
-                            <div class="text-center text-primary" style="background-repeat:no-repeat; position: relative; top: 45%;">
+                            <div class="text-center text-primary">
                             이 곳을 클릭하여 사진을 추가하세요.
                             </div>
                             <!-- <span>이미지를 drag&drop하거나 +를 클릭하여 추가해주세요.</span> -->
