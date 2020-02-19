@@ -377,6 +377,8 @@
         document.getElementById('uninterest').focus();
       },
       edit() {
+        this.itrlist = [];
+        this.uitrlist = [];
         var itrltemp = document.getElementsByClassName('itrlone');
         var uitrltemp = document.getElementsByClassName('uitrlone');
         for (var i = 0; i < itrltemp.length; i++) {
