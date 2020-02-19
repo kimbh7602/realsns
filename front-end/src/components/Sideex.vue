@@ -154,7 +154,7 @@
                 this.$store.commit("logout");
                 // this.isAdmin=false;
                 document.getElementById('modalBtn').click();
-                this.$router.push("/login");
+                this.$router.push("/");
             },
         },
         computed: {

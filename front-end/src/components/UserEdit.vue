@@ -380,7 +380,7 @@
                 this.$store.commit('setModalText', "회원정보 수정 실패!");
                 document.getElementById('modalBtn').click();
               }
-              this.$router.push("/");
+              this.$router.push("/index");
             })
             .catch((error) => {
               this.errored = true;
@@ -411,7 +411,7 @@
               this.$store.commit('setModalText', "회원정보 삭제 실패!");
               document.getElementById('modalBtn').click();
             }
-            this.$router.push("/");
+            this.$router.push("/index");
           })
           .catch((error) => {
             this.errored = true;

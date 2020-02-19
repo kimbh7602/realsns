@@ -175,7 +175,7 @@ export default {
                 document.getElementById('modalClose-btn').click();
                 this.$store.commit('setModalText', "임시 비밀번호 발급 성공.");
                 document.getElementById('modalBtn').click();
-                this.$router.push("/login")
+                this.$router.push("/")
               } else {
                 this.$store.commit('setModalText', "임시 비밀번호 발급 실패.");
                 document.getElementById('modalBtn').click();

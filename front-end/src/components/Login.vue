@@ -72,7 +72,7 @@ import $ from "jquery"
                     // });
                     this.$store.dispatch('FETCH_NOTI', this.user_id);
                     document.getElementById('modalBtn').click();
-                    this.$router.push("/");
+                    this.$router.push("/index");
                 }else{
                     this.$store.commit('setModalText', "아이디 또는 비밀번호를 확인해주세요.");
                     document.getElementById('modalBtn').click();

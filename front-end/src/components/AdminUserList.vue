@@ -95,7 +95,7 @@
                     } else {
                         this.$store.commit('setModalText', "회원조회 실패!");
                         document.getElementById('modalBtn').click();
-                        this.$router.push("/");
+                        this.$router.push("/index");
                     }
                 })
                 .catch((error) => {
@@ -120,7 +120,7 @@
                                 this.$store.commit('setModalText', "회원삭제 실패!");
                                 document.getElementById('modalBtn').click();
                             }
-                            this.$router.push("/");
+                            this.$router.push("/index");
                         })
                         .catch((error) => {
                             this.errored = true;

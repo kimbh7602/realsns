@@ -88,7 +88,7 @@ export default {
             // });
             this.$store.commit("logout");
             document.getElementById('modalBtn').click();
-            this.$router.push("/login");
+            this.$router.push("/");
         },
     },
 }

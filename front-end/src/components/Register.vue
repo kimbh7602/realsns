@@ -561,7 +561,7 @@ export default {
                     this.$store.commit('setModalText', this.modalText);
                     // document.body.removeAttribute('class');
                     document.getElementById('modalBtn').click();
-                    this.$router.push("/login");
+                    this.$router.push("/");
                   }
                   else{
                     this.modalText = "회원가입 실패";

@@ -50,7 +50,7 @@ export default {
             // this.$socket.emit('logout', this.$store.state.user_id);
             this.$store.commit("logout");
             document.getElementById('modalBtn').click();
-            this.$router.push("/login");
+            this.$router.push("/");
         }
     },
     computed: {

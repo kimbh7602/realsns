@@ -346,7 +346,7 @@ export default {
                         this.$store.commit('setModalText', "등록 실패!");
                         document.getElementById('modalBtn').click();
                     }
-                    this.$router.push("/");
+                    this.$router.push("/index");
                   })
                   .catch((error) => {
                       this.errored = true;
@@ -374,7 +374,7 @@ export default {
                         this.$store.commit('setModalText', "등록 실패!");
                         document.getElementById('modalBtn').click();
                     }
-                    this.$router.push("/");
+                    this.$router.push("/index");
                   })
                   .catch((error) => {
                       this.errored = true;

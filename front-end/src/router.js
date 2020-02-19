@@ -38,7 +38,7 @@ Vue.use(Router);
 export const router = new Router({
     mode: "history",
     routes: [{
-            path: "/",
+            path: "/index",
             name: "index",
             alias: "/Index",
             component: Index,
@@ -231,7 +231,7 @@ export const router = new Router({
             },
         },
         {
-            path: "/login",
+            path: "/",
             name: "login",
             alias: "/Login",
             component: Login,

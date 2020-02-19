@@ -533,7 +533,7 @@
             if (response.data['resmsg'] == "게시물 삭제 성공") {
               this.$store.commit('setModalText', '게시물 삭제 성공');
               document.getElementById('modalBtn').click();
-              this.$router.push("/");
+              this.$router.push("/index");
             } else {
               this.$store.commit('setModalText', "게시물 삭제 실패");
               document.getElementById('modalBtn').click();

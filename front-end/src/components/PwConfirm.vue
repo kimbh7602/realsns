@@ -78,7 +78,7 @@
     },
     methods: {
       cancle() {
-        this.$router.push("/");
+        this.$router.push("/index");
       },
       confirm() {
         if (this.upw === "") {
@@ -99,7 +99,7 @@
               } else {
                 this.$store.commit('setModalText', "비밀번호를 확인하세요");
                 document.getElementById('modalBtn').click();
-                this.$router.push("/");
+                this.$router.push("/index");
               }
             })
             .catch((error) => {
