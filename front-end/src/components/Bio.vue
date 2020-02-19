@@ -1,8 +1,12 @@
 <template>
   <div class="container-fluid photos">
     <div class="row justify-content-center">
-        <h2 class="text-white mb-4">Detail</h2>
       <div class="col-10" data-aos="fade-up">
+          <div class="row mb-5">
+              <div class="col-12">
+                  <h2 class="text-white mb-4">Detail</h2>
+              </div>
+          </div>
         <div class="d-block photo-item">
           <div class="postcard" style="height:auto;">
             <div class="content" style="height:auto;">

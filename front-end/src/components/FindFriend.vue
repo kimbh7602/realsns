@@ -1,14 +1,13 @@
 <template>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
-            <h2 v-if="IdButton" class="text-white mb-4">Find ID</h2>
-            <h2 v-else class="text-white mb-4">Find Interest</h2>
 
             <div class="col-md-8 pt-4">
                 <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">
                     <div class="col-12">
-                        <h2 class="text-white mb-4 text-center">친구 찾기</h2>
+                        <h2 v-if="IdButton" class="text-white mb-4">Find ID</h2>
+                        <h2 v-else class="text-white mb-4">Find Interest</h2>
                     </div>
                 </div>
                 

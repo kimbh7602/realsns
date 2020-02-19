@@ -1,6 +1,10 @@
 <template>
   <div class="offset-3 col-6" data-aos="fade-up">
-    <h2 class="text-white mb-4">Image Filter</h2>
+    <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="text-white mb-4">Image Filter</h2>
+        </div>
+    </div>
     <div class="col-12">
       <div :class="filterType" id="img-select" class="img-fluid" style="text-align:center">
             <img :src = imgs[imgs.length-1].base64 class="img-fluid">

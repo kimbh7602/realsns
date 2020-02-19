@@ -1,6 +1,10 @@
 <template>
     <div class="container-fluid photos">
-      <h2 class="text-white mb-4">Recommend List</h2>
+      <div class="row mb-5">
+          <div class="col-12">
+            <h2 class="text-white mb-4">Recommend List</h2>
+          </div>
+      </div>
       <div v-if="!isLoading&&(Items == null || Items.length == 0)" style="text-align:center;">
                     검색 결과가 없습니다.
                 </div>

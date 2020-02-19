@@ -2,8 +2,11 @@
   <div class="container-fluid photos">
     <div class="row justify-content-center">
       <div class="col-md-6 pt-4" data-aos="fade-up">
-        <h2 class="text-white mb-4">Find Password</h2>
-
+        <div class="row mb-5">
+            <div class="col-12">
+              <h2 class="text-white mb-4">Find Password</h2>
+            </div>
+        </div>
         <div class="row" v-if="!axios_ing">
           <div class="col-md-12">
             <!-- <p class="mb-5">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>               -->
