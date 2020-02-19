@@ -293,28 +293,28 @@
             div.appendChild(span);
             document.getElementById('itrl').appendChild(div);
           }
-          for(var b=0; b<this.itrlist.length; b++){
-            var colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
-            var div = document.createElement('div');
-            var span = document.createElement('span');
-            var bold = document.createElement('bold')
-            var text = this.itrlist[b];
-            if(text==""){
+          for(var b=0; b<this.uitrlist.length; b++){
+            colorCode  = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+            var div1 = document.createElement('div');
+            var span1 = document.createElement('span');
+            var bold1 = document.createElement('bold')
+            var text1 = this.uitrlist[b];
+            if(text1==""){
               return;
             }
             // this.itrlist.push(text);
-            bold.innerText = text;
-            div.style.background=colorCode;
-            div.classList.add('roundedge');
-            div.classList.add('uitrlone');
-            div.classList.add('text-white');
-            span.classList.add('icon-remove')
-            span.addEventListener("click", function(event){
+            bold1.innerText = text1;
+            div1.style.background=colorCode;
+            div1.classList.add('roundedge');
+            div1.classList.add('uitrlone');
+            div1.classList.add('text-white');
+            span1.classList.add('icon-remove')
+            span1.addEventListener("click", function(event){
               event.target.parentNode.remove();
             });
-            div.appendChild(bold);
-            div.appendChild(span);
-            document.getElementById('uitrl').appendChild(div);
+            div.appendChild(bold1);
+            div.appendChild(span1);
+            document.getElementById('uitrl').appendChild(div1);
           }
         });
     },
