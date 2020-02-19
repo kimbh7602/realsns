@@ -236,19 +236,21 @@ export default {
           if (res.data.resmsg == "조회성공") {
               res.data.resValue.forEach(element =>{
                 const dis = element;
-                http
-                  .get('content/contentListHashtag/'+dis)
-                  .then((res)=>{
-                    if(res.data.resmsg=='해시태그 포함 게시물 리스트 출력 성공'){
-                      for(var idx=0; idx<res.data.resValue.length; idx++){
-                          this.dList.push(res.data.resValue[idx].content_id);
+                if(dis!=""){
+                  http
+                    .get('content/contentListHashtag/'+dis)
+                    .then((res)=>{
+                      if(res.data.resmsg=='해시태그 포함 게시물 리스트 출력 성공'){
+                        for(var idx=0; idx<res.data.resValue.length; idx++){
+                            this.dList.push(res.data.resValue[idx].content_id);
+                        }
                       }
-                    }
-                  })
-                  .catch((error)=>{
-                    window.console.log(error);
-                    this.errored = true
-                  })
+                    })
+                    .catch((error)=>{
+                      window.console.log(error);
+                      this.errored = true
+                    })
+                }
               })
           }
         })
