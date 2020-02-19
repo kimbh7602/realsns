@@ -691,8 +691,8 @@ $colors: (
 }
 .elip {
     text-overflow: ellipsis;
-    white-space: nowrap;
-    // word-wrap: normal;
+    // white-space: nowrap;
+    word-wrap: normal;
     // width:10%;
     // max-width: 100px;
     overflow: hidden;
