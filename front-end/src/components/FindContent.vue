@@ -951,9 +951,6 @@ export default {
                 }
 
                 if (res.data.resValue.length > 0) {
-                  if (this.contents[0].contentId == "") {
-                    this.contents = [];
-                  }
                     this.contentErrorMsg = ""
                     for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
@@ -962,7 +959,7 @@ export default {
                         delete this.userLikeList[idx2].contentId
                         }
                         if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
-                        if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
+                        if (this.scrapList.includes(res.data.resValue[idx2].content_id)) {
                             this.contents.push({
                             contentId: this.userLikeList[idx2].contentId,
                             contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
