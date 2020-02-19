@@ -153,6 +153,7 @@ export default {
         timestamp: "",
         likeButton: false,
         userId: "",
+        hashtag:"",
         imageLength: 0,
         images: [{
           imageUrl: "",
@@ -247,6 +248,7 @@ export default {
                                                 timestamp: res.data.resValue[idx].timestamp,
                                                 likeButton: res.data.resValue[idx].user_like,
                                                 userId: res.data.resValue[idx].user_id,
+                                                hashtag: res.data.resValue[idx].hashtag,
                                                 imageLength: res.data.resValue[idx].imageList.length,
                                                 images: [{
                                                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
@@ -265,6 +267,7 @@ export default {
                                                 timestamp: res.data.resValue[idx].timestamp,
                                                 likeButton: res.data.resValue[idx].user_like,
                                                 userId: res.data.resValue[idx].user_id,
+                                                hashtag: res.data.resValue[idx].hashtag,
                                                 imageLength: res.data.resValue[idx].imageList.length,
                                                 images: [{
                                                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
