@@ -43,7 +43,7 @@
             </div>
           </div>
           <!-- 마우스 오버 했을 때 -->
-          <div class="photo-text-more" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
+          <div class="photo-text-more" v-if="con.dislike < 5 && (!reportMyList.includes(con.contentId) || readContents.includes(con.contentId) || !dList.includes(con.contentId))">
             <div class="">
               <div class="d-block photo-item">
                 <div class="postcard">
