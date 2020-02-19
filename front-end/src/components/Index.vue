@@ -63,7 +63,7 @@
                         <i class="icon-heart-o" v-else></i>
                       </div>
                       <div @click="clickFollow(con.userId)" v-if="con.userId !== loginId">
-                        <i class="icon-check" v-if="followList.includes(con.userId)">{{con.userId}}</i>
+                        <i class="icon-check" v-if="followList.includes(con.contentId)">{{con.userId}}</i>
                         <i class="icon-user-plus" v-else>{{con.userId}}</i>
                       </div>
                       <div @click="clickScrap(con.contentId, con.scrapButton)" v-if="con.userId !== loginId">

@@ -30,7 +30,7 @@
                           <div v-if="!this.imginfo.base64" class="selected-image"
                             style="border:2px solid white;" @dragover.prevent @dragenter.prevent
                             @drop.prevent="dragupload" v-on:change="fileUpload"  @click="$refs.fileInput.click()">
-                            <div style="height:35%"></div>
+                            <div style="height:48%"></div>
                             <div class="text-center text-primary">
                             이 곳을 클릭하여 사진을 추가하세요.
                             </div>
