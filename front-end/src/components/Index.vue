@@ -392,40 +392,42 @@ export default {
             }
             this.sortList()
             // this.getReport()
-          } else if(res.data.resValue.length==0&&this.userLikeList.length>0){
-            for (var idx5 = 0; idx5 < this.userLikeList.length; idx5++) {
-              if (this.scrapList.includes(this.userLikeList[idx5].contentId)) {
-                this.contents.push({
-                  contentId: this.userLikeList[idx5].contentId,
-                  contentValue: this.userLikeList[idx5].contentValue.replace(/\n/g, "<br />"),
-                  timestamp: this.userLikeList[idx5].timestamp,
-                  likeButton: this.userLikeList[idx5].likeButton,
-                  userId: this.userLikeList[idx5].userId,
-                  imageLength: this.userLikeList[idx5].imageLength,
-                  images: this.userLikeList[idx5].images,
-                  scrapButton: true,
-                  dislike: this.userLikeList[idx5].dislike,
-                  profileUrl: this.userLikeList[idx5].profileUrl,
-                  profileFilter: this.userLikeList[idx5].profileFilter,
+          } 
+          // else if(res.data.resValue.length==0&&this.userLikeList.length>0){
+          //   for (var idx5 = 0; idx5 < this.userLikeList.length; idx5++) {
+          //     if (this.scrapList.includes(this.userLikeList[idx5].contentId)) {
+          //       this.contents.push({
+          //         contentId: this.userLikeList[idx5].contentId,
+          //         contentValue: this.userLikeList[idx5].contentValue.replace(/\n/g, "<br />"),
+          //         timestamp: this.userLikeList[idx5].timestamp,
+          //         likeButton: this.userLikeList[idx5].likeButton,
+          //         userId: this.userLikeList[idx5].userId,
+          //         imageLength: this.userLikeList[idx5].imageLength,
+          //         images: this.userLikeList[idx5].images,
+          //         scrapButton: true,
+          //         dislike: this.userLikeList[idx5].dislike,
+          //         profileUrl: this.userLikeList[idx5].profileUrl,
+          //         profileFilter: this.userLikeList[idx5].profileFilter,
 
-                })
-              } else {
-                this.contents.push({
-                  contentId: this.userLikeList[idx5].contentId,
-                  contentValue: this.userLikeList[idx5].contentValue.replace(/\n/g, "<br />"),
-                  timestamp: this.userLikeList[idx5].timestamp,
-                  likeButton: this.userLikeList[idx5].likeButton,
-                  userId: this.userLikeList[idx5].userId,
-                  imageLength: this.userLikeList[idx5].imageLength,
-                  images: this.userLikeList[idx5].images,
-                  scrapButton: false,
-                  dislike: this.userLikeList[idx5].dislike,
-                  profileUrl: this.userLikeList[idx5].profileUrl,
-                  profileFilter: this.userLikeList[idx5].profileFilter,
-                })
-              }
-            }
-          } else {
+          //       })
+          //     } else {
+          //       this.contents.push({
+          //         contentId: this.userLikeList[idx5].contentId,
+          //         contentValue: this.userLikeList[idx5].contentValue.replace(/\n/g, "<br />"),
+          //         timestamp: this.userLikeList[idx5].timestamp,
+          //         likeButton: this.userLikeList[idx5].likeButton,
+          //         userId: this.userLikeList[idx5].userId,
+          //         imageLength: this.userLikeList[idx5].imageLength,
+          //         images: this.userLikeList[idx5].images,
+          //         scrapButton: false,
+          //         dislike: this.userLikeList[idx5].dislike,
+          //         profileUrl: this.userLikeList[idx5].profileUrl,
+          //         profileFilter: this.userLikeList[idx5].profileFilter,
+          //       })
+          //     }
+          //   }
+          // } 
+          else {
             this.contentErrorMsg = "타임라인이 없습니다."
           }
         })
