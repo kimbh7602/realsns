@@ -71,4 +71,9 @@ public class NotificationService implements INotificationService {
         return dao.countUnchecked(user_id);
     }
 
+	@Override
+	public boolean deleteReport(String user_id, int content_id) {
+		return dao.deleteReport(user_id, content_id);
+	}
+
 }
