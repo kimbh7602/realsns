@@ -86,7 +86,7 @@
       </div>
       
       <!-- 카테고리 -->
-      <category v-if="check=='content'" :userId="userId" :myPage="true"></category>
+      <category v-if="check=='content'" :userId="userId" class="aaa" :myPage="true"></category>
       <category v-else :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->

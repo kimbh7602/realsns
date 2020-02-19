@@ -478,7 +478,6 @@ export default {
             }
           })
           .then(response => {
-            window.console.log(this.contents);
             this.$socket.emit('notification', {
               user_id: response.data.resValue.user_id,
               target_user_id: response.data.resValue.target_user_id,
@@ -503,7 +502,6 @@ export default {
         if (idx > -1) {
           this.followList.splice(idx, 1)
         }
-        window.console.log(this.contents);
         if(this.contents.length==0){
           this.contentErrorMsg = "타임라인이 없습니다."
         }
