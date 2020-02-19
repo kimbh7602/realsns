@@ -390,6 +390,9 @@ export default {
               dist: this.dist
           })
           .then((res)=>{
+              if (this.contents[0].contentId == "") {
+                this.contents = []
+              }
               if (res.data.resValue.length > 0) {
                     this.contentErrorMsg = ""
                     for (var idx = 0; idx < res.data.resValue.length; idx++) {
