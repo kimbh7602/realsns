@@ -10,12 +10,12 @@
       <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="con in contents" :key="con.id">
         <div class="d-block photo-item content-div">
           <!-- 이미지 처리 -->
-          <div class="polaroid" v-if="con.dislike < 5 && !reportMyList.includes(con.contentId) || readContents.includes(con.contentId)">
+          <div class="polaroid" v-if="con.dislike < 5 && (!reportMyList.includes(con.contentId) || readContents.includes(con.contentId) || !dList.includes(con.contentId))">
             <div :class="con.images[0].filter" style="width:100%; height:100%">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa m-0" style="box-shadow: 3px 3px 3px;"/>
             </div>
           </div>
-          <!-- <div class="polaroid" v-show="!readContents.includes(con.contentId) && !dList.includes(con.contentId)">
+          <div class="polaroid" v-show="!readContents.includes(con.contentId) && !dList.includes(con.contentId)">
             <div style="width:100%; height:100%" :class="con.images[0].filter">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0"/>
               <div class="centertext">
@@ -23,7 +23,7 @@
                 <button class="btn btn-outline-light btn-sm py-0" @click="readReCon(con.contentId)">보기</button>
               </div>
             </div>
-          </div> -->
+          </div>
           <div class="polaroid" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">
             <div style="width:100%; height:100%" :class="con.images[0].filter">
               <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0"/>
