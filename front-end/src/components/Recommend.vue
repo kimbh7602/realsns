@@ -218,6 +218,7 @@ export default {
                                 http
                                 .get(`/user/allInterestList`)
                                 .then((res) => {
+                                  window.console.log("여긴가")
                                   res.data.resValue.forEach( element => {
                                     if(element != "" && !this.Interests.includes(element)){
                                       this.Interests.push(element);
@@ -226,8 +227,6 @@ export default {
 
 
                 
-        })
-        .finally(() => {
                                   http
                                     .post(`/content/contentListHashtagList/`, this.Interests)
                                     .then((res) => {
@@ -319,6 +318,8 @@ export default {
 
                   
                 })
+        })
+        .finally(() => {
           
         })
     },
