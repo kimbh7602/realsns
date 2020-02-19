@@ -216,4 +216,15 @@ public class UserService implements IUserService {
 	public int currentdate() {
 		return dao.currentdate();
 	}
+
+	@Override
+	public List<String> myDislike(String user_id) {
+		String myDislike = dao.myDislike(user_id);
+		String[] arr = myDislike.split(" ");
+		List<String> myDislikeList = new ArrayList<String>();
+		for (String string : arr) {
+			myDislikeList.add(string);
+		}
+		return myDislikeList;
+	}
 }

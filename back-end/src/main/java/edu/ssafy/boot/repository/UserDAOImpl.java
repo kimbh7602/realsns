@@ -147,4 +147,10 @@ public class UserDAOImpl implements IUserDAO {
 	public int currentdate() {
 		return session.selectOne("ssafy.user.currentdate");
 	}
+
+	@Override
+	public String myDislike(String user_id) {
+		String dislike = session.selectOne("ssafy.user.myDislike", user_id);
+		return dislike;
+	}
 }

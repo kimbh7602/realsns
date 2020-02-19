@@ -540,5 +540,25 @@ public class UserController {
 		
 	}
 	
-	
+	@GetMapping("/dislikeList/{user_id}")
+	@ApiOperation(value = "관심사 출력", response = List.class)
+	private @ResponseBody ResponseEntity<Map<String, Object>> dislikeList(@PathVariable("user_id") String user_id) {
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		try {
+			List<String> dislikeList = ser.myDislike(user_id);
+			Map<String, Object> map = new HashMap<String, Object>();
+			if(dislikeList != null) {
+				map.put("resmsg", "조회성공");
+				map.put("resValue", dislikeList);
+			} else {
+				map.put("resmsg", "조회실패");
+			}
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		} catch (RuntimeException e) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "조회실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		}
+		return resEntity;
+	}
 }

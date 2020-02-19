@@ -38,5 +38,7 @@ public interface IUserDAO {
 	public int currentdate();
 
 	public int moncontents(int currentdate);
+	
+	public String myDislike(String user_id);
 
 }
