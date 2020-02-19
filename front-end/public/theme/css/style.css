@@ -750,7 +750,9 @@ h1, h2, h3, h4, h5,
   .site-mobile-menu .site-mobile-menu-body .site-nav-wrap + .site-nav-wrap li, .site-mobile-menu .site-mobile-menu-body .site-nav-wrap + .site-nav-wrap li a {
     float: none;
     width: auto;
-    display: inline; }
+    display: inline;
+    margin:0px;
+  }
 
 .blog-entry .img-wrap {
   -webkit-box-flex: 0;
