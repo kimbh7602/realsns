@@ -18,7 +18,7 @@
 
         <div class="main-menu">
         <ul class="js-clone-nav">
-            <li class="active"><router-link to="/login">Home</router-link></li>
+            <li><router-link to="/login">Home</router-link></li>
             <li><router-link to="/register">Register</router-link></li>
             <li><router-link to="/password">Password</router-link></li>
         </ul>
