@@ -55,7 +55,7 @@
 	<select id="findByLocation" parameterType="LocationVo" resultType="ContentVo">
 		<![CDATA[ 
 			select * from contents
-			where abs(lat-#{lat})+abs(lng-#{lng}) <= #{dist}
+			where abs(lat-(#{lat}))+abs(lng-(#{lng})) <= #{dist}
 		]]>
 	</select>
 
