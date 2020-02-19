@@ -459,6 +459,9 @@ export default {
             if (this.contents[idx].userId !== this.loginId && this.followList.includes(this.contents[idx].userId) == false) {
               this.contents.splice(idx, 1)
             }
+            if(this.contents.length==0){
+              this.contentErrorMsg = "타임라인이 없습니다."
+            }
           }
         }
       }
@@ -498,6 +501,9 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx > -1) {
           this.followList.splice(idx, 1)
+        }
+        if(this.contents.length==0){
+          this.contentErrorMsg = "타임라인이 없습니다."
         }
       } else {
         http
