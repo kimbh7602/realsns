@@ -33,7 +33,7 @@
             </i>
         </div>
         <div class="site-logo" style="margin-left:3%;">
-            <router-link to="/">Shutter</router-link>
+            <router-link to="/index">Shutter</router-link>
         </div>
         <div class="site-logo">
             <input type="button" class="site-logo btn btn-danger btn-md text-white" @click="goWrite" value="Write" />
@@ -44,7 +44,7 @@
 
         <div class="main-menu">
         <ul class="js-clone-nav">
-            <li class="active"><router-link to="/">Home</router-link></li>
+            <li class="active"><router-link to="/index">Home</router-link></li>
             <!-- <li><router-link to="/bio">Bio</router-link></li> -->
             <li><router-link to="/blog">Blog</router-link></li>
             <li><router-link to="/single">Single</router-link></li>

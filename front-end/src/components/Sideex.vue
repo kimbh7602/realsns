@@ -27,7 +27,7 @@
             </div>
 
             <div class="site-logo" style="margin-left:3%;">
-                <router-link class="logo-text" v-show="loginCheck" to="/">떠올리다</router-link>
+                <router-link class="logo-text" v-show="loginCheck" to="/index">떠올리다</router-link>
                 <!-- <router-link style="font-family: hand_mail; font-size:2.5em" v-show="!loginCheck" to="/login">떠올리다</router-link> -->
             </div>
             <div v-if="loginCheck" class="site-logo site-btn">
@@ -44,7 +44,7 @@
             <div class="main-menu">
                 <ul class="js-clone-nav">
                     <li v-show="loginCheck">
-                        <router-link to="/">Home <i class="icon-home text-white" style="font-size:1.3em;"></i>
+                        <router-link to="/index">Home <i class="icon-home text-white" style="font-size:1.3em;"></i>
                         </router-link>
                     </li>
                     <!-- <li><router-link to="/bio">Bio</router-link></li> -->
@@ -86,7 +86,7 @@
                                 style="font-size:1.5em;"></i></router-link>
                     </li>
                     <li style="padding-top:50%;" v-show="!loginCheck" class="active">
-                        <router-link to="/login">Home <i class="icon-home text-white" style="font-size:1.3em;"></i>
+                        <router-link to="/">Home <i class="icon-home text-white" style="font-size:1.3em;"></i>
                         </router-link>
                     </li>
                     <li v-show="!loginCheck">

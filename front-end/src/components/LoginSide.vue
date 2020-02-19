@@ -10,7 +10,7 @@
     </div>
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
         <div class="site-logo" style="margin-left:3%;">
-            <router-link to="/login">Shutter</router-link>
+            <router-link to="/">Shutter</router-link>
         </div>
         <div class="site-logo">
         </div>
@@ -18,7 +18,7 @@
 
         <div class="main-menu">
         <ul class="js-clone-nav">
-            <li><router-link to="/login">Home</router-link></li>
+            <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/register">Register</router-link></li>
             <li><router-link to="/password">Password</router-link></li>
         </ul>
