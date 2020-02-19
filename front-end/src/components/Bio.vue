@@ -207,7 +207,7 @@
                       data-swiper-slidebtns-per-view="1" data-swiper-breakpoints="true" data-swiper-autoplay="true"
                       data-scrollbar="true" data-swiper-loop="true" data-swpr-responsive="[1, 2, 1, 2]">
                       <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="background-color:white;" v-for="img in items.imageList" :key="img.index">
+                        <div class="swiper-slide" style="color:white;" v-for="img in items.imageList" :key="img.index">
                             <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
 
                               <div style="background-color:black;">
