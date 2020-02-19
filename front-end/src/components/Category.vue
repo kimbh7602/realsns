@@ -60,10 +60,10 @@
                             <i class="icon-bookmark" v-if="scrapList.includes(item.content_id)"></i>
                             <i class="icon-bookmark-o" v-else></i>
                           </div>
-                          <div v-if="item.user_id !== uid && !myPage && readReportList.includes(item.content_id)">
-                            <!-- <i class="icon-bell-o" v-if="!reportMyList.includes(item.content_id)" v-show="myPage" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(item.content_id, item.timestamp)">신고</i> -->
+                          <!-- <div v-if="item.user_id !== uid && !myPage && readReportList.includes(item.content_id)">
+                            <i class="icon-bell-o" v-if="!reportMyList.includes(item.content_id)" v-show="myPage" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(item.content_id, item.timestamp)">신고</i>
                             <i class="icon-bell" @click="cancel(item.content_id)">취소</i>
-                          </div>
+                          </div> -->
                           <div v-if="item.user_id !== uid && myPage">
                             <i class="icon-bell-o" v-if="!reportMyList.includes(item.content_id)" data-toggle="modal" data-target="#exampleModal" @click="sendInfo(item.content_id, item.timestamp)">신고</i>
                             <i class="icon-bell" v-else @click="cancel(item.content_id)">취소</i>
