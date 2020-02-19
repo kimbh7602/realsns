@@ -976,27 +976,27 @@ export default {
                               profileFilter: this.userLikeList[idx2].profileFilter,
 
                             })
-                          } else {
-                                                        window.console.log(this.userLikeList[idx2].contentId)
-                            this.contents.push({
-                              contentId: this.userLikeList[idx2].contentId,
-                              contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
-                              timestamp: this.userLikeList[idx2].timestamp,
-                              likeButton: this.userLikeList[idx2].likeButton,
-                              userId: this.userLikeList[idx2].userId,
-                              imageLength: this.userLikeList[idx2].imageLength,
-                              images: this.userLikeList[idx2].images,
-                              scrapButton: false,
-                              dislike: this.userLikeList[idx2].dislike,
-                              profileUrl: this.userLikeList[idx2].profileUrl,
-                              profileFilter: this.userLikeList[idx2].profileFilter,
-                            })
                           }
+                          // else {
+                          //   window.console.log(this.userLikeList[idx2].contentId)
+                          //   this.contents.push({
+                          //     contentId: this.userLikeList[idx2].contentId,
+                          //     contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
+                          //     timestamp: this.userLikeList[idx2].timestamp,
+                          //     likeButton: this.userLikeList[idx2].likeButton,
+                          //     userId: this.userLikeList[idx2].userId,
+                          //     imageLength: this.userLikeList[idx2].imageLength,
+                          //     images: this.userLikeList[idx2].images,
+                          //     scrapButton: false,
+                          //     dislike: this.userLikeList[idx2].dislike,
+                          //     profileUrl: this.userLikeList[idx2].profileUrl,
+                          //     profileFilter: this.userLikeList[idx2].profileFilter,
+                          //   })
+                          // }
                         }
                       }
                       if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                                                    window.console.log(res.data.resValue[idx].content_id)
-
+                        window.console.log(res.data.resValue[idx].content_id)
                         this.contents.push({
                           contentId: res.data.resValue[idx].content_id,
                           contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
