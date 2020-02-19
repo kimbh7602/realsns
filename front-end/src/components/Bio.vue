@@ -222,9 +222,9 @@
                     </div>
                   </div>
                   <div v-if="!nohashtag">
-                    <span v-for="(tag, index) in items.hashtagList" :key="index"><input @click="contentListHashtag(tag)"
-                        style="margin-left:5px; margin-right:5px;" type="button" class="elip btn btn-outline-info py-1 px-2 mt-1"
-                        :value="'#'+tag" /></span>
+                    <span v-for="(tag, index) in items.hashtagList" :key="index"><button @click="contentListHashtag(tag)"
+                        style="margin-left:5px; margin-right:5px;" class="elip btn btn-outline-info py-1 px-2 mt-1">
+                         #{{tag}}</button></span>
                   </div>
                   <div v-if="items.location_name != undefined"
                     style="margin-top:20px; padding-left:20px; color:#007acc;">
@@ -693,7 +693,7 @@ $colors: (
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;
-    width:10%;
+    // width:10%;
     max-width: 30%;
     overflow: hidden;
   }
