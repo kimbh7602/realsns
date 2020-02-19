@@ -234,7 +234,8 @@ export default {
                       for(var idx9=0; idx9<res.data.resValue.length; idx9++){
                         if (!this.dList.includes(res.data.resvalue[idx9].content_id)) {
                           this.dList.push(res.data.resValue[idx9].content_id);
-                          window.console.log(this.dList);
+                          window.console.log("this.dList");
+                          // window.console.log(this.dList);
                         }
                       }
                     }
