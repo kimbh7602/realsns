@@ -16,7 +16,7 @@
                     <label class="text-white">Location Search</label> 
                     <input v-model="searchKeyword" type="text" class="form-control">
                     <br>
-                    <input data-toggle="modal" data-target="#mapModal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
+                    <!-- <input data-toggle="modal" data-target="#mapModal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block"> -->
                     </div>
                 </div>
                 <div v-if="!isLocation&&!isLocationSelect">
