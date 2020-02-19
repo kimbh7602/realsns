@@ -225,7 +225,7 @@
       <div class="modal fade mt-5" id="allReadModal" tabindex="-1" role="dialog" style="z-index:99999;">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
-                  <div class="modal-body py-4">
+                  <div class="modal-body py-4 text-center">
                     알림을 모두 삭제하겠습니까?
                   </div>
                   <div class="modal-footer py-2">
