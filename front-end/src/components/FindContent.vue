@@ -919,7 +919,7 @@ export default {
               dist: this.dist
             })
             .then((res)=>{
-                window.console.log(res.data.resValue)
+                window.console.log(res.data.resValue.length)
                 // this.Items = res.data.resValue;
                 this.searchKeyword = this.location_name;
                 this.isLocation = true;
