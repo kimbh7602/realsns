@@ -693,7 +693,7 @@ $colors: (
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;
-    width: 3%;
+    width: 10%;
     overflow: hidden;
   }
 </style>
