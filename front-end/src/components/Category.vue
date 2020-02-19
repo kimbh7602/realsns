@@ -548,7 +548,6 @@ export default {
               }
 
               this.$store.commit('SET_SCRAPCOUNT', this.scrapList.length);
-            } else {
             }
           })
           .catch(()=>{
