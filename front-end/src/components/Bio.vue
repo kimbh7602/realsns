@@ -303,7 +303,8 @@
       },
       editcomment(id, value, rid) {
         if (value === "") {
-          alert("수정할댓글 내용을 입력하세요")
+          this.$store.commit('setModalText', '수정할댓글 내용을 입력하세요');
+          document.getElementById('modalBtn').click();
         } else {
 
           http
@@ -320,7 +321,8 @@
                 this.changeedit(id,this.uid);
                 this.getData();
               } else {
-                alert("댓글수정 실패!");
+                this.$store.commit('setModalText', '댓글수정 실패!');
+                document.getElementById('modalBtn').click();
               }
 
             })
@@ -338,7 +340,8 @@
             if (response.data['resmsg'] == "댓글 삭제성공") {
               this.getData();
             } else {
-              alert("대댓글삭제 실패!");
+              this.$store.commit('setModalText', '대댓글 삭제 실패!');
+                document.getElementById('modalBtn').click();
             }
           })
           .catch(() => {
@@ -444,7 +447,8 @@
       // },
       insertComment() {
         if (this.comment_val === "") {
-          alert("댓글을 입력하세요")
+          this.$store.commit('setModalText', '댓글을 입력하세요');
+          document.getElementById('modalBtn').click();
         } else {
           http
             .post("comment/insertComment", {

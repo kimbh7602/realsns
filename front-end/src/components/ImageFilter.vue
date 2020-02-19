@@ -24,8 +24,8 @@
 
       <div class="container col-md-12 px-0 mt-4">
         <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-if="prevpage == 'addimage'" @click="goPrev">이전</button>
-          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else @click="goReg">이전</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-if="prevpage == 'addimage'" @click="goPrev">처음</button>
+          <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else @click="goReg">처음</button>
           <button type="button" class="btn btn-outline-light col-sm btnadd p-2" v-if="prevpage == 'addimage'" @click="goAddImage">추가</button>
           <button type="button" class="btn btn-outline-light col-sm btnnext p-2" v-if="prevpage == 'addimage'" @click="goNext">다음</button>
           <button type="button" class="btn btn-outline-light col-sm btnprev p-2" v-else-if="prevpage == 'useredit'" @click="goNextEdit">다음</button>
