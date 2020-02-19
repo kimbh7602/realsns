@@ -9,14 +9,18 @@
                         <h2 class="text-white mb-4 text-center">게시물 찾기</h2>
                     </div>
                 </div>
-                
+                <input id="mapModalBtn" data-toggle="modal" data-target="#mapModal" style="display:none;" />
                 <!-- 친구 검색 바 -->
                 <div v-if="isLocation&&!isLocationSelect" class="row form-group mb-5">
                     <div class="col-md-12">
                     <label class="text-white">Location Search</label> 
                     <input v-model="searchKeyword" type="text" class="form-control">
                     <br>
+<<<<<<< HEAD
                     <input data-toggle="modal" data-target="#mapModal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
+=======
+                    <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
+>>>>>>> cbee95038f83f0abfbc55a6e10b7ead75e31de11
                     </div>
                 </div>
                 <div v-if="!isLocation&&!isLocationSelect">
@@ -336,6 +340,8 @@ export default {
                               alert(error)
                             })
                     })
+
+                    document.querySelector("#mapModalBtn").click();
                 })
                 .catch((error)=>{
                     alert(error)
