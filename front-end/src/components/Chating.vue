@@ -114,7 +114,7 @@
         </div>
         
       </div>
-      <div class="modal fade mt-5" id="deleteUserDmModal" tabindex="-1" role="dialog">
+      <div class="modal fade mt-5" id="deleteUserDmModal" tabindex="-1" role="dialog" style="z-index:99999;">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
               <div class="modal-body py-4 text-center">

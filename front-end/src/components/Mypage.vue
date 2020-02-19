@@ -90,7 +90,7 @@
       <category v-else :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->
-        <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header modal-lg">
@@ -114,7 +114,7 @@
             </div>
         </div>
         <!-- 팔로우 모달 -->
-        <div class="modal fade mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade mt-5" id="followModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -138,7 +138,7 @@
         </div>
 
         <!-- 팔로우취소 모달 -->
-        <div class="modal fade mt-5" id="deleteFollowModal" tabindex="-1" role="dialog">
+        <div class="modal fade mt-5" id="deleteFollowModal" tabindex="-1" role="dialog" style="z-index:99999;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body py-4">

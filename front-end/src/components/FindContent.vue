@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 
-                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index:99999;">
+                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index:99998;">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body" style="text-align:center;">

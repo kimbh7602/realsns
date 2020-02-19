@@ -62,7 +62,7 @@
             <input @click="isLocation=!isLocation" type="button" value="위치정보 등록" class="btn btn-outline-light btn-block">
             <br/><br/><br/>
         </div>
-        <div v-if="isSearching" class="modal-content search-location-googlemap">
+        <div v-if="isSearching" class="modal-content search-location-googlemap" style="z-index:99998;">
                     <div class="modal-body" style="text-align:center;">
                         <gmap-map
                         :center="center"
