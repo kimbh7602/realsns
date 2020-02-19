@@ -44,7 +44,7 @@
                           <img src="../../public/theme/images/stamp1.png" style="width:45px;height:45px;" alt="Postage mark" class="postmark">
                           <!-- 끝 -->
                           <div class="mail-title offset-1 col-9 mt-2 ml-3" style="text-align:left;"><p class="mail-title-val">Dear {{uid}}</p></div>
-                          <div class="mail-message offset-2 col-8 ellipsis pt-0 pb-0 mail-message-val">{{item.content_val}}</div>
+                          <div class="mail-message offset-2 col-8 ellipsis pt-0 pb-0 mail-message-val" v-html="item.content_val">{{item.content_val}}</div>
                           <div class="col-11 col-offset-1 pt-0 pr-0 mail-from-val">from {{item.user_id}}</div>
                         </div>
                         <div class="mb-4 pb-2 d-flex justify-content-around">
