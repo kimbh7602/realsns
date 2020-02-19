@@ -8,7 +8,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p>
+            <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p> -->
             <div class="row">
               <div class="col-md-12">
                 <form action="" method="post" @submit.prevent="confirm">
