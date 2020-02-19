@@ -310,6 +310,7 @@ export default {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
+              res.data.resValue[i].content_val = res.data.resValue[i].content_val.replace(/\n/g, "<br />");
               for (var j = 0; j < this.contentIds.length; j++) {
                 if (res.data.resValue[i].content_id == this.contentIds[j].con_id) {
                   res.data.resValue[i].user_like = true
