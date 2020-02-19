@@ -1,7 +1,7 @@
 <template>
     <div data-aos="fade-up" style="width:100%">
         <div class="row mb-5">
-            <div class="offset-4 col-8">
+            <div class="offset-3 col-6">
                 <h2 class="text-white mb-4">Image Edit</h2>
             </div>
         </div>

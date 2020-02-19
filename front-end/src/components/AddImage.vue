@@ -1,6 +1,6 @@
 <template>
   <div class="offset-3 col-6" data-aos="fade-up">
-    <div class="row mb-5" data-aos="fade-up">
+    <div class="row mb-5">
         <div class="col-12">
           <h2 class="text-white mb-4">Add Image</h2>
         </div>
