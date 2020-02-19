@@ -175,7 +175,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999;">
+                    <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position:absolute; top:50px; z-index: 99999;">
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <!-- <div class="modal-header">
