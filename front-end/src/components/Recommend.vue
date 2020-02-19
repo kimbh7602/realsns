@@ -124,7 +124,6 @@ export default {
       http
         .get(`/user/myInterest/${this.userId}`)
         .then((res) => {
-          window.console.log(res.data.resValue);
           res.data.resValue.forEach(element => {
             this.myInterest.push(element);
             this.Interests.push(element);

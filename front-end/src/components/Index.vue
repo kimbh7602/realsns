@@ -274,20 +274,6 @@ export default {
                 if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
                   res.data.resValue[idx].user_like = true
                   delete this.userLikeList[idx2].contentId
-                }else{
-                  this.contents.push({
-                      contentId: this.userLikeList[idx2].contentId,
-                      contentValue: this.userLikeList[idx2].contentValue.replace(/\n/g, "<br />"),
-                      timestamp: this.userLikeList[idx2].timestamp,
-                      likeButton: true,
-                      userId: this.userLikeList[idx2].userId,
-                      imageLength: this.userLikeList[idx2].imageLength,
-                      images: this.userLikeList[idx2].images,
-                      scrapButton: false,
-                      dislike: this.userLikeList[idx2].dislike,
-                      profileUrl: this.userLikeList[idx2].profileUrl,
-                      profileFilter: this.userLikeList[idx2].profileFilter,
-                  })
                 }
                 if (this.userLikeList[idx2].contentId && idx == res.data.resValue.length - 1) {
                   if (this.scrapList.includes(res.data.resValue[idx2].contentId)) {
@@ -575,7 +561,6 @@ export default {
                   flag:true
                 });
             } else {
-              console.log(res.data.resmsg)
               this.contents[idx].scrapButton = true
             }
           })
@@ -603,7 +588,6 @@ export default {
                   flag:false
                 });
             } else {
-              console.log(res.data.resmsg)
               this.contents[idx2].scrapButton = false
             }
           })
@@ -639,8 +623,6 @@ export default {
             if (res.data.resmsg == "신고 성공") {
               this.$store.commit('setModalText', "신고가 접수되었습니다.");
               document.getElementById('modalBtn').click();
-            } else {
-              console.log("신고 실패")
             }
             this.options[0].op7 = ""
             this.info = []
@@ -741,7 +723,7 @@ export default {
   },
 
   beforeDestroy() {
-    window.console.log('remove event');
+    // window.console.log('remove event');
     window.removeEventListener('scroll', this.scrollHandler);
   }
 }

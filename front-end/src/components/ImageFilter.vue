@@ -105,13 +105,11 @@ export default {
           filter: this.imgs[this.imgs.length-1].filter
         })
         .then((res) => {
-          window.console.log(res.data.resValue);
           const img_url = res.data.resValue;
           axios.post("http://52.79.166.146:5000/tag", {
                     img_url: img_url
                 })
                 .then((res) => {
-                    window.console.log(res.data);
                     this.tags[this.tags.length-1] = res.data['label_kr'];
                     this.$router.push({
                       name: 'addimage', 
@@ -146,13 +144,11 @@ export default {
           filter: this.imgs[this.imgs.length-1].filter
         })
         .then((res) => {
-          window.console.log(res.data.resValue);
           const img_url = res.data.resValue;
           axios.post("http://52.79.166.146:5000/tag", {
                     img_url: img_url
                 })
                 .then((res) => {
-                    window.console.log(res.data);
                     this.tags[this.tags.length-1] = res.data['label_kr'];
                     this.$router.push({
                       name: 'writecontent', 
@@ -173,7 +169,6 @@ export default {
       // });
     },
     goNextUpdate() {
-      window.console.log(this.prevpage)
       this.imgs[this.imgs.length-1].filter = this.filterType;
       this.$router.push({
         name: 'updatecontent', 

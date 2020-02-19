@@ -385,8 +385,6 @@
           .then((res) => {
             if (res.data.resmsg == "게시물 출력 성공") {
               this.items = res.data.resValue;
-                    console.log(this.items)
-
               if (this.items.profile_filter == null) {
                 this.items.profile_filter = "normal";
               }

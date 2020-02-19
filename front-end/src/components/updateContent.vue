@@ -226,12 +226,10 @@ export default {
             // window.console.log(tt);
             // window.console.log(document.querySelector('.swiper-container'));
             // document.querySelector('.swiper-container>.swiper-wrapper').remove();
-            window.console.log(document.querySelector('.write-swiper>.swiper-wrapper'));
             document.querySelector('.write-swiper>.swiper-wrapper').remove();
             // event.target.parentNode.parentNode.parentNode.remove();
             // window.console.log(swiper_wrapper);
             tt.appendChild(swiper_wrapper);
-            window.console.log(tt);
 
             document.querySelector('script[src$="script.js"]').remove()
             document.querySelector('script[src$="swiper.js"]').remove()
@@ -461,7 +459,6 @@ export default {
     },
     mounted(){
         // console.log(this.items)
-        console.log(this.uimgs);
         this.intro = this.items.content_val;
         this.itrlist = this.items.hashtagList;
         if(this.uimgs===undefined){

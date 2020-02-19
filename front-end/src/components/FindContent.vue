@@ -777,10 +777,11 @@ export default {
                   category: res.data.resValue.category,
                   flag:true
                 });
-            } else {
-              console.log(res.data.resmsg)
-              // this.contents[idx].scrapButton = true
             }
+            // else {
+            //   console.log(res.data.resmsg)
+            //   // this.contents[idx].scrapButton = true
+            // }
           })
           .catch(()=>{
             this.errored = true;
@@ -805,10 +806,11 @@ export default {
                   category: res.data.resValue.category,
                   flag:false
                 });
-            } else {
-              console.log(res.data.resmsg)
-              // this.contents[idx2].scrapButton = false
             }
+            // else {
+            //   console.log(res.data.resmsg)
+            //   // this.contents[idx2].scrapButton = false
+            // }
           })
           .catch(()=>{
             this.errored = true;
@@ -842,8 +844,6 @@ export default {
             if (res.data.resmsg == "신고 성공") {
               this.$store.commit('setModalText', "신고가 접수되었습니다.");
               document.getElementById('modalBtn').click();
-            } else {
-              console.log("신고 실패")
             }
             this.options[0].op7 = ""
             this.info = []
@@ -938,7 +938,6 @@ export default {
             })
             .then((res)=>{
                 // this.Items = res.data.resValue;
-                window.console.log(this.Items);
                 this.searchKeyword = this.location_name;
                 this.isLocation = true;
                 this.isLocationSelect = true;

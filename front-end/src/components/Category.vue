@@ -304,7 +304,6 @@ export default {
       http
       .get('content/contentUserList/'+this.uid)
       .then((res)=>{
-        window.console.log(res.data.resValue);
         if (res.data.resValue.length > 0) {
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
@@ -584,7 +583,6 @@ export default {
         this.getUserScrap();
         this.getReport();
       }else if(this.myPage == false){
-        window.console.log("scrapPage");
         this.getFollow();
         this.getScrap();
         this.getUserScrap();

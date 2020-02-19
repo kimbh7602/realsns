@@ -76,7 +76,6 @@
             goNext() {
                 // this.imgs[this.imgs.length-1].filter = this.filterType;
                 this.imgs[this.imgs.length-1].base64 = this.destination;
-                console.log(this.items)
                 this.$router.push({
                     name: 'imagefilter', 
                     params: {

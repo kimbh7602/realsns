@@ -196,7 +196,6 @@ export default {
         .get('/userReport/myReportList/' + this.loginId)
         .then((res) => {
           if (res.data.resvalue.length > 0) {
-            console.log(res.data.resvalue)
             for (var i = 0; i < res.data.resvalue.length; i++) {
               this.reportMyList.push(res.data.resvalue[i].content_id)
             }
@@ -255,7 +254,6 @@ export default {
       http
         .get('content/contentListHashtag/'+this.tag)
         .then((res) => {
-          console.log(res)
           if (res.data.resValue.length > 0) {
             this.contentErrorMsg = ""
             for (var idx = 0; idx < res.data.resValue.length; idx++) {
@@ -519,7 +517,6 @@ export default {
                   flag:true
                 });
             } else {
-              console.log(res.data.resmsg)
               this.contents[idx].scrapButton = true
             }
           })
@@ -547,7 +544,6 @@ export default {
                   flag:false
                 });
             } else {
-              console.log(res.data.resmsg)
               this.contents[idx2].scrapButton = false
             }
           })
@@ -577,8 +573,6 @@ export default {
             if (res.data.resmsg == "신고 성공") {
               this.$store.commit('setModalText', "신고가 접수되었습니다.");
               document.getElementById('modalBtn').click();
-            } else {
-              console.log("신고 실패")
             }
             this.options[0].op4 = ""
             this.info = []

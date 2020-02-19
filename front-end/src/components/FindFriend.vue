@@ -200,7 +200,6 @@ export default {
             http
                 .get('/user/searchByUserId/' + this.inputIdData)
                 .then((res) => {
-                    console.log(res)
                     if (res.data.resmsg == "아이디 검색 성공") {
                         for (var i=0; i<res.data.resValue.length; i++) {
                             var id = res.data.resValue[i].user_id
@@ -248,7 +247,6 @@ export default {
             http
                 .post('/user/searchByInterest', this.searchData)
                 .then((res) => {
-                    console.log(res)
                     if (res.data.resmsg == "관심사 검색 성공") {
                         this.interestErrorMsg = ""
                         this.resultInterests = []

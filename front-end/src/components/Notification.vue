@@ -279,7 +279,7 @@ export default {
                 else if (item.category == 'scrap') this.scrapNoti += 1
                 else if (item.category == 'report') this.reportNoti += 1
               })
-              console.log(this.allNoti);
+              // console.log(this.allNoti);
           })
           .catch(e => console.log(e))
       },
