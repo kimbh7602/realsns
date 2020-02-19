@@ -210,12 +210,12 @@
                         <div class="swiper-slide" v-for="img in items.imageList" :key="img.index">
                             <a :href="img.image_url" :class="img.filter" data-fancybox="gallery">
 
-                              <!-- <div style="background-color:black;">
-                                <div :class="img.filter" style="width:100%; height:100%;"> -->
+                              <div style="background-color:black;">
+                                <div :class="img.filter" style="width:100%; height:100%;">
                                   <img :src="img.image_url" style="width:100%; height:100%; margin-bottom:0px"
                                     alt="Image" />
-                                <!-- </div>
-                              </div> -->
+                                </div>
+                              </div>
                             </a>
                         </div>
                       </div>
