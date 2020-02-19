@@ -1,6 +1,9 @@
 <template>
     <div class="container-fluid photos">
-      <div class="row align-items-stretch">
+      <div class="text-white text-center" v-if="this.contentErrorMsg">
+        <h5>{{this.contentErrorMsg}}</h5>
+      </div>
+      <div v-else class="row align-items-stretch">
         <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" style="padding: 10px 10px" v-for="item in Items" :key="item.id">
           <div class="d-block photo-item content-div">
             <div class="polaroid" v-if="item.dislike < 5 && !reportMyList.includes(item.content_id) || readReportList.includes(item.content_id)">
@@ -117,9 +120,6 @@
           </div>
         </div>
         
-      </div>
-      <div class="text-white text-center" v-if="this.contentErrorMsg">
-        <h5>{{this.contentErrorMsg}}</h5>
       </div>
     </div>
 </template>
