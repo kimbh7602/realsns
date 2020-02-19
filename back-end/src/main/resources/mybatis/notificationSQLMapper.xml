@@ -52,18 +52,28 @@
 		delete from notification
 		where user_id = #{user_id}
 		and target_event_id = #{content_id}
+		and category='like'
 	</delete>
 
 	<delete id ="deleteScrap" parameterType="map">
 		delete from notification
 		where user_id = #{user_id}
 		and target_event_id = #{content_id}
+		and category='scrap'
 	</delete>
 
 	<delete id="deleteFollow" parameterType="map">
 		delete from notification
 		where user_id = #{follower_id}
 		and target_user_id = #{follow_id}
+		and category='follow'
+	</delete>
+	
+	<delete id="deleteReport" parameterType="map">
+		delete from notification
+		where user_id = #{user_id}
+		and target_event_id = #{content_id}
+		and category='report'
 	</delete>
 
 	<delete id="deleteComment" parameterType="map">
