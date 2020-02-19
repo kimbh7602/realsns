@@ -1,6 +1,8 @@
 <template>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
+            <h2 v-if="IdButton" class="text-white mb-4">Find ID</h2>
+            <h2 v-else class="text-white mb-4">Find Interest</h2>
 
             <div class="col-md-8 pt-4">
                 <!-- 제목 -->

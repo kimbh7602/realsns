@@ -2,7 +2,7 @@
   <div class="container-fluid photos">
     <div class="row justify-content-center">
       <div class="col-md-6 pt-4" data-aos="fade-up">
-        <h2 class="text-white mb-4">비밀번호 찾기</h2>
+        <h2 class="text-white mb-4">Find Password</h2>
 
         <div class="row" v-if="!axios_ing">
           <div class="col-md-12">

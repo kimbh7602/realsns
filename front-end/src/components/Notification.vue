@@ -1,7 +1,7 @@
 <template>
    <div class="container-fluid photos">
       <div class="row justify-content-center">
-
+        <h2 class="text-white mb-4">Notification</h2>
         <div class="col-md-8 pt-4">
             <div class="mb-5" data-aos="fade-up">
               <h2 class="mb-5 text-center text-light">읽지 않은 알림</h2>

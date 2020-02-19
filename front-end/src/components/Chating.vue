@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid photos">
       <div class="row justify-content-center">
+      <h2 class="text-white mb-4 text-center">Chatting</h2>
 
         <div class="col-md-8 pt-4 px-0">
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                    <h2 class="text-white mb-4 text-center">Direct Message</h2>
                 </div>
             </div>
             

@@ -1,8 +1,8 @@
 <template>
   <div class="offset-md-2 col-md-8" data-aos="fade-up">
+            <h2 class="text-white mb-4">Write Content</h2>
     <div class="offset-md-1 col-md-10">
         <div class="write-scroll all-scroll pos-relative mt-50">
-            <h5 class="mb-50"><b>Image</b></h5>                                            
             <div class="swiper-scrollbar"></div>
             <div class="write-swiper swiper-container oflow-visible" data-slide-effect="flip" data-autoheight="false" data-wheel-control="true" 
                                     data-swiper-speed="200" data-swiper-margin="25" data-swiper-slides-per-view="1"

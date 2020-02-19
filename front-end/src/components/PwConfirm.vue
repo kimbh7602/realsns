@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid photos">
     <div class="row justify-content-center">
+        <h2 class="text-white mb-4">Pw Confirm</h2>
 
       <div class="col-md-6 pt-4" data-aos="fade-up">
-        <h2 class="text-white mb-4">PwConfirm</h2>
 
 
         <div class="row">

@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid photos">
         <div class="row justify-content-center">
-
+            <h2 class="text-white mb-4">Location List</h2>
             <div class="col-md-8 pt-4">
                 <!-- 제목 -->
                 <div class="row mb-5" data-aos="fade-up">

@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid photos">
       <div class="row justify-content-center">
+            <h2 class="text-white mb-4">My Page</h2>
         <div class="postcard" style="height:auto;" data-aos="fade-up">
             <div class="content" style="width:100%; height:auto;">
                 <div class="p-4 text-center bg-light">
