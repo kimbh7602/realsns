@@ -182,6 +182,14 @@ export default {
     }
   },
   methods: {
+    goDetail: function(con_id) {
+      this.$router.push({
+        name: 'bio',
+        params: {
+          cid: con_id
+        }
+      })
+    },
     getData() {
       this.isLoading = true;
       http
@@ -191,139 +199,134 @@ export default {
             this.myInterest.push(element);
             this.Interests.push(element);
           })
-          axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
-                  "q": this.myInterest,
-                  "target": "en"
-                })
-                .then((res) => {
-                  res.data.data.translations.forEach(element => {
-                    const keyword = element.translatedText;
-                    axios
-                      .get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
-                      .then((res) => {
-                        axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
-                                "q": res.data,
-                                "target": "ko"
-                              })
-                              .then((res) => {
-                                let num = 0;
-                                res.data.data.translations.some( element => {
-                                  if(element.translatedText!=""&&!element.translatedText.includes(" ")&&!this.Interests.includes(element.translatedText)){
-                                    this.Interests.push(element.translatedText);
-                                    num++;
-                                  }
-                                  return(num>=3);
-                                });
-
-                                })
-                                .finally(()=>{
-                                  http
-                                  .get(`/user/allInterestList`)
-                                  .then((res) => {
-                                    // window.console.log("여긴가")
-                                    res.data.resValue.forEach( element => {
-                                      if(element != "" && !this.Interests.includes(element)){
-                                        this.Interests.push(element);
-                                      }
-                                    })
-
-
-                  
-
-                                })
-                              })
-                      })
-                  });
-
-                  
-                })
-                .finally(()=>{
-                  http
-                    .post(`/content/contentListHashtagList/`, this.Interests)
+          axios
+            .post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
+                "q": this.myInterest,
+                "target": "en"
+              })
+              .then((res) => {
+                res.data.data.translations.forEach(element => {
+                  const keyword = element.translatedText;
+                  axios
+                    .get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
                     .then((res) => {
-                      this.isLoading = false;
-                      if (this.contents[0].contentId == "") {
-                        this.contents = []
-                      }
+                      axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
+                              "q": res.data,
+                              "target": "ko"
+                            })
+                            .then((res) => {
+                              let num = 0;
+                              res.data.data.translations.some( element => {
+                                if(element.translatedText!=""&&!element.translatedText.includes(" ")&&!this.Interests.includes(element.translatedText)){
+                                  this.Interests.push(element.translatedText);
+                                  num++;
+                                }
+                                return(num>=3);
+                              });
+                            })
+                              .finally(()=>{
+                                http
+                                .get(`/user/allInterestList`)
+                                .then((res) => {
+                                  // window.console.log("여긴가")
+                                  res.data.resValue.forEach( element => {
+                                    if(element != "" && !this.Interests.includes(element)){
+                                      this.Interests.push(element);
+                                    }
+                                  })
+                              })
+                            })
+                    })
+                });
 
-                      if (res.data.resValue.length > 0) {
-                        this.contentErrorMsg = ""
-                        for (var idx = 0; idx < res.data.resValue.length; idx++) {
-                          for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
-                            if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
-                              res.data.resValue[idx].user_like = true
-                            }
-                          }
-                          if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
-                            if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                              this.contents.push({
-                                contentId: res.data.resValue[idx].content_id,
-                                contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                                timestamp: res.data.resValue[idx].timestamp,
-                                likeButton: res.data.resValue[idx].user_like,
-                                userId: res.data.resValue[idx].user_id,
-                                hashtag: res.data.resValue[idx].hashtag,
-                                imageLength: res.data.resValue[idx].imageList.length,
-                                images: [{
-                                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                  filter: res.data.resValue[idx].imageList[0].filter,
-                                }],
-                                scrapButton: true,
-                                dislike: res.data.resValue[idx].dislike,
-                                profileUrl: res.data.resValue[idx].profile_url,
-                                profileFilter: res.data.resValue[idx].profile_filter,
-                              })
-                            }
-                            else{
-                              this.contents.push({
-                                contentId: res.data.resValue[idx].content_id,
-                                contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                                timestamp: res.data.resValue[idx].timestamp,
-                                likeButton: res.data.resValue[idx].user_like,
-                                userId: res.data.resValue[idx].user_id,
-                                hashtag: res.data.resValue[idx].hashtag,
-                                imageLength: res.data.resValue[idx].imageList.length,
-                                images: [{
-                                  imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                  filter: res.data.resValue[idx].imageList[0].filter,
-                                }],
-                                scrapButton: false,
-                                dislike: res.data.resValue[idx].dislike,
-                                profileUrl: res.data.resValue[idx].profile_url,
-                                profileFilter: res.data.resValue[idx].profile_filter,
-                              })
-                            }
+                
+              })
+              .finally(()=>{
+                http
+                  .post(`/content/contentListHashtagList/`, this.Interests)
+                  .then((res) => {
+                    this.isLoading = false;
+                    if (this.contents[0].contentId == "") {
+                      this.contents = []
+                    }
+
+                    if (res.data.resValue.length > 0) {
+                      this.contentErrorMsg = ""
+                      for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                        for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
+                          if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
+                            res.data.resValue[idx].user_like = true
                           }
                         }
-                        // this.sortList()
-                        // this.getReport()
-                      } else {
-                        this.contentErrorMsg = "추천 게시물이 없습니다."
-                      }
-
-                      // this.Items = res.data.resValue;
-                      // this.Items.forEach(element => {
-                      this.contents.forEach(element => {
-                        element.value = 0;
-                        this.myInterest.forEach(interest => {
-                          if(element.hashtag.includes(interest)){
-                            element.value++;
+                        if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
+                          if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                            this.contents.push({
+                              contentId: res.data.resValue[idx].content_id,
+                              contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                              timestamp: res.data.resValue[idx].timestamp,
+                              likeButton: res.data.resValue[idx].user_like,
+                              userId: res.data.resValue[idx].user_id,
+                              hashtag: res.data.resValue[idx].hashtag,
+                              imageLength: res.data.resValue[idx].imageList.length,
+                              images: [{
+                                imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                filter: res.data.resValue[idx].imageList[0].filter,
+                              }],
+                              scrapButton: true,
+                              dislike: res.data.resValue[idx].dislike,
+                              profileUrl: res.data.resValue[idx].profile_url,
+                              profileFilter: res.data.resValue[idx].profile_filter,
+                            })
                           }
-                        })
-                      });
-                      this.contents.sort(function(a, b){
-                        return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
-                      });
-                      if(window.innerWidth <= 501){
-                        setTimeout(() => {
-                          window.removeEventListener('scroll', this.scrollHandler);
-                          window.addEventListener('scroll', this.scrollHandler)
-                        }, 500);
+                          else{
+                            this.contents.push({
+                              contentId: res.data.resValue[idx].content_id,
+                              contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                              timestamp: res.data.resValue[idx].timestamp,
+                              likeButton: res.data.resValue[idx].user_like,
+                              userId: res.data.resValue[idx].user_id,
+                              hashtag: res.data.resValue[idx].hashtag,
+                              imageLength: res.data.resValue[idx].imageList.length,
+                              images: [{
+                                imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                filter: res.data.resValue[idx].imageList[0].filter,
+                              }],
+                              scrapButton: false,
+                              dislike: res.data.resValue[idx].dislike,
+                              profileUrl: res.data.resValue[idx].profile_url,
+                              profileFilter: res.data.resValue[idx].profile_filter,
+                            })
+                          }
+                        }
                       }
-                    })
-                  
+                      // this.sortList()
+                      // this.getReport()
+                    } else {
+                      this.contentErrorMsg = "추천 게시물이 없습니다."
+                    }
+
+                    // this.Items = res.data.resValue;
+                    // this.Items.forEach(element => {
+                    this.contents.forEach(element => {
+                      element.value = 0;
+                      this.myInterest.forEach(interest => {
+                        if(element.hashtag.includes(interest)){
+                          element.value++;
+                        }
+                      })
+                    });
+                    this.contents.sort(function(a, b){
+                      return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
+                    });
+                    if(window.innerWidth <= 501){
+                      setTimeout(() => {
+                        window.removeEventListener('scroll', this.scrollHandler);
+                        window.addEventListener('scroll', this.scrollHandler)
+                      }, 500);
+                    }
                   })
-        })
+                })
+          })
         .finally(() => {
           
         })
@@ -692,7 +695,7 @@ export default {
   mounted() {
     $('html').scrollTop(0);
     this.$nextTick(() => {
-      window.console.log(this.Interests)
+
     })
   },
   updated(){
