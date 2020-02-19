@@ -466,7 +466,6 @@ export default {
                         })
                     }
                     }
-                    window.console.log(this.contents);
                     this.sortList()
                     // this.getReport()
 
