@@ -307,6 +307,7 @@ export default {
       .then((res)=>{
         // console.log(res)
         if (res.data.resValue.length > 0) {
+          window.console.log(res.data.resValue);
           this.contentErrorMsg = ""
           if (res.data.resmsg == "개인 게시물 리스트 출력 성공") {
             for (var i = 0; i < res.data.resValue.length; i++) {
