@@ -24,7 +24,7 @@
                                   <a v-for="(userDm, index) in fetchedUserDmList" :key="`userDm${index}`" :value="`userDm${index}`" @click="selectUserDm(userDm);" class="m-0 list-group-item list-group-item-action py-0">
                                       <div class="row pl-2">
                                           <div class="col-2 d-flex justify-content-center align-self-center">
-                                            <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'" alt="">
+                                            <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url" alt="">
                                           </div>
                                           <div class="col-8">
                                               <div class="w-100 d-flex">
@@ -78,7 +78,7 @@
                                   <a v-for="follow in fetchedFollowList" :key="follow.index" class="m-0 list-group-item list-group-item-action py-0">
                                     <div class="row py-2">
                                       <div class="col-2 d-flex justify-content-center align-self-center p-0">
-                                        <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="follow.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'" alt=""> 
+                                        <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="follow.profile_url" alt=""> 
                                       </div>
                                       <div class="col-8 py-0" style="position: relative; overflow: hidden;">
                                         <p class="mb-0 ml-2">{{ follow.user_id }}</p>

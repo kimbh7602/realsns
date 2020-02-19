@@ -40,7 +40,7 @@
                   <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'follow'" class="row py-0 mx-0"  >
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id">
@@ -57,7 +57,7 @@
                     </td>
                     <td v-if="item.category == 'like'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -75,7 +75,7 @@
                     </td>
                     <td v-if="item.category == 'scrap'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -93,7 +93,7 @@
                     </td>
                     <td v-if="item.category == 'report'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -115,7 +115,7 @@
                   <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'follow'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -137,7 +137,7 @@
                   <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'like'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -159,7 +159,7 @@
                   <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'scrap'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">
@@ -181,7 +181,7 @@
                   <tr v-for="(item, index) in allNoti" :key="`follow${index}`" :class="{read: item.is_checked}" @click="read(item)">
                     <td v-if="item.category == 'report'" class="row py-0 mx-0">
                       <div class="col-md-10 d-flex">
-                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                        <img class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" :src="item.profile_url">
                         <div class="ml-2">
                           <div class="text-left">
                             <router-link class="m-0" :to="'/mypage/'+item.user_id"><span style="font-weight: 550;">

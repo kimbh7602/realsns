@@ -4,7 +4,7 @@
             <div v-for="message in fetchedDirectMessageList" :key="message.id">
                 <div class="row my-2" v-if="message.receive_id == userDm.user_id">
                     <div class="col-md-1 d-flex justify-content-center align-items-center ml-2">
-                        <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'" alt=""> 
+                        <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url" alt=""> 
                     </div>
                     <div class="col-md-10 pl-3 p-0 d-flex align-self-center">
                         <!-- <div class="w-100">

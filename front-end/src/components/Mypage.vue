@@ -102,7 +102,7 @@
                     <div class="modal-body" style="overflow: auto; height:400px;">
                         <div v-for="(follower, index) in fetchedFollowerList" :key="`follower${index}`" class="d-flex align-items-center justify-content-between mb-3">
                             <a :href="`/mypage/${follower.user_id}`" class="text-dark d-flex m-0 align-items-center">
-                                <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follower.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                                <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follower.profile_url">
                                 {{follower.user_id}}
                             </a>
                             <!-- <router-link :to="'/mypage/'+follower" class="d-flex text-dark" @click="fetchUserInfo(follower); "><i class="icon-user-circle mr-2" style="font-size:1.9em;"></i> {{follower}}</router-link> -->
@@ -126,7 +126,7 @@
                     <div class="modal-body" style="overflow: auto; height:400px;">
                         <div v-for="(follow, index) in fetchedFollowList" :key="`follow${index}`" class="d-flex align-items-center justify-content-between mb-3">
                              <a :href="`/mypage/${follow.user_id}`" class="text-dark d-flex m-0 align-items-center">
-                                <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follow.profile_url || 'https://t1.daumcdn.net/qna/image/1542632018000000528'">
+                                <img class="rounded-circle mr-3" width="40px" height="40px" style="object-fit: cover;" :src="follow.profile_url">
                                 {{follow.user_id}}
                             </a>
                             <span v-show="myId != follow.user_id && myFollowList.includes(follow.user_id)" @click="targetUser = follow" data-toggle="modal" data-target="#deleteFollowModal" class="btn btn-outline-primary btn-sm">팔로잉</span> 
