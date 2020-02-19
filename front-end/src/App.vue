@@ -94,6 +94,7 @@
       return {
         noti: [],
         noticeError: "",
+        visit:"",
       }
     },
     components: {
