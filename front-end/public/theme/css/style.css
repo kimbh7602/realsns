@@ -206,6 +206,9 @@ h1, h2, h3, h4, h5,
   overflow: hidden;
   position: relative; }
   @media (max-width: 991.98px) {
+    .toggle-div{
+      display:block;
+    }
     .hover-bg-enlarge {
       height: auto !important; } }
   .hover-bg-enlarge > div {
