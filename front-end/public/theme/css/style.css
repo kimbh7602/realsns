@@ -4,6 +4,7 @@ body {
   color: gray;
   font-weight: 400;
   font-size: 1rem;
+  padding-right: 0 !important;
   background: #000; }
 
 /* 공지사항 항상 맨위에 위치 */
