@@ -544,7 +544,6 @@ export default {
                 // if (this.Items == []) {
                 //   this.contentErrorMsg = "스크랩 목록이 비었습니다."
                 // }
-                this.$store.commit('setScrapCount',this.$store.commit('getScrapCount')-1);
               }
             } else {
               console.log(res.data.resmsg)

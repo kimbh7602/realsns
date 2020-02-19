@@ -61,7 +61,7 @@
                 </div>
                 <div class="text-center col-3">
                     <a href="javascript:void(0)" class="m-0 p-0" @click="scrap()">스크랩</a>
-                    <h4 v-if="userScrap">{{ScrapCount}}</h4>
+                    <h4 v-if="userScrap">{{userScrap.length}}</h4>
                     <h4  v-else>0</h4>
                 </div>
             </div>
@@ -282,7 +282,6 @@ export default {
                 .get(`scrap/scrapList/${id}`)
                 .then(response => {
                     this.userScrap = response.data.resvalue;
-                    this.$store.commit('scrapcount', this.userScrap.length);
                 })
         },
         content() {
@@ -353,11 +352,6 @@ export default {
                     name: 'chating',
                 })
             }
-        },
-    },
-    watch: {
-        ScrapCount: function () {
-            return this.$store.commit('getScrapCount');
         },
     },
     created() {
