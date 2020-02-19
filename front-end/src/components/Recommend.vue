@@ -187,6 +187,7 @@ export default {
       http
         .get(`/user/myInterest/${this.userId}`)
         .then((res) => {
+          window.console.log("여긴한번?")
           res.data.resValue.forEach(element => {
             this.myInterest.push(element);
             this.Interests.push(element);
@@ -238,10 +239,6 @@ export default {
                   
                 })
                 .finally(()=>{
-                  
-                  })
-        })
-        .finally(() => {
                   http
                     .post(`/content/contentListHashtagList/`, this.Interests)
                     .then((res) => {
@@ -326,6 +323,10 @@ export default {
                         }, 500);
                       }
                     })
+                  
+                  })
+        })
+        .finally(() => {
           
         })
     },
