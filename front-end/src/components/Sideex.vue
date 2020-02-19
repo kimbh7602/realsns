@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="site-mobile-menu">
+        <div class="site-mobile-menu yscroll" style="overflow-y:auto">
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close mt-3">
                     <span class="icon-close2 js-menu-toggle"></span>
@@ -78,7 +78,7 @@
                                 style="font-size:1.9em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">
-                        <router-link to="/crawling">Hashtag Search <i class="icon-tag text-white"
+                        <router-link to="/crawling">Tag Search <i class="icon-tag text-white"
                                 style="font-size:1.5em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">

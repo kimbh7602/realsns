@@ -16,7 +16,11 @@
                     <label class="text-white">Location Search</label> 
                     <input v-model="searchKeyword" type="text" class="form-control">
                     <br>
+<<<<<<< HEAD
                     <input @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
+=======
+                    <input data-toggle="modal" @click="searchLocation" type="button" value="Search" class="btn btn-outline-light btn-block">
+>>>>>>> 8aa2be94b6d18b1c68476f3996173c29ddd01fe8
                     </div>
                 </div>
                 <div v-if="!isLocation&&!isLocationSelect">
@@ -52,7 +56,7 @@
                     </div>
                 </div>
                 
-                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index:99999;">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body" style="text-align:center;">
@@ -331,6 +335,7 @@ export default {
                                         text: addr
                                     }
                                 })
+                                document.getElementById("mapModal").click();
                             })
                             .catch((error)=>{
                               alert(error)

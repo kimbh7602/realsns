@@ -20,7 +20,7 @@
             data-swpr-responsive="[1, 2, 1, 2]">
             <div class="swiper-wrapper" style="height:10px;">
               <div class="elip text-white swiper-slide"
-                style="font-size:1.5em;font-family: hand_mail; background-color:black;" v-for="no in noti"
+                style="font-size:1.5em;font-family: hand_mail; background-color:black;" @click="notimodal(no)" v-for="no in noti"
                 :key="no.index">
                 {{no}}
               </div>
@@ -118,6 +118,10 @@
               this.noticeError = "공지사항이 없습니다."
             }
           })
+      },
+      notimodal(noti){
+        this.$store.commit('setModalText', noti);
+        document.getElementById('modalBtn').click();
       }
     },
     computed: {
@@ -176,7 +180,7 @@
   }
 
   #myModal {
-    z-index: 99999;
+    z-index: 99998;
     padding-right:0px;
   }
 
