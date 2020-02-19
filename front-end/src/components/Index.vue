@@ -231,12 +231,12 @@ export default {
                   .get('content/contentListHashtag/'+dis)
                   .then((res)=>{
                     if(res.data.resmsg=='해시태그 포함 게시물 리스트 출력 성공'){
-                      for(var idx9=0; idx9<res.data.resValue.length; idx9++){
-                        if (!this.dList.includes(res.data.resvalue[idx9].content_id)) {
-                          this.dList.push(res.data.resValue[idx9].content_id);
+                      for(var idx=0; idx<res.data.resValue.length; idx++){
+                        // if (!this.dList.includes(res.data.resvalue[idx9].content_id)) {
+                          this.dList.push(res.data.resValue[idx]);
                           window.console.log("this.dList");
                           // window.console.log(this.dList);
-                        }
+                        // }
                       }
                     }
                   })
