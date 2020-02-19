@@ -450,3 +450,9 @@
     },
   }
 </script>
+
+<style scoped>
+  body{
+    padding-right:0px;
+  }
+</style>

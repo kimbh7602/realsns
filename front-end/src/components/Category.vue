@@ -687,6 +687,9 @@ export default {
     transform: translateY(-50%);
     transform: translateX(-50%);
   }
+  body{
+    padding-right:0px;
+  }
   .blur {
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);

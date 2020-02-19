@@ -434,6 +434,9 @@ export default {
 </script>
 
 <style scoped>
+  body{
+    padding-right:0px;
+  }
 #container::-webkit-scrollbar {
     display: none !important;
 }

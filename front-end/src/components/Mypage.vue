@@ -151,6 +151,7 @@ export default {
             userInfo: {},
             userContent: [],
             userScrap: [],
+            userScraplength:0,
             check: 'content',
             targetUserDm: {},
             possible: true,
@@ -260,6 +261,7 @@ export default {
                 .get(`scrap/scrapList/${id}`)
                 .then(response => {
                     this.userScrap = response.data.resvalue;
+                    this.userScraplength = this.userScrap.length;
                 })
         },
         content() {
@@ -395,4 +397,7 @@ export default {
   background-color: #000000;
   border: 1px solid #ffffff;
 }
+  body{
+    padding-right:0px;
+  }
 </style>

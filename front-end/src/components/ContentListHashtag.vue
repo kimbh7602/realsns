@@ -727,4 +727,7 @@ export default {
   .size {
     font-size: 1em;
   }
+    body{
+    padding-right:0px;
+  }
 </style>

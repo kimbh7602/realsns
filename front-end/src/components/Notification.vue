@@ -446,4 +446,7 @@ small {
 .nav-link {
   cursor: pointer;
 }
+  body{
+    padding-right:0px;
+  }
 </style>

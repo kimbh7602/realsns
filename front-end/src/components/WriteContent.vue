@@ -551,4 +551,7 @@ export default {
   border-color: #fff;
   color: #333;
 } 
+  body{
+    padding-right:0px;
+  }
 </style>

@@ -526,4 +526,7 @@ export default {
   width:100%;
   z-index:1;
 }
+  body{
+    padding-right:0px;
+  }
 </style>
