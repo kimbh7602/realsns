@@ -48,4 +48,10 @@
         delete from direct_message
         where dm_id = #{dm_id}
     </delete>
+    
+    <select id="allUnReadCnt" parameterType="string" resultType="int">
+    	select count(*) from direct_message
+    	where receive_id = #{user_id}
+    	and read_check = false
+    </select>
 </mapper>

@@ -199,6 +199,18 @@
                 }
                 // this.fetchNoti();
             });
+
+            this.$socket.on('unReadCnt', (data) => {
+                window.console.log(data);
+                if(data == this.$store.state.user_id){
+                    http
+                        .get('/directMessage/allUnReadCnt/' + this.$store.state.user_id)
+                        .then((res) => {
+                            this.$store.commit('SET_UNREADCNT', res.data.resvalue);
+                            window.console.log(this.$store.state.unReadCnt);
+                        })
+                }
+            });
         }
     }
 </script>

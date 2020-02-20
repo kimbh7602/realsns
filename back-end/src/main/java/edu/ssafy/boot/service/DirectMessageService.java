@@ -48,4 +48,9 @@ public class DirectMessageService implements IDirectMessageService {
     public void deleteOldMessage() {
         dao.deleteOldMessage();
     }
+
+	@Override
+	public int allUnReadCnt(String user_id) {
+		return dao.allUnReadCnt(user_id);
+	}
 }

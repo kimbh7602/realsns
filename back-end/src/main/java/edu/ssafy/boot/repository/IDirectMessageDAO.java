@@ -12,4 +12,5 @@ public interface IDirectMessageDAO {
     public boolean directMessageReadCheck(UserDmVo userDm);
     public int directMessageUnReadCnt(UserDmVo userDm, String user_id);
     public void deleteOldMessage();
+    public int allUnReadCnt(String user_id);
 }
