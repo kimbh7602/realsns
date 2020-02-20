@@ -194,6 +194,12 @@ export default {
         })
         .catch(e => console.log(e))
       
+      http
+        .get('/directMessage/allUnReadCnt/' + this.$store.state.user_id)
+        .then((res) => {
+          this.$store.commit('SET_UNREADCNT', res.data.resvalue);
+        })
+      
       this.socket.emit('read', {
         send_id: userDm.other_id,
         receive_id: userDm.user_id
@@ -369,6 +375,12 @@ export default {
     })
 
     this.$nextTick(() => {
+      http
+        .get('/directMessage/allUnReadCnt/' + this.$store.state.user_id)
+        .then((res) => {
+          this.$store.commit('SET_UNREADCNT', res.data.resvalue);
+        })
+
       this.fetchedUserDmList.forEach(dm => {
          http
             .post(`/directMessage/unReadCnt/${this.userId}`, dm)
