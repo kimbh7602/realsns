@@ -149,7 +149,7 @@ export default {
       contentIds: [],
       contentErrorMsg: "",
       Items:[],
-      followList: [],
+      followList: this.myFollowList,
       readReportList: [],
       scrapList: [],
       reportMyList: [],
@@ -533,6 +533,7 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx > -1) {
           this.followList.splice(idx, 1)
+          this.$emit('updateParentFollow', this.followList);
         }
       } else {
         http
@@ -554,6 +555,7 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx == -1) {
           this.followList.push(user)
+          this.$emit('updateParentFollow', this.followList);
         }
       }
     },
@@ -620,11 +622,11 @@ export default {
         this.getData()
       }else if(this.myPage == true){
         this.getMypage();
-        this.getFollow();
+        // this.getFollow();
         this.getUserScrap();
         this.getReport();
       }else if(this.myPage == false){
-        this.getFollow();
+        // this.getFollow();
         this.getScrap();
         this.getUserScrap();
         this.getReport();
@@ -661,7 +663,6 @@ export default {
     this.getLike();
     this.getDislike();
     this.fetchData();
-    console.log(this.myFollowList)
   },
   mounted() {
     $('html').scrollTop(0);
