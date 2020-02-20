@@ -140,7 +140,7 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage","myFollowList"],
+  props:["userId", "myPage"],
   data() {
     return {
       dList:[],
@@ -665,7 +665,6 @@ export default {
   mounted() {
     $('html').scrollTop(0);
     this.$nextTick(() => {
-    console.log(this.myFollowList);
       if(window.innerWidth <= 501){
           setTimeout(() => {
             window.addEventListener('scroll', this.scrollHandler)
