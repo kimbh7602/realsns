@@ -454,7 +454,7 @@ export default {
     //       this.errored = true;
     //     })
     // },
-    goDetail: function(con_id) {
+    goDetail(con_id) {
       this.$router.push({
         name: 'bio',
         params: {
