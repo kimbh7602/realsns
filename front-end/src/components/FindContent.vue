@@ -968,9 +968,9 @@ export default {
                     },
                     name: this.location_name
                 }
-                if (res.data.resValue.length > 0) {
-                            console.log(this.userLikeList);
-          console.log(this.scrapList);
+                // if (res.data.resValue.length > 0) {
+                  console.log(this.userLikeList);
+                  console.log(this.scrapList);
                   window.console.log("axios로 받은거")
                   window.console.log(res.data.resValue[0].content_id)
                   window.console.log(this.scrapList.includes(res.data.resValue[0].content_id))
@@ -1076,9 +1076,9 @@ export default {
                             }, 500);
                             }
                         })
-                } else {
-                    this.contentErrorMsg = "타임라인이 없습니다."
-                }
+                // } else {
+                //     this.contentErrorMsg = "타임라인이 없습니다."
+                // }
             })
         }
 
