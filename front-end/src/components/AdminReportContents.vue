@@ -43,10 +43,10 @@
                             <div class="row">
                                 <div class="value col-12">
                                     <div class='top col-12 row'>
-                                        <div class="col-6">
-                                            <p class="text-white" style="text-overflow: ellipsis; overflow: hidden;">신고횟수 : {{con.dislike}}</p>
+                                        <div class="col-4">
+                                            <p class="text-white text-left" style="text-overflow: ellipsis; overflow: hidden;">신고횟수 : {{con.dislike}}</p>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-8">
                                             <p class="text-white" style="text-overflow: ellipsis; overflow: hidden;">ID : {{con.userId}}</p>
                                         </div>
                                     </div>
