@@ -87,6 +87,10 @@
 		select * from contents
 		where hashtag like concat('%', #{tag}, '%')
 	</select>
+	
+	<select id="allContents" resultType="ContentVo">
+		select * from contents
+	</select>
 
 	<insert id="insertTempImage" parameterType="TempImageVo">
 		insert into temp_image

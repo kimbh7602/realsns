@@ -29,7 +29,6 @@ public class BlockVo {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
 		Date currentTime = new Date();
-		currentTime.setHours(currentTime.getHours()+9);
 		String dTime = formatter.format ( currentTime );
 		this.Timestamp = dTime;
 	

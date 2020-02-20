@@ -47,7 +47,7 @@ public class AdminController {
 			chain = serbc.getChain();
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (chain != null) {
-				for (int i = 1; i < (int) chain.size(); i++) {
+				for (int i = chain.size()-1; i > 0; i--) {
 					chain2.add(chain.get(i));
 				}
 				map.put("resmsg", "조회성공");

@@ -313,6 +313,7 @@ export default {
             if(this.isLocationSelect){
                 http
                     .put("/content/updateContent",{
+                    user_id:this.$store.state.user_id,
                     content_id:this.items.content_id,
                     content_val:this.intro,
                     hashtagList:this.itrlist,

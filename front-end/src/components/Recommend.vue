@@ -8,7 +8,7 @@
       <div v-if="!isLoading&&(contents == null || contents.length == 0)" style="text-align:center;">
                     검색 결과가 없습니다.
                 </div>
-                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0)">
+                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0 || (contents.length == 1 && contents[0].contentId == ''))">
                     <img class="col-md-12" src="/theme/images/loading10.gif" />
                 </div>
       <div v-else class="row align-items-stretch">
@@ -253,6 +253,7 @@ export default {
                   axios
                     .get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
                     .then((res) => {
+                      window.console.log(res.data);
                       axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
                               "q": res.data,
                               "target": "ko"
@@ -266,20 +267,130 @@ export default {
                                 }
                                 return(num>=3);
                               });
-                            })
-                              .finally(()=>{
-                                http
+                              window.console.log(num);
+
+                              http
                                 .get(`/user/allInterestList`)
                                 .then((res) => {
+                                  window.console.log(res.data.resValue);
                                   // window.console.log("여긴가")
                                   res.data.resValue.forEach( element => {
                                     if(element != "" && !this.Interests.includes(element)){
                                       this.Interests.push(element);
                                     }
                                   })
-                                                  // window.console.log(this.Interests);
+                                  
+                                  window.console.log(this.Interests);
+                                  // this.contents = [];
+                                  http
+                                    .post(`/content/contentListHashtagList/`, this.Interests)
+                                    .then((res) => {
+                                      this.isLoading = false;
+                                      if (this.contents[0].contentId == "") {
+                                        this.contents = []
+                                      }
+
+                                      if (res.data.resValue.length > 0) {
+                                        this.contentErrorMsg = ""
+                                        for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                                          for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
+                                            if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
+                                              res.data.resValue[idx].user_like = true
+                                            }
+                                          }
+                                          if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
+                                            if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
+                                              let flag = true;
+                                              this.contents.some(element => {
+                                                if(element.contentId == res.data.resValue[idx].content_id){
+                                                  flag = false;
+                                                  return true;
+                                                }
+                                              })
+                                              if(flag){
+                                                this.contents.push({
+                                                  contentId: res.data.resValue[idx].content_id,
+                                                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                                                  timestamp: res.data.resValue[idx].timestamp,
+                                                  likeButton: res.data.resValue[idx].user_like,
+                                                  userId: res.data.resValue[idx].user_id,
+                                                  hashtag: res.data.resValue[idx].hashtag,
+                                                  imageLength: res.data.resValue[idx].imageList.length,
+                                                  images: [{
+                                                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                                    filter: res.data.resValue[idx].imageList[0].filter,
+                                                  }],
+                                                  scrapButton: true,
+                                                  dislike: res.data.resValue[idx].dislike,
+                                                  profileUrl: res.data.resValue[idx].profile_url,
+                                                  profileFilter: res.data.resValue[idx].profile_filter,
+                                                })
+                                              }
+                                            }
+                                            else{
+                                              let flag = true;
+                                              this.contents.some(element => {
+                                                if(element.contentId == res.data.resValue[idx].content_id){
+                                                  flag = false;
+                                                  return true;
+                                                }
+                                              })
+                                              if(flag){
+                                                this.contents.push({
+                                                  contentId: res.data.resValue[idx].content_id,
+                                                  contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                                                  timestamp: res.data.resValue[idx].timestamp,
+                                                  likeButton: res.data.resValue[idx].user_like,
+                                                  userId: res.data.resValue[idx].user_id,
+                                                  hashtag: res.data.resValue[idx].hashtag,
+                                                  imageLength: res.data.resValue[idx].imageList.length,
+                                                  images: [{
+                                                    imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                                                    filter: res.data.resValue[idx].imageList[0].filter,
+                                                  }],
+                                                  scrapButton: false,
+                                                  dislike: res.data.resValue[idx].dislike,
+                                                  profileUrl: res.data.resValue[idx].profile_url,
+                                                  profileFilter: res.data.resValue[idx].profile_filter,
+                                                })
+                                              }
+                                            }
+                                          }
+                                        }
+                                        // this.sortList()
+                                        // this.getReport()
+                                      } else {
+                                        this.contentErrorMsg = "추천 게시물이 없습니다."
+                                      }
+
+                                      // this.Items = res.data.resValue;
+                                      // this.Items.forEach(element => {
+                                      this.contents.forEach(element => {
+                                        element.value = 0;
+                                        this.myInterest.forEach(interest => {
+                                          if(element.hashtag.includes(interest)){
+                                            element.value++;
+                                          }
+                                        })
+                                      });
+                                      this.contents.sort(function(a, b){
+                                        return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
+                                      });
+                                      if(window.innerWidth <= 501){
+                                        setTimeout(() => {
+                                          window.removeEventListener('scroll', this.scrollHandler);
+                                          window.addEventListener('scroll', this.scrollHandler)
+                                        }, 500);
+                                      }
+                                    })
+
 
                               })
+
+
+                            })
+                              .finally(()=>{
+                                
                             })
                     })
                 });
@@ -287,90 +398,7 @@ export default {
                 
               })
               .finally(()=>{
-                window.console.log(this.Interests);
-                http
-                  .post(`/content/contentListHashtagList/`, this.Interests)
-                  .then((res) => {
-                    this.isLoading = false;
-                    if (this.contents[0].contentId == "") {
-                      this.contents = []
-                    }
-
-                    if (res.data.resValue.length > 0) {
-                      this.contentErrorMsg = ""
-                      for (var idx = 0; idx < res.data.resValue.length; idx++) {
-                        for (var idx2 = 0; idx2 < this.userLikeList.length; idx2++) {
-                          if (res.data.resValue[idx].content_id == this.userLikeList[idx2].contentId) {
-                            res.data.resValue[idx].user_like = true
-                          }
-                        }
-                        if(!this.myContentList.includes(res.data.resValue[idx].content_id)){
-                          if (this.scrapList.includes(res.data.resValue[idx].content_id)) {
-                            this.contents.push({
-                              contentId: res.data.resValue[idx].content_id,
-                              contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                              timestamp: res.data.resValue[idx].timestamp,
-                              likeButton: res.data.resValue[idx].user_like,
-                              userId: res.data.resValue[idx].user_id,
-                              hashtag: res.data.resValue[idx].hashtag,
-                              imageLength: res.data.resValue[idx].imageList.length,
-                              images: [{
-                                imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                filter: res.data.resValue[idx].imageList[0].filter,
-                              }],
-                              scrapButton: true,
-                              dislike: res.data.resValue[idx].dislike,
-                              profileUrl: res.data.resValue[idx].profile_url,
-                              profileFilter: res.data.resValue[idx].profile_filter,
-                            })
-                          }
-                          else{
-                            this.contents.push({
-                              contentId: res.data.resValue[idx].content_id,
-                              contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-                              timestamp: res.data.resValue[idx].timestamp,
-                              likeButton: res.data.resValue[idx].user_like,
-                              userId: res.data.resValue[idx].user_id,
-                              hashtag: res.data.resValue[idx].hashtag,
-                              imageLength: res.data.resValue[idx].imageList.length,
-                              images: [{
-                                imageUrl: res.data.resValue[idx].imageList[0].image_url,
-                                filter: res.data.resValue[idx].imageList[0].filter,
-                              }],
-                              scrapButton: false,
-                              dislike: res.data.resValue[idx].dislike,
-                              profileUrl: res.data.resValue[idx].profile_url,
-                              profileFilter: res.data.resValue[idx].profile_filter,
-                            })
-                          }
-                        }
-                      }
-                      // this.sortList()
-                      // this.getReport()
-                    } else {
-                      this.contentErrorMsg = "추천 게시물이 없습니다."
-                    }
-
-                    // this.Items = res.data.resValue;
-                    // this.Items.forEach(element => {
-                    this.contents.forEach(element => {
-                      element.value = 0;
-                      this.myInterest.forEach(interest => {
-                        if(element.hashtag.includes(interest)){
-                          element.value++;
-                        }
-                      })
-                    });
-                    this.contents.sort(function(a, b){
-                      return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
-                    });
-                    if(window.innerWidth <= 501){
-                      setTimeout(() => {
-                        window.removeEventListener('scroll', this.scrollHandler);
-                        window.addEventListener('scroll', this.scrollHandler)
-                      }, 500);
-                    }
-                  })
+                
                 })
           })
         .finally(() => {
