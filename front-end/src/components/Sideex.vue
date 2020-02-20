@@ -166,6 +166,9 @@
             },
             NotifyCount: () => {
                 return store.state.noticount;
+            },
+            UnReadCnt: () => {
+                return parseInt(store.state.unReadCnt);
             }
         },
         created() {
@@ -177,6 +180,13 @@
                 .catch(error => {
                     window.console.log(error);
                 })
+
+            http
+                .get('/directMessage/allUnReadCnt/' + this.$store.state.user_id)
+                .then((res) => {
+                    this.$store.commit('SET_UNREADCNT', res.data.resvalue);
+                })
+
             // this.socket = io('http://52.79.166.146:3000');
             this.$socket.on('notification', (data) => {
                 //   window.console.log('notification', data, this.$store.state.user_id);
@@ -201,13 +211,11 @@
             });
 
             this.$socket.on('unReadCnt', (data) => {
-                window.console.log(data);
                 if(data == this.$store.state.user_id){
                     http
                         .get('/directMessage/allUnReadCnt/' + this.$store.state.user_id)
                         .then((res) => {
                             this.$store.commit('SET_UNREADCNT', res.data.resvalue);
-                            window.console.log(this.$store.state.unReadCnt);
                         })
                 }
             });
