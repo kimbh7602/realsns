@@ -83,8 +83,9 @@
 		where content_id = #{content_id}
 	</update>
 
-	<select id="contentListHashtag" resultType="ContentVo">
+	<select id="contentListHashtag" parameterType="string" resultType="ContentVo">
 		select * from contents
+		where hashtag like concat('%', #{tag}, '%')
 	</select>
 
 	<insert id="insertTempImage" parameterType="TempImageVo">

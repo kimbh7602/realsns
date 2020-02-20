@@ -44,10 +44,10 @@
                                 <div class="value col-12">
                                     <div class='top col-12 row'>
                                         <div class="col-6">
-                                            <p class="centertext text-white ">신고횟수 : {{con.dislike}}</p>
+                                            <p class="centertext text-white txt_line">신고횟수 : {{con.dislike}}</p>
                                         </div>
                                         <div class="col-6">
-                                            <p class="centertext text-white ">ID : {{con.userId}}</p>
+                                            <p class="centertext text-white txt_line">ID : {{con.userId}}</p>
                                         </div>
                                     </div>
                                     <div class='cate col-12'>
@@ -275,6 +275,13 @@
     }
 </script>
 <style scoped>
+    .txt_line {
+        width: 170px;
+        padding:2 10px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
     .ellipsis {
         overflow: hidden;
         text-overflow: ellipsis;

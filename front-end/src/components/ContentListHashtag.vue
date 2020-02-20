@@ -776,17 +776,6 @@ export default {
     width: 80%;
     height: 80%;
   }
-  .modal-dialog { 
-      width: 30%; 
-      height: 50%;
-  }
-  .modal-content{
-    height: auto;
-    min-height: 100%;
-  }
-  .mydiv {
-    margin-top: 7em;
-  }
   .size {
     font-size: 1em;
   }
