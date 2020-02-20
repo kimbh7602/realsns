@@ -17,39 +17,39 @@ public class BlockchainService implements IBlockchainService {
 	public BlockchainService() {
 		chain = new ArrayList<BlockVo>();
 		chain.add(generateGenesis());
-		LogVo log = new LogVo("smapleid1","samplepw","회원가입");
+		LogVo log = new LogVo("smapleid1","sampleip","회원가입");
 		BlockVo block = new BlockVo(log,"2020.02.20 12:33:42");
 		addBlock(block);
 		
-		LogVo log1 = new LogVo("smapleid2","samplepw","회원가입");
+		LogVo log1 = new LogVo("smapleid2","sampleip","회원가입");
 		BlockVo block1 = new BlockVo(log1,"2020.02.19 21:15:42");
 		addBlock(block1);
 		
-		LogVo log2 = new LogVo("smapleid3","samplepw","회원가입");
+		LogVo log2 = new LogVo("smapleid3","sampleip","회원가입");
 		BlockVo block2 = new BlockVo(log2,"2020.02.19 15:47:42");
 		addBlock(block2);
-		LogVo log3 = new LogVo("smapleid4","samplepw","회원가입");
+		LogVo log3 = new LogVo("smapleid4","sampleip","회원가입");
 		BlockVo block3 = new BlockVo(log3,"2020.02.18 11:49:42");
 		addBlock(block3);
-		LogVo log4 = new LogVo("smapleid5","samplepw","회원가입");
+		LogVo log4 = new LogVo("smapleid5","sampleip","회원가입");
 		BlockVo block4 = new BlockVo(log4,"2020.02.18 02:21:42");
 		addBlock(block4);
-		LogVo log5 = new LogVo("smapleid6","samplepw","회원가입");
+		LogVo log5 = new LogVo("smapleid6","sampleip","회원가입");
 		BlockVo block5 = new BlockVo(log5,"2020.02.17 16:42:42");
 		addBlock(block5);
-		LogVo log6 = new LogVo("smapleid7","samplepw","회원가입");
+		LogVo log6 = new LogVo("smapleid7","sampleip","회원가입");
 		BlockVo block6 = new BlockVo(log6,"2020.02.17 16:42:42");
 		addBlock(block6);
-		LogVo log7 = new LogVo("smapleid8","samplepw","회원가입");
+		LogVo log7 = new LogVo("smapleid8","sampleip","회원가입");
 		BlockVo block7 = new BlockVo(log7,"2020.02.17 16:42:42");
 		addBlock(block7);
-		LogVo log8 = new LogVo("smapleid9","samplepw","회원가입");
+		LogVo log8 = new LogVo("smapleid9","sampleip","회원가입");
 		BlockVo block8 = new BlockVo(log8,"2020.02.17 16:42:42");
 		addBlock(block8);
-		LogVo log9 = new LogVo("smapleid10","samplepw","회원가입");
+		LogVo log9 = new LogVo("smapleid10","sampleip","회원가입");
 		BlockVo block9 = new BlockVo(log9,"2020.02.17 12:42:42");
 		addBlock(block9);
-		LogVo log10 = new LogVo("smapleid11","samplepw","회원가입");
+		LogVo log10 = new LogVo("smapleid11","sampleip","회원가입");
 		BlockVo block10 = new BlockVo(log10,"2020.02.16 11:42:42");
 		addBlock(block10);
 	}
