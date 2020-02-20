@@ -941,10 +941,12 @@ export default {
 
 
     },
+    created(){
+      this.getDislike();
+      this.getLike()
+      this.getScrap()
+    },
     mounted(){
-        this.getDislike();
-        this.getLike()
-        this.getScrap()
         $('html').scrollTop(0);
         if(this.location_name != undefined){
             http.post("/content/findByLocation",{
