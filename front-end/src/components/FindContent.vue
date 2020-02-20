@@ -949,8 +949,6 @@ export default {
     mounted(){
         $('html').scrollTop(0);
         this.getDislike();
-        this.getLike()
-        this.getScrap()
         if(this.location_name != undefined){
           console.log(this.userLikeList);
           console.log(this.scrapList);
@@ -974,7 +972,7 @@ export default {
                 }
                 if (res.data.resValue.length > 0) {
                   window.console.log("axios로 받은거")
-                  window.console.log(res.data.resValue)
+                  window.console.log(res.data.resValue[0].content_id)
                   window.console.log(this.scrapList.includes(res.data.resValue[0].content_id))
                   window.console.log(this.userLikeList.includes(res.data.resValue[0].content_id))
                   this.contentErrorMsg = ""
