@@ -281,7 +281,7 @@ export default {
                                   })
                                   
                                   window.console.log(this.Interests);
-                                  this.contents = [];
+                                  // this.contents = [];
                                   http
                                     .post(`/content/contentListHashtagList/`, this.Interests)
                                     .then((res) => {
