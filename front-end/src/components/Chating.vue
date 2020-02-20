@@ -30,7 +30,7 @@
                                               <div class="w-100 d-flex">
                                                   <p v-if="userId == userDm.user_id" class="mb-0 mx-2">{{ userDm.other_id }}</p>
                                                   <p v-else class="mb-0 mx-2">{{ userDm.user_id }}</p>
-                                                  <span class="badge badge-primary badge-pill align-self-center" v-text="userDm.cnt"></span>
+                                                  <!-- <span class="badge badge-primary badge-pill align-self-center" v-text="userDm.cnt"></span> -->
                                                   <!-- <small>{{ userDm.timestamp }}</small> -->
                                               </div>
                                               <div class="d-flex justify-content-between ml-2" style="position: relative; height:20px; overflow: hidden;">
