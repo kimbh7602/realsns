@@ -240,7 +240,7 @@
       var tmp;
       $('html').scrollTop(0);
       http
-        .get("user/info/" + this.$store.state.user_id)
+        .get("user/userinfo/" + this.$store.state.user_id)
         .then(response => {
           if (response.data['resmsg'] == "조회성공") {
             tmp = response.data['resvalue'];
