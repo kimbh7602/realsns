@@ -971,9 +971,12 @@ export default {
                     name: this.location_name
                 }
                 if (res.data.resValue.length > 0) {
+                  window.console.log("axios로 받은거")
+                  window.console.log(res.data.resValue)
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
+                      window.console.log("스크랩과 좋아요")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -991,6 +994,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                      window.console.log("좋아요만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1008,6 +1012,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                      window.console.log("스크랩만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1025,6 +1030,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                      window.console.log("스크랩도 안되고 좋아요도 안되고")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1047,6 +1053,7 @@ export default {
                     // this.getReport()
 
                     this.$nextTick(() => {
+                      window.console.log(this.contents);
                         if(window.innerWidth <= 501){
                             setTimeout(() => {
                               window.addEventListener('scroll', this.scrollHandler)
