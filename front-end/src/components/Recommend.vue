@@ -253,6 +253,7 @@ export default {
                   axios
                     .get("http://52.79.166.146:5000/searchByKeyword/" + keyword)
                     .then((res) => {
+                      window.console.log(res.data);
                       axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyAcnkt6IBUt-bGIMw4u-VEIYpesgw4-2Lk",{
                               "q": res.data,
                               "target": "ko"
@@ -266,11 +267,13 @@ export default {
                                 }
                                 return(num>=3);
                               });
+                              window.console.log(num);
                             })
                               .finally(()=>{
                                 http
                                 .get(`/user/allInterestList`)
                                 .then((res) => {
+                                  window.console.log(res.data.resValue);
                                   // window.console.log("여긴가")
                                   res.data.resValue.forEach( element => {
                                     if(element != "" && !this.Interests.includes(element)){
