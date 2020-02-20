@@ -14,7 +14,7 @@
             <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit.</p> -->
             <div class="row">
               <div class="col-md-12">
-                <form action="" method="post" @submit.prevent="confirm">
+                <form id="pwConfirmForm" action="" method="post" @submit.prevent="confirm">
                   <div style="display:none">
                     <input type="submit" onclick="return false;" />
                     <input type="text" />
@@ -24,7 +24,7 @@
                   <div class="row form-group">
                     <div class="col-md-12">
                       <label class="text-white" for="upw">현재 패스워드</label>
-                      <input type="password" v-model="upw" id="upw" class="form-control" v-on:keyup.enter="submit()">
+                      <input type="password" v-model="upw" id="upw" class="form-control" v-on:keyup.enter="confirm">
                     </div>
                   </div>
 
