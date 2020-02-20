@@ -168,7 +168,7 @@ export default {
         return {
             myId: this.$store.state.user_id,
             // userId: this.$route.params.userId,
-            myFollowList: [],
+            myFollowList: ["aa"],
             myInfo: {},
             userInfo: {},
             userContent: [],
