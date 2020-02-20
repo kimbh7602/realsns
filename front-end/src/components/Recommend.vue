@@ -31,14 +31,16 @@
               </div>
             </div>
             <div class="polaroid" v-show="con.dislike > 4 && !readContents.includes(con.contentId) && !reportMyList.includes(con.contentId)">
-              <div style="width:100%; height:100%">
-                <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0" style="box-shadow: 3px 3px 3px;"/>
-                <p class="centertext text-white">신고가 누적된 게시물입니다.</p>
-                <button class="centerbutton btn btn-primary btn-sm" @click="readReCon(con.contentId)">보기</button>
+              <div style="width:100%; height:100%" :class="con.images[0].filter">
+                <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0"/>
+                <div class="centertext">
+                  <p class="text-white">신고 누적된 게시물입니다.</p>
+                  <button class="btn btn-outline-light btn-sm py-0" @click="readReCon(con.contentId)">보기</button>
+                </div>
               </div>
             </div>
             <div class="polaroid" v-show="reportMyList.includes(con.contentId) && !readContents.includes(con.contentId)">
-              <div style="width:100%; height:100%">
+              <div style="width:100%; height:100%" :class="con.images[0].filter">
                 <img :src="con.images[0].imageUrl" alt="Image" class="img-fluid pa blur m-0"/>
                 <div class="centertext">
                   <p class="text-white">내가 신고한 게시물입니다.</p>
