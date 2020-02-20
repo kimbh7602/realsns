@@ -392,16 +392,6 @@ export default {
       })
       .catch(e => console.log(e))
     },
-    sendInfo(cid, time) {
-      this.info = []
-      this.info.push({
-        content_id: cid,
-        user_id: this.loginId,
-        report_category: "",
-        report_val: "",
-        timestamp: time,
-      })
-    },
     opBtn() {
       this.optionButton = false
     },
