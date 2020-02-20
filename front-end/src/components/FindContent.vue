@@ -1052,6 +1052,7 @@ export default {
             })
         }
         this.$nextTick(() => {
+          console.log(this.contents);
             if(window.innerWidth <= 501){
                 setTimeout(() => {
                   window.addEventListener('scroll', this.scrollHandler)
