@@ -972,6 +972,8 @@ export default {
                     name: this.location_name
                 }
                 if (res.data.resValue.length > 0) {
+                  window.console.log(this.scrapList);
+                  window.console.log(this.userLikeList);
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
