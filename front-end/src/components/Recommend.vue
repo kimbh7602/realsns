@@ -283,6 +283,7 @@ export default {
                 
               })
               .finally(()=>{
+                window.console.log(this.Interests);
                 http
                   .post(`/content/contentListHashtagList/`, this.Interests)
                   .then((res) => {

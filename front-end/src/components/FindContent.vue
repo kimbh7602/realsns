@@ -457,7 +457,7 @@ export default {
                       profileUrl: res.data.resValue[idx].profile_url,
                       profileFilter: res.data.resValue[idx].profile_filter,
                     })
-                  } else{
+                  } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
                     this.contents.push({
                       contentId: res.data.resValue[idx].content_id,
                       contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -974,7 +974,6 @@ export default {
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
-                      console.log("둘다")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -992,7 +991,6 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
-                      console.log("라이크만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1010,7 +1008,6 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
-                      console.log("스크랩만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1028,7 +1025,6 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
-                      console.log("둘다아님")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
