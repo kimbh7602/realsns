@@ -140,6 +140,7 @@ public class DirectMessageController {
 	@GetMapping("/allUnReadCnt/{user_id}")
 	@ApiOperation(value = "안읽은메시지")
 	private @ResponseBody ResponseEntity<Map<String, Object>> allUnReadCnt(@PathVariable("user_id") String user_id) {
+		System.out.println("allUnReadCnt");
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		try {
 			int unreadCnt = ser.allUnReadCnt(user_id);
