@@ -974,6 +974,7 @@ export default {
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
+                      console.log("들어옴")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
