@@ -533,6 +533,8 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx > -1) {
           this.followList.splice(idx, 1)
+          this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
+          this.$store.dispatch('FETCH_FOLLOWERLIST', this.userId);
           this.$emit('updateParentFollow', this.followList);
         }
       } else {
@@ -555,6 +557,8 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx == -1) {
           this.followList.push(user)
+          this.$store.dispatch('FETCH_FOLLOWLIST', this.userId);
+          this.$store.dispatch('FETCH_FOLLOWERLIST', this.userId);
           this.$emit('updateParentFollow', this.followList);
         }
       }
