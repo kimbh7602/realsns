@@ -14,7 +14,15 @@ public class BlockVo {
 	private String prehash;
 	private LogVo data;
 	private String Timestamp;
+	
+	public BlockVo(LogVo data, String time) {
+		this.hash = computeHash();
+		this.data = data;
 
+		
+		this.Timestamp = time;
+	
+	}
 	public BlockVo(LogVo data) {
 		this.hash = computeHash();
 		this.data = data;
@@ -25,6 +33,7 @@ public class BlockVo {
 		this.Timestamp = dTime;
 	
 	}
+	
 
 	// 블록데이터 해쉬함수변환
 	public String computeHash() {
