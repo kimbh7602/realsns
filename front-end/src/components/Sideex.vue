@@ -62,7 +62,10 @@
                                 style="font-size:1.3em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">
-                        <router-link to="/chating">Chatting <i class="icon-paper-plane-o text-white"
+
+                        <router-link v-if="UnReadCnt == 0" to="/chating">Chatting <i class="icon-paper-plane-o text-white"
+                                style="font-size:1.3em;"></i></router-link>
+                        <router-link style="transition:1s; text-shadow:0 0 .1em, 0 0 .3em;" v-else to="/chating">Chatting2 <i class="icon-paper-plane-o text-white"
                                 style="font-size:1.3em;"></i></router-link>
                     </li>
                     <li v-show="loginCheck">

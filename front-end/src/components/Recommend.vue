@@ -97,44 +97,41 @@
           </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+      <!-- Modal -->
+      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <!-- <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
+            </div> -->
+            <div class="modal-body">
+              <div class="btn-group dropright">
+                <button class="btn btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                  신고 사항 선택
                 </button>
-              </div>
-              <div class="modal-body">
-                <div class="btn-group dropright">
-                  <button class="btn btn-whatever btn-sm dropdown-toggle" style="font-size:13px;" type="button" id="dropdownMenu2" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                    신고 사항 선택
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button" @click="sendReport(options[0].op1)">{{ options[0].op1 }}</button>
-                    <button class="dropdown-item" type="button" @click="sendReport(options[0].op2)">{{ options[0].op2 }}</button>
-                    <button class="dropdown-item" type="button" @click="sendReport(options[0].op3)" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{{ options[0].op3 }}</button>
-                  </div>
-                </div>
-
-                <div class="collapse" id="collapseExample">
-                  <div class="card card-body">
-                    <input type="text" v-model="options[0].op4" placeholder="기타를 선택하신 분은 신고 내용을 입력해주세요.">
-                  </div>
-                  <input class="btn btn-outline-info" type="button" value="입력" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" @click="sendReport2(options[0].op4)">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op1), reportOption(1)">{{ options[0].op1 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op2), reportOption(2)">{{ options[0].op2 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op3), reportOption(3)">{{ options[0].op3 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op4), reportOption(4)">{{ options[0].op4 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op5), reportOption(5)">{{ options[0].op5 }}</button>
+                  <button class="dropdown-item" type="button" @click="sendReport(options[0].op6), reportOption(6)">{{ options[0].op6 }}</button>
                 </div>
               </div>
-              <div class="modal-footer d-flex justify-content-end py-2">
-                <div class="d-block">
-                  <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="clickBell()">신고</button>
-                  <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal">닫기</button>
-                </div>
+              <p class="mt-3 ml-2">신고 사항 : {{ whatoption }}</p>
+              <div class="card card-body" v-show="optionButton">
+                <input type="text" v-model="options[0].op7" placeholder="신고 내용">
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end py-2">
+              <div class="d-block">
+                <button type="button" class="btn btn-danger mr-2 py-1 px-3" data-dismiss="modal" @click="clickBell(), opBtn()">신고</button>
+                <button type="button" class="btn btn-secondary py-1 px-3" data-dismiss="modal" @click="opBtn()">닫기</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
       </div>
 
@@ -183,12 +180,17 @@ export default {
       reportMyList: [],
       readContents: [],
       options: [{
-        op1: "부적절한 게시물",
-        op2: "광고 게시물",
-        op3: "기타",
-        op4: "",
+        op1: "선정적인 게시물",
+        op2: "폭력적인 게시물",
+        op3: "혐오적인 게시물",
+        op4: "허위 게시물",
+        op5: "스팸 게시물",
+        op6: "기타",
+        op7: "",
       }],
       info: [],
+      optionButton: false,
+      whatoption: "",
     }
   },
   methods: {
@@ -390,6 +392,16 @@ export default {
       })
       .catch(e => console.log(e))
     },
+    opBtn() {
+      this.optionButton = false
+    },
+    reportOption(id) {
+      if (id === 6) {
+        this.optionButton = true
+      } else {
+        this.optionButton = false
+      }
+    },
     sendInfo(cid, time) {
       this.info = []
       this.info.push({
@@ -401,10 +413,9 @@ export default {
       })
     },
     sendReport(report_category) {
+      this.whatoption = report_category
       this.info[0].report_category = report_category
-    },
-    sendReport2(report_val) {
-      this.info[0].report_val = report_val
+      this.info[0].report_val = this.options[0].op7
     },
     readReCon(cid) {
       this.readContents.push(cid)
@@ -646,18 +657,25 @@ export default {
           .post('/userReport/report', {
             content_id: this.info[0].content_id,
             report_category: this.info[0].report_category,
-            report_val: this.info[0].report_val,
+            report_val: this.options[0].op7,
             timestamp: this.info[0].timestamp,
             user_id: this.loginId,
           })
           .then((res) => {
             this.reportMyList = []
+            this.$socket.emit('notification', {
+              user_id: res.data.resValue.user_id,
+              target_user_id: res.data.resValue.target_user_id,
+              category: res.data.resValue.category,
+              flag: true,
+            });
             if (res.data.resmsg == "신고 성공") {
               this.$store.commit('setModalText', "신고가 접수되었습니다.");
               document.getElementById('modalBtn').click();
             }
-            this.options[0].op4 = ""
+            this.options[0].op7 = ""
             this.info = []
+            this.whatoption = ""
             this.getReport()
           })
           .catch(()=>{
@@ -678,6 +696,12 @@ export default {
             }
           })
           .then((res) => {
+            this.$socket.emit('notification', {
+              user_id: res.data.resValue.user_id,
+              target_user_id: res.data.resValue.target_user_id,
+              category: res.data.resValue.category,
+              flag: false,
+            });
             if (res.data.resmsg == "신고취소성공") {
               const idx = this.reportMyList.findIndex(function(item) {
                 return item === res.data.resValue.target_event_id
@@ -689,7 +713,7 @@ export default {
               this.$store.commit('setModalText', "신고가 취소되지 않았습니다.");
               document.getElementById('modalBtn').click();            
             }
-            // this.sortList()
+            this.sortList()
           })
           .catch(()=>{
             this.errored = true;
