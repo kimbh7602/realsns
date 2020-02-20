@@ -948,7 +948,9 @@ export default {
     },
     mounted(){
         $('html').scrollTop(0);
-        console.log(this.location_name);
+        this.getDislike();
+        this.getLike()
+        this.getScrap()
         if(this.location_name != undefined){
           console.log(this.userLikeList);
           console.log(this.scrapList);
