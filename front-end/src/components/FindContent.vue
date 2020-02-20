@@ -948,9 +948,10 @@ export default {
     },
     mounted(){
         $('html').scrollTop(0);
+        console.log(this.location_name);
         if(this.location_name != undefined){
-          window.console.log(this.userLikeList);
-          window.console.log(this.scrapList);
+          console.log(this.userLikeList);
+          console.log(this.scrapList);
             http.post("/content/findByLocation",{
               lat: this.lat,
               lng: this.lng,
