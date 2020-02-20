@@ -956,6 +956,7 @@ export default {
               dist: this.dist
             })
             .then((res)=>{
+              window.console.log(this.lat+" "+this.lng+" "+this.dist)
                 // this.Items = res.data.resValue;
                 this.searchKeyword = this.location_name;
                 this.isLocation = true;
@@ -969,12 +970,26 @@ export default {
                     name: this.location_name
                 }
                 if (res.data.resValue.length > 0) {
-                            console.log(this.userLikeList);
-          console.log(this.scrapList);
+                  console.log(this.userLikeList);
+                  console.log(this.scrapList);
                   window.console.log("axios로 받은거")
                   window.console.log(res.data.resValue[0].content_id)
                   window.console.log(this.scrapList.includes(res.data.resValue[0].content_id))
                   window.console.log(this.userLikeList.includes(res.data.resValue[0].content_id))
+                  for(var ii=0;  ii<res.data.resValue.length; ii++){
+                    for(var jj=0; jj<this.scrapList.length; jj++){
+                      // if(res.data.resValue[ii].content_id==this.scrapList[jj]){
+                        console.log(res.data.resValue[ii].content_id+" "+this.scrapList[jj]+" 스크랩")
+                      // }
+                    }
+                  }
+                  for(var iii=0;  iii<res.data.resValue.length; iii++){
+                    for(var jjj=0; jjj<this.scrapList.length; jjj++){
+                      // if(res.data.resValue[iii].content_id==this.userLikeList[jjj]){
+                        console.log(res.data.resValue[iii].content_id+" "+this.userLikeList[jjj]+"좋아요")
+                      // }
+                    }
+                  }
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
