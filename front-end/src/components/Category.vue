@@ -140,9 +140,15 @@ import $ from "jquery"
 import http from '../http-common';
 import store from '../store'
 export default {
-  props:["userId", "myPage"],
+  // props:["myFollowList", "userId", "myPage"],
+  props:{
+    myFollowList: Array,
+    userId: String,
+    myPage: Boolean,
+  },
   data() {
     return {
+      test:this.myFollowList,
       dList:[],
       errored: false,
       uid: "",
@@ -665,6 +671,7 @@ export default {
   mounted() {
     $('html').scrollTop(0);
     this.$nextTick(() => {
+      console.log(this.test);
       if(window.innerWidth <= 501){
           setTimeout(() => {
             window.addEventListener('scroll', this.scrollHandler)
