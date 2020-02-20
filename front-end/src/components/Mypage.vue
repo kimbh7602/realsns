@@ -86,8 +86,8 @@
       </div>
       
       <!-- 카테고리 -->
-      <category v-if="check=='content'" :userId="userId" class="aaa" :myPage="true"></category>
-      <category v-else-if="check=='scrap'" :myFollowList="test" :userId="userId" :myPage="false"></category>
+      <category v-if="check=='content'" :userId="userId" :myPage="true" :myFollowList="myFollowList"></category>
+      <category v-else-if="check=='scrap'" :userId="userId" :myPage="false" :myFollowList="myFollowList"></category>
 
       <!-- 팔로워 모달 -->
         <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
@@ -168,7 +168,6 @@ export default {
         return {
             myId: this.$store.state.user_id,
             // userId: this.$route.params.userId,
-            test:["t","e","s","t"],
             myFollowList: [],
             myInfo: {},
             userInfo: {},
