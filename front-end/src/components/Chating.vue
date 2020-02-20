@@ -24,7 +24,7 @@
                                   <a v-for="(userDm, index) in fetchedUserDmList" :key="`userDm${index}`" :value="`userDm${index}`" @click="selectUserDm(userDm);" class="m-0 list-group-item list-group-item-action py-0">
                                       <div class="row pl-2">
                                           <div class="col-2 d-flex justify-content-center align-self-center">
-                                            <img class="rounded-circle ml-2" width="50px" height="50px" style="object-fit: cover;" :src="userDm.user.profile_url" alt="">
+                                            <img class="rounded-circle ml-2" width="50px" height="50px" style="width:50px; height:50px; object-fit: cover;" :src="userDm.user.profile_url" alt="">
                                           </div>
                                           <div class="col-8">
                                               <div class="w-100 d-flex">
