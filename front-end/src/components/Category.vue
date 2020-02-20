@@ -658,6 +658,7 @@ export default {
   },
   created() {
     this.uid = this.$store.state.user_id;
+    console.log(this.myPage);
     this.getLike();
     this.getDislike();
     this.fetchData();
