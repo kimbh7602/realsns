@@ -973,6 +973,8 @@ export default {
                 if (res.data.resValue.length > 0) {
                   window.console.log("axios로 받은거")
                   window.console.log(res.data.resValue)
+                  window.console.log(this.scrapList.includes(res.data.resValue[0].content_id))
+                  window.console.log(this.userLikeList.includes(res.data.resValue[0].content_id))
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
