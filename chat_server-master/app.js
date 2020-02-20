@@ -75,6 +75,7 @@ io.on('connection', function(socket){
     console.log('Message from %s: %s', data.send_id, data.receive_id, data.message);
 
     io.to(socket.id).emit('chat', data);
+    socket.broadcast.emit('unReadCnt', data.receive_id);
     // console.log(socket.id, data.message);
     // console.log(data);
     clients.some(element => {

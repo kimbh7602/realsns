@@ -136,5 +136,25 @@ public class DirectMessageController {
         }
         return resEntity;
 	}
+	
+	@GetMapping("/allUnReadCnt/{user_id}")
+	@ApiOperation(value = "안읽은메시지")
+	private @ResponseBody ResponseEntity<Map<String, Object>> allUnReadCnt(@PathVariable("user_id") String user_id) {
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		try {
+			int unreadCnt = ser.allUnReadCnt(user_id);
+			System.out.println(unreadCnt);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("resmsg", "안읽은메시지성공");
+            map.put("resvalue", unreadCnt);
+            resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+            
+        } catch (RuntimeException e) {
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("resmsg", "안읽은메시지실패");
+            resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+        }
+        return resEntity;
+	}
 }
     
