@@ -27,7 +27,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr v-for="item in computedUsers | reverse" :key="item.index">
-                                                            <td class="text-center"> {{ item.data.user_id }}</td>
+                                                            <td class="text-center">{{ item.data.user_id }}</td>
                                                             <td class="text-center">{{ item.data.user_ip }}</td>
                                                             <td class="text-center">{{ item.data.user_status }}</td>
                                                             <td class="text-center">{{ item.timestamp}}</td>
@@ -139,6 +139,9 @@
             },
             rows() {
                 return this.chain.length;
+            },
+            reverse(chain) {
+                return chain.slice().reverse()
             }
         }
     }
