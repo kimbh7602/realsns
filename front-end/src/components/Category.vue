@@ -174,7 +174,7 @@ export default {
       handler() {
         this.fetchData();
       }
-    }
+    },
   },
   methods: {
     getDislike(){
@@ -659,6 +659,7 @@ export default {
   },
   created() {
     this.uid = this.$store.state.user_id;
+    consoel.log(this.pFollowList);
     // this.parentFollowList = this.pFollowList;
     this.getLike();
     this.getDislike();
