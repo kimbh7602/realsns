@@ -977,14 +977,14 @@ export default {
                   window.console.log(this.userLikeList.includes(res.data.resValue[0].content_id))
                   for(var ii=0;  ii<res.data.resValue.length; ii++){
                     for(var jj=0; jj<this.scrapList.length; jj++){
-                      if(res.data.resValue[ii].content_id==this.scrapList[jj].content_id){
+                      if(res.data.resValue[ii].content_id==this.scrapList[jj]){
                         console.log("스크랩됐네")
                       }
                     }
                   }
                   for(var iii=0;  iii<res.data.resValue.length; iii++){
                     for(var jjj=0; jjj<this.scrapList.length; jjj++){
-                      if(res.data.resValue[iii].content_id==this.userLikeList[jjj].content_id){
+                      if(res.data.resValue[iii].content_id==this.userLikeList[jjj]){
                         console.log("좋아요됐네")
                       }
                     }
