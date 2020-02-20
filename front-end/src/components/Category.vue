@@ -454,14 +454,14 @@ export default {
     //       this.errored = true;
     //     })
     // },
-    // goDetail: function(con_id) {
-    //   this.$router.push({
-    //     name: 'bio',
-    //     params: {
-    //       cid: con_id
-    //     }
-    //   })
-    // },
+    goDetail: function(con_id) {
+      this.$router.push({
+        name: 'bio',
+        params: {
+          cid: con_id
+        }
+      })
+    },
     clickHeart(num) {
       var idx = 0
       for (idx = 0; idx < this.Items.length; idx++) {
