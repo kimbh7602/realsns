@@ -8,7 +8,7 @@
       <div v-if="!isLoading&&(contents == null || contents.length == 0)" style="text-align:center;">
                     검색 결과가 없습니다.
                 </div>
-                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0)">
+                <div style="text-align:center;" v-if="isLoading&&(contents == null || contents.length == 0 || (contents.length == 1 && contents[0].contentId == ''))">
                     <img class="col-md-12" src="/theme/images/loading10.gif" />
                 </div>
       <div v-else class="row align-items-stretch">
