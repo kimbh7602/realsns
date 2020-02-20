@@ -378,119 +378,119 @@ export default {
           }
       },
 
-      // findContentByLocation(){
-      //     this.contents = [{
-      //           contentId: "",
-      //           contentValue: "",
-      //           timestamp: "",
-      //           likeButton: false,
-      //           userId: "",
-      //           imageLength: 0,
-      //           images: [{
-      //           imageUrl: "",
-      //           filter: "",
-      //           }],
-      //           scrapButton: false,
-      //           profileUrl: "",
-      //           profileFilter: "",
-      //       }]
-      //     http.post("/content/findByLocation",{
-      //         lat: this.selectedLocation.position.lat,
-      //         lng: this.selectedLocation.position.lng,
-      //         dist: this.dist
-      //     })
-      //     .then((res)=>{
-      //         if (this.contents[0].contentId == "") {
-      //           this.contents = []
-      //         }
-      //         if (res.data.resValue.length > 0) {
-      //           this.contentErrorMsg = ""
-      //           for (var idx = 0; idx < res.data.resValue.length; idx++) {
-      //             if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
-      //               this.contents.push({
-      //                 contentId: res.data.resValue[idx].content_id,
-      //                 contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-      //                 timestamp: res.data.resValue[idx].timestamp,
-      //                 likeButton: true,
-      //                 userId: res.data.resValue[idx].user_id,
-      //                 imageLength: res.data.resValue[idx].imageList.length,
-      //                 images: [{
-      //                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
-      //                   filter: res.data.resValue[idx].imageList[0].filter,
-      //                 }],
-      //                 scrapButton: true,
-      //                 dislike: res.data.resValue[idx].dislike,
-      //                 profileUrl: res.data.resValue[idx].profile_url,
-      //                 profileFilter: res.data.resValue[idx].profile_filter,
-      //               })
-      //             } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
-      //               this.contents.push({
-      //                 contentId: res.data.resValue[idx].content_id,
-      //                 contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-      //                 timestamp: res.data.resValue[idx].timestamp,
-      //                 likeButton: true,
-      //                 userId: res.data.resValue[idx].user_id,
-      //                 imageLength: res.data.resValue[idx].imageList.length,
-      //                 images: [{
-      //                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
-      //                   filter: res.data.resValue[idx].imageList[0].filter,
-      //                 }],
-      //                 scrapButton: false,
-      //                 dislike: res.data.resValue[idx].dislike,
-      //                 profileUrl: res.data.resValue[idx].profile_url,
-      //                 profileFilter: res.data.resValue[idx].profile_filter,
-      //               })
-      //             } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
-      //               this.contents.push({
-      //                 contentId: res.data.resValue[idx].content_id,
-      //                 contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-      //                 timestamp: res.data.resValue[idx].timestamp,
-      //                 likeButton: false,
-      //                 userId: res.data.resValue[idx].user_id,
-      //                 imageLength: res.data.resValue[idx].imageList.length,
-      //                 images: [{
-      //                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
-      //                   filter: res.data.resValue[idx].imageList[0].filter,
-      //                 }],
-      //                 scrapButton: true,
-      //                 dislike: res.data.resValue[idx].dislike,
-      //                 profileUrl: res.data.resValue[idx].profile_url,
-      //                 profileFilter: res.data.resValue[idx].profile_filter,
-      //               })
-      //             } else{
-      //               this.contents.push({
-      //                 contentId: res.data.resValue[idx].content_id,
-      //                 contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
-      //                 timestamp: res.data.resValue[idx].timestamp,
-      //                 likeButton: false,
-      //                 userId: res.data.resValue[idx].user_id,
-      //                 imageLength: res.data.resValue[idx].imageList.length,
-      //                 images: [{
-      //                   imageUrl: res.data.resValue[idx].imageList[0].image_url,
-      //                   filter: res.data.resValue[idx].imageList[0].filter,
-      //                 }],
-      //                 scrapButton: false,
-      //                 dislike: res.data.resValue[idx].dislike,
-      //                 profileUrl: res.data.resValue[idx].profile_url,
-      //                 profileFilter: res.data.resValue[idx].profile_filter,
-      //               })
-      //             }
-      //           }
-      //           this.sortList()
-      //           // this.getReport()
+      findContentByLocation(){
+          this.contents = [{
+                contentId: "",
+                contentValue: "",
+                timestamp: "",
+                likeButton: false,
+                userId: "",
+                imageLength: 0,
+                images: [{
+                imageUrl: "",
+                filter: "",
+                }],
+                scrapButton: false,
+                profileUrl: "",
+                profileFilter: "",
+            }]
+          http.post("/content/findByLocation",{
+              lat: this.selectedLocation.position.lat,
+              lng: this.selectedLocation.position.lng,
+              dist: this.dist
+          })
+          .then((res)=>{
+              if (this.contents[0].contentId == "") {
+                this.contents = []
+              }
+              if (res.data.resValue.length > 0) {
+                this.contentErrorMsg = ""
+                for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                  if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
+                    this.contents.push({
+                      contentId: res.data.resValue[idx].content_id,
+                      contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                      timestamp: res.data.resValue[idx].timestamp,
+                      likeButton: true,
+                      userId: res.data.resValue[idx].user_id,
+                      imageLength: res.data.resValue[idx].imageList.length,
+                      images: [{
+                        imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                        filter: res.data.resValue[idx].imageList[0].filter,
+                      }],
+                      scrapButton: true,
+                      dislike: res.data.resValue[idx].dislike,
+                      profileUrl: res.data.resValue[idx].profile_url,
+                      profileFilter: res.data.resValue[idx].profile_filter,
+                    })
+                  } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                    this.contents.push({
+                      contentId: res.data.resValue[idx].content_id,
+                      contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                      timestamp: res.data.resValue[idx].timestamp,
+                      likeButton: true,
+                      userId: res.data.resValue[idx].user_id,
+                      imageLength: res.data.resValue[idx].imageList.length,
+                      images: [{
+                        imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                        filter: res.data.resValue[idx].imageList[0].filter,
+                      }],
+                      scrapButton: false,
+                      dislike: res.data.resValue[idx].dislike,
+                      profileUrl: res.data.resValue[idx].profile_url,
+                      profileFilter: res.data.resValue[idx].profile_filter,
+                    })
+                  } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                    this.contents.push({
+                      contentId: res.data.resValue[idx].content_id,
+                      contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                      timestamp: res.data.resValue[idx].timestamp,
+                      likeButton: false,
+                      userId: res.data.resValue[idx].user_id,
+                      imageLength: res.data.resValue[idx].imageList.length,
+                      images: [{
+                        imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                        filter: res.data.resValue[idx].imageList[0].filter,
+                      }],
+                      scrapButton: true,
+                      dislike: res.data.resValue[idx].dislike,
+                      profileUrl: res.data.resValue[idx].profile_url,
+                      profileFilter: res.data.resValue[idx].profile_filter,
+                    })
+                  } else{
+                    this.contents.push({
+                      contentId: res.data.resValue[idx].content_id,
+                      contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
+                      timestamp: res.data.resValue[idx].timestamp,
+                      likeButton: false,
+                      userId: res.data.resValue[idx].user_id,
+                      imageLength: res.data.resValue[idx].imageList.length,
+                      images: [{
+                        imageUrl: res.data.resValue[idx].imageList[0].image_url,
+                        filter: res.data.resValue[idx].imageList[0].filter,
+                      }],
+                      scrapButton: false,
+                      dislike: res.data.resValue[idx].dislike,
+                      profileUrl: res.data.resValue[idx].profile_url,
+                      profileFilter: res.data.resValue[idx].profile_filter,
+                    })
+                  }
+                }
+                this.sortList()
+                // this.getReport()
 
-      //           this.$nextTick(() => {
-      //           if(window.innerWidth <= 501){
-      //               setTimeout(() => {
-      //                 window.addEventListener('scroll', this.scrollHandler)
-      //               }, 500);
-      //               }
-      //           })
-      //           } else {
-      //               this.contentErrorMsg = "타임라인이 없습니다."
-      //           }
-      //     })
-      // },
+                this.$nextTick(() => {
+                if(window.innerWidth <= 501){
+                    setTimeout(() => {
+                      window.addEventListener('scroll', this.scrollHandler)
+                    }, 500);
+                    }
+                })
+                } else {
+                    this.contentErrorMsg = "타임라인이 없습니다."
+                }
+          })
+      },
 
       opBtn() {
       this.optionButton = false
@@ -974,6 +974,7 @@ export default {
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
+                      console.log("둘다")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -991,6 +992,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                      console.log("라이크만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1008,6 +1010,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else if(this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
+                      console.log("스크랩만")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1025,6 +1028,7 @@ export default {
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
                     } else{
+                      console.log("둘다아님")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
                         contentValue: res.data.resValue[idx].content_val.replace(/\n/g, "<br />"),
@@ -1047,7 +1051,6 @@ export default {
                     // this.getReport()
 
                     this.$nextTick(() => {
-                      console.log(this.contents);
                         if(window.innerWidth <= 501){
                             setTimeout(() => {
                               window.addEventListener('scroll', this.scrollHandler)
@@ -1061,7 +1064,7 @@ export default {
         }
 
         this.getFollow()
-        // this.sortList()
+        this.sortList()
         this.getReport()
     },
 
