@@ -533,7 +533,7 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx > -1) {
           this.followList.splice(idx, 1)
-          this.$emit('updateParentFollow', followList);
+          this.$emit('updateParentFollow', this.followList);
         }
       } else {
         http
@@ -555,7 +555,7 @@ export default {
         const idx = this.followList.indexOf(user)
         if (idx == -1) {
           this.followList.push(user)
-          this.$emit('updateParentFollow', followList);
+          this.$emit('updateParentFollow', this.followList);
         }
       }
     },
