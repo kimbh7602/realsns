@@ -948,10 +948,8 @@ export default {
     },
     mounted(){
         $('html').scrollTop(0);
-        console.log(this.location_name);
+        this.getDislike();
         if(this.location_name != undefined){
-          console.log(this.userLikeList);
-          console.log(this.scrapList);
             http.post("/content/findByLocation",{
               lat: this.lat,
               lng: this.lng,
@@ -971,8 +969,12 @@ export default {
                     name: this.location_name
                 }
                 if (res.data.resValue.length > 0) {
+                            console.log(this.userLikeList);
+          console.log(this.scrapList);
                   window.console.log("axios로 받은거")
-                  window.console.log(res.data.resValue)
+                  window.console.log(res.data.resValue[0].content_id)
+                  window.console.log(this.scrapList.includes(res.data.resValue[0].content_id))
+                  window.console.log(this.userLikeList.includes(res.data.resValue[0].content_id))
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
