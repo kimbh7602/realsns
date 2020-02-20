@@ -285,12 +285,12 @@
         }
     }
     @media (min-width: 991.99px) {
-        .toggle-div {
+        header .toggle-div {
             display:none;
         }
     }
     @media (max-width: 991.98px) {
-        .toggle-div {
+        header .toggle-div {
             display:block;
         }
     }
