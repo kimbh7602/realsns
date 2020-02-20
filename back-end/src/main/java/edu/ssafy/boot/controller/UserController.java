@@ -257,7 +257,7 @@ public class UserController {
 		return resEntity;
 	}
 	
-	
+	//회원정보조회 1개는 기본, 한개는 블록위한것
 	@GetMapping("/userinfo/{user_id}")
 	@ApiOperation(value = "회원정보조회", response = UserVo.class)
 	private @ResponseBody ResponseEntity<Map<String, Object>> userinfoMem(@PathVariable("user_id") String user_id,
