@@ -87,7 +87,7 @@
       
       <!-- 카테고리 -->
       <category v-if="check=='content'" :userId="userId" class="aaa" :myPage="true"></category>
-      <category v-else-if="check=='scrap'" :userId="userId" :myPage="false"></category>
+      <category v-else-if="check=='scrap'" :myFollowList="myFollowList" :userId="userId" :myPage="false"></category>
 
       <!-- 팔로워 모달 -->
         <div class="modal fade mt-5" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:99999;">
