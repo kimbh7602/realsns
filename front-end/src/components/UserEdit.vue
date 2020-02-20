@@ -122,8 +122,8 @@
                   <!-- register/reset button -->
                   <div class="container col-md-12 px-0">
                     <div class="btn-group col-12 px-0" role="group" aria-label="Basic example">
-                      <input type="submit" class="btn btn-outline-light col-sm btnprev p-2" value="수정">
-                      <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="회원 탈퇴" data-toggle="modal" data-target="#exampleModal">
+                      <input type="submit" class="btn btn-outline-light btn-block" value="수정">
+                      <!-- <input type="button" class="btn btn-outline-light col-sm btnprev p-2" value="회원 탈퇴" data-toggle="modal" data-target="#exampleModal"> -->
                     </div>
                   </div>
                   <!-- <div class="row form-group">
