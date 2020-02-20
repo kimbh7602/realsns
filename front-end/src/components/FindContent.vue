@@ -1027,7 +1027,7 @@ export default {
                         profileUrl: res.data.resValue[idx].profile_url,
                         profileFilter: res.data.resValue[idx].profile_filter,
                       })
-                    } else{
+                    } else if(!this.scrapList.includes(res.data.resValue[idx].content_id)&&!this.userLikeList.includes(res.data.resValue[idx].content_id)){
                       console.log("둘다아님")
                       this.contents.push({
                         contentId: res.data.resValue[idx].content_id,
