@@ -268,9 +268,8 @@ export default {
                                 return(num>=3);
                               });
                               window.console.log(num);
-                            })
-                              .finally(()=>{
-                                http
+
+                              http
                                 .get(`/user/allInterestList`)
                                 .then((res) => {
                                   window.console.log(res.data.resValue);
@@ -369,6 +368,11 @@ export default {
 
 
                               })
+
+
+                            })
+                              .finally(()=>{
+                                
                             })
                     })
                 });
