@@ -229,6 +229,89 @@ public class UserController {
 						user.getProfileImage().setFilter(user.getProfile_filter());
 					}
 				}
+//				LogVo log = new LogVo(user_id, request.getRemoteAddr(), "회원정보조회");
+//				BlockVo block = new BlockVo(log);
+//				serbc.addBlock(block);
+				map.put("resmsg", "조회성공");
+				map.put("resvalue", user);
+
+			} else {
+				map.put("resmsg", "조회실패");
+			}
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		} catch (RuntimeException | IOException e) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "조회실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		} finally {
+			try {
+				if (fis != null)
+					fis.close();
+				if (bos != null)
+					bos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return resEntity;
+	}
+	
+	
+	@GetMapping("/userinfo/{user_id}")
+	@ApiOperation(value = "회원정보조회", response = UserVo.class)
+	private @ResponseBody ResponseEntity<Map<String, Object>> userinfoMem(@PathVariable("user_id") String user_id,
+			HttpServletResponse response, HttpServletRequest request) {
+		ResponseEntity<Map<String, Object>> resEntity = null;
+		UserVo user = null;
+		String path = "/images/profile";
+		String realPath = "/var/www/html"+path;
+		FileInputStream fis = null;
+		ByteArrayOutputStream bos = null;
+
+		try {
+			user = ser.info(user_id);
+			String url = user.getProfile_url();
+			String imageName = url.substring(url.lastIndexOf("/") + 1);
+			String ext = imageName.substring(imageName.lastIndexOf(".") + 1);
+			Map<String, Object> map = new HashMap<String, Object>();
+			if (user != null) {
+				File file = new File(realPath + File.separator + imageName);
+				if (file.exists()) {
+
+					fis = new FileInputStream(file);
+					bos = new ByteArrayOutputStream();
+
+					int len = 0;
+					byte[] buf = new byte[1024];
+					while ((len = fis.read(buf)) != -1) {
+						bos.write(buf, 0, len);
+					}
+					byte[] fileArray = bos.toByteArray();
+					String imageString = new String(Base64.encodeBase64(fileArray));
+					String changeString = "data:image/" + ext + ";base64, " + imageString;
+					user.setProfileImage(new ImageVo());
+					user.getProfileImage().setBase64(changeString);
+					user.getProfileImage().setFilter(user.getProfile_filter());
+				} else {
+					file = new File(realPath + File.separator + "default.png");
+					if (file.exists()) {
+						fis = new FileInputStream(file);
+						bos = new ByteArrayOutputStream();
+
+						int len = 0;
+						byte[] buf = new byte[1024];
+						while ((len = fis.read(buf)) != -1) {
+							bos.write(buf, 0, len);
+						}
+						byte[] fileArray = bos.toByteArray();
+						String imageString = new String(Base64.encodeBase64(fileArray));
+						String changeString = "data:image/png;base64, " + imageString;
+						user.setProfileImage(new ImageVo());
+						user.getProfileImage().setBase64(changeString);
+						user.getProfileImage().setFilter(user.getProfile_filter());
+					}
+				}
 				LogVo log = new LogVo(user_id, request.getRemoteAddr(), "회원정보조회");
 				BlockVo block = new BlockVo(log);
 				serbc.addBlock(block);
@@ -256,6 +339,8 @@ public class UserController {
 		}
 		return resEntity;
 	}
+	
+	
 
 	@PostMapping("/signup")
 	@ApiOperation(value = "회원가입")
