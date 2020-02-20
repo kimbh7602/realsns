@@ -441,27 +441,27 @@ export default {
         this.errored = true;
       })
     },
-    getFollow() {
-      this.followList = []
-      http
-        .get('/follow/followList/' + this.uid)
-        .then((res) => {
-          for (var i = 0; i < res.data.resvalue.length; i++) {
-            this.followList.push(res.data.resvalue[i].user_id)
-          }
-        })
-        .catch(()=>{
-          this.errored = true;
-        })
-    },
-    goDetail: function(con_id) {
-      this.$router.push({
-        name: 'bio',
-        params: {
-          cid: con_id
-        }
-      })
-    },
+    // getFollow() {
+    //   this.followList = []
+    //   http
+    //     .get('/follow/followList/' + this.uid)
+    //     .then((res) => {
+    //       for (var i = 0; i < res.data.resvalue.length; i++) {
+    //         this.followList.push(res.data.resvalue[i].user_id)
+    //       }
+    //     })
+    //     .catch(()=>{
+    //       this.errored = true;
+    //     })
+    // },
+    // goDetail: function(con_id) {
+    //   this.$router.push({
+    //     name: 'bio',
+    //     params: {
+    //       cid: con_id
+    //     }
+    //   })
+    // },
     clickHeart(num) {
       var idx = 0
       for (idx = 0; idx < this.Items.length; idx++) {

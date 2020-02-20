@@ -406,6 +406,8 @@ export default {
               if (res.data.resValue.length > 0) {
                 this.contentErrorMsg = ""
                 for (var idx = 0; idx < res.data.resValue.length; idx++) {
+                  window.console.log(this.scrapList);
+                  window.console.log(this.userLikeList);
                   if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
                     this.contents.push({
                       contentId: res.data.resValue[idx].content_id,
