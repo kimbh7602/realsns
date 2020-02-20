@@ -941,18 +941,13 @@ export default {
 
 
     },
-    computed: {
-
-    },
-    watch: {
-        
-    },
     mounted(){
         this.getDislike();
         this.getLike()
         this.getScrap()
         $('html').scrollTop(0);
         if(this.location_name != undefined){
+          window.console.log("지금")
             http.post("/content/findByLocation",{
               lat: this.lat,
               lng: this.lng,
