@@ -971,6 +971,8 @@ export default {
                     name: this.location_name
                 }
                 if (res.data.resValue.length > 0) {
+                  window.console.log("axios로 받은거")
+                  window.console.log(res.data.resValue)
                   this.contentErrorMsg = ""
                   for (var idx = 0; idx < res.data.resValue.length; idx++) {
                     if (this.scrapList.includes(res.data.resValue[idx].content_id)&&this.userLikeList.includes(res.data.resValue[idx].content_id)) {
