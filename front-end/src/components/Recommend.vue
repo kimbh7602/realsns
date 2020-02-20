@@ -275,6 +275,8 @@ export default {
                                       this.Interests.push(element);
                                     }
                                   })
+                                                  window.console.log(this.Interests);
+
                               })
                             })
                     })
@@ -283,7 +285,7 @@ export default {
                 
               })
               .finally(()=>{
-                window.console.log(this.Interests);
+                // window.console.log(this.Interests);
                 http
                   .post(`/content/contentListHashtagList/`, this.Interests)
                   .then((res) => {
