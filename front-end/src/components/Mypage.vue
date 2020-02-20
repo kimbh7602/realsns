@@ -192,6 +192,10 @@ export default {
         
     },
     methods: {
+        updateParentFollow: function(follow) {
+            this.myFollowList = follow;
+            window.console.log(this.myFollowList);
+        },
         contentListHashtag(tag) {
             this.$router.push({
             name: "contentListHashtag",
